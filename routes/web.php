@@ -23,5 +23,5 @@ Route::view('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     route::redirect('/', 'records');
     Route::resource('verantwoordlijke', '');
-    Route::get('verantwoordelijke', '');
+   // Route::get('verantwoordelijke', '');
 });
