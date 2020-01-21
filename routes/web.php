@@ -11,5 +11,10 @@
 |
 */
 
-Route::view('/', 'home');
 Route::view('/aanvraag', 'aanvraag');
+
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::view('/', 'landingpage');
+Route::view('/home', 'home');
