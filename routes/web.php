@@ -18,3 +18,10 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landingpage');
 Route::view('/home', 'home');
+Route::view('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    route::redirect('/', 'records');
+    Route::resource('verantwoordlijke', '');
+    Route::get('verantwoordelijke', '');
+});
