@@ -26,7 +26,6 @@ class CreateEvenementsTable extends Migration
                 'einddatum' => "22-02-2020 00:00:00",
                 'naam' => "Gladiolen",
                 'actief' => true
-
             ]
         );
     }
