@@ -21,6 +21,10 @@ Route::view('/home', 'home');
 Route::view('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
-    Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
+    route::redirect('/', 'records');
+    Route::get('verenigingen/qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
+    Route::resource('verantwoordlijke', '');
+    Route::resource('verenigingen', 'Admin\VerenigingController');
+    //Route::get('verenigingen', '');
+   // Route::get('verantwoordelijke', '');
 });
