@@ -19,7 +19,7 @@ class CreateTaaksTable extends Migration
         });
 
         // Insert dummy taken
-        DB::table('rols')->insert(
+        DB::table('taaks')->insert(
             [
                 [
                     'naam' => 'tappen',

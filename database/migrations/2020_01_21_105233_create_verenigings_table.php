@@ -33,14 +33,21 @@ class CreateVerenigingsTable extends Migration
             DB::table('verenigings')->insert(
                 [
                     'naam' => "vereniging zelfstandig",
+                    'rekeningnr' => "BE68539007547034",
+                    'btwnr' => "BE0000.111.222",
+                    "postcode" => "2440",
+                    'straat' => "straat",
+                    'huisnummer' => "20",
+                    'gemeente' => "Geel",
+                    'hoofdverantwoordelijke' => "1",
                 ]
             );
 
-            for ($i = 0; $i <= 10; $i++) {
+            for ($i = 2; $i <= 10; $i++) {
                 DB::table('verenigings')->insert(
                 [
                     'naam' => "Vereniging_$i",
-                    'rekeningnr' => "BE68539007547034 "+" $i",
+                    'rekeningnr' => "BE68539007547034_$i",
                     'btwnr' => "BE0000.111.222",
                     "postcode" => "2440",
                     'straat' => "straat_$i",

@@ -22,12 +22,11 @@ class CreateTaakVansTable extends Migration
             $table->foreign('taakId')->references('id')->on('taaks')->onDelete('cascade')->onUpdate('cascade');
         });
 
-        for ($i = 0; $i <= 10; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             DB::table('taak_vans')->insert(
                 [
                     'verenigingId'=> $i,
-                    'taakId' => '1'
-
+                    'taakId' => 1
                 ]
             );
         }
