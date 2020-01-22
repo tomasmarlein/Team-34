@@ -18,7 +18,7 @@ class CreateTijdsregistratiesTable extends Migration
             $table->dateTime('checkIn')->nullable();
             $table->dateTime('checkUit')->nullable();
             $table->unsignedBigInteger('userId');
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('userId')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
         });
 
     }

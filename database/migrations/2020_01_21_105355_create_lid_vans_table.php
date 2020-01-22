@@ -18,7 +18,7 @@ class CreateLidVansTable extends Migration
             $table->unsignedBigInteger('verenigingId');
             $table->unsignedBigInteger('gebruikerId');
 
-            $table->foreign('gebruikerId')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('gebruikerId')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('verenigingId')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
         });
     }
