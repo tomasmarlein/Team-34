@@ -32,7 +32,7 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>GSM-nr</th>
+                    <th>Telefoon</th>
                     <th>Rekeningnr</th>
                     <th>Actions</th>
                 </tr>
@@ -62,9 +62,9 @@
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.name}</td>
+                               <td>${value.Email}</td>
                                <td>${value.telefoon}</td>
-                               <td>${active}</td>
-                               <td>${admin}</td>
+                               <td>${value.Rekeningnr}</td>
                                <td data-id="${value.id}"
                                    data-email="${value.email}"
                                    data-name="${value.name}">

@@ -26,6 +26,7 @@
                 @endguest
                 @auth
                     <li class="nav-item dropdown">
+
                         <a class="nav-link dropdown-toggle" href="#!" data-toggle="dropdown">
                             {{ auth()->user()->name }} <span class="caret"></span>
                         </a>
