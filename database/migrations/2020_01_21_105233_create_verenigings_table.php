@@ -28,31 +28,28 @@ class CreateVerenigingsTable extends Migration
             $table->foreign('hoofdverantwoordelijke')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('2deverantwoordelijke')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
         });
-        // Add 40 dummy users inside a loop
+        // Add zelfstandige vereniging en dummy verenigingen in een loop
 
-//            DB::table('verenigings')->insert(
-//                [
-//                    'naam' => "vereniging zelfstandig",
-//                ]
-//            );
+            DB::table('verenigings')->insert(
+                [
+                    'naam' => "vereniging zelfstandig",
+                ]
+            );
 
-//            for ($i = 1; $i <= 10; $i++) {
-//                DB::table('verenigings')->insert(
-//                [
-//                    'naam' => "vereniging $i",
-//                    'rekeningnr' => "rekeningnr $i",
-//                    'btwnr' => "btwnr $i",
-//                    "postcode" => "2440",
-//                    "straat" => "straat $i",
-//                    "huisnummer" => "$i",
-//                    "gemeente" => "Geel",
-//
-//
-//
-//
-//                ]
-//            );
-//        }
+            for ($i = 0; $i <= 10; $i++) {
+                DB::table('verenigings')->insert(
+                [
+                    'naam' => "Vereniging_$i",
+                    'rekeningnr' => "BE68539007547034 "+" $i",
+                    'btwnr' => "BE0000.111.222",
+                    "postcode" => "2440",
+                    'straat' => "straat_$i",
+                    'huisnummer' => "$i",
+                    'gemeente' => "Geel",
+                    'hoofdverantwoordelijke' => "$i",
+                ]
+            );
+        }
     }
 
     /**

@@ -20,6 +20,15 @@ class CreateEvenementsTable extends Migration
             $table->string('naam');
             $table->boolean('actief');
         });
+        DB::table('evenement_verenigings')->insert(
+            [
+                'startdatum'=> "22-01-2020 00:00:00",
+                'einddatum' => "22-02-2020 00:00:00",
+                'naam' => "Gladiolen",
+                'actief' => true
+
+            ]
+        );
     }
 
     /**

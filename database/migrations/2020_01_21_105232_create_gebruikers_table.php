@@ -39,6 +39,79 @@ class CreateGebruikersTable extends Migration
             $table->foreign('tshirtId')->references('id')->on('tshirts')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('rolId')->references('id')->on('rols')->onDelete('cascade')->onUpdate('cascade');
         });
+
+
+        // Add 10 dummy users inside a loop
+        for ($i = 0; $i <= 10; $i++) {
+            DB::table('gebruikers')->insert(
+                [
+                    'naam' => "Admin_$i",
+                    'voornaam' => "Gladiolen_$i",
+                    'emailadres' => "itf_user_$i@mailinator.com",
+                    'wachtwoord' => Hash::make("user$i"),
+                    'straat' => "Straat_$i",
+                    'huisnummer' => "$i + $i",
+                    'geboortedatum' => now()->toDateTimeString('Y-m-d'),
+                    'telefoon' => '1813',
+                    '2detshirt' => False,
+                    'postcode' => '2440',
+                    'eersteAanmelding' => now(),
+                    'lunchpakket' => False,
+                    'tshirtId'=> "1",
+                    'rolId' => "1",
+                ],
+                [
+                    'naam' => "kernlid_$i",
+                    'voornaam' => "Gladiolen_$i",
+                    'emailadres' => "itf_user_$i@mailinator.com",
+                    'wachtwoord' => Hash::make("user$i"),
+                    'straat' => "Straat_$i",
+                    'huisnummer' => "$i + $i",
+                    'geboortedatum' => now()->toDateTimeString('Y-m-d'),
+                    'telefoon' => '1813',
+                    '2detshirt' => False,
+                    'postcode' => '2440',
+                    'eersteAanmelding' => now(),
+                    'lunchpakket' => False,
+                    'tshirtId'=> "1",
+                    'rolId' => "2",
+                ],
+                [
+                    'naam' => "Verantwoordelijke_$i",
+                    'voornaam' => "Gladiolen_$i",
+                    'emailadres' => "itf_user_$i@mailinator.com",
+                    'wachtwoord' => Hash::make("user$i"),
+                    'straat' => "Straat_$i",
+                    'huisnummer' => "$i + $i",
+                    'geboortedatum' => now()->toDateTimeString('Y-m-d'),
+                    'telefoon' => '1813',
+                    '2detshirt' => False,
+                    'postcode' => '2440',
+                    'eersteAanmelding' => now(),
+                    'lunchpakket' => False,
+                    'tshirtId'=> "1",
+                    'rolId' => "3",
+                ],
+                [
+                    'naam' => "Vrijwilliger_$i",
+                    'voornaam' => "Gladiolen_$i",
+                    'emailadres' => "Vrijwilliger_$i@mailinator.com",
+                    'wachtwoord' => Hash::make("user$i"),
+                    'straat' => "Straat_$i",
+                    'huisnummer' => "$i + $i",
+                    'geboortedatum' => now()->toDateTimeString('Y-m-d'),
+                    'telefoon' => '1813',
+                    '2detshirt' => False,
+                    'postcode' => '2440',
+                    'eersteAanmelding' => now(),
+                    'lunchpakket' => False,
+                    'tshirtId'=> "1",
+                    'rolId' => "4",
+                ]
+            );
+        }
+
+
     }
 
     /**

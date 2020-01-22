@@ -17,17 +17,20 @@ class CreateRolsTable extends Migration
             $table->bigIncrements('id');
             $table->string('naam');
         });
-        // Insert some users
+        // Insert roles
         DB::table('rols')->insert(
             [
-                [
-                    'naam' => 'Superadmin',
-                ],
                 [
                     'naam' => 'Admin',
                 ],
                 [
+                    'naam' => 'Kernlid',
+                ],
+                [
                     'naam' => 'Verantwoodelijke',
+                ],
+                [
+                    'naam' => 'Vrijwilliger',
                 ]
             ]
         );
