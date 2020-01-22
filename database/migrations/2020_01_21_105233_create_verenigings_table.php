@@ -16,8 +16,8 @@ class CreateVerenigingsTable extends Migration
         Schema::create('verenigings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('naam');
-            $table->unsignedBigInteger('hoofdverantwoordelijke');
-            $table->unsignedBigInteger('2deverantwoordelijke');
+            $table->unsignedBigInteger('hoofdverantwoordelijke')->unique();
+            $table->unsignedBigInteger('2deverantwoordelijke')->nullable();
             $table->string('rekeningnr');
             $table->string('btwnr');
             $table->string('straat');
@@ -28,6 +28,31 @@ class CreateVerenigingsTable extends Migration
             $table->foreign('hoofdverantwoordelijke')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('2deverantwoordelijke')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
         });
+        // Add 40 dummy users inside a loop
+
+            DB::table('verenigings')->insert(
+                [
+                    'naam' => "vereniging zelfstandig",
+                ]
+            );
+
+            for ($i = 1; $i <= 10; $i++) {
+                DB::table('verenigings')->insert(
+                [
+                    'naam' => "vereniging $i",
+                    'rekeningnr' => "rekeningnr $i",
+                    'btwnr' => "btwnr $i",
+                    "postcode" => "2440",
+                    "straat" => "straat $i",
+                    "huisnummer" => "$i",
+                    "gemeente" => "Geel",
+
+
+
+
+                ]
+            );
+        }
     }
 
     /**
