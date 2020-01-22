@@ -21,6 +21,15 @@ class CreateEvenementVerenigingsTable extends Migration
             $table->foreign('evenementId')->references('id')->on('evenements')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('verenigingId')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
         });
+        for ($i = 1; $i <= 10; $i++) {
+        DB::table('evenement_verenigings')->insert(
+            [
+                'evenementId'=> "1",
+                'verenigingId' => $i
+
+            ]
+        );
+            }
     }
 
     /**

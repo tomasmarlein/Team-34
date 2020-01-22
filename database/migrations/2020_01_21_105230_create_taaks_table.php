@@ -17,6 +17,21 @@ class CreateTaaksTable extends Migration
             $table->bigIncrements('id');
             $table->string("naam");
         });
+
+        // Insert dummy taken
+        DB::table('taaks')->insert(
+            [
+                [
+                    'naam' => 'tappen',
+                ],
+                [
+                    'naam' => 'security',
+                ],
+                [
+                    'naam' => 'Opboux',
+                ]
+            ]
+        );
     }
 
     /**

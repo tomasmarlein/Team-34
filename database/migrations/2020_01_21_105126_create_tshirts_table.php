@@ -18,6 +18,16 @@ class CreateTshirtsTable extends Migration
             $table->string('maat');
             $table->string('geslacht');
         });
+        // Insert roles
+        DB::table('tshirts')->insert(
+            [
+                [
+                    'id' => 1,
+                    'maat' => "XL",
+                    'geslacht' => 'V'
+                ]
+            ]
+        );
     }
 
     /**
