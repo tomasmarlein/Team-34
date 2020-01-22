@@ -37084,7 +37084,8 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Make all functions inside 'vinylShop.js' that start with 'export' accessible inside the HTML pages
 
 
-window.vinylShop = __webpack_require__(/*! ./main */ "./resources/js/main.js"); // Run the hello() function
+window.vinylShop = __webpack_require__(/*! ./main */ "./resources/js/main.js");
+window.Noty = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'noty'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())); // Run the hello() function
 
 vinylShop.hello();
 
@@ -37148,6 +37149,11 @@ __webpack_require__.r(__webpack_exports__);
 function hello() {
   console.log('The Vinyl Shop JavaScript works! 🙂');
 }
+Noty.overrideDefaults({
+  layout: 'topRight',
+  theme: 'bootstrap-v4',
+  timeout: 3000
+});
 
 /***/ }),
 
@@ -37158,7 +37164,7 @@ function hello() {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\n\r\n@import '~noty/src/noty';\r\n       ^\r\n      Can't find stylesheet to import.\n   ╷\n15 │ @import '~noty/src/noty';\r\n   │         ^^^^^^^^^^^^^^^^\n   ╵\n  stdin 15:9  root stylesheet\r\n      in C:\\sites_laravel\\Team-34\\resources\\sass\\app.scss (line 15, column 9)\n    at C:\\sites_laravel\\Team-34\\node_modules\\webpack\\lib\\NormalModule.js:316:20\n    at C:\\sites_laravel\\Team-34\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at C:\\sites_laravel\\Team-34\\node_modules\\loader-runner\\lib\\LoaderRunner.js:233:18\n    at context.callback (C:\\sites_laravel\\Team-34\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at C:\\sites_laravel\\Team-34\\node_modules\\sass-loader\\dist\\index.js:89:7\n    at Function.call$2 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:56230:16)\n    at _render_closure1.call$2 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:34691:12)\n    at _RootZone.runBinary$3$3 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:20227:18)\n    at _RootZone.runBinary$3 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:20231:19)\n    at _FutureListener.handleError$1 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18696:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18984:40)\n    at Object._Future__propagateToListeners (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:3500:88)\n    at _Future._completeError$2 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18820:9)\n    at _AsyncAwaitCompleter.completeError$2 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18219:12)\n    at Object._asyncRethrow (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:3256:17)\n    at C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:10615:20\n    at _wrapJsFunctionForAsync_closure.$protected (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:3279:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18240:12)\n    at _awaitOnObject_closure0.call$2 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18232:25)\n    at _RootZone.runBinary$3$3 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:20227:18)\n    at _RootZone.runBinary$3 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:20231:19)\n    at _FutureListener.handleError$1 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18696:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18984:40)\n    at Object._Future__propagateToListeners (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:3500:88)\n    at _Future._completeError$2 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18820:9)\n    at _AsyncAwaitCompleter.completeError$2 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18219:12)\n    at Object._asyncRethrow (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:3256:17)\n    at C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:12510:20\n    at _wrapJsFunctionForAsync_closure.$protected (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:3279:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18240:12)\n    at _awaitOnObject_closure0.call$2 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18232:25)\n    at _RootZone.runBinary$3$3 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:20227:18)\n    at _RootZone.runBinary$3 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:20231:19)\n    at _FutureListener.handleError$1 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18696:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:18984:40)\n    at Object._Future__propagateToListeners (C:\\sites_laravel\\Team-34\\node_modules\\sass\\sass.dart.js:3500:88)");
 
 /***/ }),
 

@@ -9,6 +9,7 @@ require('./bootstrap');
 
 // Make all functions inside 'vinylShop.js' that start with 'export' accessible inside the HTML pages
 window.vinylShop = require('./main');
+window.Noty = require('noty');
 // Run the hello() function
 vinylShop.hello();
 
