@@ -15,8 +15,8 @@ class CreateGebruikersTable extends Migration
     {
         Schema::create('gebruikers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('emailadres');
-            $table->string('wachtwoord');
+            $table->string('email');
+            $table->string('password');
             $table->string('naam');
             $table->string('voornaam');
             $table->string('roepnaam')->nullable();
@@ -47,8 +47,8 @@ class CreateGebruikersTable extends Migration
                 [
                     'naam' => "Admin_$i",
                     'voornaam' => "Gladiolen_$i",
-                    'emailadres' => "itf_user_$i@mailinator.com",
-                    'wachtwoord' => Hash::make("user$i"),
+                    'email' => "admin_$i@mailinator.com",
+                    'password' => Hash::make("admin$i"),
                     'straat' => "Straat_$i",
                     'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
@@ -66,8 +66,8 @@ class CreateGebruikersTable extends Migration
                 [
                     'naam' => "kernlid_$i",
                     'voornaam' => "Gladiolen_$i",
-                    'emailadres' => "itf_user_$i@mailinator.com",
-                    'wachtwoord' => Hash::make("user$i"),
+                    'email' => "kernlid_$i@mailinator.com",
+                    'password' => Hash::make("kernlid$i"),
                     'straat' => "Straat_$i",
                     'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
@@ -85,8 +85,8 @@ class CreateGebruikersTable extends Migration
                 [
                     'naam' => "Verantwoordelijke_$i",
                     'voornaam' => "Gladiolen_$i",
-                    'emailadres' => "itf_user_$i@mailinator.com",
-                    'wachtwoord' => Hash::make("user$i"),
+                    'email' => "verantwoordelijke_$i@mailinator.com",
+                    'password' => Hash::make("verant$i"),
                     'straat' => "Straat_$i",
                     'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
@@ -104,8 +104,8 @@ class CreateGebruikersTable extends Migration
                 [
                     'naam' => "Vrijwilliger_$i",
                     'voornaam' => "Gladiolen_$i",
-                    'emailadres' => "Vrijwilliger_$i@mailinator.com",
-                    'wachtwoord' => Hash::make("user$i"),
+                    'email' => "Vrijwilliger_$i@mailinator.com",
+                    'password' => Hash::make("vrijwilliger$i"),
                     'straat' => "Straat_$i",
                     'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
