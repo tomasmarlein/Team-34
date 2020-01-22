@@ -111,7 +111,7 @@ class VerenigingController extends Controller
 
     public function qryVerenigingen()
     {
-        $verenigingen = Verenigings::orderBy('naam')
+        $verenigingen = Verenigings::orderBy('id')
             ->get();
         return $verenigingen;
     }

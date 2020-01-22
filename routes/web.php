@@ -19,16 +19,12 @@ Auth::routes();
 Route::view('/', 'landingpage');
 Route::view('/home', 'home');
 Route::view('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
+Route::view('verenigingen', 'Admin\VerenigingController@index');
 
 
+
+Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
 Route::resource('verenigingen', 'Admin\VerenigingController');
-
-
-
-
-    route::redirect('/', 'records');
-    Route::get('verenigingen/qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
-    Route::resource('verantwoordlijke', '');
 
     // Route::get('verantwoordelijke', '');
 
