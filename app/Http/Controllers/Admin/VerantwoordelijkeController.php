@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
+use App\Gebruikers;
 use App\verantwoordlijke;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -87,8 +87,8 @@ class VerantwoordelijkeController extends Controller
 
     public function qryVerantwoordelijke()
     {
-        $verantwoordelijke = gebruiker::orderBy('name')
-            ->where('rolid', '=', 3)
+        $verantwoordelijke = gebruikers::orderBy('naam')
+            ->where('rolId', '=', 1)
             ->get();
         return $verantwoordelijke;
     }

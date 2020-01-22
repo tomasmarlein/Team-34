@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Gebruikers extends Model
 {
 
+
     public function tshirt()
     {
         return $this->belongsTo('App\Tshirt')->withDefault();
