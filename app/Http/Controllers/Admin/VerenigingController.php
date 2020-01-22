@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Vereniging;
+
+use App\Verenigings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,7 @@ class VerenigingController extends Controller
      */
     public function index()
     {
-        return view('admin.vereniging.index');
+        return view('admin.verenigingen.index');
     }
 
     /**
@@ -41,7 +42,7 @@ class VerenigingController extends Controller
             'naam' => 'required|min:3|unique:verenigingen,naam'
         ]);
 
-        $vereniging = new Vereniging();
+        $vereniging = new Verenigings();
         $vereniging->naam = $request->naam;
         $vereniging->save();
         return response()->json([
@@ -53,10 +54,10 @@ class VerenigingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Vereniging  $vereniging
+     * @param  \App\Verenigings  $vereniging
      * @return \Illuminate\Http\Response
      */
-    public function show(Vereniging $vereniging)
+    public function show(Verenigings $vereniging)
     {
         return redirect('admin/verenigingen');
     }
@@ -64,7 +65,7 @@ class VerenigingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Vereniging  $vereniging
+     * @param  \App\Verenigings  $vereniging
      * @return \Illuminate\Http\Response
      */
     public function edit(Vereniging $vereniging)
@@ -76,11 +77,11 @@ class VerenigingController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Vereniging $vereniging
+     * @param \App\Verenigings $vereniging
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, Vereniging $vereniging)
+    public function update(Request $request, Verenigings $vereniging)
     {
         $this->validate($request,[
             'name' => 'required|min:3|unique:verenigingen,naam,' . $vereniging->id
@@ -97,10 +98,11 @@ class VerenigingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Vereniging  $vereniging
+     * @param \App\Verenigings $vereniging
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy(Vereniging $vereniging)
+    public function destroy(Verenigings $vereniging)
     {
         $vereniging->delete();
         session()->flash('success', "De vereniging:  <b>$vereniging->naam</b> is verwijdert!");
@@ -109,7 +111,7 @@ class VerenigingController extends Controller
 
     public function qryVerenigingen()
     {
-        $verenigingen = Vereniging::orderBy('naam')
+        $verenigingen = Verenigings::orderBy('naam')
             ->get();
         return $verenigingen;
     }

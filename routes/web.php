@@ -20,11 +20,14 @@ Route::view('/', 'landingpage');
 Route::view('/home', 'home');
 Route::view('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 
+Route::resource('verenigingen', 'Admin\VerenigingController');
+
+
+
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     route::redirect('/', 'records');
     Route::get('verenigingen/qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
     Route::resource('verantwoordlijke', '');
-    Route::resource('verenigingen', 'Admin\VerenigingController');
-    //Route::get('verenigingen', '');
-   // Route::get('verantwoordelijke', '');
+
+    // Route::get('verantwoordelijke', '');
 });

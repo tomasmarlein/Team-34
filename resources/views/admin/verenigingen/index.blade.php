@@ -3,7 +3,7 @@
 @section('title', 'Verenigingen')
 
 @section('main')
-    <h1>Genres</h1>
+    <h1>Verenigingen</h1>
     <p>
         <a href="#!" class="btn btn-outline-success" id="btn-create">
             <i class="fas fa-plus-circle mr-1"></i>Maak nieuwe vereniging
@@ -24,7 +24,7 @@
             </tbody>
         </table>
     </div>
-    @include('admin.verenigingen.modal', ['data' => $data])
+    @include('admin.verenigingen.modal')
 @endsection
 
 @section('script_after')
@@ -125,9 +125,7 @@
                 $('#modal-genre').modal('show');
             });
 
-
         });
-
 
         // Delete a genre
         function deleteVereniging(id) {
@@ -189,28 +187,28 @@
 @endsection
 
 
-@foreach($verenigingen as $vereniging)
-    <tr>
-        <td>{{ $vereniging->id }}</td>
-        <td>{{ $vereniging->naam }}</td>
-        <td>{{ $vereniging->rekeningnr }}</td>
-        <td>
-            <form action="/admin/verenigingen/{{ $vereniging->id }}" method="post" class="deleteForm">
-                @method('delete')
-                @csrf
-                <div class="btn-group btn-group-sm">
-                    <a href="/admin/verenigingen/{{ $vereniging->id }}/edit" class="btn btn-outline-success"
-                       data-toggle="tooltip"
-                       title="Edit {{ $vereniging->naam }}">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <button type="submit" class="btn btn-outline-danger"
-                            data-toggle="tooltip"
-                            title="Delete {{ $vereniging->naam }}">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </div>
-            </form>
-        </td>
-    </tr>
-@endforeach
+{{--@foreach($verenigingen as $vereniging)--}}
+{{--    <tr>--}}
+{{--        <td>{{ $vereniging->id }}</td>--}}
+{{--        <td>{{ $vereniging->naam }}</td>--}}
+{{--        <td>{{ $vereniging->rekeningnr }}</td>--}}
+{{--        <td>--}}
+{{--            <form action="/admin/verenigingen/{{ $vereniging->id }}" method="post" class="deleteForm">--}}
+{{--                @method('delete')--}}
+{{--                @csrf--}}
+{{--                <div class="btn-group btn-group-sm">--}}
+{{--                    <a href="/admin/verenigingen/{{ $vereniging->id }}/edit" class="btn btn-outline-success"--}}
+{{--                       data-toggle="tooltip"--}}
+{{--                       title="Edit {{ $vereniging->naam }}">--}}
+{{--                        <i class="fas fa-edit"></i>--}}
+{{--                    </a>--}}
+{{--                    <button type="submit" class="btn btn-outline-danger"--}}
+{{--                            data-toggle="tooltip"--}}
+{{--                            title="Delete {{ $vereniging->naam }}">--}}
+{{--                        <i class="fas fa-trash-alt"></i>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--            </form>--}}
+{{--        </td>--}}
+{{--    </tr>--}}
+{{--@endforeach--}}
