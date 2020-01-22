@@ -59,7 +59,10 @@ class CreateGebruikersTable extends Migration
                     'lunchpakket' => False,
                     'tshirtId'=> 1,
                     'rolId' => 1,
-                ],
+                ]);
+            }
+                 for ($i = 0; $i <= 10; $i++) {
+                     DB::table('gebruikers')->insert(
                 [
                     'naam' => "kernlid_$i",
                     'voornaam' => "Gladiolen_$i",
@@ -75,7 +78,10 @@ class CreateGebruikersTable extends Migration
                     'lunchpakket' => False,
                     'tshirtId'=> 1,
                     'rolId' => 2,
-                ],
+                ]);
+            }
+        for ($i = 0; $i <= 10; $i++) {
+            DB::table('gebruikers')->insert(
                 [
                     'naam' => "Verantwoordelijke_$i",
                     'voornaam' => "Gladiolen_$i",
@@ -91,7 +97,10 @@ class CreateGebruikersTable extends Migration
                     'lunchpakket' => False,
                     'tshirtId'=> 1,
                     'rolId' => 3,
-                ],
+                ]);
+            }
+        for ($i = 0; $i <= 10; $i++) {
+            DB::table('gebruikers')->insert(
                 [
                     'naam' => "Vrijwilliger_$i",
                     'voornaam' => "Gladiolen_$i",
@@ -107,8 +116,7 @@ class CreateGebruikersTable extends Migration
                     'lunchpakket' => False,
                     'tshirtId'=> 1,
                     'rolId' => 4,
-                ]
-            );
+                ]);
         }
 
 
