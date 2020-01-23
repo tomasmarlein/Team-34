@@ -27,7 +27,6 @@ Route::view('verenigingen', 'Admin\VerenigingController@index');
 
 //verantwoordelijkebeheer
 Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
-Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
 Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 
 
