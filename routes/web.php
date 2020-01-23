@@ -20,7 +20,7 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::view('/', 'landingpage');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::view('/home', 'adminpanel');
+    Route::redirect('/', 'Admin.adminpanel');
     Route::view('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
     Route::view('verenigingen', 'Admin\VerenigingController@index');
 
