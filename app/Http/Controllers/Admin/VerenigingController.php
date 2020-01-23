@@ -17,8 +17,20 @@ class VerenigingController extends Controller
      */
     public function index()
     {
+
+//        $naamVereniging = '%' . $request->input('naam');
+//        $verenigingen = Verenigings::with('verenigings')
+//            ->where('naam', 'like', $naamVereniging)
+//            ->appends(['naam'=> $request->input('naam')]);
+
         return view('admin.verenigingen.index');
     }
+
+    function fetch_data(Request $request)
+    {
+
+    }
+
 
     /**
      * Show the form for creating a new resource.

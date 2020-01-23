@@ -9,6 +9,23 @@
             <i class="fas fa-plus-circle mr-1"></i>Maak nieuwe vereniging
         </a>
     </p>
+
+
+    <form method="get" action="/vereniging" id="searchForm">
+        <div class="row">
+            <div class="col-sm-10 mb-2">
+                <input type="text" class="form-control" name="naam" id="naam"
+                       value="{{request}}"
+                       value="" placeholder="Zoek op vereniging">
+            </div>
+
+            <div class="col-sm-2 mb-2">
+                <button type="submit" class="btn btn-success btn-block">Search</button>
+            </div>
+        </div>
+    </form>
+
+
     <div class="table-responsive">
         <table class="table">
             <thead>
