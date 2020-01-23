@@ -18,12 +18,15 @@ Route::get('logout', 'Auth\LoginController@logout');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landingpage');
+Route::view('/home', 'home');
+Route::view('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
+Route::view('verenigingen', 'Admin\VerenigingController@index');
+
+
+Route::redirect('/', 'Admin.adminpanel');
+
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::redirect('/', 'Admin.adminpanel');
-    Route::view('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
-    Route::view('verenigingen', 'Admin\VerenigingController@index');
-
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
     Route::resource('verenigingen', 'Admin\VerenigingController');
 
