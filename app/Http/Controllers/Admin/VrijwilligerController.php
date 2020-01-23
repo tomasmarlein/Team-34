@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Gebruikers;
-use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,20 +13,9 @@ class VrijwilligerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
-        $name_user = '%' . $request->input('naam') . '%';
-
-        $users = Gebruikers::orderBy('naam')
-            ->Where('naam', 'like', $name_user)
-            ->orWhere('email', 'like', $name_user)
-            ->paginate(12)
-            ->appends(['naam'=> $request->input('naam')]);
-
-
-        $result = compact('users');
-        return view('admin.vrijwilligers.index', $result);
+        return view('admin.vrijwilligers.index');
     }
 
     /**
@@ -37,7 +25,9 @@ class VrijwilligerController extends Controller
      */
     public function create()
     {
-
+        $gebruikers = new Gebruikers();
+        $result = compact('gebruikers');
+        return view('admin.vrijwilligers.create', $result);
     }
 
     /**
@@ -48,16 +38,24 @@ class VrijwilligerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'naam' => 'required|min:3|unique:gebruikers,naam'
+        ]);
+
+        $gebruikers = new Gebruikers();
+        $gebruikers->naam = $request->naam;
+        $gebruikers->save();
+        session()->flash('success', "De vrijwilliger <b>$gebruikers->naam</b> has been added");
+        return redirect('admin/vrijwilligers');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Gebruikers  $gebruikers
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Gebruikers $gebruikers)
     {
         return redirect('admin/vrijwilligers');
     }
@@ -65,12 +63,12 @@ class VrijwilligerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Gebruikers  $gebruikers
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Gebruikers $gebruikers)
     {
-        $result = compact('user');
+        $result = compact('gebruikers');
         return view('admin.vrijwilligers.edit', $result);
     }
 
@@ -78,51 +76,39 @@ class VrijwilligerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\Gebruikers  $gebruikers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Gebruikers $gebruikers)
     {
         $this->validate($request,[
-            'name' => 'required|min:3',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
+            'name' => 'required|min:3'
         ]);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        if( $request->has('active') ){
-            $user->active = 1;
-        }else{
-            $user->active = 0;
-        }
-        if( $request->has('admin') ){
-            $user->admin = 1;
-        }else{
-            $user->admin = 0;
-        }
-
-        $user->save();
-        session()->flash('success', 'The user <b>' . $user->name . '</b> has been updated');
+        $gebruikers->naam = $request->naam;
+        $gebruikers->save();
+        session()->flash('success', 'De vrijwilliger is geupdate');
         return redirect('admin/vrijwilligers');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\Gebruikers  $gebruikers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Gebruikers $gebruikers)
     {
-        $user->delete();
-        session()->flash('success', "The vrijwilliger <b>$user->name</b> has been deleted");
-        return redirect('admin/vrijwilligers');
+        $gebruikers->delete();
+        return response()->json([
+            'type' => 'success',
+            'text' => "De vrijwilliger <b>$gebruikers->naam $gebruikers->voornaam</b> is verwijderd!"
+        ]);
     }
-
 
     public function qryVrijwilligers()
     {
-        $vrijwilligers = gebruikers::orderBy('naam')
+        $gebruikers = Gebruikers::orderBy('naam')
             ->get();
-        return $vrijwilligers;
+        return $gebruikers;
     }
 }

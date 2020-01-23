@@ -41,6 +41,8 @@ class CreateVerenigingsTable extends Migration
                     'huisnummer' => "20",
                     'gemeente' => "Geel",
                     'hoofdverantwoordelijke' => "1",
+                    'actief' => false,
+                    'contactpersoon' => 1,
                 ]
             );
 
@@ -55,6 +57,8 @@ class CreateVerenigingsTable extends Migration
                     'huisnummer' => "$i",
                     'gemeente' => "Geel",
                     'hoofdverantwoordelijke' => "$i",
+                    'actief' => false,
+                    'contactpersoon' => 2,
                 ]
             );
         }
