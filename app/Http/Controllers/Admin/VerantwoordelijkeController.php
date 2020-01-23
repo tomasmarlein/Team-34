@@ -16,7 +16,7 @@ class VerantwoordelijkeController extends Controller
      */
     public function index()
     {
-        return redirect('admin/verantwoordelijke/verantwoordelijkebeheer');
+        return view('admin.verantwoordelijke.verantwoordelijkebeheer');
     }
 
     /**

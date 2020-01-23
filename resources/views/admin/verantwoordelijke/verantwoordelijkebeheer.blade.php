@@ -14,7 +14,7 @@
                            value="" placeholder="Filter Name Or Email">
                 </div>
                 <div class="col-sm-4 mb-2">
-                    <p>sorteet</p>
+                    <p>sort</p>
                     <select class="form-control" name="#" id="#">
                         <option>naam (A=>Z)</option>
                     </select>

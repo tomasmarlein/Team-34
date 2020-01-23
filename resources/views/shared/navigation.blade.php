@@ -28,18 +28,24 @@
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#!" data-toggle="dropdown">
-                            {{ auth()->user()->name }} <span class="caret"></span>
+                            {{ auth()->user()->naam }} <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="/user/profile"><i class="fas fa-user-cog"></i>Update Profile</a>
                             <a class="dropdown-item" href="/user/password"><i class="fas fa-key"></i>New Password</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
-                            @if(auth()->user()->admin)
+                            @if(auth()->user()->rolID=1)
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Evenementen</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Verenigingen</a>
-                                <a class="dropdown-item" href="/vrijwilligers"><i class="fas fa-users-cog"></i>Vrijwilligers</a>
+                                <a class="dropdown-item" href="/admin/verantwoordelijke"><i class="fas fa-users-cog"></i>Verantwoordelijke</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Vrijwilligers</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Tijdsregistratie</a>
+                            @endif
+                            @if(auth()->user()->rolID=2)
+                            @endif
+                            @if(auth()->user()->rolID=3)
                             @endif
                         </div>
                     </li>

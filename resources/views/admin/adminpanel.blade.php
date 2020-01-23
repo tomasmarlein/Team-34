@@ -43,7 +43,15 @@
 @section('main')
 
 <div>
-
+    <div class="jumbotron">
+        <h1 class="display-4">Adminpanel</h1>
+        <p class="lead">Welkom in het tijdsregistratiesysteem van Keizer Karel Olen</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </p>
+    </div>
 </div>
 @endsection
 
