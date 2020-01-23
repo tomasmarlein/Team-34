@@ -33,8 +33,8 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Telefoon</th>
-                    <th>Rekeningnr</th>
-                    <th>Actions</th>
+                    <th>Adres</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,7 +52,7 @@
 
         //tabel inladen
         function loadTable() {
-            $.getJSON('/qryVerantwoordelijke')
+            $.getJSON('qryVerantwoordelijke')
                 .done(function (data) {
                     console.log('data', data);
                     // Clear tbody tag
@@ -62,9 +62,9 @@
                         let tr = `<tr>
                                <td>${value.id}1</td>
                                <td>${value.naam}</td>
-                               <td>${value.Email}</td>
+                               <td>${value.email}</td>
                                <td>${value.telefoon}</td>
-                               <td>${value.Rekeningnr}</td>
+                               <td>${value.straat}  ${value.huisnummer}  ${value.postcode}</td>
                                <td data-id="${value.id}"
                                    data-email="${value.email}"
                                    data-name="${value.name}">
@@ -72,7 +72,7 @@
                                         <button href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip"  title="Edit ${value.name}">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Delete ${value.name}" ${disabled} >
+                                        <button href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Delete ${value.name}" >
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>

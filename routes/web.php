@@ -50,7 +50,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::view('beheer', 'admin.verantwoordelijke.verantwoordelijkebeheer');
 
-    Route::get('qryVerant', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
+    Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
     Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
     Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 
