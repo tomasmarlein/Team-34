@@ -18,11 +18,14 @@ Route::get('logout', 'Auth\LoginController@logout');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landingpage');
-Route::view('/home', 'home');
 Route::view('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 Route::view('verenigingen', 'Admin\VerenigingController@index');
+Route::view('vrijwilligers', 'Admin\VrijwilligerController@index');
 
+Route::get('qryVrijwilligers', 'Admin\VrijwilligerController@qryVrijwilligers');
+Route::resource('vrijwilligers', 'Admin\VrijwilligerController');
 
+Route::view('/home', 'admin.adminpanel');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
@@ -30,4 +33,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::get('qryVerant', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
     Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
+
+
 });

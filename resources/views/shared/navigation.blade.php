@@ -39,7 +39,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Evenementen</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Verenigingen</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Vrijwilligers</a>
+                                <a class="dropdown-item" href="/vrijwilligers"><i class="fas fa-users-cog"></i>Vrijwilligers</a>
                             @endif
                         </div>
                     </li>
