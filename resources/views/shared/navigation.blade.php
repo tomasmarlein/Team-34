@@ -39,7 +39,13 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Evenementen</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Verenigingen</a>
+                                <a class="dropdown-item" href="/admin/verantwoordelijke"><i class="fas fa-users-cog"></i>Verantwoordelijke</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Vrijwilligers</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Tijdsregistratie</a>
+                            @endif
+                            @if(auth()->user()->rolID=2)
+                            @endif
+                            @if(auth()->user()->rolID=3)
                             @endif
                         </div>
                     </li>
