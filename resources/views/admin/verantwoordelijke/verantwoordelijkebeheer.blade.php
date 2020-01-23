@@ -52,7 +52,7 @@
 
         //tabel inladen
         function loadTable() {
-            $.getJSON('/admin/verantwoordelijke/qryVerantwoordelijke')
+            $.getJSON('/qryVerantwoordelijke')
                 .done(function (data) {
                     console.log('data', data);
                     // Clear tbody tag
@@ -60,8 +60,8 @@
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
                         let tr = `<tr>
-                               <td>${value.id}</td>
-                               <td>${value.name}</td>
+                               <td>${value.id}1</td>
+                               <td>${value.naam}</td>
                                <td>${value.Email}</td>
                                <td>${value.telefoon}</td>
                                <td>${value.Rekeningnr}</td>

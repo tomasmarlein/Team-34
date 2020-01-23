@@ -11,10 +11,11 @@
 |
 */
 
-Route::view('/aanvraag', 'aanvraag');
+
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
+Route::view('/aanvraag', 'aanvraag');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landingpage');
@@ -25,14 +26,17 @@ Route::view('/home', 'home');
 Route::view('admin/verenigingen', 'Admin\VerenigingController@index');
 Route::view('admin/evenementen', 'Admin\EvenementController@index');
 
+//verantwoordelijkebeheer
+Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
+Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 
-Route::view('vrijwilligers', 'Admin\VrijwilligerController@index');
-Route::get('qryVrijwilligers', 'Admin\VrijwilligerController@qryVrijwilligers');
-Route::resource('vrijwilligers', 'Admin\VrijwilligerController');
+
 
 Route::view('/home', 'admin.adminpanel');
 
 
+// json voor vrijwilligers
+Route::get('admin/qryVrijwilligers', 'Admin\VrijwilligerController@qryVrijwilligers');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
@@ -40,10 +44,18 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('evenementen', 'Admin\EvenementController');
 
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
+
     Route::resource('verenigingen', 'Admin\VerenigingController');
+
+
+    Route::view('beheer', 'admin.verantwoordelijke.verantwoordelijkebeheer');
 
     Route::get('qryVerant', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
     Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
     Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
+
+
+//    route vrijwilligers
+    Route::resource('vrijwilligers', 'Admin\VrijwilligerController');
 
 });

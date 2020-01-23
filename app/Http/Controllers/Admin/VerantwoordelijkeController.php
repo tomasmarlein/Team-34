@@ -87,7 +87,7 @@ class VerantwoordelijkeController extends Controller
 
     public function qryVerantwoordelijke()
     {
-        $verantwoordelijke = gebruikers::orderBy('naam')
+        $verantwoordelijke = Gebruikers::orderBy('naam')
             ->where('rolId', '=', 1)
             ->get();
         return $verantwoordelijke;
