@@ -37,8 +37,8 @@
                             <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
                             @if(auth()->user()->rolID=1)
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Evenementen</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Verenigingen</a>
+                                <a class="dropdown-item" href="/admin/evenementen"><i class="fas fa-users-cog"></i>Evenementen</a>
+                                <a class="dropdown-item" href="/admin/verenigingen"><i class="fas fa-users-cog"></i>Verenigingen</a>
                                 <a class="dropdown-item" href="/admin/verantwoordelijke"><i class="fas fa-users-cog"></i>Verantwoordelijke</a>
                                 <a class="dropdown-item" href="/admin/vrijwilligers"><i class="fas fa-users-cog"></i>Vrijwilligers</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Tijdsregistratie</a>
