@@ -22,7 +22,8 @@ Route::view('/', 'landingpage');
 Route::view('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 
 Route::view('/home', 'home');
-Route::view('verenigingen', 'Admin\VerenigingController@index');
+Route::view('admin/verenigingen', 'Admin\VerenigingController@index');
+Route::view('admin/evenementen', 'Admin\EvenementController@index');
 
 
 Route::view('vrijwilligers', 'Admin\VrijwilligerController@index');
@@ -34,6 +35,10 @@ Route::view('/home', 'admin.adminpanel');
 
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+
+    Route::get('qryEvenementen','Admin\EvenementController@qryEvenementen');
+    Route::resource('evenementen', 'Admin\EvenementController');
+
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
     Route::resource('verenigingen', 'Admin\VerenigingController');
 
