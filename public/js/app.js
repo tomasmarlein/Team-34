@@ -40276,12 +40276,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hello", function() { return hello; });
 function hello() {
   console.log('The Vinyl Shop JavaScript works! 🙂');
+  Noty.overrideDefaults({
+    layout: 'topRight',
+    theme: 'bootstrap-v4',
+    timeout: 3000
+  });
 }
-Noty.overrideDefaults({
-  layout: 'topRight',
-  theme: 'bootstrap-v4',
-  timeout: 3000
-});
 
 /***/ }),
 

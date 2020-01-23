@@ -13,10 +13,13 @@
         <table class="table">
             <thead>
             <tr>
-                <th>#</th>
                 <th>Id</th>
                 <th>Naam</th>
+                <th>HoofdVerantwoordelijke</th>
                 <th>Rekeningnummer</th>
+                <th>BTW Nummer</th>
+                <th>Adres</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -38,6 +41,7 @@
                 let naam = $(this).closest('td').data('naam');
                 // Set some values for Noty
                 let text = `<p>Verwijder de vereniging <b>${naam}</b>?</p>`;
+                console.log(naam);
 
                   let  btnText = `Verwijder vereniging`;
                     let btnClass = 'btn-danger';
@@ -66,13 +70,34 @@
                 // Get data attributes from td tag
                 let id = $(this).closest('td').data('id');
                 let naam = $(this).closest('td').data('naam');
+                let hoofdverantwoordelijke = $(this).closest('td').data('hoofdverantwoordelijke');
+                let rekeningnr = $(this).closest('td').data('rekeningnr');
+                let btwnr = $(this).closest('td').data('btwnr');
+                let straat = $(this).closest('td').data('straat');
+                let huisnummer = $(this).closest('td').data('huisnummer');
+                let postcode = $(this).closest('td').data('postcode');
+                let gemeente = $(this).closest('td').data('gemeente');
                 // Update the modal
                 $('.modal-title').text(`Edit ${naam}`);
                 $('form').attr('action', `/admin/verenigingen/${id}`);
-                $('#name').val(naam);
+                $('#naam').val(naam);
                 $('input[name="_method"]').val('put');
+                $('#hoofdverantwoordelijke').val(hoofdverantwoordelijke);
+                $('input[hoofdverantwoordelijke="_method"]').val('put');
+                $('#rekeningnr').val(rekeningnr);
+                $('input[rekeningnr="_method"]').val('put');
+                $('#btwnr').val(btwnr);
+                $('input[btwnr="_method"]').val('put');
+                $('#straat').val(straat);
+                $('input[straat="_method"]').val('put');
+                $('#huisnummer').val(huisnummer);
+                $('input[huisnummer="_method"]').val('put');
+                $('#postcode').val(postcode);
+                $('input[postcode="_method"]').val('put');
+                $('#gemeente').val(gemeente);
+                $('input[gemeente="_method"]').val('put');
                 // Show the modal
-                $('#modal-genre').modal('show');
+                $('#modal-vereniging').modal('show');
             });
 
             $('#modal-vereniging form').submit(function (e) {
@@ -119,10 +144,26 @@
                 // Update the modal
                 $('.modal-title').text(`Nieuwe vereniging`);
                 $('form').attr('action', `/admin/verenigingen`);
-                $('#name').val('');
-                $('input[name="_method"]').val('post');
+
+                $('#naam').val(naam);
+                $('input[name="_method"]').val('put');
+                $('#hoofdverantwoordelijke').val(hoofdverantwoordelijke);
+                $('input[hoofdverantwoordelijke="_method"]').val('post');
+                $('#rekeningnr').val(rekeningnr);
+                $('input[rekeningnr="_method"]').val('post');
+                $('#btwnr').val(btwnr);
+                $('input[btwnr="_method"]').val('post');
+                $('#straat').val(straat);
+                $('input[straat="_method"]').val('post');
+                $('#huisnummer').val(huisnummer);
+                $('input[huisnummer="_method"]').val('post');
+                $('#postcode').val(postcode);
+                $('input[postcode="_method"]').val('post');
+                $('#gemeente').val(gemeente);
+                $('input[gemeente="_method"]').val('post');
+
                 // Show the modal
-                $('#modal-genre').modal('show');
+                $('#modal-vereniging').modal('show');
             });
 
         });
@@ -152,9 +193,10 @@
 
         // Load genres with AJAX
         function loadTable() {
-            $.getJSON('/admin/verenigingen/qryVerenigingen')
+
+
+            $.getJSON('/qryVerenigingen')
                 .done(function (data) {
-                    console.log('data', data);
                     // Clear tbody tag
                     $('tbody').empty();
                     // Loop over each item in the array
@@ -162,7 +204,11 @@
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.naam}</td>
+                               <td>${value.hoofdverantwoordelijke}</td>
                                <td>${value.rekeningnr}</td>
+                               <td>${value.btwnr}</td>
+                               <td>${value.straat} ${value.huisnummer} ${value.postcode} ${value.gemeente}</td>
+
                                <td data-id="${value.id}"
                                    data-name="${value.naam}">
                                     <div class="btn-group btn-group-sm">
@@ -177,6 +223,7 @@
                            </tr>`;
                         // Append row to tbody
                         $('tbody').append(tr);
+
                     });
                 })
                 .fail(function (e) {
@@ -186,29 +233,3 @@
     </script>
 @endsection
 
-
-{{--@foreach($verenigingen as $vereniging)--}}
-{{--    <tr>--}}
-{{--        <td>{{ $vereniging->id }}</td>--}}
-{{--        <td>{{ $vereniging->naam }}</td>--}}
-{{--        <td>{{ $vereniging->rekeningnr }}</td>--}}
-{{--        <td>--}}
-{{--            <form action="/admin/verenigingen/{{ $vereniging->id }}" method="post" class="deleteForm">--}}
-{{--                @method('delete')--}}
-{{--                @csrf--}}
-{{--                <div class="btn-group btn-group-sm">--}}
-{{--                    <a href="/admin/verenigingen/{{ $vereniging->id }}/edit" class="btn btn-outline-success"--}}
-{{--                       data-toggle="tooltip"--}}
-{{--                       title="Edit {{ $vereniging->naam }}">--}}
-{{--                        <i class="fas fa-edit"></i>--}}
-{{--                    </a>--}}
-{{--                    <button type="submit" class="btn btn-outline-danger"--}}
-{{--                            data-toggle="tooltip"--}}
-{{--                            title="Delete {{ $vereniging->naam }}">--}}
-{{--                        <i class="fas fa-trash-alt"></i>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--            </form>--}}
-{{--        </td>--}}
-{{--    </tr>--}}
-{{--@endforeach--}}

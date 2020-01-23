@@ -7,6 +7,7 @@ use App\Verenigings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+
 class VerenigingController extends Controller
 {
     /**
@@ -39,11 +40,25 @@ class VerenigingController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'naam' => 'required|min:3|unique:verenigingen,naam'
+            'naam' => 'required|min:3|unique:verenigingen,naam',
+            'rekeningnr' => 'min:3|unique:verenigingen,rekeningnr',
+            'hoofdverantwoordelijke' => 'min:3|unique:verenigingen,hoofdverantwoordelijke',
+            'btwnr' => 'min:3|unique:verenigingen,btwnr',
+            'straat' => 'min:3|unique:verenigingen,straat',
+            'huisnummer' => 'min:3|unique:verenigingen,huisnummer',
+            'postcode' => 'min:3|unique:verenigingen,postcode',
+            'gemeente' => 'min:3|unique:verenigingen,gemeente'
         ]);
 
         $vereniging = new Verenigings();
         $vereniging->naam = $request->naam;
+        $vereniging->rekeningnr = $request->rekeningnr;
+        $vereniging->hoofdverantwoordelijke = $request->hoofdverantwoordelijke;
+        $vereniging->btwnr = $request->btwnr;
+        $vereniging->straat = $request->straat;
+        $vereniging->huisnummer = $request->huisnummer;
+        $vereniging->postcode = $request->postcode;
+        $vereniging->gemeente = $request->gemeente;
         $vereniging->save();
         return response()->json([
             'type' => 'success',
