@@ -31,15 +31,15 @@ Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 
 
 
-Route::get('qryVrijwilligers', 'Admin\VrijwilligerController@qryVrijwilligers');
-
-
 Route::view('/home', 'admin.adminpanel');
 
 
+// json voor vrijwilligers
+Route::get('admin/qryVrijwilligers', 'Admin\VrijwilligerController@qryVrijwilligers');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
+
     Route::resource('verenigingen', 'Admin\VerenigingController');
 
 
@@ -49,5 +49,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
     Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 
+
+//    route vrijwilligers
     Route::resource('vrijwilligers', 'Admin\VrijwilligerController');
+
 });
