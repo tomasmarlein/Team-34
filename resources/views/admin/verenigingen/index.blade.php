@@ -4,23 +4,26 @@
 
 @section('main')
     <h1>Verenigingen</h1>
-    <p>
-        <a href="#!" class="btn btn-outline-success" id="btn-create">
-            <i class="fas fa-plus-circle mr-1"></i>Maak nieuwe vereniging
-        </a>
-    </p>
-
-
-{{--    <form method="get" action="/vereniging" id="searchForm">--}}
-{{--        <div class="row">--}}
-
-
-{{--            <div class="col-sm-2 mb-2">--}}
-{{--                <button type="submit" class="btn btn-success btn-block">Search</button>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </form>--}}
-
+    <form method="get" action="#" id="searchForm">
+        <div class="row">
+            <div class="col-sm-6 mb-2">
+                <p>Filter Naam of Email</p>
+                <input type="text" class="form-control" name="artist" id="artist"
+                       value="" placeholder="Filter Name Or Email">
+            </div>
+            <div class="col-sm-4 mb-2">
+                <p>sort</p>
+                <select class="form-control" name="#" id="#">
+                    <option>naam (A=>Z)</option>
+                </select>
+            </div>
+            <div class="col-sm-3 mb-2">
+                <label>Voeg toe</label><br>
+                <a href="#!" class="btn btn-outline-success" id="btn-create">
+                    <i class="fas fa-plus-circle mr-1"></i>Nieuwe vereniging
+                </a>
+            </div>
+        </div>
 
     <div class="table-responsive">
         <table class="table">

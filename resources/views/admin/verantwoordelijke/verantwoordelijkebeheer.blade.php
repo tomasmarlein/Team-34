@@ -19,9 +19,11 @@
                         <option>naam (A=>Z)</option>
                     </select>
                 </div>
-                <div class="col-sm-2 mb-2">
-                    <p>Nieuwe vereniging</p>
-                    <button href="#!" class="btn btn-outline-success" id="btn-create">Nieuwe vereniging</button>
+                <div class="col-sm-3 mb-2">
+                    <label>Voeg toe</label><br>
+                    <a href="#!" class="btn btn-outline-success" id="btn-create">
+                        <i class="fas fa-plus-circle mr-1"></i>Nieuwe verantwoordelijke
+                    </a>
                 </div>
             </div>
         </form>

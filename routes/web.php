@@ -22,6 +22,7 @@ Route::view('/', 'landingpage');
 
 Route::view('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 
+//verenigingenbeheer
 Route::view('/home', 'home');
 Route::view('admin/verenigingen', 'Admin\VerenigingController@index');
 Route::view('admin/evenementen', 'Admin\EvenementController@index');

@@ -27,7 +27,7 @@
             <div class="col-sm-3 mb-2">
                 <label>Voeg toe</label><br>
                 <a href="#!" class="btn btn-outline-success" id="btn-create">
-                    <i class="fas fa-plus-circle mr-1"></i>Create new vrijwilliger
+                    <i class="fas fa-plus-circle mr-1"></i>Nieuwe vrijwiliger
                 </a>
             </div>
         </div>
