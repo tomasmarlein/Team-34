@@ -40,6 +40,9 @@
                 <th>#</th>
                 <th>Naam</th>
                 <th>Email</th>
+                <th>Adres</th>
+                <th>Poestcode</th>
+                <th>Telefoon</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -48,6 +51,7 @@
             </tbody>
         </table>
     </div>
+    @include('admin.vrijwilligers.modal')
 @endsection
 
 @section('script_after')
@@ -84,6 +88,73 @@
                         })
                     ]
                 }).show();
+            });
+
+            $('tbody').on('click', '.btn-edit', function () {
+                // Get data attributes from td tag
+                let id = $(this).closest('td').data('id');
+                let naam = $(this).closest('td').data('naam');
+                let voornaam = $(this).closest('td').data('voornaam');
+                let email = $(this).closest('td').data('email');
+                let straat = $(this).closest('td').data('straat');
+                let huisnummer = $(this).closest('td').data('huisnummer');
+                let postcode = $(this).closest('td').data('postcode');
+                let telefoon = $(this).closest('td').data('telefoon');
+                // Update the modal
+                $('.modal-title').text(`Edit ${voornaam} ${naam}`);
+                $('form').attr('action', `/admin/vrijwilligers/${id}`);
+
+                $('#naam').val(naam);
+                $('#voornaam').val(voornaam);
+                $('#email').val(email);
+                $('#straat').val(straat);
+                $('#huisnummer').val(huisnummer);
+                $('#postcode').val(postcode);
+                $('#telefoon').val(telefoon);
+
+                $('input[name="_method"]').val('put');
+                // Show the modal
+                $('#modal-genre').modal('show');
+            });
+
+            $('#modal-genre form').submit(function (e) {
+                // Don't submit the form
+                e.preventDefault();
+                // Get the action property (the URL to submit)
+                let action = $(this).attr('action');
+                // Serialize the form and send it as a parameter with the post
+                let pars = $(this).serialize();
+                console.log(pars);
+                // Post the data to the URL
+                $.post(action, pars, 'json')
+                    .done(function (data) {
+                        console.log(data);
+                        // Noty success message
+                        new Noty({
+                            type: data.type,
+                            text: data.text
+                        }).show();
+                        // Hide the modal
+                        $('#modal-genre').modal('hide');
+                        // Rebuild the table
+                        loadTable();
+                    })
+                    .fail(function (e) {
+                        console.log('error', e);
+                        // e.responseJSON.errors contains an array of all the validation errors
+                        console.log('error message', e.responseJSON.errors);
+                        // Loop over the e.responseJSON.errors array and create an ul list with all the error messages
+                        let msg = '<ul>';
+                        $.each(e.responseJSON.errors, function (key, value) {
+                            msg += `<li>${value}</li>`;
+                        });
+                        msg += '</ul>';
+                        // Noty the errors
+                        new Noty({
+                            type: 'error',
+                            text: msg
+                        }).show();
+                    });
             });
         });
 
@@ -123,9 +194,21 @@
                                <td>${value.id}</td>
                                <td>${value.naam} ${value.voornaam}</td>
                                <td>${value.email}</td>
+                               <td>${value.straat} ${value.huisnummer}</td>
+                               <td>${value.postcode}</td>
+
+                               <td>${value.telefoon}</td>
+
                                <td data-id="${value.id}"
                                    data-naam="${value.naam}"
-                                   data-voornaam="${value.voornaam}">
+                                   data-voornaam="${value.voornaam}"
+                                   data-email="${value.email}"
+                                   data-straat="${value.straat}"
+                                   data-huisnummer="${value.huisnummer}"
+                                   data-postcode="${value.postcode}"
+
+                                   data-telefoon="${value.telefoon}">
+
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit">
                                             <i class="fas fa-edit"></i>

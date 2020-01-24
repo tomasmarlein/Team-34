@@ -47,10 +47,16 @@
         <h1 class="display-4">Adminpanel</h1>
         <p class="lead">Welkom in het tijdsregistratiesysteem van Keizer Karel Olen</p>
         <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        </p>
+        <p>Beheer hier evenementen, verenigingen en vrijwilligers.</p>
+
+
+        @if(auth()->user()->rolID=1)
+            <a class="btn btn-primary btn-lg" href="/" role="button">Evenementen</a>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Admins</a>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Kernleden</a>
+        @endif
+            <a class="btn btn-primary btn-lg" href="#" role="button">Verenigingen</a>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Vrijwilligers</a>
     </div>
 </div>
 @endsection
