@@ -79,15 +79,18 @@ class VrijwilligerController extends Controller
      * @param  \App\Gebruikers  $gebruikers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gebruikers $gebruikers)
+    public function update($id, Request $request, Gebruikers $gebruikers)
     {
-        $this->validate($request,[
-            'name' => 'required|min:3'
+        $data = $request->all();
+        $gebruiker = \App\Gebruikers::find($id)->update([
+            'naam' => $data['naam'],
         ]);
-        $gebruikers->naam = $request->naam;
-        $gebruikers->save();
-        session()->flash('success', 'De vrijwilliger is geupdate');
-        return redirect('admin/vrijwilligers');
+
+
+        return response()->json([
+            'type' => 'success',
+            'text' => "The vrijwilliger <b>$gebruikers->name</b> is geupdate"
+        ]);
     }
 
     /**
