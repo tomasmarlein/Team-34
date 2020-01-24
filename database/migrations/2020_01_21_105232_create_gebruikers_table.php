@@ -16,7 +16,7 @@ class CreateGebruikersTable extends Migration
         Schema::create('gebruikers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('email');
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('naam');
             $table->string('voornaam');
             $table->string('roepnaam')->nullable();
