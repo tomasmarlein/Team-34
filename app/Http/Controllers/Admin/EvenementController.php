@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Gebruikers;
-use App\verantwoordlijke;
+use App\Evenements;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class VerantwoordelijkeController extends Controller
+class EvenementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class VerantwoordelijkeController extends Controller
      */
     public function index()
     {
-        return view('admin.verantwoordelijke.verantwoordelijkebeheer');
+        return view('admin.evenementen.index');
     }
 
     /**
@@ -43,33 +42,35 @@ class VerantwoordelijkeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\verantwoordlijke  $verantwoordlijke
+     * @param  \App\Evenements  $evenements
      * @return \Illuminate\Http\Response
      */
-    public function show(verantwoordlijke $verantwoordlijke)
+    public function show(Evenements $evenements)
     {
-        //
+        return redirect('admin/evenementen');
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\verantwoordlijke  $verantwoordlijke
+     * @param  \App\Evenements  $evenements
      * @return \Illuminate\Http\Response
      */
-    public function edit(verantwoordlijke $verantwoordlijke)
+    public function edit(Evenements $evenements)
     {
-        //
+        return redirect('admin/evenementen');
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\verantwoordlijke  $verantwoordlijke
+     * @param  \App\Evenements  $evenements
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, verantwoordlijke $verantwoordlijke)
+    public function update(Request $request, Evenements $evenements)
     {
         //
     }
@@ -77,19 +78,18 @@ class VerantwoordelijkeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\verantwoordlijke  $verantwoordlijke
+     * @param  \App\Evenements  $evenements
      * @return \Illuminate\Http\Response
      */
-    public function destroy(verantwoordlijke $verantwoordlijke)
+    public function destroy(Evenements $evenements)
     {
         //
     }
 
-    public function qryVerantwoordelijke()
+    public function qryEvenementen()
     {
-        $verantwoordelijke = Gebruikers::orderBy('naam')
-            ->where('rolId', '=', 1)
+        $evenementen = Evenements::orderBy('id')
             ->get();
-        return $verantwoordelijke;
+        return $evenementen;
     }
 }

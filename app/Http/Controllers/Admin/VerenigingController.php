@@ -39,7 +39,7 @@ class VerenigingController extends Controller
      */
     public function create()
     {
-        return redirect('admin/verenigingen');
+        return redirect('admin.verenigingen.create');
     }
 
     /**
@@ -111,7 +111,7 @@ class VerenigingController extends Controller
     public function update(Request $request, Verenigings $vereniging)
     {
         $this->validate($request,[
-            'name' => 'required|min:3|unique:verenigingen,naam,' . $vereniging->id
+            'naam' => 'required|min:3|unique:verenigingen,naam,' . $vereniging->id
         ]);
         $vereniging->naam = $request->naam;
         $vereniging->save();
@@ -131,9 +131,17 @@ class VerenigingController extends Controller
      */
     public function destroy(Verenigings $vereniging)
     {
+//        $vereniging->delete();
+//        session()->flash('success', "De vereniging:  <b>$vereniging->naam</b> is verwijdert!");
+//        return redirect('admin/verenigingen');
+
+
+
         $vereniging->delete();
-        session()->flash('success', "De vereniging:  <b>$vereniging->naam</b> is verwijdert!");
-        return redirect('admin/verenigingen');
+        return response()->json([
+            'type' => 'success',
+            'text' => "De vereniging <b>$vereniging->naam</b> is verwijdert !"
+        ]);
     }
 
     public function qryVerenigingen()

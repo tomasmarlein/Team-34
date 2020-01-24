@@ -11,26 +11,22 @@
     </p>
 
 
-    <form method="get" action="/vereniging" id="searchForm">
-        <div class="row">
-            <div class="col-sm-10 mb-2">
-                <input type="text" class="form-control" name="naam" id="naam"
-                       value="{{request}}"
-                       value="" placeholder="Zoek op vereniging">
-            </div>
+{{--    <form method="get" action="/vereniging" id="searchForm">--}}
+{{--        <div class="row">--}}
 
-            <div class="col-sm-2 mb-2">
-                <button type="submit" class="btn btn-success btn-block">Search</button>
-            </div>
-        </div>
-    </form>
+
+{{--            <div class="col-sm-2 mb-2">--}}
+{{--                <button type="submit" class="btn btn-success btn-block">Search</button>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </form>--}}
 
 
     <div class="table-responsive">
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
+                <th>#</th>
                 <th>Naam</th>
                 <th>HoofdVerantwoordelijke</th>
                 <th>Rekeningnummer</th>
@@ -55,13 +51,12 @@
             $('tbody').on('click', '.btn-delete', function () {
                 // Get data attributes from td tag
                 let id = $(this).closest('td').data('id');
-                let naam = $(this).closest('td').data('naam');
+                let naam = $(this).closest('td').data('name');
                 // Set some values for Noty
                 let text = `<p>Verwijder de vereniging <b>${naam}</b>?</p>`;
-                console.log(naam);
 
                   let  btnText = `Verwijder vereniging`;
-                    let btnClass = 'btn-danger';
+                   let btnClass = 'btn-danger';
                    let type = 'error';
                 // Show Noty
                 let modal = new Noty({
@@ -94,11 +89,14 @@
                 let huisnummer = $(this).closest('td').data('huisnummer');
                 let postcode = $(this).closest('td').data('postcode');
                 let gemeente = $(this).closest('td').data('gemeente');
+
+                $('#naam').val(naam);
+
                 // Update the modal
                 $('.modal-title').text(`Edit ${naam}`);
                 $('form').attr('action', `/admin/verenigingen/${id}`);
                 $('#naam').val(naam);
-                $('input[name="_method"]').val('put');
+                $('input[naam="_method"]').val('put');
                 $('#hoofdverantwoordelijke').val(hoofdverantwoordelijke);
                 $('input[hoofdverantwoordelijke="_method"]').val('put');
                 $('#rekeningnr').val(rekeningnr);
@@ -160,25 +158,30 @@
             $('#btn-create').click(function () {
                 // Update the modal
                 $('.modal-title').text(`Nieuwe vereniging`);
+
                 $('form').attr('action', `/admin/verenigingen`);
 
-                $('#naam').val(naam);
-                $('input[name="_method"]').val('put');
-                $('#hoofdverantwoordelijke').val(hoofdverantwoordelijke);
-                $('input[hoofdverantwoordelijke="_method"]').val('post');
-                $('#rekeningnr').val(rekeningnr);
-                $('input[rekeningnr="_method"]').val('post');
-                $('#btwnr').val(btwnr);
-                $('input[btwnr="_method"]').val('post');
-                $('#straat').val(straat);
-                $('input[straat="_method"]').val('post');
-                $('#huisnummer').val(huisnummer);
-                $('input[huisnummer="_method"]').val('post');
-                $('#postcode').val(postcode);
-                $('input[postcode="_method"]').val('post');
-                $('#gemeente').val(gemeente);
-                $('input[gemeente="_method"]').val('post');
+                console.log(naam);
 
+                $('#naam').val(naam);
+                $('input[name="_method"]').val('post');
+                // $('#hoofdverantwoordelijke').val(hoofdverantwoordelijke);
+                // $('input[hoofdverantwoordelijke="_method"]').val('post');
+                //
+                //
+                // $('#rekeningnr').val(rekeningnr);
+                // $('input[rekeningnr="_method"]').val('post');
+                // $('#btwnr').val(btwnr);
+                // $('input[btwnr="_method"]').val('post');
+                // $('#straat').val(straat);
+                // $('input[straat="_method"]').val('post');
+                // $('#huisnummer').val(huisnummer);
+                // $('input[huisnummer="_method"]').val('post');
+                // $('#postcode').val(postcode);
+                // $('input[postcode="_method"]').val('post');
+                // $('#gemeente').val(gemeente);
+                // $('input[gemeente="_method"]').val('post');
+                console.log(naam);
                 // Show the modal
                 $('#modal-vereniging').modal('show');
             });
@@ -196,6 +199,8 @@
                 .done(function (data) {
                     console.log('data', data);
                     // Show toast
+                    console.log({id})
+                    console.log()
                     new Noty({
                         type: data.type,
                         text: data.text
@@ -212,7 +217,7 @@
         function loadTable() {
 
 
-            $.getJSON('/qryVerenigingen')
+            $.getJSON('qryVerenigingen')
                 .done(function (data) {
                     // Clear tbody tag
                     $('tbody').empty();
@@ -227,7 +232,7 @@
                                <td>${value.straat} ${value.huisnummer} ${value.postcode} ${value.gemeente}</td>
 
                                <td data-id="${value.id}"
-                                   data-name="${value.naam}">
+                                   data-naam="${value.naam}">
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit">
                                             <i class="fas fa-edit"></i>
