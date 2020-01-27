@@ -1,4 +1,4 @@
-<div class="modal" id="modal-genre">
+<div class="modal" id="modal-vrijwilliger">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

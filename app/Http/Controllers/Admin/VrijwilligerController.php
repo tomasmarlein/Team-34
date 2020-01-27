@@ -51,6 +51,7 @@ class VrijwilligerController extends Controller
         $gebruikers->postcode = $request->postcode;
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
+        $gebruikers->rolId = 4;
         $gebruikers->save();
         return response()->json([
             'type' => 'success',
@@ -105,7 +106,7 @@ class VrijwilligerController extends Controller
 
         return response()->json([
             'type' => 'success',
-            'text' => "The vrijwilliger <b>$gebruikers->name</b> is geupdate"
+            'text' => "Vrijwilliger is geupdate"
         ]);
     }
 
@@ -131,7 +132,7 @@ class VrijwilligerController extends Controller
     public function qryVrijwilligers()
     {
         $gebruikers = Gebruikers::orderBy('id')
-            ->where('rolId', '!=', 1)
+            ->where('rolId', '=', 4)
             ->get();
         return $gebruikers;
     }
