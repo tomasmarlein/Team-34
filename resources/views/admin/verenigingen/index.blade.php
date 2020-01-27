@@ -94,6 +94,15 @@
                 let gemeente = $(this).closest('td').data('gemeente');
 
                 $('#naam').val(naam);
+                $('#hoofdverantwoordelijke').val(hoofdverantwoordelijke);
+                $('#rekeningnr').val(rekeningnr);
+                $('#btwnr').val(btwnr);
+                $('#straat').val(straat);
+                $('#huisnummer').val(huisnummer);
+                $('#postcode').val(postcode);
+                $('#gemeente').val(gemeente);
+
+
 
                 // Update the modal
                 $('.modal-title').text(`Edit ${naam}`);
@@ -235,7 +244,14 @@
                                <td>${value.straat} ${value.huisnummer} ${value.postcode} ${value.gemeente}</td>
 
                                <td data-id="${value.id}"
-                                   data-naam="${value.naam}">
+                                   data-naam="${value.naam}"
+                                   data-hoofdverantwoordelijke="${value.hoofdverantwoordelijke}"
+                                   data-rekeningnr="${value.rekeningnr}"
+                                   data-btwnr="${value.btwnr}"
+                                   data-straat="${value.straat}"
+                                   data-huisnummer="${value.huisnummer}"
+                                   data-postcode="${value.postcode}"
+                                   data-gemeente="${value.gemeente}">
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit">
                                             <i class="fas fa-edit"></i>
