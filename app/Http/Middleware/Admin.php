@@ -15,7 +15,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->rolID=1) {
+        if ($request->user()->rolId==1) {
             return $next($request);
         }
         return abort(403, 'Only administrators can access this page');
