@@ -24,7 +24,7 @@
                 </a>
             </div>
         </div>
-
+    </form>
 
     <div class="table-responsive">
         <table class="table">
@@ -161,9 +161,9 @@
 
         });
         //
-        // Delete a genre
+        // Delete a
         function deleteEvenement(id) {
-            // Delete the vereniging from the database
+            // Delete from the database
             let pars = {
                 '_token': '{{ csrf_token() }}',
                 '_method': 'delete'
