@@ -149,9 +149,6 @@
                 $('.modal-title').text(`Nieuw evenement`);
 
                 $('form').attr('action', `/admin/evenementen`);
-
-                console.log(naam);
-
                 $('#naam').val('');
                 $('#startdatum').val('');
                 $('#einddatum').val('');

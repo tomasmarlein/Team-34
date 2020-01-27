@@ -23,7 +23,7 @@
 
                     <div class="form-group ">
                         <label for="startdatum">startdatum</label>
-                        <input type="date" name="startdatum" id="startdatum"
+                        <input type="datetime-local" name="startdatum" id="startdatum"
                                class="form-control"
                                placeholder="Startdatum"
                                minlength="3"
@@ -33,7 +33,7 @@
 
                     <div class="form-group ">
                         <label for="einddatum">einddatum</label>
-                        <input type="date" name="einddatum" id="einddatum"
+                        <input type="datetime-local" name="einddatum" id="einddatum"
                                class="form-control"
                                placeholder="Einddatum"
                                minlength="3"

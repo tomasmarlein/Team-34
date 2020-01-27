@@ -17,12 +17,6 @@ class VerenigingController extends Controller
      */
     public function index()
     {
-
-//        $naamVereniging = '%' . $request->input('naam');
-//        $verenigingen = Verenigings::with('verenigings')
-//            ->where('naam', 'like', $naamVereniging)
-//            ->appends(['naam'=> $request->input('naam')]);
-
         return view('admin.verenigingen.index');
     }
 
@@ -33,7 +27,6 @@ class VerenigingController extends Controller
      */
     public function create()
     {
-
         $verenigingen = new Verenigings();
         $result = compact('verenigingen');
         return view('admin.verenigingen.create',$result);
@@ -48,14 +41,14 @@ class VerenigingController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'naam' => 'required|min:3|unique:verenigingen,naam'
-//            'rekeningnr' => 'min:3|unique:verenigingen,rekeningnr',
-//            'hoofdverantwoordelijke' => 'min:3|unique:verenigingen,hoofdverantwoordelijke',
-//            'btwnr' => 'min:3|unique:verenigingen,btwnr',
-//            'straat' => 'min:3|unique:verenigingen,straat',
-//            'huisnummer' => 'min:3|unique:verenigingen,huisnummer',
-//            'postcode' => 'min:3|unique:verenigingen,postcode',
-//            'gemeente' => 'min:3|unique:verenigingen,gemeente'
+            'naam' => 'required|min:3|unique:verenigingen,naam',
+            'rekeningnr' => 'min:3|unique:verenigingen,rekeningnr',
+            'hoofdverantwoordelijke' => 'min:3|unique:verenigingen,hoofdverantwoordelijke',
+            'btwnr' => 'min:3|unique:verenigingen,btwnr',
+            'straat' => 'min:3|unique:verenigingen,straat',
+            'huisnummer' => 'min:3|unique:verenigingen,huisnummer',
+            'postcode' => 'min:3|unique:verenigingen,postcode',
+            'gemeente' => 'min:3|unique:verenigingen,gemeente'
         ]);
 
         $verenigingen = new Verenigings();
@@ -108,7 +101,7 @@ class VerenigingController extends Controller
     {
 
         $data = $request->all();
-        $vereniging = \App\Verenigings::find($id)->update([
+        $verenigingen = \App\Verenigings::find($id)->update([
             'naam' => $data['naam'],
             'rekeningnr' => $data['rekeningnr'],
             'hoofdverantwoordelijke' => $data['hoofdverantwoordelijke'],
