@@ -131,6 +131,7 @@ class VrijwilligerController extends Controller
     public function qryVrijwilligers()
     {
         $gebruikers = Gebruikers::orderBy('id')
+            ->where('rolId', '!=', 1)
             ->get();
         return $gebruikers;
     }
