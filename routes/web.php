@@ -23,15 +23,13 @@ Route::view('/', 'landingpage');
 
 
 
-
-
-Route::view('/home', 'admin.adminpanel');
-
-
 // json voor vrijwilligers
 Route::get('admin/qryVrijwilligers', 'Admin\VrijwilligerController@qryVrijwilligers');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+
+    //adminpaneel
+    Route::redirect('/home', 'admin.adminpanel');
 
     //evenementen
     Route::get('qryEvenementen','Admin\EvenementController@qryEvenementen');
@@ -50,5 +48,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //vrijwilligers CRUD
     Route::resource('vrijwilligers', 'Admin\VrijwilligerController');
+
+
 
 });

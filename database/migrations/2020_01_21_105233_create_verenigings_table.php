@@ -26,6 +26,7 @@ class CreateVerenigingsTable extends Migration
             $table->string('gemeente');
             $table->string('postcode');
             $table->unsignedBigInteger('contactpersoon')->nullable();
+            $table->boolean('inaanvraag');
             $table->foreign('hoofdverantwoordelijke')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('2deverantwoordelijke')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
         });
@@ -42,6 +43,7 @@ class CreateVerenigingsTable extends Migration
                     'gemeente' => "Geel",
                     'hoofdverantwoordelijke' => "1",
                     'actief' => false,
+                    'inaanvraag' => true,
                     'contactpersoon' => 1,
                 ]
             );
@@ -58,6 +60,7 @@ class CreateVerenigingsTable extends Migration
                     'gemeente' => "Geel",
                     'hoofdverantwoordelijke' => "$i",
                     'actief' => false,
+                    'inaanvraag' => false,
                     'contactpersoon' => 2,
                 ]
             );
