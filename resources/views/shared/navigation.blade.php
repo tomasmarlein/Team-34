@@ -36,17 +36,17 @@
                             {{ auth()->user()->naam }} <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="/user/profile"><i class="fas fa-user-cog"></i>Update Profile</a>
-                            <a class="dropdown-item" href="/user/password"><i class="fas fa-key"></i>New Password</a>
+                            <a class="dropdown-item" href="/user/profile"><i class="fas fa-user-cog"></i> Update Profile</a>
+                            <a class="dropdown-item" href="/user/password"><i class="fas fa-key"></i> New Password</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                            <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                             @if(auth()->user()->rolId==1)
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/admin/evenementen"><i class="fas fa-users-cog"></i>Evenementen</a>
-                                <a class="dropdown-item" href="/admin/verenigingen"><i class="fas fa-users-cog"></i>Verenigingen</a>
-                                <a class="dropdown-item" href="/admin/verantwoordelijke"><i class="fas fa-users-cog"></i>Verantwoordelijke</a>
-                                <a class="dropdown-item" href="/admin/vrijwilligers"><i class="fas fa-users-cog"></i>Vrijwilligers</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-users-cog"></i>Tijdsregistratie</a>
+                                <a class="dropdown-item" href="/admin/evenementen"><i class="fas fa-calendar-week"></i> Evenementen</a>
+                                <a class="dropdown-item" href="/admin/verenigingen"><i class="fab fa-vuejs"></i> Verenigingen</a>
+                                <a class="dropdown-item" href="/admin/verantwoordelijke"><i class="far fa-user"></i> Verantwoordelijke</a>
+                                <a class="dropdown-item" href="/admin/vrijwilligers"><i class="fas fa-hands-helping"></i> Vrijwilligers</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-user-clock"></i>Tijdsregistratie</a>
                             @endif
                             @if(auth()->user()->rolId==2)
                             @endif
