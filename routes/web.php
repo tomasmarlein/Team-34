@@ -51,8 +51,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('verenigingen', 'Admin\VerenigingController');
 
 
-    Route::view('beheer', 'admin.verantwoordelijke.verantwoordelijkebeheer');
-
+    //verantwoordelijkebeheer
     Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
     Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
     Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
