@@ -11,7 +11,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact-us">Contact</a>
+                    @auth
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/documentatie">Documentatie</a>
+                </li>
+                @endauth
             </ul>
             {{--  Admin navigation  --}}
             {{--  Auth navigation  --}}
@@ -22,9 +27,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/aanvraag"><i class="fas fa-signature"></i> Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/FAQ"><i class="fas fa-signature"></i> FAQ</a>
                     </li>
                 @endguest
                 @auth

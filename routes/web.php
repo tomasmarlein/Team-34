@@ -16,7 +16,7 @@
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 Route::view('/aanvraag', 'aanvraag');
-Route::view('/FAQ', 'FAQ');
+Route::view('/documentatie', 'Documentatie');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landingpage');
@@ -42,11 +42,12 @@ Route::get('admin/qryVrijwilligers', 'Admin\VrijwilligerController@qryVrijwillig
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
+    //evenementen
     Route::get('qryEvenementen','Admin\EvenementController@qryEvenementen');
     Route::resource('evenementen', 'Admin\EvenementController');
 
+    //vereniginen
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
-
     Route::resource('verenigingen', 'Admin\VerenigingController');
 
 
@@ -57,7 +58,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 
 
-//    route vrijwilligers
+    //vrijwilligers CRUD
     Route::resource('vrijwilligers', 'Admin\VrijwilligerController');
 
 });
