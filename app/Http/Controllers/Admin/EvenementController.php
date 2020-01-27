@@ -110,7 +110,7 @@ class EvenementController extends Controller
      */
     public function destroy($id, Evenements $evenements)
     {
-        $evenement = \App\Gebruikers::find($id)->delete();
+        $evenement = \App\Evenements::find($id)->delete();
 
 
         return response()->json([
