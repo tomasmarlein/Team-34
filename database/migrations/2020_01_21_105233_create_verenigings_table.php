@@ -16,7 +16,7 @@ class CreateVerenigingsTable extends Migration
         Schema::create('verenigings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('naam');
-            $table->unsignedBigInteger('hoofdverantwoordelijke')->unique();
+            $table->unsignedBigInteger('hoofdverantwoordelijke');
             $table->unsignedBigInteger('2deverantwoordelijke')->nullable();
             $table->boolean("actief");
             $table->string('rekeningnr');

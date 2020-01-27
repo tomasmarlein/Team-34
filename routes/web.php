@@ -16,6 +16,7 @@
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 Route::view('/aanvraag', 'aanvraag');
+Route::view('/FAQ', 'FAQ');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landingpage');
