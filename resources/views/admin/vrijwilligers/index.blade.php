@@ -41,8 +41,10 @@
                 <th>Naam</th>
                 <th>Email</th>
                 <th>Adres</th>
-                <th>Poestcode</th>
+                <th>Postcode</th>
                 <th>Telefoon</th>
+                <th>Geboortedatum</th>
+                <th>Rol</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -100,6 +102,7 @@
                 let huisnummer = $(this).closest('td').data('huisnummer');
                 let postcode = $(this).closest('td').data('postcode');
                 let telefoon = $(this).closest('td').data('telefoon');
+                let geboortedatum = $(this).closest('td').data('geboortedatum');
                 // Update the modal
                 $('.modal-title').text(`Edit ${voornaam} ${naam}`);
                 $('form').attr('action', `/admin/vrijwilligers/${id}`);
@@ -111,6 +114,7 @@
                 $('#huisnummer').val(huisnummer);
                 $('#postcode').val(postcode);
                 $('#telefoon').val(telefoon);
+                $('#geboortedatum').val(geboortedatum);
 
                 $('input[name="_method"]').val('put');
                 // Show the modal
@@ -156,6 +160,16 @@
                         }).show();
                     });
             });
+
+            $('#btn-create').click(function () {
+                // Update the modal
+                $('.modal-title').text(`Nieuwe gebruiker`);
+                $('form').attr('action', `/admin/vrijwilligers`);
+                $('#naam').val('');
+                $('input[name="_method"]').val('post');
+                // Show the modal
+                $('#modal-genre').modal('show');
+            });
         });
 
         // Delete a genre
@@ -198,6 +212,8 @@
                                <td>${value.postcode}</td>
 
                                <td>${value.telefoon}</td>
+                               <td>${value.geboortedatum}</td>
+                               <td>${value.rolId}</td>
 
                                <td data-id="${value.id}"
                                    data-naam="${value.naam}"
@@ -206,7 +222,7 @@
                                    data-straat="${value.straat}"
                                    data-huisnummer="${value.huisnummer}"
                                    data-postcode="${value.postcode}"
-
+                                   data-geboortedatum="${value.geboortedatum}"
                                    data-telefoon="${value.telefoon}">
 
                                     <div class="btn-group btn-group-sm">

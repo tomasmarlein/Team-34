@@ -44,9 +44,18 @@ class VrijwilligerController extends Controller
 
         $gebruikers = new Gebruikers();
         $gebruikers->naam = $request->naam;
+        $gebruikers->voornaam = $request->voornaam;
+        $gebruikers->email = $request->email;
+        $gebruikers->straat = $request->straat;
+        $gebruikers->huisnummer = $request->huisnummer;
+        $gebruikers->postcode = $request->postcode;
+        $gebruikers->telefoon = $request->telefoon;
+        $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->save();
-        session()->flash('success', "De vrijwilliger <b>$gebruikers->naam</b> has been added");
-        return redirect('admin/vrijwilligers');
+        return response()->json([
+            'type' => 'success',
+            'text' => "De gebruiker <b>$gebruikers->name</b> is toegevoegd"
+        ]);
     }
 
     /**
@@ -84,6 +93,13 @@ class VrijwilligerController extends Controller
         $data = $request->all();
         $gebruiker = \App\Gebruikers::find($id)->update([
             'naam' => $data['naam'],
+            'voornaam' => $data['voornaam'],
+            'email' => $data['email'],
+            'straat' => $data['straat'],
+            'huisnummer' => $data['huisnummer'],
+            'postcode' => $data['postcode'],
+            'geboortedatum' => $data['geboortedatum'],
+            'telefoon' => $data['telefoon'],
         ]);
 
 
@@ -99,9 +115,13 @@ class VrijwilligerController extends Controller
      * @param  \App\Gebruikers  $gebruikers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gebruikers $gebruikers)
+    public function destroy($id, Gebruikers $gebruikers)
     {
-        $gebruikers->delete();
+//        $gebruikers->delete();
+
+        $gebruiker = \App\Gebruikers::find($id)->delete();
+
+
         return response()->json([
             'type' => 'success',
             'text' => "De vrijwilliger <b>$gebruikers->naam $gebruikers->voornaam</b> is verwijderd!"
@@ -110,7 +130,7 @@ class VrijwilligerController extends Controller
 
     public function qryVrijwilligers()
     {
-        $gebruikers = Gebruikers::orderBy('naam')
+        $gebruikers = Gebruikers::orderBy('id')
             ->get();
         return $gebruikers;
     }
