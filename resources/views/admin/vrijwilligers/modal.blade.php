@@ -41,51 +41,62 @@
                         <div class="invalid-feedback"></div>
                     </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="straat">Straat</label>--}}
-{{--                        <input type="text" name="straat" id="straat"--}}
-{{--                               class="form-control"--}}
-{{--                               placeholder="Straat"--}}
-{{--                               minlength="3"--}}
-{{--                               required--}}
-{{--                               value="">--}}
-{{--                        <div class="invalid-feedback"></div>--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="straat">Straat</label>
+                        <input type="text" name="straat" id="straat"
+                               class="form-control"
+                               placeholder="Straat"
+                               minlength="3"
+                               required
+                               value="">
+                        <div class="invalid-feedback"></div>
+                    </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="huisnummer">Huisnummer</label>--}}
-{{--                        <input type="text" name="huisnummer" id="huisnummer"--}}
-{{--                               class="form-control"--}}
-{{--                               placeholder="Huisnummer"--}}
-{{--                               minlength="3"--}}
-{{--                               required--}}
-{{--                               value="">--}}
-{{--                        <div class="invalid-feedback"></div>--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="huisnummer">Huisnummer</label>
+                        <input type="text" name="huisnummer" id="huisnummer"
+                               class="form-control"
+                               placeholder="Huisnummer"
+                               minlength="3"
+                               required
+                               value="">
+                        <div class="invalid-feedback"></div>
+                    </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="postcode">Postcode</label>--}}
-{{--                        <input type="text" name="postcode" id="postcode"--}}
-{{--                               class="form-control"--}}
-{{--                               placeholder="Postcode"--}}
-{{--                               minlength="3"--}}
-{{--                               required--}}
-{{--                               value="">--}}
-{{--                        <div class="invalid-feedback"></div>--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="postcode">Postcode</label>
+                        <input type="text" name="postcode" id="postcode"
+                               class="form-control"
+                               placeholder="Postcode"
+                               minlength="3"
+                               required
+                               value="">
+                        <div class="invalid-feedback"></div>
+                    </div>
 
-{{--                    <div class="form-group">--}}
-{{--                        <label for="telefoon">Telefoon</label>--}}
-{{--                        <input type="text" name="telefoon" id="telefoon"--}}
-{{--                               class="form-control"--}}
-{{--                               placeholder="Telefoon"--}}
-{{--                               minlength="3"--}}
-{{--                               required--}}
-{{--                               value="">--}}
-{{--                        <div class="invalid-feedback"></div>--}}
-{{--                    </div>--}}
+                    <div class="form-group">
+                        <label for="telefoon">Telefoon</label>
+                        <input type="text" name="telefoon" id="telefoon"
+                               class="form-control"
+                               placeholder="Telefoon"
+                               minlength="3"
+                               required
+                               value="">
+                        <div class="invalid-feedback"></div>
+                    </div>
 
-                    <button type="submit" class="btn btn-success">Save genre</button>
+                    <div class="form-group">
+                        <label for="geboortedatum">Geboortedatum</label>
+                        <input type="date" name="geboortedatum" id="geboortedatum"
+                               class="form-control"
+                               placeholder="Geboortedatum"
+                               minlength="3"
+                               required
+                               value="">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Bewaar vrijwilliger</button>
                 </form>
             </div>
         </div>
