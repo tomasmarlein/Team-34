@@ -118,10 +118,10 @@
 
                 $('input[name="_method"]').val('put');
                 // Show the modal
-                $('#modal-genre').modal('show');
+                $('#modal-vrijwilliger').modal('show');
             });
 
-            $('#modal-genre form').submit(function (e) {
+            $('#modal-vrijwilliger form').submit(function (e) {
                 // Don't submit the form
                 e.preventDefault();
                 // Get the action property (the URL to submit)
@@ -139,7 +139,7 @@
                             text: data.text
                         }).show();
                         // Hide the modal
-                        $('#modal-genre').modal('hide');
+                        $('#modal-vrijwilliger').modal('hide');
                         // Rebuild the table
                         loadTable();
                     })
@@ -168,7 +168,7 @@
                 $('#naam').val('');
                 $('input[name="_method"]').val('post');
                 // Show the modal
-                $('#modal-genre').modal('show');
+                $('#modal-vrijwilliger').modal('show');
             });
         });
 

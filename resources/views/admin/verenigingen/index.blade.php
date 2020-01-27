@@ -25,6 +25,7 @@
                 </a>
             </div>
         </div>
+    </form>
 
     <div class="table-responsive">
         <table class="table">
@@ -156,15 +157,7 @@
                 $('.modal-title').text(`Nieuwe vereniging`);
                 $('form').attr('action', `/admin/verenigingen`);
                 $('#naam').val('');
-                // $('#hoofdverantwoordelijke').val('');
-                // $('#rekeningnr').val(rekeningnr);
-                // $('#btwnr').val(btwnr);
-                // $('#straat').val(straat);
-                // $('#huisnummer').val(huisnummer);
-                // $('#postcode').val(postcode);
-                // $('#gemeente').val(gemeente);
                 $('input[name="_method"]').val('post');
-
                 // Show the modal
                 $('#modal-vereniging').modal('show');
             });
