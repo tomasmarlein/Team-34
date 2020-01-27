@@ -102,7 +102,7 @@ class VerenigingController extends Controller
      */
     public function update($id, Request $request, Verenigings $verenigings)
     {
-        
+
         $data = $request->all();
         $verenigings = \App\Verenigings::find($id)->update([
             'naam' => $data['naam'],
