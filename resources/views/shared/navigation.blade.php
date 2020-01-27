@@ -23,6 +23,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/aanvraag"><i class="fas fa-signature"></i> Register</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/FAQ"><i class="fas fa-signature"></i> FAQ</a>
+                    </li>
                 @endguest
                 @auth
                     <li class="nav-item dropdown">
