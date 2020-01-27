@@ -36,7 +36,7 @@ class VerenigingController extends Controller
 
         $verenigingen = new Verenigings();
         $result = compact('verenigingen');
-        return redirect('admin.verenigingen.create',$result);
+        return view('admin.verenigingen.create',$result);
     }
 
     /**
@@ -44,12 +44,11 @@ class VerenigingController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
         $this->validate($request,[
-            'naam' => 'required|min:3|unique:verenigingen,naam',
+            'naam' => 'required|min:3|unique:verenigingen,naam'
 //            'rekeningnr' => 'min:3|unique:verenigingen,rekeningnr',
 //            'hoofdverantwoordelijke' => 'min:3|unique:verenigingen,hoofdverantwoordelijke',
 //            'btwnr' => 'min:3|unique:verenigingen,btwnr',
@@ -59,29 +58,29 @@ class VerenigingController extends Controller
 //            'gemeente' => 'min:3|unique:verenigingen,gemeente'
         ]);
 
-        $vereniging = new Verenigings();
-        $vereniging->naam = $request->naam;
-        $vereniging->rekeningnr = $request->rekeningnr;
-        $vereniging->hoofdverantwoordelijke = $request->hoofdverantwoordelijke;
-        $vereniging->btwnr = $request->btwnr;
-        $vereniging->straat = $request->straat;
-        $vereniging->huisnummer = $request->huisnummer;
-        $vereniging->postcode = $request->postcode;
-        $vereniging->gemeente = $request->gemeente;
-        $vereniging->save();
+        $verenigingen = new Verenigings();
+        $verenigingen->naam = $request->naam;
+        $verenigingen->rekeningnr = $request->rekeningnr;
+        $verenigingen->hoofdverantwoordelijke = $request->hoofdverantwoordelijke;
+        $verenigingen->btwnr = $request->btwnr;
+        $verenigingen->straat = $request->straat;
+        $verenigingen->huisnummer = $request->huisnummer;
+        $verenigingen->postcode = $request->postcode;
+        $verenigingen->gemeente = $request->gemeente;
+        $verenigingen->save();
         return response()->json([
             'type' => 'success',
-            'text' => "De vereniging <b>$vereniging->naam</b> is toegevoegd!"
+            'text' => "De vereniging <b>$verenigingen->naam</b> is toegevoegd!"
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Verenigings  $vereniging
+     * @param  \App\Verenigings  $verenigingen
      * @return \Illuminate\Http\Response
      */
-    public function show(Verenigings $vereniging)
+    public function show(Verenigings $verenigingen)
     {
         return redirect('admin/verenigingen');
     }
@@ -89,11 +88,12 @@ class VerenigingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Verenigings  $vereniging
+     * @param  \App\Verenigings  $verenigingen
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vereniging $vereniging)
+    public function edit(Verenigings $verenigingen)
     {
+        $result = compact('verenigingen');
         return redirect('admin/verenigingen');
     }
 
@@ -101,22 +101,27 @@ class VerenigingController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Verenigings $vereniging
+     * @param \App\Verenigings $verenigingen
      * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function update($id, Request $request, Verenigings $vereniging)
+    public function update($id, Request $request, Verenigings $verenigingen)
     {
 
         $data = $request->all();
         $vereniging = \App\Verenigings::find($id)->update([
             'naam' => $data['naam'],
+            'rekeningnr' => $data['rekeningnr'],
+            'hoofdverantwoordelijke' => $data['hoofdverantwoordelijke'],
+            'btwnr' => $data['btwnr'],
+            'straat' => $data['straat'],
+            'huisnummer' => $data['huisnummer'],
+            'postcode' => $data['postcode'],
+            'gemeente' => $data['gemeente'],
         ]);
-
 
         return response()->json([
             'type' => 'success',
-            'text' => "De vereniging:  <b>$vereniging->naam</b> is geupdatet!"
+            'text' => "De vereniging:  <b>$verenigingen->naam</b> is geupdatet!"
         ]);
 
     }
@@ -124,22 +129,16 @@ class VerenigingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Verenigings $vereniging
+     * @param \App\Verenigings $verenigingen
      * @return \Illuminate\Http\Response
-     * @throws \Exception
      */
-    public function destroy($id, Verenigings $vereniging)
+    public function destroy($id, Verenigings $verenigingen)
     {
-//        $vereniging->delete();
-//        session()->flash('success', "De vereniging:  <b>$vereniging->naam</b> is verwijdert!");
-//        return redirect('admin/verenigingen');
 
-
-
-        $vereniging = \App\verenigins::find($id)->delete();
+        $vereniging = \App\Verenigings::find($id)->delete();
         return response()->json([
             'type' => 'success',
-            'text' => "De vereniging <b>$vereniging->naam</b> is verwijdert !"
+            'text' => "De vereniging <b>$verenigingen->naam</b> is verwijdert !"
         ]);
     }
 

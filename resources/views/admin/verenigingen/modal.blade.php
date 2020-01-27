@@ -17,7 +17,6 @@
                                class="form-control"
                                placeholder="Naam"
                                minlength="3"
-                               required
                                value="">
                         <div class="invalid-feedback"></div>
                     </div>

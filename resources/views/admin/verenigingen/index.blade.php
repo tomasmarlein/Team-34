@@ -4,6 +4,7 @@
 
 @section('main')
     <h1>Verenigingen</h1>
+    @include('shared.alert')
     <form method="get" action="#" id="searchForm">
         <div class="row">
             <div class="col-sm-6 mb-2">
@@ -54,12 +55,12 @@
             $('tbody').on('click', '.btn-delete', function () {
                 // Get data attributes from td tag
                 let id = $(this).closest('td').data('id');
-                let naam = $(this).closest('td').data('name');
+                let naam = $(this).closest('td').data('naam');
                 // Set some values for Noty
                 let text = `<p>Verwijder de vereniging <b>${naam}</b>?</p>`;
                   let  btnText = `Verwijder vereniging`;
                    let btnClass = 'btn-danger';
-                   let type = 'error';
+                   let type = 'warning';
                 // Show Noty
                 let modal = new Noty({
                     timeout: false,
@@ -92,10 +93,6 @@
                 let postcode = $(this).closest('td').data('postcode');
                 let gemeente = $(this).closest('td').data('gemeente');
 
-
-
-
-
                 // Update the modal
                 $('.modal-title').text(`Edit ${naam}`);
                 $('form').attr('action', `/admin/verenigingen/${id}`);
@@ -109,14 +106,7 @@
                 $('#postcode').val(postcode);
                 $('#gemeente').val(gemeente);
 
-                $('input[naam="_method"]').val('put');
-                $('input[hoofdverantwoordelijke="_method"]').val('put');
-                $('input[rekeningnr="_method"]').val('put');
-                $('input[btwnr="_method"]').val('put');
-                $('input[straat="_method"]').val('put');
-                $('input[huisnummer="_method"]').val('put');
-                $('input[postcode="_method"]').val('put');
-                $('input[gemeente="_method"]').val('put');
+                $('input[name="_method"]').val('put');
                 // Show the modal
                 $('#modal-vereniging').modal('show');
             });
@@ -164,30 +154,17 @@
             $('#btn-create').click(function () {
                 // Update the modal
                 $('.modal-title').text(`Nieuwe vereniging`);
-
                 $('form').attr('action', `/admin/verenigingen`);
-
-                console.log(naam);
-
-
-                $('input[name="_method"]').val('post');
-                // $('#hoofdverantwoordelijke').val(hoofdverantwoordelijke);
-                // $('input[hoofdverantwoordelijke="_method"]').val('post');
-                //
-                //
+                $('#naam').val('');
+                // $('#hoofdverantwoordelijke').val('');
                 // $('#rekeningnr').val(rekeningnr);
-                // $('input[rekeningnr="_method"]').val('post');
                 // $('#btwnr').val(btwnr);
-                // $('input[btwnr="_method"]').val('post');
                 // $('#straat').val(straat);
-                // $('input[straat="_method"]').val('post');
                 // $('#huisnummer').val(huisnummer);
-                // $('input[huisnummer="_method"]').val('post');
                 // $('#postcode').val(postcode);
-                // $('input[postcode="_method"]').val('post');
                 // $('#gemeente').val(gemeente);
-                // $('input[gemeente="_method"]').val('post');
-                console.log(naam);
+                $('input[name="_method"]').val('post');
+
                 // Show the modal
                 $('#modal-vereniging').modal('show');
             });
@@ -205,8 +182,6 @@
                 .done(function (data) {
                     console.log('data', data);
                     // Show toast
-                    console.log({id})
-                    console.log()
                     new Noty({
                         type: data.type,
                         text: data.text
@@ -221,8 +196,6 @@
 
         // Load genres with AJAX
         function loadTable() {
-
-
             $.getJSON('qryVerenigingen')
                 .done(function (data) {
                     // Clear tbody tag
