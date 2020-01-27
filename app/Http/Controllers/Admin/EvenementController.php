@@ -25,7 +25,9 @@ class EvenementController extends Controller
      */
     public function create()
     {
-        //
+        $evenements = new Evenements();
+        $result = compact('evenements');
+        return view('admin.evenementen.index',$result);
     }
 
     /**
@@ -36,7 +38,20 @@ class EvenementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'naam' => 'required|min:3|unique:evenements,naam'
+        ]);
+
+        $evenements = new Evenements();
+        $evenements->naam = $request->naam;
+        $evenements->startdatum = $request->startdatum;
+        $evenements->einddatum = $request->einddatum;
+        $evenements->actief = $request->actief;
+        $evenements->save();
+        return response()->json([
+            'type' => 'success',
+            'text' => "Het evenement <b>$evenements->naam</b> is toegevoegd"
+        ]);
     }
 
     /**
@@ -70,9 +85,21 @@ class EvenementController extends Controller
      * @param  \App\Evenements  $evenements
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Evenements $evenements)
+    public function update($id,Request $request, Evenements $evenements)
     {
-        //
+        $data = $request->all();
+        $evenement = \App\Evenements::find($id)->update([
+            'naam' => $data['naam'],
+            'startdatum' => $data['startdatum'],
+            'einddatum' => $data['einddatum'],
+            'actief' => $data['actief'],
+        ]);
+
+
+        return response()->json([
+            'type' => 'success',
+            'text' => "The vrijwilliger <b>$evenements->name</b> is geupdate"
+        ]);
     }
 
     /**
@@ -81,9 +108,15 @@ class EvenementController extends Controller
      * @param  \App\Evenements  $evenements
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Evenements $evenements)
+    public function destroy($id, Evenements $evenements)
     {
-        //
+        $evenement = \App\Gebruikers::find($id)->delete();
+
+
+        return response()->json([
+            'type' => 'success',
+            'text' => "Het evenement <b>$evenements->naam</b> is verwijderd!"
+        ]);
     }
 
     public function qryEvenementen()
