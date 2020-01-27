@@ -23,14 +23,12 @@ Route::view('/', 'landingpage');
 
 
 
-
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::view('/home', 'admin.adminpanel');
 });
 
-
-
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+
     //evenementen
     Route::get('qryEvenementen','Admin\EvenementController@qryEvenementen');
     Route::resource('evenementen', 'Admin\EvenementController');
@@ -49,5 +47,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //vrijwilligers CRUD
     Route::get('qryVrijwilligers', 'Admin\VrijwilligerController@qryVrijwilligers');
     Route::resource('vrijwilligers', 'Admin\VrijwilligerController');
+
+
 
 });

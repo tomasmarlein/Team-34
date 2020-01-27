@@ -30,6 +30,9 @@
                     </li>
                 @endguest
                 @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="/beheer"><i class="fas fa-user-shield"></i> adminpaneel</a>
+                        </li>
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#!" data-toggle="dropdown">
