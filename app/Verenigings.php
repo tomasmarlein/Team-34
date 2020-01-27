@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Verenigings extends Model
 {
+    public $timestamps = false;
+    protected $guarded = [];
+
     public function Verenigingevent()
     {
         return $this->hasMany('App\EvenementVereniging');

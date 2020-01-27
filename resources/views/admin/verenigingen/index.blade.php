@@ -57,7 +57,6 @@
                 let naam = $(this).closest('td').data('name');
                 // Set some values for Noty
                 let text = `<p>Verwijder de vereniging <b>${naam}</b>?</p>`;
-
                   let  btnText = `Verwijder vereniging`;
                    let btnClass = 'btn-danger';
                    let type = 'error';
@@ -93,35 +92,30 @@
                 let postcode = $(this).closest('td').data('postcode');
                 let gemeente = $(this).closest('td').data('gemeente');
 
-                $('#naam').val(naam);
-                $('#hoofdverantwoordelijke').val(hoofdverantwoordelijke);
-                $('#rekeningnr').val(rekeningnr);
-                $('#btwnr').val(btwnr);
-                $('#straat').val(straat);
-                $('#huisnummer').val(huisnummer);
-                $('#postcode').val(postcode);
-                $('#gemeente').val(gemeente);
+
 
 
 
                 // Update the modal
                 $('.modal-title').text(`Edit ${naam}`);
                 $('form').attr('action', `/admin/verenigingen/${id}`);
+
                 $('#naam').val(naam);
-                $('input[naam="_method"]').val('put');
                 $('#hoofdverantwoordelijke').val(hoofdverantwoordelijke);
-                $('input[hoofdverantwoordelijke="_method"]').val('put');
                 $('#rekeningnr').val(rekeningnr);
-                $('input[rekeningnr="_method"]').val('put');
                 $('#btwnr').val(btwnr);
-                $('input[btwnr="_method"]').val('put');
                 $('#straat').val(straat);
-                $('input[straat="_method"]').val('put');
                 $('#huisnummer').val(huisnummer);
-                $('input[huisnummer="_method"]').val('put');
                 $('#postcode').val(postcode);
-                $('input[postcode="_method"]').val('put');
                 $('#gemeente').val(gemeente);
+
+                $('input[naam="_method"]').val('put');
+                $('input[hoofdverantwoordelijke="_method"]').val('put');
+                $('input[rekeningnr="_method"]').val('put');
+                $('input[btwnr="_method"]').val('put');
+                $('input[straat="_method"]').val('put');
+                $('input[huisnummer="_method"]').val('put');
+                $('input[postcode="_method"]').val('put');
                 $('input[gemeente="_method"]').val('put');
                 // Show the modal
                 $('#modal-vereniging').modal('show');
@@ -175,7 +169,7 @@
 
                 console.log(naam);
 
-                $('#naam').val(naam);
+
                 $('input[name="_method"]').val('post');
                 // $('#hoofdverantwoordelijke').val(hoofdverantwoordelijke);
                 // $('input[hoofdverantwoordelijke="_method"]').val('post');

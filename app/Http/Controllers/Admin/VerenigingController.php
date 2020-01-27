@@ -26,12 +26,6 @@ class VerenigingController extends Controller
         return view('admin.verenigingen.index');
     }
 
-    function fetch_data(Request $request)
-    {
-
-    }
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -39,7 +33,10 @@ class VerenigingController extends Controller
      */
     public function create()
     {
-        return redirect('admin.verenigingen.create');
+
+        $verenigingen = new Verenigings();
+        $result = compact('verenigingen');
+        return redirect('admin.verenigingen.create',$result);
     }
 
     /**
@@ -53,13 +50,13 @@ class VerenigingController extends Controller
     {
         $this->validate($request,[
             'naam' => 'required|min:3|unique:verenigingen,naam',
-            'rekeningnr' => 'min:3|unique:verenigingen,rekeningnr',
-            'hoofdverantwoordelijke' => 'min:3|unique:verenigingen,hoofdverantwoordelijke',
-            'btwnr' => 'min:3|unique:verenigingen,btwnr',
-            'straat' => 'min:3|unique:verenigingen,straat',
-            'huisnummer' => 'min:3|unique:verenigingen,huisnummer',
-            'postcode' => 'min:3|unique:verenigingen,postcode',
-            'gemeente' => 'min:3|unique:verenigingen,gemeente'
+//            'rekeningnr' => 'min:3|unique:verenigingen,rekeningnr',
+//            'hoofdverantwoordelijke' => 'min:3|unique:verenigingen,hoofdverantwoordelijke',
+//            'btwnr' => 'min:3|unique:verenigingen,btwnr',
+//            'straat' => 'min:3|unique:verenigingen,straat',
+//            'huisnummer' => 'min:3|unique:verenigingen,huisnummer',
+//            'postcode' => 'min:3|unique:verenigingen,postcode',
+//            'gemeente' => 'min:3|unique:verenigingen,gemeente'
         ]);
 
         $vereniging = new Verenigings();
@@ -108,13 +105,15 @@ class VerenigingController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function update(Request $request, Verenigings $vereniging)
+    public function update($id, Request $request, Verenigings $vereniging)
     {
-        $this->validate($request,[
-            'naam' => 'required|min:3|unique:verenigingen,naam,' . $vereniging->id
+
+        $data = $request->all();
+        $vereniging = \App\Verenigings::find($id)->update([
+            'naam' => $data['naam'],
         ]);
-        $vereniging->naam = $request->naam;
-        $vereniging->save();
+
+
         return response()->json([
             'type' => 'success',
             'text' => "De vereniging:  <b>$vereniging->naam</b> is geupdatet!"
@@ -129,7 +128,7 @@ class VerenigingController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function destroy(Verenigings $vereniging)
+    public function destroy($id, Verenigings $vereniging)
     {
 //        $vereniging->delete();
 //        session()->flash('success', "De vereniging:  <b>$vereniging->naam</b> is verwijdert!");
@@ -137,7 +136,7 @@ class VerenigingController extends Controller
 
 
 
-        $vereniging->delete();
+        $vereniging = \App\verenigins::find($id)->delete();
         return response()->json([
             'type' => 'success',
             'text' => "De vereniging <b>$vereniging->naam</b> is verwijdert !"

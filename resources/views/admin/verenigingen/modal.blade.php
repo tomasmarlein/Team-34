@@ -19,7 +19,10 @@
                                minlength="3"
                                required
                                value="">
+                        <div class="invalid-feedback"></div>
+                    </div>
 
+                    <div class="form-group ">
                         <label for="rekeningnr">Rekeningnummer</label>
                         <input type="text" name="rekeningnr" id="rekeningnr"
                                class="form-control"
@@ -27,7 +30,9 @@
                                minlength="3"
                                value="">
                         <div class="invalid-feedback"></div>
+                    </div>
 
+                    <div class="form-group ">
                         <label for="hoofdverantwoordelijke">Hoofdverantwoordelijke</label>
                         <input type="text" name="hoofdverantwoordelijke" id="hoofdverantwoordelijke"
                                class="form-control"
@@ -35,8 +40,10 @@
                                minlength="3"
                                value="">
                         <div class="invalid-feedback"></div>
+                    </div>
 
 
+                    <div class="form-group ">
                         <label for="btwnr">BTW nummer</label>
                         <input type="text" name="btwnr" id="btwnr"
                                class="form-control"
@@ -44,8 +51,10 @@
                                minlength="3"
                                value="">
                         <div class="invalid-feedback"></div>
+                    </div>
 
 
+                    <div class="form-group ">
                         <label for="straat">Straat</label>
                         <input type="text" name="straat" id="straat"
                                class="form-control"
@@ -53,6 +62,9 @@
                                minlength="3"
                                value="">
                         <div class="invalid-feedback"></div>
+                        <div class="form-group ">
+                        </div>
+
 
                         <label for="huisnummer">Huisnummer</label>
                         <input type="text" name="huisnummer" id="huisnummer"
@@ -62,6 +74,10 @@
                                value="">
                         <div class="invalid-feedback"></div>
 
+                        <div class="form-group ">
+                        </div>
+
+
                         <label for="postcode">Postcode</label>
                         <input type="text" name="postcode" id="postcode"
                                class="form-control"
@@ -69,7 +85,10 @@
                                minlength="3"
                                value="">
                         <div class="invalid-feedback"></div>
+                    </div>
 
+
+                    <div class="form-group ">
                         <label for="gemeente">Gemeente</label>
                         <input type="text" name="gemeente" id="gemeente"
                                class="form-control"
@@ -77,10 +96,9 @@
                                minlength="3"
                                value="">
                         <div class="invalid-feedback"></div>
-
-
-
                     </div>
+
+
                     <button type="submit" class="btn btn-success">Opslaan</button>
                 </form>
             </div>
