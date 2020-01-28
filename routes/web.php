@@ -26,7 +26,7 @@ Route::view('/', 'landingpage');
 Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/home', 'Admin\AdminpaneelController@index');
-    
+
 
 
     //aangevraagde verenigingen

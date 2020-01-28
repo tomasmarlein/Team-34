@@ -40,6 +40,11 @@
         .card-img-top{
             max-height: 222.23px;
         }
+        a:link, a:visited{
+            color: black;
+            text-underline: none;
+        }
+
 
     </style>
 @endsection
@@ -52,7 +57,7 @@
         <p class="lead">Welkom in het tijdsregistratiesysteem van Keizer Karel Olen</p>
         <hr class="my-4">
         <p>Beheer hier evenementen, verenigingen en vrijwilligers.</p>
-        <p>geselcteerd evenement</p>
+        <p>geselecteerd evenement</p>
 
 
         <div class="btn-group">
@@ -93,7 +98,7 @@
                 </div>
             </div>
             </a>
-            <a href="#!">
+            <a href="/inaanvraag">
             <div class="card">
                 <img class="card-img-top" src="assets/adminpanel/aanvraag.jfif" alt="Card image cap">
                 <div class="card-body">
