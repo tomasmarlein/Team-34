@@ -44,7 +44,6 @@
                 <th>Postcode</th>
                 <th>Telefoon</th>
                 <th>Geboortedatum</th>
-                <th>Rol</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -214,7 +213,7 @@
 
                                <td>${value.telefoon}</td>
                                <td>${value.geboortedatum}</td>
-                               <td>${value.rolId}</td>
+
 
                                <td data-id="${value.id}"
                                    data-naam="${value.naam}"
