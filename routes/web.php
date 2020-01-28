@@ -37,6 +37,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
     Route::resource('verenigingen', 'Admin\VerenigingController');
     Route::get('active/{id}','Admin\VerenigingController@active');
+    Route::get('nonactive/{id}','Admin\VerenigingController@nonactive');
 
 
 

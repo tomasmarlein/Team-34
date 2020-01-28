@@ -151,19 +151,18 @@ class VerenigingController extends Controller
 
     public function active($id, Verenigings $verenigings)
     {
-        $actief = Verenigings::find($id);
-
-        if ($verenigings->actief == true){
-            $actief->update(['actief' => false]);
-        }else{
-            $actief->update(['actief' => true]);
-        }
-
+        $actief = Verenigings::find($id)->update(['actief' => 1]);
 
         return redirect('admin/verenigingen');
     }
 
 
+    public function nonactive($id, Verenigings $verenigings)
+    {
+        $actief = Verenigings::find($id)->update(['actief' => 0]);
+
+        return redirect('admin/verenigingen');
+    }
 
 
 
