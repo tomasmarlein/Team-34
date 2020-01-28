@@ -3,12 +3,11 @@
 @section('css_after')
     <style>
         body, html {
-            height: 100%;
             background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/hero.jfif") ;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-            height: 100%;
+            background-color: #443339 ;
         }
 
 

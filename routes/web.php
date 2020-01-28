@@ -27,6 +27,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/home', 'Admin\AdminpaneelController@index');
 
+
     //aangevraagde verenigingen
     Route::view('/inaanvraag', 'admin.verenigingen.inaanvraag');
     Route::get('qryVerenigingenInAanvraag','Admin\VerenigingController@qryVerenigingenInAanvraag');
