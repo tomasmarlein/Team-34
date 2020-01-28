@@ -216,11 +216,6 @@
                             var buttonIcon = "<i class=\"fas fa-check-square danger\"></i>\n"
                         }
 
-
-
-
-
-
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${actief}</td>

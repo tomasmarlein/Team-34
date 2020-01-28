@@ -20,6 +20,12 @@ class VerenigingController extends Controller
         return view('admin.verenigingen.index');
     }
 
+
+    public function inaanvraag()
+    {
+        return redirect('admin.verenigingen.inaanvraag');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -142,6 +148,28 @@ class VerenigingController extends Controller
     public function qryVerenigingen()
     {
         $verenigings = Verenigings::orderBy('id')
+            ->where('inaanvraag','=',0)
+            ->get();
+
+        return $verenigings;
+    }
+
+
+    public function countVerenigingenInAanvraag()
+    {
+        $verenigings = Verenigings::orderBy('id')
+            ->where('inaanvraag','=',1)
+            ->count();
+
+        return $verenigings;
+    }
+
+
+
+    public function qryVerenigingenInAanvraag()
+    {
+        $verenigings = Verenigings::orderBy('naam')
+            ->where('inaanvraag','=',1)
             ->get();
 
         return $verenigings;
@@ -159,6 +187,18 @@ class VerenigingController extends Controller
             $actief->update(['actief' => true]);
         }
 
+
+        return redirect('admin/verenigingen');
+    }
+
+
+    public function approve($id, Verenigings $verenigings)
+    {
+        $inaanvraag = Verenigings::find($id);
+
+        if ($verenigings->inaanvraag !== 0){
+            $inaanvraag->update(['inaanvraag' => 0]);
+        }
 
         return redirect('admin/verenigingen');
     }

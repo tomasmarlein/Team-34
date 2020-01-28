@@ -25,6 +25,15 @@ Route::view('/', 'landingpage');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::view('/home', 'admin.adminpanel');
+
+
+    //aangevraagde verenigingen
+    Route::view('/inaanvraag', 'admin.verenigingen.inaanvraag');
+    Route::get('qryVerenigingenInAanvraag','Admin\VerenigingController@qryVerenigingenInAanvraag');
+    Route::get('countVerenigingenInAanvraag','Admin\VerenigingController@countVerenigingenInAanvraag');
+    Route::get('approve/{id}','Admin\VerenigingController@approve');
+
+
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
