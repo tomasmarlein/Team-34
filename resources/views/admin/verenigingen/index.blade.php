@@ -5,6 +5,12 @@
 @section('main')
     <h1>Verenigingen</h1>
     @include('shared.alert')
+
+    <style>
+        .fas fa-minus-square danger{
+            color:green;
+        }
+    </style>
     <form method="get" action="#" id="searchForm">
         <div class="row">
             <div class="col-sm-6 mb-2">
@@ -32,6 +38,7 @@
             <thead>
             <tr>
                 <th>#</th>
+                <th>Actief</th>
                 <th>Naam</th>
                 <th>HoofdVerantwoordelijke</th>
                 <th>Rekeningnummer</th>
@@ -59,9 +66,9 @@
                 let naam = $(this).closest('td').data('naam');
                 // Set some values for Noty
                 let text = `<p>Verwijder de vereniging <b>${naam}</b>?</p>`;
-                  let  btnText = `Verwijder vereniging`;
-                   let btnClass = 'btn-danger';
-                   let type = 'warning';
+                let btnText = `Verwijder vereniging`;
+                let btnClass = 'btn-danger';
+                let type = 'warning';
                 // Show Noty
                 let modal = new Noty({
                     timeout: false,
@@ -162,9 +169,11 @@
                 $('#modal-vereniging').modal('show');
             });
 
+
         });
 
-        // Delete a genre
+
+        // Delete een vereniging
         function deleteVereniging(id) {
             // Delete the vereniging from the database
             let pars = {
@@ -195,8 +204,26 @@
                     $('tbody').empty();
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
+
+                        if (value.actief !== 0) {
+                            var actief = "<i style='color: #2a9055' class=\"fas fa-check-square danger\"></i>\n";
+
+                            var buttonIcon = "<i class=\"fas fa-minus-square danger\"></i>\n"
+
+                        } else {
+                            var actief = "<i style='color: darkred' class=\"fas fa-minus-square danger\"></i>\n";
+
+                            var buttonIcon = "<i class=\"fas fa-check-square danger\"></i>\n"
+                        }
+
+
+
+
+
+
                         let tr = `<tr>
                                <td>${value.id}</td>
+                               <td>${actief}</td>
                                <td>${value.naam}</td>
                                <td>${value.hoofdverantwoordelijke}</td>
                                <td>${value.rekeningnr}</td>
@@ -211,7 +238,8 @@
                                    data-straat="${value.straat}"
                                    data-huisnummer="${value.huisnummer}"
                                    data-postcode="${value.postcode}"
-                                   data-gemeente="${value.gemeente}">
+                                   data-gemeente="${value.gemeente}"
+                                   data-actief="${value.actief}">
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit">
                                             <i class="fas fa-edit"></i>
@@ -219,6 +247,14 @@
                                         <a href="#!" class="btn btn-outline-danger btn-delete">
                                             <i class="fas fa-trash"></i>
                                         </a>
+
+
+                                        <a href="active/${value.id}" class="btn btn-outline-secondary btn-actief">
+                                           ${buttonIcon}
+                                        </a>
+
+
+
                                     </div>
                                </td>
                            </tr>`;
@@ -231,6 +267,7 @@
                     console.log('error', e);
                 })
         }
+
     </script>
 @endsection
 
