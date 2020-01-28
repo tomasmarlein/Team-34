@@ -52,6 +52,7 @@
     <script>
         $(function () {
             loadTable();
+            loadDropdown();
 
             $('tbody').on('click', '.btn-delete', function () {
                 // Get data attributes from td tag
@@ -158,6 +159,15 @@
                 });
         }
 
+        //dropdown inladen
+        function loadDropdown(){
+            $.getJSON('qryVerenigingen')
+                .done(function (data) {
+                    console.log('data', data);
+                    $.each(data, function (key, value) {
+                        $('#dropdown').append('<option>' + value.naam + '</option>');
+                })
+        })}
 
         //tabel inladen
         function loadTable() {
