@@ -24,7 +24,7 @@ Route::view('/', 'landingpage');
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::view('/home', 'admin.adminpanel');
+    Route::get('/home', 'Admin\AdminpaneelController@index');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
