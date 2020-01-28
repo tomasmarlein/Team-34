@@ -204,6 +204,7 @@
                     $('tbody').empty();
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
+
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.naam} ${value.voornaam}</td>
