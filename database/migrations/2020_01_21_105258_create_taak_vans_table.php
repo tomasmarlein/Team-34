@@ -13,20 +13,20 @@ class CreateTaakVansTable extends Migration
      */
     public function up()
     {
-        Schema::create('taak_vans', function (Blueprint $table) {
+        Schema::create('taaks_verenigings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('verenigingId');
-            $table->unsignedBigInteger('taakId');
+            $table->unsignedBigInteger('verenigings_id');
+            $table->unsignedBigInteger('taaks_id');
 
-            $table->foreign('verenigingId')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('taakId')->references('id')->on('taaks')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('verenigings_id')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('taaks_id')->references('id')->on('taaks')->onDelete('cascade')->onUpdate('cascade');
         });
 
         for ($i = 1; $i <= 10; $i++) {
-            DB::table('taak_vans')->insert(
+            DB::table('taaks_verenigings')->insert(
                 [
-                    'verenigingId'=> $i,
-                    'taakId' => 1
+                    'verenigings_id'=> $i,
+                    'taaks_id' => 1
                 ]
             );
         }

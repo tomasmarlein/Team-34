@@ -16,12 +16,12 @@ class Verenigings extends Model
 
     public function vereniginglid()
     {
-        return $this->hasMany('App\LidVan');
+        return $this->belongsToMany('App\Gebruikers');
     }
 
     public function verenigingtaak()
     {
-        return $this->hasMany('App\TaakVan');
+        return $this->belongsToMany('App\Taak');
     }
 
     public function vereniginggebruiker()
