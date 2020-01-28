@@ -24,7 +24,7 @@ class CreateGebruikersTable extends Migration
             $table->string('huisnummer')->nullable();
             $table->dateTime('geboortedatum')->nullable();
             $table->string('telefoon')->nullable();
-            $table->boolean('2detshirt')->nullable();
+            $table->boolean('tweedetshirt')->nullable();
             $table->string('opmerking')->nullable();
             $table->string('rijksregisternr')->nullable();
             $table->string('postcode')->nullable();
@@ -53,7 +53,7 @@ class CreateGebruikersTable extends Migration
                     'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
-                    '2detshirt' => False,
+                    'tweedetshirt' => False,
                     'postcode' => '2440',
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,
@@ -72,7 +72,7 @@ class CreateGebruikersTable extends Migration
                     'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
-                    '2detshirt' => False,
+                    'tweedetshirt' => False,
                     'postcode' => '2440',
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,
@@ -91,7 +91,7 @@ class CreateGebruikersTable extends Migration
                     'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
-                    '2detshirt' => False,
+                    'tweedetshirt' => False,
                     'postcode' => '2440',
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,
@@ -110,7 +110,7 @@ class CreateGebruikersTable extends Migration
                     'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
-                    '2detshirt' => False,
+                    'tweedetshirt' => False,
                     'postcode' => '2440',
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,

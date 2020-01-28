@@ -165,7 +165,7 @@
                 .done(function (data) {
                     console.log('data', data);
                     $.each(data, function (key, value) {
-                        $('#dropdown').append('<option>' + value.naam + '</option>');
+                        $('#dropdown-verenigingen').append('<option value="'+ value.id + '">' + value.naam + '</option>');
                 })
         })}
 

@@ -12,8 +12,15 @@
                     @method('')
                     @csrf
                     <div class="form-group">
-                        <label for="dropdown">Vereniging</label>
-                        <select name="dropdown" id="dropdown">
+                        <label for="dropdown-verenigingen">Verenigingen</label>
+                        <select class="form-control" id="dropdown-verenigingen" name="vereniging_id">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dropdown-verantwoordelijke">Type verantwoordelijke</label>
+                        <select class="form-control" id="dropdown-verantwoordelijke" name="verantwoordelijke_id">
+                            <option value="1">Hoofdverantwoordelijke</option>
+                            <option value="2">2de verantwoordelijke</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -31,6 +38,16 @@
                         <input type="text" name="voornaam" id="voornaam"
                                class="form-control"
                                placeholder="Voornaam"
+                               minlength="3"
+                               value="">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roepnaam">Roepnaam</label>
+                        <input type="text" name="roepnaam" id="roepnaam"
+                               class="form-control"
+                               placeholder="Roepnaam"
                                minlength="3"
                                value="">
                         <div class="invalid-feedback"></div>
@@ -73,6 +90,17 @@
                         <input type="text" name="postcode" id="postcode"
                                class="form-control"
                                placeholder="Postcode"
+                               minlength="3"
+                               required
+                               value="">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rijksregisternummer">Rijksregisternummer</label>
+                        <input type="text" name="rijksregisternummer" id="rijksregisternummer"
+                               class="form-control"
+                               placeholder="Rijksregisternummer"
                                minlength="3"
                                required
                                value="">
