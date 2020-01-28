@@ -37,6 +37,7 @@
         .hidden{
             display: none;
         }
+
     </style>
 @endsection
 
@@ -48,6 +49,46 @@
         <p class="lead">Welkom in het tijdsregistratiesysteem van Keizer Karel Olen</p>
         <hr class="my-4">
         <p>Beheer hier evenementen, verenigingen en vrijwilligers.</p>
+
+        @if(auth()->user()->rolID=1)
+        <div class="card-deck">
+            <div class="card">
+                <img class="card-img-top" src="/assets/adminpanel/evenementen.jfif" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Evenementen</h5>
+                    <p class="card-text">Beheer evenementen</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="assets/adminpanel/kernleden.jfif" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Verantwoordelijke</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="/assets/adminpanel/verantwoordelijke.jfif" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Kernleden</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">In aanvraag</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+
+        @endif
+
+
 
 
         @if(auth()->user()->rolID=1)

@@ -8,6 +8,6 @@ class Taak extends Model
 {
     public function taak()
     {
-        return $this->hasMany('App\TaakVan');
+        return $this->belongsToMany('App\Verenigings');
     }
 }
