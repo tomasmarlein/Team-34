@@ -19,14 +19,9 @@ class Gebruikers extends Model
         return $this->hasOne('App\Rol');
     }
 
-    public function persoon()
-    {
-        return $this->hasOne('App\Verenigings');
-    }
-
     public function lid()
     {
-        return $this->hasMany('App\LidVan');
+        return $this->belongsToMany('App\Verenigings');
     }
 
     public function tijd()

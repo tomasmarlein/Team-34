@@ -11,6 +11,6 @@ class Evenements extends Model
 
     public function eventvereniging()
     {
-        return $this->hasMany('App\EvenementVereniging');
+        return $this->belongsToMany('App\Verenigings');
     }
 }

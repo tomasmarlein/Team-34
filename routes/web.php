@@ -46,10 +46,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
     Route::resource('verenigingen', 'Admin\VerenigingController');
     Route::get('active/{id}','Admin\VerenigingController@active');
+    Route::get('nonactive/{id}','Admin\VerenigingController@nonactive');
+
 
 
 
     //verantwoordelijkebeheer
+
+//    route verantwoordelijke
     Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
     Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
     Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
