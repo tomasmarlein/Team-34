@@ -12,6 +12,11 @@
                     @method('')
                     @csrf
                     <div class="form-group">
+                        <label for="dropdown">Vereniging</label>
+                        <select name="dropdown" id="dropdown">
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="naam">Naam</label>
                         <input type="text" name="naam" id="naam"
                                class="form-control"

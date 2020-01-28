@@ -1,5 +1,5 @@
 export function hello(){
-    console.log('The Vinyl Shop JavaScript works! 🙂');
+    console.log('Gladiolen JavaScript works! 🙂');
 
     $('body').tooltip({
         selector: '[data-toggle="tooltip"]',

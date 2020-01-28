@@ -40275,7 +40275,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hello", function() { return hello; });
 function hello() {
-  console.log('The Vinyl Shop JavaScript works! 🙂');
+  console.log('Gladiolen JavaScript works! 🙂');
   $('body').tooltip({
     selector: '[data-toggle="tooltip"]',
     html: true
@@ -40307,8 +40307,8 @@ function hello() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\sites_laravel\Team-34\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\sites_laravel\Team-34\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\sites_laravel\Team-34\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\sites_laravel\Team-34\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -13,19 +13,19 @@ class CreateEvenementVerenigingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('evenement_verenigings', function (Blueprint $table) {
+        Schema::create('evenements_verenigings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('evenementId');
-            $table->unsignedBigInteger('verenigingId');
+            $table->unsignedBigInteger('evenements_id');
+            $table->unsignedBigInteger('verenigings_id');
 
-            $table->foreign('evenementId')->references('id')->on('evenements')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('verenigingId')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('evenements_id')->references('id')->on('evenements')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('verenigings_id')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
         });
         for ($i = 1; $i <= 10; $i++) {
-        DB::table('evenement_verenigings')->insert(
+        DB::table('evenements_verenigings')->insert(
             [
-                'evenementId'=> "1",
-                'verenigingId' => $i
+                'evenements_id'=> "1",
+                'verenigings_id' => $i
 
             ]
         );

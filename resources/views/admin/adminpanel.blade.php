@@ -69,6 +69,8 @@
             </div>
         </div>
 
+
+<div id="knoppen">
         @if(auth()->user()->rolID=1)
 
         <div class="card-columns">
@@ -140,11 +142,15 @@
 
 
 
+
+
+
+</div>
         @if(auth()->user()->rolID=1)
             <a class="btn btn-primary btn-lg" href="/admin/evenementen" role="button">Evenementen</a>
             <a class="btn btn-primary btn-lg" href="/admin/verantwoordelijke" role="button">verantwoordelijke</a>
             <a class="btn btn-primary btn-lg" href="#" role="button">Kernleden</a>
-            <a class="btn btn-primary btn-lg" href="/" role="button">In aanvraag</a>
+            <a class="btn btn-primary btn-lg" href="/inaanvraag" role="button">In aanvraag</a>
         @endif
             <a class="btn btn-primary btn-lg" href="/admin/verenigingen" role="button">Verenigingen</a>
             <a class="btn btn-primary btn-lg" href="/admin/vrijwilligers" role="button">Vrijwilligers</a>
@@ -152,4 +158,7 @@
     </div>
 </div>
 @endsection
+
+
+
 

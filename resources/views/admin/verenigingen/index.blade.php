@@ -208,18 +208,14 @@
                         if (value.actief !== 0) {
                             var actief = "<i style='color: #2a9055' class=\"fas fa-check-square danger\"></i>\n";
 
-                            var buttonIcon = "<i class=\"fas fa-minus-square danger\"></i>\n"
-
+                            var buttonIcon = "<i class=\"fas fa-minus-square danger\"></i>\n";
+                            var path = "nonactive";
                         } else {
                             var actief = "<i style='color: darkred' class=\"fas fa-minus-square danger\"></i>\n";
 
-                            var buttonIcon = "<i class=\"fas fa-check-square danger\"></i>\n"
+                            var buttonIcon = "<i class=\"fas fa-check-square danger\"></i>\n";
+                            var path = "active";
                         }
-
-
-
-
-
 
                         let tr = `<tr>
                                <td>${value.id}</td>
@@ -247,14 +243,9 @@
                                         <a href="#!" class="btn btn-outline-danger btn-delete">
                                             <i class="fas fa-trash"></i>
                                         </a>
-
-
-                                        <a href="active/${value.id}" class="btn btn-outline-secondary btn-actief">
-                                           ${buttonIcon}
-                                        </a>
-
-
-
+                                            <a href="${path}/${value.id}" class="btn btn-outline-secondary btn-actief">
+                                               ${buttonIcon}
+                                            </a>
                                     </div>
                                </td>
                            </tr>`;
