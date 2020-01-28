@@ -31,7 +31,7 @@
                 @endguest
                 @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="/beheer"><i class="fas fa-user-shield"></i> adminpaneel</a>
+                            <a class="nav-link" href="/home"><i class="fas fa-user-shield"></i> adminpaneel</a>
                         </li>
                     <li class="nav-item dropdown">
 
