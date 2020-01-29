@@ -137,7 +137,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="/admin/verantwoordelijke">
+                            <a href="/admin/kernleden">
                                 <div class="card">
                                     <img class="card-img-top" src="/assets/adminpanel/verantwoordelijke.jfif"
                                          alt="Card image cap">
