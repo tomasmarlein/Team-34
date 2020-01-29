@@ -119,10 +119,9 @@
     </div>
 
     <hr class="mb-4">
-    <a href="verenigingAanvragen" class="btn btn-outline-danger btn-delete">
-        <i class="fas fa-trash"></i>
+    <a href="verenigingAanvragen" class="btn btn-primary btn-lg btn-block">
+        Aanvragen
     </a>
-    <button class="btn btn-primary btn-lg btn-block" id="btn-aanvragen" type="submit">Aanvragen</button>
 
 </form>
 
