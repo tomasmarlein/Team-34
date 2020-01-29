@@ -23,6 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landingpage');
 
 Route::get('verenigingAanvragen','Admin\VerenigingController@verenigingAanvragen');
+Route::get('verenigingAanvragenNext','Admin\VerenigingController@verenigingAanvragenNext');
+
+
 
 
 Route::middleware(['auth', 'admin'])->group(function () {

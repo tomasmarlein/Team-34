@@ -205,32 +205,18 @@ class VerenigingController extends Controller
 
         return redirect('admin/verenigingen');
     }
-
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function verenigingAanvragen(Request $request)
     {
         $this->validate($request, [
-//            'verenigingnaam' => 'required',
-//            'rekeningnr' => 'required',
-//            'btwnr' => 'required',
             'naam' => 'required',
             'voornaam' => 'required',
         ]);
-
-//        $verenigings = new Verenigings();
-        $gebruikers = new Gebruikers();
-
-//        $verenigings->naam = $request->verenigingnaam;
-//        $verenigings->rekeningnr = $request->rekeningnr;
-//        $verenigings->btwnr = $request->btwnr;
-//        $verenigings->straat = $request->straatvereniging;
-//        $verenigings->hoofdverantwoordelijke = null;
-//        $verenigings->huisnummer = $request->huisnummervereniging;
-//        $verenigings->postcode = $request->postcodevereniging;
-//        $verenigings->gemeente = $request->gemeentevereniging;
-//        $verenigings->actief = 0;
-//        $verenigings->inaanvraag = 1;
-//
 
         $gebruikers = new Gebruikers();
         $gebruikers->naam = $request->naam;
@@ -242,14 +228,40 @@ class VerenigingController extends Controller
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->rolId = 3;
-        $gebruikers->password = Hash::make("azerty123");;
-//        $verenigings->save();
+        $gebruikers->password = \Hash::make("azerty123");;
         $gebruikers->save();
-
-
 
         $result = compact('gebruikers');
         return view('aanvragen.aanvraag',$result);
+
+    }
+
+
+    public function verenigingAanvragenNext(Request $request)
+    {
+//        $this->validate($request, [
+//            'verenigingnaam' => 'required',
+//            'rekeningnr' => 'required',
+//            'btwnr' => 'required',
+//        ]);
+
+        $verenigings = new Verenigings();
+
+        $verenigings->naam = $request->naam;
+        $verenigings->rekeningnr = $request->rekeningnr;
+        $verenigings->btwnr = $request->btwnr;
+        $verenigings->straat = $request->straat;
+        $verenigings->hoofdverantwoordelijke = $request->hoofdverantwoordelijke;
+        $verenigings->huisnummer = $request->huisnummer;
+        $verenigings->postcode = $request->postcode;
+        $verenigings->gemeente = $request->gemeente;
+        $verenigings->actief = 0;
+        $verenigings->inaanvraag = 1;
+        $verenigings->save();
+
+
+        $result = compact('verenigings');
+        return view('landingpage',$result);
 
     }
 
