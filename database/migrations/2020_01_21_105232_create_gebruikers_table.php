@@ -22,7 +22,7 @@ class CreateGebruikersTable extends Migration
             $table->string('roepnaam')->nullable();
             $table->string('straat')->nullable();
             $table->string('huisnummer')->nullable();
-            $table->dateTime('geboortedatum')->nullable();
+            $table->date('geboortedatum')->nullable();
             $table->string('telefoon')->nullable();
             $table->boolean('tweedetshirt')->nullable();
             $table->string('opmerking')->nullable();

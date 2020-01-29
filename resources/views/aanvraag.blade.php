@@ -127,6 +127,8 @@
 
 @endsection
 
+
+
 {{--@section('script_after')--}}
 {{--<script>--}}
 {{--    $('#btn-aanvragen form').submit(function (e) {--}}
