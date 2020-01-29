@@ -54,6 +54,38 @@
             loadTable();
             loadDropdown();
 
+            $('tbody').on('click', '.btn-edit', function () {
+                // Get data attributes from td tag
+                let id = $(this).closest('td').data('id');
+                let naam = $(this).closest('td').data('naam');
+                let voornaam = $(this).closest('td').data('voornaam');
+                let roepnaam = $(this).closest('td').data('roepnaam');
+                let email = $(this).closest('td').data('email');
+                let straat = $(this).closest('td').data('straat');
+                let huisnummer = $(this).closest('td').data('huisnummer');
+                let postcode = $(this).closest('td').data('postcode');
+                let telefoon = $(this).closest('td').data('telefoon');
+                let rijks = $(this).closest('td').data('rijksregisternummer');
+                let geboortedatum = $(this).closest('td').data('geboortedatum');
+                // Update the modal
+                $('.modal-title').text(`Edit ${voornaam} ${naam}`);
+                $('form').attr('action', `/admin/verantwoordelijke/${id}`);
+
+                $('#naam').val(naam);
+                $('#voornaam').val(voornaam);
+                $('#roepnaam').val(roepnaam);
+                $('#email').val(email);
+                $('#straat').val(straat);
+                $('#huisnummer').val(huisnummer);
+                $('#postcode').val(postcode);
+                $('#telefoon').val(telefoon);
+                $('#geboortedatum').val(geboortedatum);
+                $('#rijksregisternummer').val(rijks);
+                $('input[name="_method"]').val('put');
+                // Show the modal
+                $('#modal-verant').modal('show');
+            });
+
             $('tbody').on('click', '.btn-delete', function () {
                 // Get data attributes from td tag
                 let id = $(this).closest('td').data('id');
@@ -62,7 +94,7 @@
                 // Set some values for Noty
                 let text = `<p>Delete de verantwoordelijke <b>${voornaam} ${naam}</b>?</p>`;
                 let type = 'warning';
-                let btnText = 'Delete Vrijwilliger';
+                let btnText = 'Delete Verantwoordelijke';
                 let btnClass = 'btn-success';
 
                 // Show Noty
@@ -161,7 +193,7 @@
 
         //dropdown inladen
         function loadDropdown(){
-            $.getJSON('qryVerenigingen')
+            $.getJSON('getAllVerenigingen')
                 .done(function (data) {
                     console.log('data', data);
                     $.each(data, function (key, value) {
@@ -178,36 +210,96 @@
                     $('tbody').empty();
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
-
-                        if (Array.isArray(value.lid) && value.lid.length){
-                            var verenigingnaam = '<td>'  + value.lid[0].naam + '</td>'
-                        }else{
-                            var verenigingnaam = '<td> Geen vereniging </td>'
-                        }
-
-                        let tr = `<tr>
-                               ${verenigingnaam}
+                        let tr = "";
+                        console.log(value.vereniginglid.length);
+                        if(value.vereniginglid.length == 1){
+                            let tr = `<tr>
                                <td>${value.naam}</td>
-                               <td>${value.voornaam}</td>
-                               <td>${value.email}</td>
-                               <td>${value.telefoon}</td>
-                               <td>${value.straat}  ${value.huisnummer}  ${value.postcode}</td>
-                               <td data-id="${value.id}"
-                                   data-email="${value.email}"
-                                   data-naam="${value.naam}"
-                                   data-voornaam="${value.voornaam}">
+                               <td>${value.vereniginglid[0].naam}</td>
+                               <td>${value.vereniginglid[0].voornaam}</td>
+                               <td>${value.vereniginglid[0].email}</td>
+                               <td>${value.vereniginglid[0].telefoon}</td>
+                               <td>${value.vereniginglid[0].straat}  ${value.vereniginglid[0].huisnummer}  ${value.vereniginglid[0].postcode}</td>
+                               <td data-id="${value.vereniginglid[0].id}"
+                                   data-naam="${value.vereniginglid[0].naam}"
+                                   data-voornaam="${value.vereniginglid[0].voornaam}"
+                                   data-roepnaam="${value.vereniginglid[0].roepnaam}"
+                                   data-email="${value.vereniginglid[0].email}"
+                                   data-straat="${value.vereniginglid[0].straat}"
+                                   data-huisnummer="${value.vereniginglid[0].huisnummer}"
+                                   data-postcode="${value.vereniginglid[0].postcode}"
+                                   data-geboortedatum="${value.vereniginglid[0].geboortedatum}"
+                                   data-telefoon="${value.vereniginglid[0].telefoon}"
+                                   data-rijksregisternummer="${value.vereniginglid[0].rijksregisternr}">
                                     <div class="btn-group btn-group-sm" >
-                                        <button href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip"  title="Edit ${value.naam}">
+                                        <button href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip"  title="Edit ${value.vereniginglid[0].naam}">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Delete ${value.naam}" >
+                                        <button href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Delete ${value.vereniginglid[0].naam}" >
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
                                </td>
                            </tr>`;
-                        // Append row to tbody
-                        $('tbody').append(tr);
+                            $('tbody').append(tr);
+                        } else {
+                            let tr = `<tr>
+                               <td>${value.naam}</td>
+                               <td>${value.vereniginglid[0].naam}</td>
+                               <td>${value.vereniginglid[0].voornaam}</td>
+                               <td>${value.vereniginglid[0].email}</td>
+                               <td>${value.vereniginglid[0].telefoon}</td>
+                               <td>${value.vereniginglid[0].straat}  ${value.vereniginglid[0].huisnummer}  ${value.vereniginglid[0].postcode}</td>
+                               <td data-id="${value.vereniginglid[0].id}"
+                                   data-naam="${value.vereniginglid[0].naam}"
+                                   data-voornaam="${value.vereniginglid[0].voornaam}"
+                                   data-roepnaam="${value.vereniginglid[0].roepnaam}"
+                                   data-email="${value.vereniginglid[0].email}"
+                                   data-straat="${value.vereniginglid[0].straat}"
+                                   data-huisnummer="${value.vereniginglid[0].huisnummer}"
+                                   data-postcode="${value.vereniginglid[0].postcode}"
+                                   data-geboortedatum="${value.vereniginglid[0].geboortedatum}"
+                                   data-telefoon="${value.vereniginglid[0].telefoon}"
+                                   data-rijksregisternummer="${value.vereniginglid[0].rijksregisternr}">
+                                    <div class="btn-group btn-group-sm" >
+                                        <button href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip"  title="Edit ${value.vereniginglid[0].naam}">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Delete ${value.vereniginglid[0].naam}" >
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                               </td>
+                           </tr><tr>
+                               <td>${value.naam}</td>
+                               <td>${value.vereniginglid[1].naam}</td>
+                               <td>${value.vereniginglid[1].voornaam}</td>
+                               <td>${value.vereniginglid[1].email}</td>
+                               <td>${value.vereniginglid[1].telefoon}</td>
+                               <td>${value.vereniginglid[1].straat}  ${value.vereniginglid[1].huisnummer}  ${value.vereniginglid[1].postcode}</td>
+                               <td data-id="${value.vereniginglid[1].id}"
+                                   data-naam="${value.vereniginglid[1].naam}"
+                                   data-voornaam="${value.vereniginglid[1].voornaam}"
+                                   data-roepnaam="${value.vereniginglid[1].roepnaam}"
+                                   data-email="${value.vereniginglid[1].email}"
+                                   data-straat="${value.vereniginglid[1].straat}"
+                                   data-huisnummer="${value.vereniginglid[1].huisnummer}"
+                                   data-postcode="${value.vereniginglid[1].postcode}"
+                                   data-geboortedatum="${value.vereniginglid[1].geboortedatum}"
+                                   data-telefoon="${value.vereniginglid[1].telefoon}"
+                                   data-rijksregisternummer="${value.vereniginglid[1].rijksregisternr}">
+                                    <div class="btn-group btn-group-sm" >
+                                        <button href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip"  title="Edit ${value.vereniginglid[1].naam}">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Delete ${value.vereniginglid[1].naam}" >
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                               </td>
+                           </tr>`;
+                            $('tbody').append(tr);
+                        }
                     });
                     $('[data-toggle="tooltip"]').tooltip({
                         'html': true,

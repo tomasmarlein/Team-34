@@ -43,6 +43,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //vereniginen
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
+    Route::get('getAllVerenigingen','Admin\VerenigingController@getAllVerenigingen');
     Route::resource('verenigingen', 'Admin\VerenigingController');
     Route::get('active/{id}','Admin\VerenigingController@active');
     Route::get('nonactive/{id}','Admin\VerenigingController@nonactive');
@@ -59,6 +60,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //vrijwilligers CRUD
     Route::get('qryVrijwilligers', 'Admin\VrijwilligerController@qryVrijwilligers');
     Route::resource('vrijwilligers', 'Admin\VrijwilligerController');
+
+    //kernleden CRUD
+    Route::get('qryKernleden', 'Admin\KernledenController@qryKernleden');
+    Route::resource('kernleden', 'Admin\KernledenController');
 
 });
 

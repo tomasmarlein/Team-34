@@ -60,7 +60,14 @@
             max-height: 222.23px;
         }
 
-        a:link, a:visited {
+        .card-body{
+            min-height: 164px;
+        }
+        .card:hover{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        a:link, a:visited{
+
             color: black;
             text-underline: none;
         }
@@ -85,20 +92,33 @@
                 Karel Olen.</p>
 
 
-            <div class="btn-group">
+        <div class="btn-group">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                alle evenementen
+            </button>
 
-                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                    alle evenementen
-                </button>
-                <div class="dropdown-menu">
+
+            <div class="dropdown-menu">
+                @foreach($evenementen as $evenement)
+                    <option value="{{ $evenement->id }}" class="dropdown-item" href="#">{{ $evenement->naam }}</option>
+                @endforeach
+                <div class="dropdown-divider"></div>
+                    <option value="alle" class="dropdown-item" href="#">alle evenementen</option>
+            </div>
+        </div>
+
+
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select class="form-control" id="exampleFormControlSelect1">
                     @foreach($evenementen as $evenement)
-                        <option value="{{ $evenement->id }}" class="dropdown-item"
-                                href="#">{{ $evenement->naam }}</option>
+                        <option value="{{ $evenement->id }}" class="dropdown-item" href="#">{{ $evenement->naam }}</option>
                     @endforeach
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">allemaal</a>
-                </div>
+                        <option value="%" class="dropdown-item" href="#">alle evenementen</option>
+                </select>
+            </div>
+        </form>
 
 
                 <div id="knoppen">
@@ -143,32 +163,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="card-columns">
-                            <a href="/admin/evenementen">
-                                <div class="card">
-                                    <img class="card-img-top" src="/assets/adminpanel/evenementen.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Evenementen</h5>
-                                        <p class="card-text">Beheer evenementen</p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="/admin/verantwoordelijke">
-                                <div class="card">
-                                    <img class="card-img-top" src="/assets/adminpanel/verantwoordelijke.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Kernleden</h5>
-                                        <p class="card-text">Kernleden zijn gebruikers aangesteld door admins om
-                                            verenigigen, verantwoordelijke en gebruikers te beheren als ook gerbuik te
-                                            kunnne maken van het tijdsregistratiesysteem</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+
 
                         <div class="card-columns">
                             <a href="/admin/verantwoordelijke">
@@ -210,10 +205,8 @@
 
                     @endif
 
-                </div>
 
-            </div>
-        </div>
+
         @endsection
 
 
