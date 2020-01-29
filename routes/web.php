@@ -21,7 +21,6 @@ Route::view('/documentatie', 'documentatie');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landingpage');
 
-Route::get('verenigingAanvragen','Admin\VerenigingController@verenigingAanvragen');
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -64,6 +63,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //kernleden CRUD
     Route::get('qryKernleden', 'Admin\KernledenController@qryKernleden');
     Route::resource('kernleden', 'Admin\KernledenController');
+
+    //aanvraag
+    Route::get('verenigingAanvragen','Admin\VerenigingController@verenigingAanvragen');
+
 
 });
 

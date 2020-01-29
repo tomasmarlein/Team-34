@@ -20,21 +20,42 @@
        <table class="table">
            <thead>
            <tr>
-               <th>#</th>
-               <th>Startdatum</th>
-               <th>Einddatum</th>
-               <th>Naam</th>
-               <th>Actief</th>
+               <th>naam</th>
+               <th>achternaam</th>
+               <th>roepnaam</th>
+               <th>telefoon</th>
+               <th>Opmerking</th>
+               <th>lunchpakket</th>
                <th></th>
            </tr>
            </thead>
            <tbody>
-
+           @foreach($vereniging->vereniginglid as $item)
+               <tr>
+                   <td>{{$item->voornaam}}</td>
+                   <td>{{$item->naam}}</td>
+                   @if($item->roepnaam == null)
+                    <td>Geen roepnaam</td>
+                   @else
+                   <td>{{$item->roepnaam}}</td>
+                   @endif
+                   <td>{{$item->telefoon}}</td>
+                   <td>{{$item->opemerking}}</td>
+                   <td>{{$item->lunchpakket}}</td>
+               </tr>
+               @endforeach
            </tbody>
        </table>
    </div>
 
 
 @endsection
+
+@section('script_after')
+    <script>
+
+    </script>
+
+@stop
 
 

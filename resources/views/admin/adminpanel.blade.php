@@ -3,18 +3,11 @@
 @section('css_after')
     <style>
         body, html {
-            height: 100%;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/hero.jfif");
+            background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/hero.jfif") ;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-            height: 100%;
-
-             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/hero.jfif");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            background-color: #443339;
+            background-color: #443339 ;
         }
 
         #count {
@@ -28,19 +21,6 @@
             right: -15px;
         }
 
-        .hero-text {
-            text-align: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-        }
-
-
-        #footer {
-            color: white;
-        }
 
         #footer hr {
             height: 1px;
@@ -83,75 +63,63 @@
 @section('main')
 
 
-    <div>
+    <div style="background-color:#443339 ">
         <div class="jumbotron">
-            <h1 class="display-4">Adminpanel</h1>
+
+<div class="row">
+
+    <div class="col-8"> <h1 class="display-4">Adminpanel</h1>
+
+        </div>
+    <form class="col-4">
+        <div class="form-group" >
+            <select class="form-control">
+                @foreach($evenementen as $evenement)
+                    <option value="{{ $evenement->id }}" class="dropdown-item" href="#">{{ $evenement->naam }}</option>
+                @endforeach
+                <option value="%" class="dropdown-item" href="#">alle evenementen</option>
+            </select>
+
+        </div>
+    </form>
+</div>
             <p class="lead">Welkom {{ Auth::user()->naam }} in het tijdsregistratiesysteem van Keizer Karel Olen</p>
             <hr class="my-4">
             <p>Beheer hier evenementen, verenigingen, vrijwilligers en de tijdsregistratie voor evenementen van Keizer
                 Karel Olen.</p>
 
 
-        <div class="btn-group">
-            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                alle evenementen
-            </button>
-
-
-            <div class="dropdown-menu">
-                @foreach($evenementen as $evenement)
-                    <option value="{{ $evenement->id }}" class="dropdown-item" href="#">{{ $evenement->naam }}</option>
-                @endforeach
-                <div class="dropdown-divider"></div>
-                    <option value="alle" class="dropdown-item" href="#">alle evenementen</option>
-            </div>
-        </div>
-
-
-        <form>
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    @foreach($evenementen as $evenement)
-                        <option value="{{ $evenement->id }}" class="dropdown-item" href="#">{{ $evenement->naam }}</option>
-                    @endforeach
-                        <option value="%" class="dropdown-item" href="#">alle evenementen</option>
-                </select>
-            </div>
-        </form>
-
-
                 <div id="knoppen">
                     @if(auth()->user()->rolID=1)
 
-                        <div class="card-columns">
+                        <div class="card-columns" >
                             <a href="/admin/evenementen">
-                                <div class="card">
+                                <div class="card" style="margin-top: 2rem">
                                     <img class="card-img-top" src="/assets/adminpanel/evenementen.jfif"
                                          alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">Evenementen</h5>
                                         <p class="card-text">Beheer evenementen</p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
                                         </p>
                                     </div>
                                 </div>
                             </a>
                             <a href="/admin/kernleden">
-                                <div class="card">
+                                <div class="card" style="margin-top: 2rem">
                                     <img class="card-img-top" src="/assets/adminpanel/verantwoordelijke.jfif"
                                          alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">Kernleden</h5>
                                         <p class="card-text">Kernleden zijn gebruikers aangesteld door admins om
-                                            verenigigen, verantwoordelijke en gebruikers te beheren als ook gerbuik te
-                                            kunnne maken van het tijdsregistratiesysteem</p>
+                                            verenigigen, verantwoordelijke en gebruikers te beheren
+                                            het tijdsregistraties kunnen beheren</p>
                                     </div>
                                 </div>
                             </a>
                             <a href="/inaanvraag">
-                                <div class="card">
-                                    <span id="count" class="badge badge-primary pull-left shadow-lg"></span>
+
+                                <div class="card" style="margin-top: 2rem">
+                                    <span id="count" class="badge badge-primary pull-left shadow-lg" style="margin-top: 0.25rem;margin-right:0.25rem;  z-index: 1 "></span>
                                     <img class="card-img-top" src="assets/adminpanel/aanvraag.jfif"
                                          alt="Card image cap">
 
