@@ -146,6 +146,14 @@ class VerenigingController extends Controller
         ]);
     }
 
+    public function getAllVerenigingen()
+    {
+        $verenigings = Verenigings::orderBy('id')
+            ->get();
+
+        return $verenigings;
+    }
+
     public function qryVerenigingen()
     {
         $verenigings = Verenigings::orderBy('actief','desc')

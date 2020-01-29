@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Gebruikers;
+use App\Verenigings;
 use Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -119,21 +120,37 @@ class VerantwoordelijkeController extends Controller
     public function update($id, Request $request, Gebruikers $gebruikers)
     {
         $data = $request->all();
-        $gebruikers = \App\Gebruikers::find($id)->update([
-            'naam' => $data['naam'],
-            'voornaam' => $data['voornaam'],
-            'email' => $data['email'],
-            'straat' => $data['straat'],
-            'huisnummer' => $data['huisnummer'],
-            'postcode' => $data['postcode'],
-            'geboortedatum' => $data['geboortedatum'],
-            'telefoon' => $data['telefoon'],
-        ]);
-
+        if($data['roepnaam'] == ""){
+            $gebruikers = \App\Gebruikers::find($id)->update([
+                'naam' => $data['naam'],
+                'voornaam' => $data['voornaam'],
+                'roepnaam' => null,
+                'email' => $data['email'],
+                'rijksregisternr' => $data['rijksregisternummer'],
+                'straat' => $data['straat'],
+                'huisnummer' => $data['huisnummer'],
+                'postcode' => $data['postcode'],
+                'geboortedatum' => $data['geboortedatum'],
+                'telefoon' => $data['telefoon'],
+            ]);
+        } else {
+            $gebruikers = \App\Gebruikers::find($id)->update([
+                'naam' => $data['naam'],
+                'voornaam' => $data['voornaam'],
+                'roepnaam' => $data['roepnaam'],
+                'email' => $data['email'],
+                'rijksregisternr' => $data['rijksregisternummer'],
+                'straat' => $data['straat'],
+                'huisnummer' => $data['huisnummer'],
+                'postcode' => $data['postcode'],
+                'geboortedatum' => $data['geboortedatum'],
+                'telefoon' => $data['telefoon'],
+            ]);
+        }
 
         return response()->json([
             'type' => 'success',
-            'text' => "De verantwoordelijke <b>$gebruikers->name</b> is geupdate"
+            'text' => "De verantwoordelijke is geupdate"
         ]);
     }
 
@@ -156,9 +173,8 @@ class VerantwoordelijkeController extends Controller
 
     public function qryVerantwoordelijke()
     {
-        $gebruikers = Gebruikers::orderBy('naam')
-            ->where('rolId', 3)
-            ->with ('lid')
+        $gebruikers = Verenigings::orderBy('naam')
+            ->with ('vereniginglid')
             ->get();
         return $gebruikers;
     }
