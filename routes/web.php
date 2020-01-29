@@ -27,11 +27,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/home', 'Admin\AdminpaneelController@index');
 
-
     //aangevraagde verenigingen
     Route::view('/inaanvraag', 'admin.verenigingen.inaanvraag');
     Route::get('qryVerenigingenInAanvraag','Admin\VerenigingController@qryVerenigingenInAanvraag');
-    Route::get('countVerenigingenInAanvraag','Admin\VerenigingController@countVerenigingenInAanvraag');
     Route::get('approve/{id}','Admin\VerenigingController@approve');
 
 });
@@ -44,6 +42,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //vereniginen
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
+    Route::get('getAllVerenigingen','Admin\VerenigingController@getAllVerenigingen');
     Route::resource('verenigingen', 'Admin\VerenigingController');
     Route::get('active/{id}','Admin\VerenigingController@active');
     Route::get('nonactive/{id}','Admin\VerenigingController@nonactive');

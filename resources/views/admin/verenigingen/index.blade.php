@@ -31,6 +31,7 @@
                 </a>
             </div>
         </div>
+        
     </form>
 
     <div class="table-responsive">
