@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @yield('css_after')
     <link rel="shortcut icon" href="{{ asset('assets/favicon.ico') }}">
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.4/lib/darkmode-js.min.js"></script>
     <title>@yield('title', 'Tijdsregistratiesysteem')</title>
 </head>
 <body>
@@ -24,6 +25,7 @@
 @if(env('APP_DEBUG'))
     <script>
         $('form').attr('novalidate', 'true');  //verwijderen voor prod --> client side validation
+        new Darkmode().showWidget();
     </script>
 @endif
 </body>
