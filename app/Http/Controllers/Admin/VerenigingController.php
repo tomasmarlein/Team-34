@@ -205,27 +205,27 @@ class VerenigingController extends Controller
     public function verenigingAanvragen(Request $request)
     {
         $this->validate($request, [
-            'verenigingnaam' => 'required',
-            'rekeningnr' => 'required',
-            'btwnr' => 'required',
+//            'verenigingnaam' => 'required',
+//            'rekeningnr' => 'required',
+//            'btwnr' => 'required',
             'naam' => 'required',
             'voornaam' => 'required',
         ]);
 
-        $verenigings = new Verenigings();
+//        $verenigings = new Verenigings();
         $gebruikers = new Gebruikers();
 
-        $verenigings->naam = $request->verenigingnaam;
-        $verenigings->rekeningnr = $request->rekeningnr;
-        $verenigings->btwnr = $request->btwnr;
-        $verenigings->straat = $request->straatvereniging;
-
-        $verenigings->huisnummer = $request->huisnummervereniging;
-        $verenigings->postcode = $request->postcodevereniging;
-        $verenigings->gemeente = $request->gemeentevereniging;
-        $verenigings->actief = 0;
-        $verenigings->inaanvraag = 1;
-
+//        $verenigings->naam = $request->verenigingnaam;
+//        $verenigings->rekeningnr = $request->rekeningnr;
+//        $verenigings->btwnr = $request->btwnr;
+//        $verenigings->straat = $request->straatvereniging;
+//        $verenigings->hoofdverantwoordelijke = null;
+//        $verenigings->huisnummer = $request->huisnummervereniging;
+//        $verenigings->postcode = $request->postcodevereniging;
+//        $verenigings->gemeente = $request->gemeentevereniging;
+//        $verenigings->actief = 0;
+//        $verenigings->inaanvraag = 1;
+//
         $gebruikers->naam = $request->naam;
         $gebruikers->voornaam = $request->voornaam;
         $gebruikers->email = $request->email;
@@ -236,26 +236,25 @@ class VerenigingController extends Controller
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->rolId = 3;
         $gebruikers->password = Hash::make("azerty123");;
-        $verenigings->save();
+//        $verenigings->save();
         $gebruikers->save();
 
 
-        $gebruiker_id = Gebruikers::orderBy('naam')
-            ->where('naam', $request->naam && 'voornaam', $request->voornaam)
-            ->select('id')
-            ->get();
+//        $gebruiker_id = Gebruikers::orderBy('naam')
+//            ->where('naam', $request->naam && 'voornaam', $request->voornaam)
+//            ->select('id')
+//            ->get();
+//
+//        $gebruiker = Gebruikers::find($gebruikers->id)->with('lid');
+//        $gebruiker->lid()->sync(['verenigings_id' => $request->vereniging_id], ['gebruikers_id' => $gebruiker_id]);
+//        if ($request->verantwoordelijke_id == 1) {
+//            \App\Verenigings::find($request->vereniging_id)->update([
+//                'hoofdverantwoordelijke' => $gebruikers->id
+//            ]);
+//        }
 
-        $gebruiker = Gebruikers::find($gebruikers->id)->with('lid');
-        $gebruiker->lid()->sync(['verenigings_id' => $request->vereniging_id], ['gebruikers_id' => $gebruiker_id]);
-        if ($request->verantwoordelijke_id == 1) {
-            \App\Verenigings::find($request->vereniging_id)->update([
-                'hoofdverantwoordelijke' => $gebruikers->id
-            ]);
-        }
-
-
-
-        return view('home');
+        $result = compact('gebruikers');
+        return view('aanvragen.aanvraag',$result);
 
 
     }
