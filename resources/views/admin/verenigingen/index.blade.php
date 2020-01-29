@@ -31,7 +31,7 @@
                 </a>
             </div>
         </div>
-        
+
     </form>
 
     <div class="table-responsive">
@@ -221,7 +221,7 @@
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${actief}</td>
-                               <td>${value.naam}</td>
+                               <td><a href="verenigingen/${ value.id }">${value.naam}</a></td>
                                <td>${value.hoofdverantwoordelijke}</td>
                                <td>${value.rekeningnr}</td>
                                <td>${value.btwnr}</td>

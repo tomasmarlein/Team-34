@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Gebruikers;
+use App\Helpers\Json;
 use App\Verenigings;
+use foo\bar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -83,9 +85,12 @@ class VerenigingController extends Controller
      * @param \App\Verenigings $verenigings
      * @return \Illuminate\Http\Response
      */
-    public function show(Verenigings $verenigings)
+    public function show($id)
     {
-        return redirect('admin/verenigingen');
+        $vereniging = Verenigings::findOrFail($id);
+        $result = compact('vereniging');
+        (new \App\Helpers\Json)->dump($result);
+        return view('admin.verenigingen.show', $result);  // Pass $result to the view
     }
 
     /**
@@ -226,6 +231,8 @@ class VerenigingController extends Controller
 //        $verenigings->actief = 0;
 //        $verenigings->inaanvraag = 1;
 //
+
+        $gebruikers = new Gebruikers();
         $gebruikers->naam = $request->naam;
         $gebruikers->voornaam = $request->voornaam;
         $gebruikers->email = $request->email;
@@ -240,22 +247,11 @@ class VerenigingController extends Controller
         $gebruikers->save();
 
 
-//        $gebruiker_id = Gebruikers::orderBy('naam')
-//            ->where('naam', $request->naam && 'voornaam', $request->voornaam)
-//            ->select('id')
-//            ->get();
-//
-//        $gebruiker = Gebruikers::find($gebruikers->id)->with('lid');
-//        $gebruiker->lid()->sync(['verenigings_id' => $request->vereniging_id], ['gebruikers_id' => $gebruiker_id]);
-//        if ($request->verantwoordelijke_id == 1) {
-//            \App\Verenigings::find($request->vereniging_id)->update([
-//                'hoofdverantwoordelijke' => $gebruikers->id
-//            ]);
-//        }
 
         $result = compact('gebruikers');
         return view('aanvragen.aanvraag',$result);
 
-
     }
+
+
 }

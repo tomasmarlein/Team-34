@@ -16,7 +16,6 @@
                         <input type="text" name="naam" id="naam"
                                class="form-control"
                                placeholder="Naam"
-                               minlength="3"
                                value="">
                         <div class="invalid-feedback"></div>
                     </div>
@@ -26,7 +25,15 @@
                         <input type="text" name="voornaam" id="voornaam"
                                class="form-control"
                                placeholder="Voornaam"
-                               minlength="3"
+                               value="">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roepnaam">Roepnaam</label>
+                        <input type="text" name="roepnaam" id="roepnaam"
+                               class="form-control"
+                               placeholder="Roepnaam"
                                value="">
                         <div class="invalid-feedback"></div>
                     </div>
@@ -36,7 +43,6 @@
                         <input type="text" name="email" id="email"
                                class="form-control"
                                placeholder="Email"
-                               minlength="3"
                                value="">
                         <div class="invalid-feedback"></div>
                     </div>
@@ -46,7 +52,6 @@
                         <input type="text" name="straat" id="straat"
                                class="form-control"
                                placeholder="Straat"
-                               minlength="3"
                                required
                                value="">
                         <div class="invalid-feedback"></div>
@@ -57,7 +62,6 @@
                         <input type="text" name="huisnummer" id="huisnummer"
                                class="form-control"
                                placeholder="Huisnummer"
-                               minlength="3"
                                required
                                value="">
                         <div class="invalid-feedback"></div>
@@ -68,7 +72,6 @@
                         <input type="text" name="postcode" id="postcode"
                                class="form-control"
                                placeholder="Postcode"
-                               minlength="3"
                                required
                                value="">
                         <div class="invalid-feedback"></div>
@@ -79,7 +82,6 @@
                         <input type="text" name="telefoon" id="telefoon"
                                class="form-control"
                                placeholder="Telefoon"
-                               minlength="3"
                                required
                                value="">
                         <div class="invalid-feedback"></div>
@@ -90,7 +92,6 @@
                         <input type="date" name="geboortedatum" id="geboortedatum"
                                class="form-control"
                                placeholder="Geboortedatum"
-                               minlength="3"
                                required
                                value="">
                         <div class="invalid-feedback"></div>
