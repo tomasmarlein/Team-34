@@ -120,6 +120,7 @@
             </div>
         </form>
 
+
                 <div id="knoppen">
                     @if(auth()->user()->rolID=1)
 
@@ -162,32 +163,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="card-columns">
-                            <a href="/admin/evenementen">
-                                <div class="card">
-                                    <img class="card-img-top" src="/assets/adminpanel/evenementen.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Evenementen</h5>
-                                        <p class="card-text">Beheer evenementen</p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="/admin/verantwoordelijke">
-                                <div class="card">
-                                    <img class="card-img-top" src="/assets/adminpanel/verantwoordelijke.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Kernleden</h5>
-                                        <p class="card-text">Kernleden zijn gebruikers aangesteld door admins om
-                                            verenigigen, verantwoordelijke en gebruikers te beheren als ook gerbuik te
-                                            kunnne maken van het tijdsregistratiesysteem</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+
 
                         <div class="card-columns">
                             <a href="/admin/verantwoordelijke">
@@ -226,69 +202,11 @@
                             </a>
 
                         </div>
-                    
+
+                    @endif
 
 
-        <div class="card-columns">
-            <a href="/admin/evenementen">
-            <div class="card">
-                <img class="card-img-top" src="/assets/adminpanel/evenementen.jfif" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Evenementen</h5>
-                    <p class="card-text">Maak evenementen aan en beheer ze.</p>
-                </div>
-            </div>
-            </a>
-            <a href="/admin/verantwoordelijke">
-            <div class="card">
-                <img class="card-img-top" src="/assets/adminpanel/verantwoordelijke.jfif" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Kernleden</h5>
-                    <p class="card-text">Kernleden zijn gebruikers aangesteld door admins om verenigigen, verantwoordelijke en gebruikers te beheren als ook gerbuik te kunnne maken van het tijdsregistratiesysteem</p>
-                </div>
-            </div>
-                @endif
-                @if(auth()->user()->rolID=1 OR auth()->user()->rolID=2 )
-            </a>
-            <a href="/inaanvraag">
-            <div class="card">
-                <img class="card-img-top" src="assets/adminpanel/aanvraag.jfif" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">In aanvraag</h5>
-                    <p class="card-text">Indien een vereniging aanvraag doet om mee te helpen op evenementen van Kseizer Karel Olen zijn deze aanvragen hier te vinden.</p>
-                </div>
-            </div>
-        </div>
 
-            <div class="card-columns">
-                <a href="/admin/verantwoordelijke">
-                <div class="card">
-                    <img class="card-img-top" src="assets/adminpanel/kernleden.jfif" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Verantwoordelijke</h5>
-                        <p class="card-text">Beheer de verantwoordelijke van verenigingen.</p>
-                    </div>
-                </div>
-            </a>
-                <a href="/admin/verenigingen">
-                <div class="card">
-                    <img class="card-img-top" src="assets/adminpanel/verenigigen.jfif" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Verenigingen</h5>
-                        <p class="card-text">Verenigenen die meeerken aan evenementen van Keizer karel Olen</p>
-
-                    </div>
-                </div>
-                </a>
-                <a href="/admin/vrijwilligers">
-                <div class="card">
-                    <img class="card-img-top" src="assets/adminpanel/vrijwilliger.jfif" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Vrijwilligers</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-                </a>
         @endsection
 
 
@@ -324,7 +242,6 @@
                         })
                 }
             </script>
-            @endif
 @endsection
 
 
