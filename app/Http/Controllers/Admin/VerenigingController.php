@@ -36,7 +36,7 @@ class VerenigingController extends Controller
     {
         $verenigingen = new Verenigings();
         $result = compact('verenigingen');
-        return view('admin.verenigingen.create',$result);
+        return view('admin.verenigingen.create', $result);
     }
 
     /**
@@ -47,7 +47,7 @@ class VerenigingController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'naam' => 'required',
             'rekeningnr' => 'required',
             'hoofdverantwoordelijke' => 'required',
@@ -80,7 +80,7 @@ class VerenigingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Verenigings  $verenigings
+     * @param \App\Verenigings $verenigings
      * @return \Illuminate\Http\Response
      */
     public function show(Verenigings $verenigings)
@@ -91,7 +91,7 @@ class VerenigingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Verenigings  $verenigings
+     * @param \App\Verenigings $verenigings
      * @return \Illuminate\Http\Response
      */
     public function edit(Verenigings $verenigings)
@@ -148,8 +148,8 @@ class VerenigingController extends Controller
 
     public function qryVerenigingen()
     {
-        $verenigings = Verenigings::orderBy('actief','desc')
-            ->where('inaanvraag','=',0)
+        $verenigings = Verenigings::orderBy('actief', 'desc')
+            ->where('inaanvraag', '=', 0)
             ->get();
 
         return $verenigings;
@@ -159,12 +159,11 @@ class VerenigingController extends Controller
     public function qryVerenigingenInAanvraag()
     {
         $verenigings = Verenigings::orderBy('naam')
-            ->where('inaanvraag','=',1)
+            ->where('inaanvraag', '=', 1)
             ->get();
 
         return $verenigings;
     }
-
 
 
     public function active($id, Verenigings $verenigings)
@@ -175,18 +174,16 @@ class VerenigingController extends Controller
     }
 
 
-
     public function approve($id, Verenigings $verenigings)
     {
         $inaanvraag = Verenigings::find($id);
 
-        if ($verenigings->inaanvraag !== 0){
+        if ($verenigings->inaanvraag !== 0) {
             $inaanvraag->update(['inaanvraag' => 0]);
         }
 
         return redirect('admin/verenigingen');
     }
-
 
 
     public function nonactive($id, Verenigings $verenigings)
@@ -197,41 +194,24 @@ class VerenigingController extends Controller
     }
 
 
-
     public function verenigingAanvragen(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'verenigingnaam' => 'required',
             'rekeningnr' => 'required',
             'btwnr' => 'required',
-            'straatvereniging' => 'required',
-            'huisnummervereniging' => 'required',
-            'postcodevereniging' => 'required',
-            'gemeentevereniging' => 'required',
             'naam' => 'required',
             'voornaam' => 'required',
-            'email' => 'required',
-            'geboortedatum' => 'required',
-            'rijksregisternr' => 'required',
-            'gemeente' => 'required',
-            'straat' => 'required',
-            'huisnummer' => 'required',
-            'postcode' => 'required',
-            'telefoon' => 'required',
-
-
         ]);
 
         $verenigings = new Verenigings();
         $gebruikers = new Gebruikers();
 
-
-
         $verenigings->naam = $request->verenigingnaam;
         $verenigings->rekeningnr = $request->rekeningnr;
-        $verenigings->hoofdverantwoordelijke =$gebruikers->id;
         $verenigings->btwnr = $request->btwnr;
         $verenigings->straat = $request->straatvereniging;
+
         $verenigings->huisnummer = $request->huisnummervereniging;
         $verenigings->postcode = $request->postcodevereniging;
         $verenigings->gemeente = $request->gemeentevereniging;
@@ -247,19 +227,28 @@ class VerenigingController extends Controller
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->rolId = 3;
-        $gebruikers->password = null;
+        $gebruikers->password = Hash::make("azerty123");;
         $verenigings->save();
         $gebruikers->save();
 
 
+        $gebruiker_id = Gebruikers::orderBy('naam')
+            ->where('naam', $request->naam && 'voornaam', $request->voornaam)
+            ->select('id')
+            ->get();
 
-        return response()->json([
-            'type' => 'success',
-            'text' => "De vereniging <b>$verenigings->naam</b> met als verantwoordelijke <b>$gebruikers->voornaam</b>"
-        ]);
+        $gebruiker = Gebruikers::find($gebruikers->id)->with('lid');
+        $gebruiker->lid()->sync(['verenigings_id' => $request->vereniging_id], ['gebruikers_id' => $gebruiker_id]);
+        if ($request->verantwoordelijke_id == 1) {
+            \App\Verenigings::find($request->vereniging_id)->update([
+                'hoofdverantwoordelijke' => $gebruikers->id
+            ]);
+        }
+
+
+
+        return view('home');
+
+
     }
-
-
-
-
 }

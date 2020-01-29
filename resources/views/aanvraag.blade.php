@@ -13,7 +13,7 @@
 
 
 
-
+<form id="form-aanvragen" method="post">
     <h3>Vereniging aanvragen:</h3>
     <div class="mb-3">
         <label for="verenigingnaam">Naam Vereniging</label>
@@ -119,6 +119,57 @@
     </div>
 
     <hr class="mb-4">
-    <button class="btn btn-primary btn-lg btn-block" type="submit">Aanvragen</button>
+    <a href="verenigingAanvragen" class="btn btn-outline-danger btn-delete">
+        <i class="fas fa-trash"></i>
+    </a>
+    <button class="btn btn-primary btn-lg btn-block" id="btn-aanvragen" type="submit">Aanvragen</button>
+
+</form>
 
 @endsection
+
+{{--@section('script_after')--}}
+{{--<script>--}}
+{{--    $('#btn-aanvragen form').submit(function (e) {--}}
+{{--        // Don't submit the form--}}
+{{--        e.preventDefault();--}}
+{{--        // Get the action property (the URL to submit)--}}
+{{--        let action = $(this).attr('action');--}}
+{{--        // Serialize the form and send it as a parameter with the post--}}
+{{--        let pars = $(this).serialize();--}}
+{{--        console.log(pars);--}}
+{{--        // Post the data to the URL--}}
+
+
+
+
+{{--        $.post(action, pars, 'json')--}}
+{{--            .done(function (data) {--}}
+{{--                console.log(data);--}}
+{{--                // Noty success message--}}
+{{--                new Noty({--}}
+{{--                    type: data.type,--}}
+{{--                    text: data.text--}}
+{{--                }).show();--}}
+{{--            })--}}
+{{--            .fail(function (e) {--}}
+{{--                console.log('error', e);--}}
+{{--                // e.responseJSON.errors contains an array of all the validation errors--}}
+{{--                console.log('error message', e.responseJSON.errors);--}}
+{{--                // Loop over the e.responseJSON.errors array and create an ul list with all the error messages--}}
+{{--                let msg = '<ul>';--}}
+{{--                $.each(e.responseJSON.errors, function (key, value) {--}}
+{{--                    msg += `<li>${value}</li>`;--}}
+{{--                });--}}
+{{--                msg += '</ul>';--}}
+{{--                // Noty the errors--}}
+{{--                new Noty({--}}
+{{--                    type: 'error',--}}
+{{--                    text: msg--}}
+{{--                }).show();--}}
+{{--            });--}}
+{{--    });--}}
+
+{{--</script>--}}
+
+{{--@endsection--}}
