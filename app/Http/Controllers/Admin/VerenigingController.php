@@ -87,7 +87,7 @@ class VerenigingController extends Controller
      */
     public function show($id)
     {
-        $vereniging = Verenigings::findOrFail($id);
+        $vereniging = Verenigings::with('vereniginglid')->findOrFail($id);;
         $result = compact('vereniging');
         (new \App\Helpers\Json)->dump($result);
         return view('admin.verenigingen.show', $result);  // Pass $result to the view

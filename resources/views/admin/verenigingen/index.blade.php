@@ -2,6 +2,8 @@
 
 @section('title', 'Verenigingen')
 
+
+
 @section('main')
     <h1>Verenigingen</h1>
     @include('shared.alert')
