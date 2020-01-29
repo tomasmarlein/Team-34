@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Gebruikers;
+use App\Helpers\Json;
 use App\Verenigings;
+use foo\bar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -83,9 +85,12 @@ class VerenigingController extends Controller
      * @param \App\Verenigings $verenigings
      * @return \Illuminate\Http\Response
      */
-    public function show(Verenigings $verenigings)
+    public function show($id)
     {
-        return redirect('admin/verenigingen');
+        $vereniging = Verenigings::with('vereniginglid')->findOrFail($id);;
+        $result = compact('vereniging');
+        (new \App\Helpers\Json)->dump($result);
+        return view('admin.verenigingen.show', $result);  // Pass $result to the view
     }
 
     /**
@@ -200,30 +205,18 @@ class VerenigingController extends Controller
 
         return redirect('admin/verenigingen');
     }
-
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function verenigingAanvragen(Request $request)
     {
         $this->validate($request, [
-            'verenigingnaam' => 'required',
-            'rekeningnr' => 'required',
-            'btwnr' => 'required',
             'naam' => 'required',
             'voornaam' => 'required',
         ]);
-
-        $verenigings = new Verenigings();
-        $verenigings->naam = $request->verenigingnaam;
-        $verenigings->rekeningnr = $request->rekeningnr;
-        $verenigings->btwnr = $request->btwnr;
-        $verenigings->straat = $request->straatvereniging;
-        $verenigings->huisnummer = $request->huisnummervereniging;
-        $verenigings->postcode = $request->postcodevereniging;
-        $verenigings->gemeente = $request->gemeentevereniging;
-        $verenigings->actief = 0;
-        $verenigings->inaanvraag = 1;
-        $verenigings->save();
-
 
         $gebruikers = new Gebruikers();
         $gebruikers->naam = $request->naam;
@@ -235,30 +228,42 @@ class VerenigingController extends Controller
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->rolId = 3;
-        $gebruikers->password = Hash::make("azerty123");;
+        $gebruikers->password = \Hash::make("azerty123");;
         $gebruikers->save();
 
-
-//        $gebruiker_id = Gebruikers::orderBy('naam')
-//            ->where('naam', $request->naam && 'voornaam', $request->voornaam)
-//            ->select('id')
-//            ->get();
-//
-//        $gebruiker = Gebruikers::find($gebruikers->id)->with('lid');
-//        $gebruiker->lid()->sync(['verenigings_id' => $request->vereniging_id], ['gebruikers_id' => $gebruiker_id]);
-//        if ($request->verantwoordelijke_id == 1) {
-//            \App\Verenigings::find($request->vereniging_id)->update([
-//                'hoofdverantwoordelijke' => $gebruikers->id,
-//            ]);
-//        }
-
-
-
-        return response()->json([
-            'type' => 'success',
-            'text' => "Aanvraag is ingediend!"
-        ]);
-
+        $result = compact('gebruikers');
+        return view('aanvragen.aanvraag',$result);
 
     }
+
+
+    public function verenigingAanvragenNext(Request $request)
+    {
+//        $this->validate($request, [
+//            'verenigingnaam' => 'required',
+//            'rekeningnr' => 'required',
+//            'btwnr' => 'required',
+//        ]);
+
+        $verenigings = new Verenigings();
+
+        $verenigings->naam = $request->naam;
+        $verenigings->rekeningnr = $request->rekeningnr;
+        $verenigings->btwnr = $request->btwnr;
+        $verenigings->straat = $request->straat;
+        $verenigings->hoofdverantwoordelijke = $request->hoofdverantwoordelijke;
+        $verenigings->huisnummer = $request->huisnummer;
+        $verenigings->postcode = $request->postcode;
+        $verenigings->gemeente = $request->gemeente;
+        $verenigings->actief = 0;
+        $verenigings->inaanvraag = 1;
+        $verenigings->save();
+
+
+        $result = compact('verenigings');
+        return view('landingpage',$result);
+
+    }
+
+
 }

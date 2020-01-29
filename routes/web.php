@@ -15,13 +15,21 @@
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
-Route::view('/aanvraag', 'aanvraag');
+
+
+Route::view('/aanvraag', 'aanvragen.aanvraag');
+Route::view('/aanvraagverantwoordelijke', 'aanvragen.aanvraagverantwoordelijke');
 Route::view('/documentatie', 'Documentatie');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/', 'landingpage');
 
+
 Route::get('verenigingAanvragen','Admin\VerenigingController@verenigingAanvragen');
+Route::get('verenigingAanvragenNext','Admin\VerenigingController@verenigingAanvragenNext');
+
+
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -64,6 +72,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //kernleden CRUD
     Route::get('qryKernleden', 'Admin\KernledenController@qryKernleden');
     Route::resource('kernleden', 'Admin\KernledenController');
+
+    //aanvraag
+    Route::get('verenigingAanvragen','Admin\VerenigingController@verenigingAanvragen');
+
 
 });
 

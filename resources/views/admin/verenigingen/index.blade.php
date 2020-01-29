@@ -2,6 +2,8 @@
 
 @section('title', 'Verenigingen')
 
+
+
 @section('main')
     <h1>Verenigingen</h1>
     @include('shared.alert')
@@ -221,7 +223,7 @@
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${actief}</td>
-                               <td>${value.naam}</td>
+                               <td><a href="verenigingen/${ value.id }">${value.naam}</a></td>
                                <td>${value.hoofdverantwoordelijke}</td>
                                <td>${value.rekeningnr}</td>
                                <td>${value.btwnr}</td>

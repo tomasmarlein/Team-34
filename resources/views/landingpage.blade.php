@@ -50,7 +50,7 @@
             @guest
                 <p>Meld je hier aan om gebruik te maken van het Tijdsregistratiesysteem tijdens evenementen van VZW Keizer Karel Olen</p>
                 <a href="/login"><button  type="button" class="btn btn-warning btn-lg">Inloggen</button></a>
-                <a href="/aanvraag"><button  href="/aanvraag" type="button" class="btn btn-warning btn-lg">Samenwerking</button></a>
+                <a href="/aanvraagverantwoordelijke"><button  href="/aanvraagverantwoordelijke" type="button" class="btn btn-warning btn-lg">Samenwerking</button></a>
             @endguest
             {{--            @if(auth()->user()->admin)
 
