@@ -226,8 +226,7 @@
                             </a>
 
                         </div>
-
-                    @endif
+                    
 
 
         <div class="card-columns">
@@ -257,9 +256,7 @@
                 <div class="card-body">
                     <h5 class="card-title">In aanvraag</h5>
                     <p class="card-text">Indien een vereniging aanvraag doet om mee te helpen op evenementen van Kseizer Karel Olen zijn deze aanvragen hier te vinden.</p>
-
                 </div>
-
             </div>
         </div>
 
