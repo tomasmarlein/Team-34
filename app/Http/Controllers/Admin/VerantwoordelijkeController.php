@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Gebruikers;
+use Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -37,23 +38,51 @@ class VerantwoordelijkeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'naam' => 'required'
+            'naam' => 'required',
+            'voornaam' => 'required',
+            'email' => 'required',
+            'geboortedatum' => 'required'
         ]);
-
         $gebruikers = new Gebruikers();
         $gebruikers->naam = $request->naam;
         $gebruikers->voornaam = $request->voornaam;
+        if($request->roepnaam == ""){
+            $gebruikers->roepnaam = null;
+        } else {
+            $gebruikers->roepnaam = $request->roepnaam;
+        }
+        $gebruikers->rijksregisternr = $request->rijksregisternummer;
         $gebruikers->email = $request->email;
         $gebruikers->straat = $request->straat;
+        $gebruikers->password = Hash::make("azerty12");
         $gebruikers->huisnummer = $request->huisnummer;
         $gebruikers->postcode = $request->postcode;
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
+        $gebruikers->tweedetshirt = 0;
+        $gebruikers->eersteAanmelding = 0;
+        $gebruikers->lunchpakket = 0;
+        $gebruikers->tshirtId = null;
         $gebruikers->rolId = 3;
         $gebruikers->save();
+        $gebruiker_id = Gebruikers::orderby('naam')
+            ->where('naam', $request->naam)
+            ->select('id')
+            ->get();
+        $gebruiker = Gebruikers::find($gebruikers->id);
+        $gebruiker->lid()->sync(['verenigings_id' => $request->vereniging_id], ['gebruikers_id' => $gebruiker_id]);
+        if($request->verantwoordelijke_id == 1){
+            \App\Verenigings::find($request->vereniging_id)->update([
+                'hoofdverantwoordelijke' => $gebruikers->id
+            ]);
+        } else {
+            \App\Verenigings::find($request->vereniging_id)->update([
+                'tweedeverantwoordelijke' => $gebruikers->id
+            ]);
+        }
         return response()->json([
             'type' => 'success',
-            'text' => "De gebruiker <b>$gebruikers->name</b> is toegevoegd"
+            'text' => "De verantwoordelijke <b>$gebruikers->name</b> is toegevoegd"
         ]);
     }
 
