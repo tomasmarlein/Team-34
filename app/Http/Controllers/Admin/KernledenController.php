@@ -6,7 +6,7 @@ use App\Gebruikers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class VrijwilligerController extends Controller
+class KernledenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class VrijwilligerController extends Controller
      */
     public function index()
     {
-        return view('admin.vrijwilligers.index');
+        return view('admin.kernleden.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class VrijwilligerController extends Controller
      */
     public function create()
     {
-        return redirect('admin/vrijwilligers');
+        return redirect('admin/kernleden');
     }
 
     /**
@@ -49,11 +49,11 @@ class VrijwilligerController extends Controller
         $gebruikers->postcode = $request->postcode;
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
-        $gebruikers->rolId = 4;
+        $gebruikers->rolId = 2;
         $gebruikers->save();
         return response()->json([
             'type' => 'success',
-            'text' => "De gebruiker <b>$gebruikers->name</b> is toegevoegd"
+            'text' => "Kernlid: <b>$gebruikers->name</b> is toegevoegd"
         ]);
     }
 
@@ -65,7 +65,7 @@ class VrijwilligerController extends Controller
      */
     public function show(Gebruikers $gebruikers)
     {
-        return redirect('admin/vrijwilligers');
+        return redirect('admin/kernleden');
     }
 
     /**
@@ -76,7 +76,7 @@ class VrijwilligerController extends Controller
      */
     public function edit(Gebruikers $gebruikers)
     {
-        return redirect('admin/vrijwilligers');
+        return redirect('admin/kernleden');
     }
 
     /**
@@ -103,7 +103,7 @@ class VrijwilligerController extends Controller
 
         return response()->json([
             'type' => 'success',
-            'text' => "Vrijwilliger is geupdate"
+            'text' => "Kernlid is geupdate"
         ]);
     }
 
@@ -115,10 +115,7 @@ class VrijwilligerController extends Controller
      */
     public function destroy($id, Gebruikers $gebruikers)
     {
-//        $gebruikers->delete();
-
         $gebruiker = \App\Gebruikers::find($id)->delete();
-
 
         return response()->json([
             'type' => 'success',
@@ -126,10 +123,10 @@ class VrijwilligerController extends Controller
         ]);
     }
 
-    public function qryVrijwilligers()
+    public function qryKernleden()
     {
         $gebruikers = Gebruikers::orderBy('id')
-            ->where('rolId', '=', 4)
+            ->where('rolId', '=', 2)
             ->get();
         return $gebruikers;
     }

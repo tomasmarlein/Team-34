@@ -47,6 +47,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/admin/evenementen"><i class="fas fa-calendar-week"></i> Evenementen</a>
                                 <a class="dropdown-item" href="/admin/verenigingen"><i class="fab fa-vuejs"></i> Verenigingen</a>
+                                <a class="dropdown-item" href="/admin/kernleden"><i class="far fa-user"></i> Kernleden</a>
                                 <a class="dropdown-item" href="/admin/verantwoordelijke"><i class="far fa-user"></i> Verantwoordelijke</a>
                                 <a class="dropdown-item" href="/admin/vrijwilligers"><i class="fas fa-hands-helping"></i> Vrijwilligers</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user-clock"></i>Tijdsregistratie</a>
