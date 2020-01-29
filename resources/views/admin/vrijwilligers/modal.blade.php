@@ -11,6 +11,7 @@
                 <form action="" method="post">
                     @method('')
                     @csrf
+
                     <div class="form-group">
                         <label for="naam">Naam</label>
                         <input type="text" name="naam" id="naam"

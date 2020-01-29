@@ -39,6 +39,7 @@
             <tr>
                 <th>#</th>
                 <th>Naam</th>
+                <th>Vereniging</th>
                 <th>Email</th>
                 <th>Adres</th>
                 <th>Postcode</th>
@@ -96,6 +97,7 @@
                 let id = $(this).closest('td').data('id');
                 let naam = $(this).closest('td').data('naam');
                 let voornaam = $(this).closest('td').data('voornaam');
+                let roepnaam = $(this).closest('td').data('roepnaam');
                 let email = $(this).closest('td').data('email');
                 let straat = $(this).closest('td').data('straat');
                 let huisnummer = $(this).closest('td').data('huisnummer');
@@ -108,6 +110,7 @@
 
                 $('#naam').val(naam);
                 $('#voornaam').val(voornaam);
+                $('#roepnaam').val(roepnaam);
                 $('#email').val(email);
                 $('#straat').val(straat);
                 $('#huisnummer').val(huisnummer);
@@ -203,10 +206,15 @@
                     $('tbody').empty();
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
-
+                        if(value.lid.length == 1){
+                            var verenigingnaam = value.lid[0].naam;
+                        }else{
+                            var verenigingnaam = 'Geen vereniging';
+                        }
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.naam} ${value.voornaam}</td>
+                               <td>${verenigingnaam}</td>
                                <td>${value.email}</td>
                                <td>${value.straat} ${value.huisnummer}</td>
                                <td>${value.postcode}</td>
@@ -218,6 +226,7 @@
                                <td data-id="${value.id}"
                                    data-naam="${value.naam}"
                                    data-voornaam="${value.voornaam}"
+                                   data-roepnaam="${value.roepnaam}"
                                    data-email="${value.email}"
                                    data-straat="${value.straat}"
                                    data-huisnummer="${value.huisnummer}"
@@ -226,10 +235,10 @@
                                    data-telefoon="${value.telefoon}">
 
                                     <div class="btn-group btn-group-sm">
-                                        <a href="#!" class="btn btn-outline-success btn-edit">
+                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="#!" class="btn btn-outline-danger btn-delete">
+                                        <a href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Verwijder ${value.naam} ${value.voornaam}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>

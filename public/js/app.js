@@ -40212,10 +40212,10 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Make all functions inside 'vinylShop.js' that start with 'export' accessible inside the HTML pages
 
 
-window.vinylShop = __webpack_require__(/*! ./main */ "./resources/js/main.js");
+window.team34 = __webpack_require__(/*! ./main */ "./resources/js/main.js");
 window.Noty = __webpack_require__(/*! noty */ "./node_modules/noty/lib/noty.js"); // Run the hello() function
 
-vinylShop.hello();
+team34.hello();
 
 /***/ }),
 
