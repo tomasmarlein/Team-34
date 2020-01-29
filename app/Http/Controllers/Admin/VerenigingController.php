@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Gebruikers;
 use App\Verenigings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -147,23 +148,12 @@ class VerenigingController extends Controller
 
     public function qryVerenigingen()
     {
-        $verenigings = Verenigings::orderBy('id')
+        $verenigings = Verenigings::orderBy('actief','desc')
             ->where('inaanvraag','=',0)
             ->get();
 
         return $verenigings;
     }
-
-
-    public function countVerenigingenInAanvraag()
-    {
-        $verenigings = Verenigings::orderBy('id')
-            ->where('inaanvraag','=',1)
-            ->count();
-
-        return $verenigings;
-    }
-
 
 
     public function qryVerenigingenInAanvraag()
@@ -204,6 +194,69 @@ class VerenigingController extends Controller
         $actief = Verenigings::find($id)->update(['actief' => 0]);
 
         return redirect('admin/verenigingen');
+    }
+
+
+
+    public function verenigingAanvragen(Request $request)
+    {
+        $this->validate($request,[
+            'verenigingnaam' => 'required',
+            'rekeningnr' => 'required',
+            'btwnr' => 'required',
+            'straatvereniging' => 'required',
+            'huisnummervereniging' => 'required',
+            'postcodevereniging' => 'required',
+            'gemeentevereniging' => 'required',
+            'naam' => 'required',
+            'voornaam' => 'required',
+            'email' => 'required',
+            'geboortedatum' => 'required',
+            'rijksregisternr' => 'required',
+            'gemeente' => 'required',
+            'straat' => 'required',
+            'huisnummer' => 'required',
+            'postcode' => 'required',
+            'telefoon' => 'required',
+
+
+        ]);
+
+        $verenigings = new Verenigings();
+        $gebruikers = new Gebruikers();
+
+
+
+        $verenigings->naam = $request->verenigingnaam;
+        $verenigings->rekeningnr = $request->rekeningnr;
+        $verenigings->hoofdverantwoordelijke =$gebruikers->id;
+        $verenigings->btwnr = $request->btwnr;
+        $verenigings->straat = $request->straatvereniging;
+        $verenigings->huisnummer = $request->huisnummervereniging;
+        $verenigings->postcode = $request->postcodevereniging;
+        $verenigings->gemeente = $request->gemeentevereniging;
+        $verenigings->actief = 0;
+        $verenigings->inaanvraag = 1;
+
+        $gebruikers->naam = $request->naam;
+        $gebruikers->voornaam = $request->voornaam;
+        $gebruikers->email = $request->email;
+        $gebruikers->straat = $request->straat;
+        $gebruikers->huisnummer = $request->huisnummer;
+        $gebruikers->postcode = $request->postcode;
+        $gebruikers->telefoon = $request->telefoon;
+        $gebruikers->geboortedatum = $request->geboortedatum;
+        $gebruikers->rolId = 3;
+        $gebruikers->password = null;
+        $verenigings->save();
+        $gebruikers->save();
+
+
+
+        return response()->json([
+            'type' => 'success',
+            'text' => "De vereniging <b>$verenigings->naam</b> met als verantwoordelijke <b>$gebruikers->voornaam</b>"
+        ]);
     }
 
 

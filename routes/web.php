@@ -26,13 +26,12 @@ Route::view('/', 'landingpage');
 Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/home', 'Admin\AdminpaneelController@index');
-    
+
 
 
     //aangevraagde verenigingen
     Route::view('/inaanvraag', 'admin.verenigingen.inaanvraag');
     Route::get('qryVerenigingenInAanvraag','Admin\VerenigingController@qryVerenigingenInAanvraag');
-    Route::get('countVerenigingenInAanvraag','Admin\VerenigingController@countVerenigingenInAanvraag');
     Route::get('approve/{id}','Admin\VerenigingController@approve');
 
 
