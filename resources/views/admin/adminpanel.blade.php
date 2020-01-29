@@ -40,6 +40,12 @@
         .card-img-top{
             max-height: 222.23px;
         }
+        .card-body{
+            min-height: 164px;
+        }
+        .card:hover{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
         a:link, a:visited{
             color: black;
             text-underline: none;
@@ -61,21 +67,32 @@
         <p>Beheer hier evenementen, verenigingen, vrijwilligers en de tijdsregistratie voor evenementen van Keizer Karel Olen.</p>
 
 
-
         <div class="btn-group">
-
             <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 alle evenementen
             </button>
+
+
             <div class="dropdown-menu">
                 @foreach($evenementen as $evenement)
                     <option value="{{ $evenement->id }}" class="dropdown-item" href="#">{{ $evenement->naam }}</option>
                 @endforeach
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">allemaal</a>
+                    <option value="alle" class="dropdown-item" href="#">alle evenementen</option>
             </div>
         </div>
 
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    @foreach($evenementen as $evenement)
+                        <option value="{{ $evenement->id }}" class="dropdown-item" href="#">{{ $evenement->naam }}</option>
+                    @endforeach
+                        <option value="%" class="dropdown-item" href="#">alle evenementen</option>
+                </select>
+            </div>
+        </form>
 
 <div id="knoppen">
         @if(auth()->user()->rolID=1)
@@ -86,8 +103,7 @@
                 <img class="card-img-top" src="/assets/adminpanel/evenementen.jfif" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">Evenementen</h5>
-                    <p class="card-text">Beheer evenementen</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <p class="card-text">Maak evenementen aan en beheer ze.</p>
                 </div>
             </div>
             </a>
@@ -99,6 +115,8 @@
                     <p class="card-text">Kernleden zijn gebruikers aangesteld door admins om verenigigen, verantwoordelijke en gebruikers te beheren als ook gerbuik te kunnne maken van het tijdsregistratiesysteem</p>
                 </div>
             </div>
+                @endif
+                @if(auth()->user()->rolID=1 OR auth()->user()->rolID=2 )
             </a>
             <a href="/inaanvraag">
             <div class="card">
@@ -110,8 +128,6 @@
             </div>
             </a>
         </div>
-
-
             <div class="card-columns">
                 <a href="/admin/verantwoordelijke">
                 <div class="card">
@@ -127,8 +143,8 @@
                     <img class="card-img-top" src="assets/adminpanel/verenigigen.jfif" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Verenigingen</h5>
-                        <p class="card-text">Verenigenen die meeerken aan evenementen van Keizer karel Oler</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <p class="card-text">Verenigenen die meeerken aan evenementen van Keizer karel Olen</p>
+
                     </div>
                 </div>
                 </a>
