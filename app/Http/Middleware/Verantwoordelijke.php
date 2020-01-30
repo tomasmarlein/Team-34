@@ -10,7 +10,14 @@ class Verantwoordelijke
 {
     public function handle($request, Closure $next)
     {
-        if ($request->user()->rolId==+3) {
+        /**
+         * Handle an incoming request.
+         *
+         * @param  \Illuminate\Http\Request  $request
+         * @param  \Closure  $next
+         * @return mixed
+         */
+        if ($request->user()->rolId==3) {
             return $next($request);
         }
         return abort(403, 'toegang geweigerd');

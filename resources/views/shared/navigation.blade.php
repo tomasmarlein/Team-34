@@ -62,7 +62,7 @@
                             @if(auth()->user()->rolId==2)
                             @endif
                             @if(auth()->user()->rolId==3)
-                                <a class="dropdown-item" href="#!"><i class="fab fa-vuejs"></i> Vereniging</a>
+                                <a class="dropdown-item" href="/verantwoordelijke/verenigingen"><i class="fab fa-vuejs"></i> Vereniging</a>
                             @endif
                         </div>
                     </li>

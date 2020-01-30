@@ -13,6 +13,7 @@
 
 
 use App\Http\Middleware\Admin;
+use App\Http\Middleware\Verantwoordelijke;
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
@@ -80,4 +81,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 });
 
 
+
+
+Route::middleware(['auth', 'verantwoordelijke'])->group(function () {
+
+    Route::view('/home', 'verantwoordelijke.vereniging');
+
+    Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@qryVerenigingen');
+    Route::resource('verenigingen', 'Verantwoordelijke\VerenigingController');
+    Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@index');
+});
 

@@ -62,9 +62,9 @@ class EvenementController extends Controller
      */
     public function show($id)
     {
-        $evenement = Evenements::with('eventvereniging')->findOrFail($id);;
+        $evenement = Evenements::with('eventvereniging')->findOrFail($id);
+
         $result = compact('evenement');
-        dd($evenement);
         (new \App\Helpers\Json)->dump($result);
         return view('admin.evenementen.overzichtVerenigingen', $result);  // Pass $result to the view
 
