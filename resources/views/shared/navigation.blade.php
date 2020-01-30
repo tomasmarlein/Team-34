@@ -30,9 +30,16 @@
                     </li>
                 @endguest
                 @auth
+                        @if(auth()->user()->rolId==1)
                         <li class="nav-item">
                             <a class="nav-link" href="/home"><i class="fas fa-user-shield"></i> adminpaneel</a>
                         </li>
+                        @endif
+                            @if(auth()->user()->rolId==3)
+                            <li class="nav-item">
+                                <a class="nav-link" href="#!"><i class="fas fa-users"></i> vereniging</a>
+                            </li>
+                            @endif
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#!" data-toggle="dropdown">
@@ -55,6 +62,7 @@
                             @if(auth()->user()->rolId==2)
                             @endif
                             @if(auth()->user()->rolId==3)
+                                <a class="dropdown-item" href="#!"><i class="fab fa-vuejs"></i> Vereniging</a>
                             @endif
                         </div>
                     </li>

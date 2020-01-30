@@ -31,9 +31,9 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>Startdatum</th>
-                <th>Einddatum</th>
                 <th>Naam</th>
+                <th>Einddatum</th>
+                <th>Startdatum</th>
                 <th>Actief</th>
                 <th></th>
             </tr>
@@ -159,6 +159,10 @@
                 $('#modal-evenementen').modal('show');
             });
 
+
+
+
+
         });
         //
         // Delete a
@@ -200,9 +204,9 @@
                     $.each(data, function (key, value) {
                         let tr = `<tr>
                                <td>${value.id}</td>
+                               <td>${value.naam}</td>
                                <td>${value.startdatum}</td>
                                <td>${value.einddatum}</td>
-                               <td>${value.naam}</td>
                                <td>${value.actief}</td>
 
                                <td data-id="${value.id}"
@@ -210,7 +214,9 @@
                                    data-einddatum="${value.einddatum}"
                                    data-naam="${value.naam}">
                                     <div class="btn-group btn-group-sm">
-                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam}">
+                                        <a href="evenementen/${ value.id }" class="btn btn-outline-info " data-toggle="tooltip" title="Bekijk verenigingen">
+                                            <i class="fas fa-bars"></i>
+                                        </a><a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <a href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Verwijder ${value.naam}">

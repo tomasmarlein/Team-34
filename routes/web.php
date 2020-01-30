@@ -12,6 +12,7 @@
 */
 
 
+use App\Http\Middleware\Admin;
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
@@ -49,6 +50,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('qryEvenementen','Admin\EvenementController@qryEvenementen');
     Route::resource('evenementen', 'Admin\EvenementController');
 
+
     //vereniginen
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
     Route::get('getAllVerenigingen','Admin\VerenigingController@getAllVerenigingen');
@@ -57,7 +59,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('nonactive/{id}','Admin\VerenigingController@nonactive');
 
 
-    //verantwoordelijkebeheer
+
 
 //    route verantwoordelijke
     Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
@@ -75,7 +77,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //aanvraag
     Route::get('verenigingAanvragen','Admin\VerenigingController@verenigingAanvragen');
-
-
 });
+
+
 

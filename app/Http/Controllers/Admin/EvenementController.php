@@ -60,9 +60,13 @@ class EvenementController extends Controller
      * @param  \App\Evenements  $evenements
      * @return \Illuminate\Http\Response
      */
-    public function show(Evenements $evenements)
+    public function show($id)
     {
-        return redirect('admin/evenementen');
+        $evenement = Evenements::with('eventvereniging')->findOrFail($id);;
+        $result = compact('evenement');
+        dd($evenement);
+        (new \App\Helpers\Json)->dump($result);
+        return view('admin.evenementen.overzichtVerenigingen', $result);  // Pass $result to the view
 
     }
 
