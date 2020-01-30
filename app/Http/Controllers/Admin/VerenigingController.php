@@ -163,6 +163,7 @@ class VerenigingController extends Controller
     {
         $verenigings = Verenigings::orderBy('actief', 'desc')
             ->where('inaanvraag', '=', 0)
+            ->with('vereniginglid')
             ->get();
 
         return $verenigings;

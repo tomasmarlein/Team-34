@@ -203,6 +203,7 @@
         function loadTable() {
             $.getJSON('qryVerenigingen')
                 .done(function (data) {
+                    console.log(data)
                     // Clear tbody tag
                     $('tbody').empty();
                     // Loop over each item in the array
@@ -219,6 +220,8 @@
                             var buttonIcon = "<i class=\"fas fa-check-square danger\"></i>\n";
                             var path = "active";
                         }
+
+
 
                         let tr = `<tr>
                                <td>${value.id}</td>
