@@ -37,7 +37,7 @@
     </form>
 
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th>#</th>
@@ -203,6 +203,7 @@
         function loadTable() {
             $.getJSON('qryVerenigingen')
                 .done(function (data) {
+                    console.log(data)
                     // Clear tbody tag
                     $('tbody').empty();
                     // Loop over each item in the array
@@ -220,11 +221,13 @@
                             var path = "active";
                         }
 
+
+
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${actief}</td>
                                <td><a href="verenigingen/${ value.id }">${value.naam}</a></td>
-                               <td>${value.hoofdverantwoordelijke}</td>
+                               <td>${value.vereniginglid[0].naam}</td>
                                <td>${value.rekeningnr}</td>
                                <td>${value.btwnr}</td>
                                <td>${value.straat} ${value.huisnummer} ${value.postcode} ${value.gemeente}</td>
@@ -240,10 +243,10 @@
                                    data-gemeente="${value.gemeente}"
                                    data-actief="${value.actief}">
                                     <div class="btn-group btn-group-sm">
-                                        <a href="#!" class="btn btn-outline-success btn-edit">
+                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam}">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="#!" class="btn btn-outline-danger btn-delete">
+                                        <a href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Verwijder ${value.naam}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                             <a href="${path}/${value.id}" class="btn btn-outline-secondary btn-actief">

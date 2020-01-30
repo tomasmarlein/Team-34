@@ -92,6 +92,7 @@ class VrijwilligerController extends Controller
         $gebruiker = \App\Gebruikers::find($id)->update([
             'naam' => $data['naam'],
             'voornaam' => $data['voornaam'],
+            'roepnaam' => $data['roepnaam'],
             'email' => $data['email'],
             'straat' => $data['straat'],
             'huisnummer' => $data['huisnummer'],
@@ -130,6 +131,7 @@ class VrijwilligerController extends Controller
     {
         $gebruikers = Gebruikers::orderBy('id')
             ->where('rolId', '=', 4)
+            ->with ('lid')
             ->get();
         return $gebruikers;
     }

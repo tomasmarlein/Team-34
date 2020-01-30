@@ -171,6 +171,44 @@
 
                         </div>
 
+
+                        <div class="card-columns">
+                            <a href="#">
+                                <div class="card">
+                                    <img class="card-img-top" src="assets/adminpanel/tshirt.jfif"
+                                         alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">T-shirts</h5>
+                                        <p class="card-text">Beheer de thsirts.</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#n">
+                                <div class="card">
+                                    <img class="card-img-top" src="assets/adminpanel/lunch.jfif"
+                                         alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Lunchpakketen</h5>
+                                        <p class="card-text">Verenigenen die meeerken aan evenementen van Keizer karel
+                                            Olen</p>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="/admin/vrijwilligers">
+                                <div class="card">
+                                    <img class="card-img-top" src="assets/adminpanel/time.jfif"
+                                         alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Tijdsregistratie dashboard</h5>
+                                        <p class="card-text">This card has supporting text below as a natural lead-in to
+                                            additional content.</p>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+
                     @endif
 
 

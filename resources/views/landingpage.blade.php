@@ -8,6 +8,7 @@
             background-size: cover;
             background-position: center;
             background-color: #443339 ;
+            isolation: isolate;
         }
 
 

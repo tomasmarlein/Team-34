@@ -58,7 +58,7 @@ class CreateVerenigingsTable extends Migration
                     'straat' => "straat_$i",
                     'huisnummer' => "$i",
                     'gemeente' => "Geel",
-                    'hoofdverantwoordelijke' => "$i",
+                    'hoofdverantwoordelijke' => $i + 21,
                     'actief' => false,
                     'inaanvraag' => false,
                     'contactpersoon' => 2,
