@@ -9,7 +9,7 @@
         <p>Vraag nu hieronder je vereniging aan:</p>
     </div>
 
-    <form action="verenigingAanvragenNext" method="get">
+    <form action="{{url('verenigingAanvragenNext')}}" method="get">
         <h3>Vereniging aanvragen:</h3>
         <div class="mb-3">
             <label for="naam">Naam Vereniging</label>
