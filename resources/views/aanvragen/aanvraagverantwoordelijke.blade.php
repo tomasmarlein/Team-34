@@ -10,7 +10,7 @@
             VZW Keizer Karel Olen vul dan het hieronder geplaatste formulier in:
     </div>
 
-    <form action="verenigingAanvragen" method="get">
+    <form action="{{url('verenigingAanvragen')}}" method="get">
         <hr class="mb-4">
         <h3>Verantwoordelijke toevoegen</h3>
         <div class="row">
