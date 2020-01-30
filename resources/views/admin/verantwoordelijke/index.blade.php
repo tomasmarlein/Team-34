@@ -16,7 +16,7 @@
             </div>
         </form>
         <div class="table-responsive">
-            <table id="verant-table" class="table">
+            <table id="verant-table" class="table table-striped">
                 <thead>
                 <tr>
                     <th>Vereniging</th>
