@@ -5,6 +5,7 @@
         body, html {
             background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/hero.jfif") ;
             background-repeat: no-repeat;
+            background-attachment: fixed;
             background-size: cover;
             background-position: center;
             background-color: #443339 ;
@@ -32,7 +33,7 @@
             border: none;
         }
         main{
-            min-height: 740px;
+            min-height: 70vh;
         }
         .hidden{
             display: none;

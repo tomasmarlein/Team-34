@@ -11365,7 +11365,28 @@ p {
 }
 
 .navbar {
-  background-color: white;
+  background-color: #0C225D;
+}
+
+.navbar ul li a {
+  color: white;
+}
+
+.navbar ul li .dropdown-menu a {
+  color: black;
+}
+
+.navbar-brand {
+  color: #FFB637;
+}
+
+.modal-content {
+  border: none;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.modal-header {
+  border-bottom: none;
 }
 
 .noty_layout_mixin,

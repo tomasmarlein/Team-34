@@ -7,7 +7,7 @@
 require('./bootstrap');
 
 
-// Make all functions inside 'vinylShop.js' that start with 'export' accessible inside the HTML pages
+// Make all functions inside 'main.js' that start with 'export' accessible inside the HTML pages
 window.team34 = require('./main');
 window.Noty = require('noty');
 // Run the hello() function

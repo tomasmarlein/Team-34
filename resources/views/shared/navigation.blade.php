@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="/">Tijdregistratiesysteem</a>
+        <a class="navbar-brand" href="/">VZW Keizer Karel Olen</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsNav">
             <span class="navbar-toggler-icon"></span>
         </button>
