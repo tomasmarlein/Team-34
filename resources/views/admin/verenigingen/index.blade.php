@@ -227,7 +227,7 @@
                                <td>${value.id}</td>
                                <td>${actief}</td>
                                <td><a href="verenigingen/${ value.id }">${value.naam}</a></td>
-                               <td>${value.hoofdverantwoordelijke}</td>
+                               <td>${value.vereniginglid[0].naam}</td>
                                <td>${value.rekeningnr}</td>
                                <td>${value.btwnr}</td>
                                <td>${value.straat} ${value.huisnummer} ${value.postcode} ${value.gemeente}</td>
