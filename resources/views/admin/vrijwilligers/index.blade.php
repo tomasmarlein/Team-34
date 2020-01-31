@@ -35,8 +35,8 @@
 
 
             <div class="table-responsive">
-                <table id="mytable" class="table table-striped">
-                    <thead>
+                <table id="mytable" class="table table-hover">
+                    <thead class="shadow">
                     <tr>
                         <th>#</th>
                         <th>Naam</th>
@@ -46,7 +46,7 @@
                         <th>Postcode</th>
                         <th>Telefoon</th>
                         <th>Geboortedatum</th>
-                        <th>Actions</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>

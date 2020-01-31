@@ -38,6 +38,17 @@
         .hidden{
             display: none;
         }
+
+        .btn-gladiolen{
+            background: #0C225D;
+            color: white;
+        }
+        .btn-gladiolen:hover{
+            background: #5DB4FF;
+            color: white;
+        }
+
+
     </style>
 @endsection
 
@@ -50,8 +61,15 @@
             <h1>Keizer Karel Olen</h1>
             @guest
                 <p>Meld je hier aan om gebruik te maken van het Tijdsregistratiesysteem tijdens evenementen van VZW Keizer Karel Olen</p>
-                <a href="/login"><button  type="button" class="btn btn-warning btn-lg">Inloggen</button></a>
-                <a href="/aanvraagverantwoordelijke"><button  href="/aanvraagverantwoordelijke" type="button" class="btn btn-warning btn-lg">Samenwerking</button></a>
+                <br><br>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a href="/login"><button  type="button" class="btn btn-gladiolen btn-lg">Inloggen</button></a>
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="/aanvraagverantwoordelijke"><button  href="/aanvraagverantwoordelijke" type="button" class="btn btn-gladiolen btn-lg">Samenwerking</button></a>
+                    </div>
+                </div>
             @endguest
             {{--            @if(auth()->user()->admin)
 

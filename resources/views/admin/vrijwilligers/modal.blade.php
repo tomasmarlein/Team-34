@@ -1,12 +1,12 @@
 <div class="modal" id="modal-vrijwilliger">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">modal-genre-title</h5>
         <form action="" method="post">
              @method('')
              @csrf
-                <button type="submit" class="btn btn-success">Bewaar vrijwilliger</button>
+                <button type="submit" class="btn btn-success">Bewaar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
                     Close
                 </button>

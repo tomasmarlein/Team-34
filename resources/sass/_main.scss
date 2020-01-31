@@ -6,6 +6,18 @@ p{margin: 0px;}
 
 .navbar{
     background-color: $gladiolenblauw;
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 99999!important;
+}
+
+.navbar button{
+    color: white;
+}
+
+body{
+    padding-top: 100px;
 }
 
 .navbar ul li a{
@@ -30,3 +42,14 @@ p{margin: 0px;}
 .modal-header{
     border-bottom: none;
 }
+
+.table thead{
+    background: $gladiolenblauw;
+    color: $gladiolengeel;
+}
+
+.table{
+    margin-top: 10px;
+}
+
+

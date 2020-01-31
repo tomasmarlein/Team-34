@@ -119,8 +119,26 @@ class CreateGebruikersTable extends Migration
                 ]);
         }
 
-
+        DB::table('gebruikers')->insert(
+            [
+                'naam' => "Marlein",
+                'voornaam' => "Tomas",
+                'email' => "r0676862@student.thomasmore.be",
+                'password' => Hash::make("admin123"),
+                'straat' => "Bosbessenstraat",
+                'huisnummer' => "28",
+                'geboortedatum' => "19970226",
+                'telefoon' => '0493529625',
+                'tweedetshirt' => False,
+                'postcode' => '2400',
+                'eersteAanmelding' => false,
+                'lunchpakket' => False,
+                'tshirtId'=> 1,
+                'rolId' => 1,
+            ]);
     }
+
+
 
     /**
      * Reverse the migrations.

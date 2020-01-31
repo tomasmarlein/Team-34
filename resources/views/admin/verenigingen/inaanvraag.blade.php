@@ -6,7 +6,7 @@
     <h1>Aangevraagde Verenigingen</h1>
 
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th>#</th>

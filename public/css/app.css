@@ -11366,6 +11366,18 @@ p {
 
 .navbar {
   background-color: #0C225D;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999 !important;
+}
+
+.navbar button {
+  color: white;
+}
+
+body {
+  padding-top: 100px;
 }
 
 .navbar ul li a {
@@ -11377,7 +11389,7 @@ p {
 }
 
 .navbar-brand {
-  color: #FFB637;
+  color: #FFCF5D;
 }
 
 .modal-content {
@@ -11387,6 +11399,15 @@ p {
 
 .modal-header {
   border-bottom: none;
+}
+
+.table thead {
+  background: #0C225D;
+  color: #FFCF5D;
+}
+
+.table {
+  margin-top: 10px;
 }
 
 .noty_layout_mixin,

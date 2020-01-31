@@ -89,14 +89,21 @@ class EvenementController extends Controller
      * @param  \App\Evenements  $evenements
      * @return \Illuminate\Http\Response
      */
-    public function update($id,Request $request, Evenements $evenements)
+    public function update($id, Request $request, Evenements $evenements)
     {
         $data = $request->all();
+
+        if($request->has('actief')){
+            $actief = 1;
+        }else{
+            $actief = 0;
+        }
+
         $evenement = \App\Evenements::find($id)->update([
             'naam' => $data['naam'],
             'startdatum' => $data['startdatum'],
             'einddatum' => $data['einddatum'],
-            'actief' => $data['actief'],
+            'actief' => $actief,
         ]);
 
 
