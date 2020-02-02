@@ -17,6 +17,22 @@
             font-size: 15pt;
             top: 2%;
             right: 2%;
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% {
+                transform: scale(0.85);
+                box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 25px rgba(255, 82, 82, 0);
+            }
+            100% {
+                transform: scale(0.85);
+                box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+            }
         }
 
 
