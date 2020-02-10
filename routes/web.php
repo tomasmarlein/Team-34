@@ -52,6 +52,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('qryEvenementen','Admin\EvenementController@qryEvenementen');
     Route::resource('evenementen', 'Admin\EvenementController');
 
+    //import en export vrijwilliger
+    Route::get('download','Admin\VrijwilligerController@export');
+    Route::post('import', 'Admin\VrijwilligerController@import')->name('import');
 
     //vereniginen
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
