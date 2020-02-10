@@ -95,3 +95,14 @@ Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->g
     Route::resource('verenigingen', 'Verantwoordelijke\VerenigingController');
     Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@index');
 });
+
+//update profile & ww aanpassen
+Route::redirect('user', '/shared/profile');
+Route::middleware(['auth'])->prefix('user')->group(function () {
+    //profile
+    Route::get('profile', 'User\ProfileController@edit');
+    Route::post('profile', 'User\ProfileController@update');
+    //password
+    Route::get('password', 'User\PasswordController@edit');
+    Route::post('password', 'User\PasswordController@update');
+});
