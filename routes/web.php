@@ -85,7 +85,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 Route::middleware(['auth', 'verantwoordelijke'])->group(function () {
 
-    Route::view('/home', 'verantwoordelijke.vereniging');
+    Route::view('/verant', 'verantwoordelijke.vereniging');
 
 });
 

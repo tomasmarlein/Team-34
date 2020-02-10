@@ -3,22 +3,36 @@
 @section('css_after')
     <style>
         body, html {
-            background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/hero.jfif") ;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            background-color: #443339 ;
+            /*background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/hero.jfif");*/
+            background-attachment: fixed;
+            /*background-repeat: no-repeat;*/
+            /*background-size: cover;*/
+            /*background-position: center;*/
+            background-color: lightgray;
         }
 
         #count {
-            border-radius: 75%;
             align-content: center;
             position: absolute;
-            font-size: 22pt;
+            font-size: 15pt;
+            top: 2%;
+            right: 2%;
+            animation: pulse-red 2s infinite;
+        }
 
-
-            top: -15px;
-            right: -15px;
+        @keyframes pulse-red {
+            0% {
+                transform: scale(0.85);
+                box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 25px rgba(255, 82, 82, 0);
+            }
+            100% {
+                transform: scale(0.85);
+                box-shadow: 0 0 0 0 rgba(255, 82, 82, 0);
+            }
         }
 
 
@@ -46,14 +60,214 @@
         .card:hover{
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
-        a:link, a:visited{
-
-            color: black;
-            text-underline: none;
-        }
 
         .btn-group {
             margin-bottom: 5%;
+        }
+
+
+
+
+
+    /*    card    */
+        .card {
+            position: relative;
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            flex-direction: column;
+            width: 100%;
+            background: white;
+            color: currentColor;
+            text-decoration: none;
+            overflow: hidden;
+            -webkit-transition-property: color;
+            transition-property: color;
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 0px;
+        }
+        .card:hover {
+            color: white;
+            -webkit-transition-delay: 0;
+            transition-delay: 0;
+            text-underline: none;
+        }
+
+
+        .card, .card__image, .card__image::after, .card__author, .card__body, .card__foot, .card__border {
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            -webkit-transition-timing-function: cubic-bezier(0.51, 0.92, 0.24, 1);
+            transition-timing-function: cubic-bezier(0.51, 0.92, 0.24, 1);
+        }
+        .card__head {
+            position: relative;
+            padding-top: 70%;
+        }
+        .card__author {
+            position: absolute;
+            padding: 2em;
+            left: 0;
+            bottom: 0;
+            color: white;
+            -webkit-transition-property: -webkit-transform;
+            transition-property: -webkit-transform;
+            transition-property: transform;
+            transition-property: transform, -webkit-transform;
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+        }
+        .card.hover .card__author {
+            -webkit-transition-delay: 0;
+            transition-delay: 0;
+        }
+        .card__image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            -webkit-transform-origin: top center;
+            transform-origin: top center;
+            -webkit-transition-property: -webkit-transform;
+            transition-property: -webkit-transform;
+            transition-property: transform;
+            transition-property: transform, -webkit-transform;
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+        }
+        .card__image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: .5;
+            background: linear-gradient(30deg, rgba(26, 42, 99, 0.85), rgba(26, 42, 99, 0.5));
+            -webkit-transition-property: opacity;
+            transition-property: opacity;
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+        }
+        .card.hover .card__image {
+            -webkit-transition-delay: 0;
+            transition-delay: 0;
+        }
+        .card.hover .card__image::after {
+            opacity: 1;
+            -webkit-transition-delay: 0;
+            transition-delay: 0;
+        }
+        .card__body {
+            position: relative;
+            padding: 2em;
+            -webkit-transition-property: -webkit-transform;
+            transition-property: -webkit-transform;
+            transition-property: transform;
+            transition-property: transform, -webkit-transform;
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+            min-height: 220px;
+        }
+        .card.hover .card__body {
+            -webkit-transition-delay: 0;
+            transition-delay: 0;
+        }
+        .card__headline {
+            font-weight: 400;
+            margin: 0 0 .8em;
+        }
+        .card__text {
+            line-height: 1.5;
+            margin: 0;
+            opacity: .8;
+        }
+        .card__foot {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0 2em 2em;
+            opacity: 0;
+            -webkit-transition-property: opacity;
+            transition-property: opacity;
+        }
+        .card.hover .card__foot {
+            opacity: 1;
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+        }
+        .card__link {
+            color: currentColor;
+            text-decoration: none;
+            border-bottom: 2px solid #b5272d;
+        }
+        .card__border {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 6px;
+            background: #b5272d;
+            -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+            -webkit-transition-property: -webkit-transform;
+            transition-property: -webkit-transform;
+            transition-property: transform;
+            transition-property: transform, -webkit-transform;
+        }
+        .card.hover .card__border {
+            -webkit-transform: none;
+            transform: none;
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+        }
+
+        .author {
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+        }
+        .author__image {
+             flex-shrink: 0;
+             margin-right: 1em;
+             width: 56px;
+             height: 56px;
+             border-radius: 0;
+             overflow: hidden;
+            position: relative;
+         }
+
+        .author__image i {
+            text-align: center;
+            font-size: 35px;
+            margin-top: 20%;
+        }
+
+        .author__content {
+            display: grid;
+            grid-gap: .4em;
+            font-size: .9em;
+        }
+        .author__header {
+            margin: 0;
+            font-weight: 600;
+        }
+        .author__subheader {
+            margin: 0;
+            opacity: .8;
+        }
+
+        .cardpadding{
+            padding: 10px 10px;
         }
 
 
@@ -63,26 +277,29 @@
 @section('main')
 
 
-    <div style="background-color:#443339 ">
-        <div class="jumbotron">
+    <br><br>
 
-<div class="row">
 
-    <div class="col-8"> <h1 class="display-4">Adminpanel</h1>
 
-        </div>
-    <form class="col-4">
-        <div class="form-group" >
-            <select class="form-control">
-                @foreach($evenementen as $evenement)
-                    <option value="{{ $evenement->id }}" class="dropdown-item" href="#">{{ $evenement->naam }}</option>
-                @endforeach
-                <option value="%" class="dropdown-item" href="#">alle evenementen</option>
-            </select>
+            <div class="row">
 
-        </div>
-    </form>
-</div>
+                <div class="col-8"> <h1 class="display-4">Adminpanel</h1>
+
+                    </div>
+                <form class="col-4">
+                    <div class="form-group" >
+                        <select class="form-control">
+                            @foreach($evenementen as $evenement)
+                                <option value="{{ $evenement->id }}" class="dropdown-item" href="#">{{ $evenement->naam }}</option>
+                            @endforeach
+                            <option value="%" class="dropdown-item" href="#">alle evenementen</option>
+                        </select>
+
+                    </div>
+                </form>
+            </div>
+
+
             <p class="lead">Welkom {{ Auth::user()->naam }} in het tijdsregistratiesysteem van Keizer Karel Olen</p>
             <hr class="my-4">
             <p>Beheer hier evenementen, verenigingen, vrijwilligers en de tijdsregistratie voor evenementen van Keizer
@@ -92,122 +309,258 @@
                 <div id="knoppen">
                     @if(auth()->user()->rolID=1)
 
-                        <div class="card-columns" >
-                            <a href="/admin/evenementen">
-                                <div class="card" style="margin-top: 2rem">
-                                    <img class="card-img-top" src="/assets/adminpanel/evenementen.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Evenementen</h5>
-                                        <p class="card-text">Beheer evenementen</p>
-                                        </p>
+                        <div class="row" style="margin-top: 2rem;">
+                            <div class="col-lg-4 cardpadding">
+                                <a href="/admin/evenementen" class="card">
+                                    <div class="card__head">
+                                        <div class="card__image" style="background-image: url('/assets/adminpanel/evenementen.jfif');"></div>
+                                        <div class="card__author">
+                                            <div class="author">
+                                                <div class="author__image">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                </div>
+                                                <div class="author__content">
+                                                    <p class="author__header">Evenementen</p>
+                                                    <p class="author__subheader">Beheer evenementen</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                            <a href="/admin/kernleden">
-                                <div class="card" style="margin-top: 2rem">
-                                    <img class="card-img-top" src="/assets/adminpanel/verantwoordelijke.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Kernleden</h5>
-                                        <p class="card-text">Kernleden zijn gebruikers aangesteld door admins om
+                                    <div class="card__body">
+                                        <h2 class="card__headline">Evenementen</h2>
+                                        <p class="card__text">Beheer Evenementen</p>
+                                    </div>
+                                    <div class="card__foot">
+                                        <span class="card__link">Ga verder</span>
+                                    </div>
+                                    <div class="card__border"></div>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4 cardpadding">
+                                <a href="/admin/kernleden" class="card">
+                                    <div class="card__head">
+                                        <div class="card__image" style="background-image: url('/assets/adminpanel/verantwoordelijke.jfif');"></div>
+                                        <div class="card__author">
+                                            <div class="author">
+                                                <div class="author__image">
+                                                    <i class="fas fa-users"></i>
+                                                </div>
+                                                <div class="author__content">
+                                                    <p class="author__header">Kernleden</p>
+                                                    <p class="author__subheader">Beheer kernleden</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card__body">
+                                        <h2 class="card__headline">Kernleden</h2>
+                                        <p class="card__text">Kernleden zijn gebruikers aangesteld door admins om
                                             verenigigen, verantwoordelijke en gebruikers te beheren
                                             het tijdsregistraties kunnen beheren</p>
                                     </div>
-                                </div>
-                            </a>
-                            <a href="/inaanvraag">
+                                    <div class="card__foot">
+                                        <span class="card__link">Ga verder</span>
+                                    </div>
+                                    <div class="card__border"></div>
+                                </a>
+                            </div>
 
-                                <div class="card" style="margin-top: 2rem">
-                                    <span id="count" class="badge badge-primary pull-left shadow-lg" style="margin-top: 0.25rem;margin-right:0.25rem;  z-index: 1 "></span>
-                                    <img class="card-img-top" src="assets/adminpanel/aanvraag.jfif"
-                                         alt="Card image cap">
-
-                                    <div class="card-body">
-                                        <h5 class="card-title">Verenigingen in aanvraag </h5>
-                                        <p class="card-text">Indien een vereniging aanvraag doet om mee te helpen op
+                            <div class="col-lg-4 cardpadding">
+                                <a href="/inaanvraag" class="card">
+                                    <span id="count" class="badge badge-danger shadow-lg" style="z-index: 999 "></span>
+                                    <div class="card__head">
+                                        <div class="card__image" style="background-image: url('assets/adminpanel/aanvraag.jfif');"></div>
+                                        <div class="card__author">
+                                            <div class="author">
+                                                <div class="author__image">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </div>
+                                                <div class="author__content">
+                                                    <p class="author__header">Verenigingen in aanvraag</p>
+                                                    <p class="author__subheader">Beheer aanvragen</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card__body">
+                                        <h2 class="card__headline">Aanvragen</h2>
+                                        <p class="card__text">Indien een vereniging aanvraag doet om mee te helpen op
                                             evenementen van Keizer Karel Olen zijn deze aanvragen hier te vinden.</p>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-
-
-                        <div class="card-columns">
-                            <a href="/admin/verantwoordelijke">
-                                <div class="card">
-                                    <img class="card-img-top" src="assets/adminpanel/kernleden.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Verantwoordelijke</h5>
-                                        <p class="card-text">Beheer de verantwoordelijke van verenigingen.</p>
+                                    <div class="card__foot">
+                                        <span class="card__link">Ga verder</span>
                                     </div>
-                                </div>
-                            </a>
-                            <a href="/admin/verenigingen">
-                                <div class="card">
-                                    <img class="card-img-top" src="assets/adminpanel/verenigigen.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Verenigingen</h5>
-                                        <p class="card-text">Verenigenen die meeerken aan evenementen van Keizer karel
-                                            Oler</p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="/admin/vrijwilligers">
-                                <div class="card">
-                                    <img class="card-img-top" src="assets/adminpanel/vrijwilliger.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Vrijwilligers</h5>
-                                        <p class="card-text">This card has supporting text below as a natural lead-in to
-                                            additional content.</p>
-                                    </div>
-                                </div>
-                            </a>
+                                    <div class="card__border"></div>
+                                </a>
+                            </div>
 
-                        </div>
-
-
-                        <div class="card-columns">
-                            <a href="#">
-                                <div class="card">
-                                    <img class="card-img-top" src="assets/adminpanel/tshirt.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">T-shirts</h5>
-                                        <p class="card-text">Beheer de thsirts.</p>
+                            <div class="col-lg-4 cardpadding">
+                                <a href="/admin/verantwoordelijke" class="card">
+                                    <div class="card__head">
+                                        <div class="card__image" style="background-image: url('assets/adminpanel/kernleden.jfif');"></div>
+                                        <div class="card__author">
+                                            <div class="author">
+                                                <div class="author__image">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                                <div class="author__content">
+                                                    <p class="author__header">Verantwoordelijke</p>
+                                                    <p class="author__subheader">Beheer verantwoordelijke</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                            <a href="#n">
-                                <div class="card">
-                                    <img class="card-img-top" src="assets/adminpanel/lunch.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Lunchpakketen</h5>
-                                        <p class="card-text">Verenigenen die meeerken aan evenementen van Keizer karel
+                                    <div class="card__body">
+                                        <h2 class="card__headline">Verantwoordelijke</h2>
+                                        <p class="card__text">Beheer de verantwoordelijke van verenigingen.</p>
+                                    </div>
+                                    <div class="card__foot">
+                                        <span class="card__link">Ga verder</span>
+                                    </div>
+                                    <div class="card__border"></div>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4 cardpadding">
+                                <a href="/admin/verenigingen" class="card">
+                                    <div class="card__head">
+                                        <div class="card__image" style="background-image: url('assets/adminpanel/verenigigen.jfif');"></div>
+                                        <div class="card__author">
+                                            <div class="author">
+                                                <div class="author__image">
+                                                    <i class="fab fa-vuejs"></i>
+                                                </div>
+                                                <div class="author__content">
+                                                    <p class="author__header">Verenigingen</p>
+                                                    <p class="author__subheader">Beheer verenigingen</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card__body">
+                                        <h2 class="card__headline">Verenigingen</h2>
+                                        <p class="card__text">Verenigenen die meeerken aan evenementen van Keizer karel
+                                            Oler.</p>
+                                    </div>
+                                    <div class="card__foot">
+                                        <span class="card__link">Ga verder</span>
+                                    </div>
+                                    <div class="card__border"></div>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4 cardpadding">
+                                <a href="/admin/vrijwilligers" class="card">
+                                    <div class="card__head">
+                                        <div class="card__image" style="background-image: url('assets/adminpanel/vrijwilliger.jfif');"></div>
+                                        <div class="card__author">
+                                            <div class="author">
+                                                <div class="author__image">
+                                                    <i class="fas fa-hands-helping"></i>
+                                                </div>
+                                                <div class="author__content">
+                                                    <p class="author__header">Vrijwilligers</p>
+                                                    <p class="author__subheader">Beheer vrijwilligers</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card__body">
+                                        <h2 class="card__headline">Vrijwilligers</h2>
+                                        <p class="card__text">Beheer vrijwilligers die tijdens het evenement zullen meewerken
+                                            aan een veilig en fantastisch evenement.</p>
+                                    </div>
+                                    <div class="card__foot">
+                                        <span class="card__link">Ga verder</span>
+                                    </div>
+                                    <div class="card__border"></div>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4 cardpadding">
+                                <a href="#" class="card">
+                                    <div class="card__head">
+                                        <div class="card__image" style="background-image: url('assets/adminpanel/tshirt.jfif');"></div>
+                                        <div class="card__author">
+                                            <div class="author">
+                                                <div class="author__image">
+                                                    <i class="fas fa-tshirt"></i>
+                                                </div>
+                                                <div class="author__content">
+                                                    <p class="author__header">T-shirts</p>
+                                                    <p class="author__subheader">Beheer t-shirts</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card__body">
+                                        <h2 class="card__headline">T-shirts</h2>
+                                        <p class="card__text">Beheer hier alles in verband met de t-shirts per verenigingen.</p>
+                                    </div>
+                                    <div class="card__foot">
+                                        <span class="card__link">Ga verder</span>
+                                    </div>
+                                    <div class="card__border"></div>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4 cardpadding">
+                                <a href="#" class="card">
+                                    <div class="card__head">
+                                        <div class="card__image" style="background-image: url('assets/adminpanel/lunch.jfif');"></div>
+                                        <div class="card__author">
+                                            <div class="author">
+                                                <div class="author__image">
+                                                    <i class="fas fa-hamburger"></i>
+                                                </div>
+                                                <div class="author__content">
+                                                    <p class="author__header">Lunchpakketen</p>
+                                                    <p class="author__subheader">Beheer lunchpakketen</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card__body">
+                                        <h2 class="card__headline">Lunchpakketen</h2>
+                                        <p class="card__text">Lunchpakketen voor de verenigenen die meewerken aan evenementen van Keizer karel
                                             Olen</p>
-                                        </p>
                                     </div>
-                                </div>
-                            </a>
-                            <a href="/admin/vrijwilligers">
-                                <div class="card">
-                                    <img class="card-img-top" src="assets/adminpanel/time.jfif"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Tijdsregistratie dashboard</h5>
-                                        <p class="card-text">This card has supporting text below as a natural lead-in to
-                                            additional content.</p>
+                                    <div class="card__foot">
+                                        <span class="card__link">Ga verder</span>
                                     </div>
-                                </div>
-                            </a>
+                                    <div class="card__border"></div>
+                                </a>
+                            </div>
 
+                            <div class="col-lg-4 cardpadding">
+                                <a href="#" class="card">
+                                    <div class="card__head">
+                                        <div class="card__image" style="background-image: url('assets/adminpanel/time.jfif');"></div>
+                                        <div class="card__author">
+                                            <div class="author">
+                                                <div class="author__image">
+                                                    <i class="fas fa-stopwatch"></i>
+                                                </div>
+                                                <div class="author__content">
+                                                    <p class="author__header">Tijdsregistratie dashboard</p>
+                                                    <p class="author__subheader">Beheer tijdsregistratie</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card__body">
+                                        <h2 class="card__headline">Tijdsregistratie dashboard</h2>
+                                        <p class="card__text">Tijdsregistratie per vereniging die meewerkt aan het evenement van vzw Keizen Karel Olen.</p>
+                                    </div>
+                                    <div class="card__foot">
+                                        <span class="card__link">Ga verder</span>
+                                    </div>
+                                    <div class="card__border"></div>
+                                </a>
+                            </div>
                         </div>
+
 
                     @endif
 
@@ -216,8 +569,7 @@
         @endsection
 
 
-
-        @section('script_after')
+@section('script_after')
             <script>
 
                 $(function () {
@@ -248,8 +600,69 @@
                         })
                 }
             </script>
-@endsection
 
+
+                            <script>
+                                const height = elem => {
+
+                                    return elem.getBoundingClientRect().height;
+
+                                };
+
+                                const distance = (elemA, elemB, prop) => {
+
+                                    const sizeA = elemA.getBoundingClientRect()[prop];
+                                    const sizeB = elemB.getBoundingClientRect()[prop];
+
+                                    return sizeB - sizeA;
+
+                                };
+
+                                const factor = (elemA, elemB, prop) => {
+
+                                    const sizeA = elemA.getBoundingClientRect()[prop];
+                                    const sizeB = elemB.getBoundingClientRect()[prop];
+
+                                    return sizeB / sizeA;
+
+                                };
+
+                                document.querySelectorAll('.card').forEach(elem => {
+
+                                    const head = elem.querySelector('.card__head');
+                                    const image = elem.querySelector('.card__image');
+                                    const author = elem.querySelector('.card__author');
+                                    const body = elem.querySelector('.card__body');
+                                    const foot = elem.querySelector('.card__foot');
+
+                                    elem.onmouseenter = () => {
+
+                                        elem.classList.add('hover');
+
+                                        const imageScale = 1 + factor(head, body, 'height');
+                                        image.style.transform = `scale(${imageScale})`;
+
+                                        const bodyDistance = height(foot) * -1;
+                                        body.style.transform = `translateY(${bodyDistance}px)`;
+
+                                        const authorDistance = distance(head, author, 'height');
+                                        author.style.transform = `translateY(${authorDistance}px)`;
+
+                                    };
+
+                                    elem.onmouseleave = () => {
+
+                                        elem.classList.remove('hover');
+
+                                        image.style.transform = `none`;
+                                        body.style.transform = `none`;
+                                        author.style.transform = `none`;
+
+                                    };
+
+                                });
+                            </script>
+@endsection
 
 
 

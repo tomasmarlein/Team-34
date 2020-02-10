@@ -51,10 +51,12 @@ class VrijwilligerController extends Controller
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->rolId = 4;
         $gebruikers->save();
+
         return response()->json([
             'type' => 'success',
             'text' => "De gebruiker <b>$gebruikers->name</b> is toegevoegd"
         ]);
+
     }
 
     /**
@@ -104,7 +106,7 @@ class VrijwilligerController extends Controller
 
         return response()->json([
             'type' => 'success',
-            'text' => "Vrijwilliger is geupdate"
+            'text' => 'De vrijwilliger is aangepast!'
         ]);
     }
 
