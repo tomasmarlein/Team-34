@@ -33,26 +33,30 @@
         </div>
     </form>
 
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Naam</th>
-                <th>Vereniging</th>
-                <th>Email</th>
-                <th>Adres</th>
-                <th>Postcode</th>
-                <th>Telefoon</th>
-                <th>Geboortedatum</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
 
-            </tbody>
-        </table>
-    </div>
+            <div class="table-responsive">
+                <table id="mytable" class="table table-hover">
+                    <thead class="shadow">
+                    <tr>
+                        <th>#</th>
+                        <th>Naam</th>
+                        <th>Vereniging</th>
+                        <th>Email</th>
+                        <th>Adres</th>
+                        <th>Postcode</th>
+                        <th>Telefoon</th>
+                        <th>Geboortedatum</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
     @include('admin.vrijwilligers.modal')
 @endsection
 
@@ -137,6 +141,7 @@
                         console.log(data);
                         // Noty success message
                         new Noty({
+                            icon: data.icon,
                             type: data.type,
                             text: data.text
                         }).show();
@@ -196,6 +201,8 @@
                     console.log('error', e);
                 });
         }
+
+
 
         // Load genres with AJAX
         function loadTable() {

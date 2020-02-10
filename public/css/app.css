@@ -11365,7 +11365,49 @@ p {
 }
 
 .navbar {
-  background-color: white;
+  background-color: #0C225D;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999 !important;
+}
+
+.navbar button {
+  color: white;
+}
+
+body {
+  padding-top: 100px;
+}
+
+.navbar ul li a {
+  color: white;
+}
+
+.navbar ul li .dropdown-menu a {
+  color: black;
+}
+
+.navbar-brand {
+  color: #FFCF5D;
+}
+
+.modal-content {
+  border: none;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.table thead {
+  background: #0C225D;
+  color: #FFCF5D;
+}
+
+.table {
+  margin-top: 10px;
 }
 
 .noty_layout_mixin,

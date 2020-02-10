@@ -40209,7 +40209,7 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Make all functions inside 'vinylShop.js' that start with 'export' accessible inside the HTML pages
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Make all functions inside 'main.js' that start with 'export' accessible inside the HTML pages
 
 
 window.team34 = __webpack_require__(/*! ./main */ "./resources/js/main.js");

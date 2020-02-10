@@ -44,7 +44,7 @@
                 <th>Postcode</th>
                 <th>Telefoon</th>
                 <th>Geboortedatum</th>
-                <th>Actions</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>

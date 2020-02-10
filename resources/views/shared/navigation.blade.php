@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="/">Tijdregistratiesysteem</a>
+        <a class="navbar-brand" href="/">VZW Keizer Karel Olen</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsNav">
-            <span class="navbar-toggler-icon"></span>
+            <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="collapsNav">
             <ul class="navbar-nav mr-auto">
@@ -26,13 +26,20 @@
                         <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/aanvraag"><i class="fas fa-signature"></i> Register</a>
+                        <a class="nav-link" href="/aanvraag"><i class="fas fa-signature"></i> Aanvraag</a>
                     </li>
                 @endguest
                 @auth
+                        @if(auth()->user()->rolId==1)
                         <li class="nav-item">
                             <a class="nav-link" href="/home"><i class="fas fa-user-shield"></i> adminpaneel</a>
                         </li>
+                        @endif
+                            @if(auth()->user()->rolId==3)
+                            <li class="nav-item">
+                                <a class="nav-link" href="#!"><i class="fas fa-users"></i> vereniging</a>
+                            </li>
+                            @endif
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#!" data-toggle="dropdown">
@@ -47,7 +54,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/admin/evenementen"><i class="fas fa-calendar-week"></i> Evenementen</a>
                                 <a class="dropdown-item" href="/admin/verenigingen"><i class="fab fa-vuejs"></i> Verenigingen</a>
-                                <a class="dropdown-item" href="/admin/kernleden"><i class="far fa-user"></i> Kernleden</a>
+                                <a class="dropdown-item" href="/admin/kernleden"><i class="fas fa-users"></i> Kernleden</a>
                                 <a class="dropdown-item" href="/admin/verantwoordelijke"><i class="far fa-user"></i> Verantwoordelijke</a>
                                 <a class="dropdown-item" href="/admin/vrijwilligers"><i class="fas fa-hands-helping"></i> Vrijwilligers</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user-clock"></i>Tijdsregistratie</a>
@@ -55,6 +62,7 @@
                             @if(auth()->user()->rolId==2)
                             @endif
                             @if(auth()->user()->rolId==3)
+                                <a class="dropdown-item" href="/verantwoordelijke/verenigingen"><i class="fab fa-vuejs"></i> Vereniging</a>
                             @endif
                         </div>
                     </li>

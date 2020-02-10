@@ -14,7 +14,7 @@
 @include('shared.navigation')
 {{--  Navigation  --}}
 <main class="container mt-3">
-    @yield('main', 'Pagina onder constructie...')
+        @yield('main', 'Pagina onder constructie...')
 </main>
 {{--  Footer  --}}
 @include('shared.footer')

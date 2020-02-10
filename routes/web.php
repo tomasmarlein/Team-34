@@ -12,6 +12,8 @@
 */
 
 
+use App\Http\Middleware\Admin;
+use App\Http\Middleware\Verantwoordelijke;
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
@@ -50,6 +52,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('qryEvenementen','Admin\EvenementController@qryEvenementen');
     Route::resource('evenementen', 'Admin\EvenementController');
 
+
     //vereniginen
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
     Route::get('getAllVerenigingen','Admin\VerenigingController@getAllVerenigingen');
@@ -58,7 +61,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('nonactive/{id}','Admin\VerenigingController@nonactive');
 
 
-    //verantwoordelijkebeheer
+
 
 //    route verantwoordelijke
     Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
@@ -76,7 +79,20 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //aanvraag
     Route::get('verenigingAanvragen','Admin\VerenigingController@verenigingAanvragen');
+});
 
+
+
+
+Route::middleware(['auth', 'verantwoordelijke'])->group(function () {
+
+    Route::view('/verant', 'verantwoordelijke.vereniging');
 
 });
 
+Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->group(function () {
+
+    Route::get('qryVerenigingen', 'Verantwoordelijke\VerenigingController@qryVerenigingen');
+    Route::resource('verenigingen', 'Verantwoordelijke\VerenigingController');
+    Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@index');
+});
