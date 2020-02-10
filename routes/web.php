@@ -87,8 +87,11 @@ Route::middleware(['auth', 'verantwoordelijke'])->group(function () {
 
     Route::view('/home', 'verantwoordelijke.vereniging');
 
-    Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@qryVerenigingen');
+});
+
+Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->group(function () {
+
+    Route::get('qryVerenigingen', 'Verantwoordelijke\VerenigingController@qryVerenigingen');
     Route::resource('verenigingen', 'Verantwoordelijke\VerenigingController');
     Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@index');
 });
-

@@ -90,7 +90,7 @@ class VerenigingController extends Controller
         $verenigingen = Verenigings::orderBy('naam')
             ->where(function ($query) {
                 $query->where('hoofdverantwoordelijke', auth()->id())
-                    ->orWhere('tweedeverantwoordelijke', auth()->id())
+                    ->orWhere('tweedeverantwoordelijke', auth()->id());
                        })
             ->get();
         return $verenigingen;
