@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="naam">Naam</label>
-                <input type="text" class="form-control" name="naam" id="naam" placeholder="Naam" value="">
+                <input type="text" class="form-control" name="naam" id="naam" placeholder="Naam" value="" required>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="voornaam">voornaam</label>

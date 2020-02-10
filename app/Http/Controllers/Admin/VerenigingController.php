@@ -9,6 +9,7 @@ use App\Verenigings;
 use foo\bar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use mysql_xdevapi\Result;
 
 
 class VerenigingController extends Controller
@@ -233,6 +234,7 @@ class VerenigingController extends Controller
         $gebruikers->save();
 
         $result = compact('gebruikers');
+        $request->session()->put('gebruikersdata', $result);
         return view('aanvragen.aanvraag',$result);
 
     }
@@ -247,7 +249,6 @@ class VerenigingController extends Controller
 //        ]);
 
         $verenigings = new Verenigings();
-
         $verenigings->naam = $request->naam;
         $verenigings->rekeningnr = $request->rekeningnr;
         $verenigings->btwnr = $request->btwnr;
@@ -262,9 +263,9 @@ class VerenigingController extends Controller
 
 
         $result = compact('verenigings');
-        return view('landingpage',$result);
+        $gebruikers = $request->session()->get('gebruikersdata');
+        return view('aanvragen.bevestiging',$result);
 
     }
-
 
 }
