@@ -15,23 +15,12 @@ class CreateTaaksTable extends Migration
     {
         Schema::create('taaks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string("naam");
+            $table->unsignedBigInteger('subtaak_id');
+            $table->unsignedBigInteger('taakgroep_id');
+            $table->dateTime('startDatum');
+            $table->dateTime('eindDatum');
+            $table->integer('aantalPersonen');
         });
-
-        // Insert dummy taken
-        DB::table('taaks')->insert(
-            [
-                [
-                    'naam' => 'tappen',
-                ],
-                [
-                    'naam' => 'security',
-                ],
-                [
-                    'naam' => 'Opboux',
-                ]
-            ]
-        );
     }
 
     /**

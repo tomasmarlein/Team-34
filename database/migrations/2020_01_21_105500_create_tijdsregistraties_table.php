@@ -17,7 +17,13 @@ class CreateTijdsregistratiesTable extends Migration
             $table->bigIncrements('id');
             $table->dateTime('checkIn')->nullable();
             $table->dateTime('checkUit')->nullable();
+            $table->dateTime('manCheckIn')->nullable();
+            $table->dateTime('manCheckUit')->nullable();
+            $table->dateTime('adminCheckIn')->nullable();
+            $table->dateTime('adminCheckUit')->nullable();
             $table->unsignedBigInteger('userId');
+            $table->unsignedBigInteger('evenementId');
+            $table->unsignedBigInteger('verenigingId');
             $table->foreign('userId')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
         });
 
