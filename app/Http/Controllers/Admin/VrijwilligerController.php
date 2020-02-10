@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\GebruikesExport;
+use App\Exports\VrijwilligersExport;
 use App\Imports\GebruikersImport;
 use App\Gebruikers;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class VrijwilligerController extends Controller
 
     public function export()
     {
-        return Excel::download(new GebruikesExport(), 'Vrijwillers.xlsx');
+        return Excel::download(new VrijwilligersExport(), 'Vrijwillers.xlsx');
     }
 
     public function index()

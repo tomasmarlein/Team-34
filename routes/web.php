@@ -19,7 +19,7 @@ Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 
 
-Route::view('/aanvraag', 'aanvragen.aanvraag');
+Route::view('/aanvraag', 'aanvragen.aanvraagverantwoordelijke');
 Route::view('/aanvraagverantwoordelijke', 'aanvragen.aanvraagverantwoordelijke');
 Route::view('/documentatie', 'Documentatie');
 

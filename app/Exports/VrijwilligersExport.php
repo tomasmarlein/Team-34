@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\WithEvents;
 
-class GebruikesExport implements FromQuery, WithStrictNullComparison, WithHeadings, ShouldAutoSize, WithEvents
+class VrijwilligersExport implements FromQuery, WithStrictNullComparison, WithHeadings, ShouldAutoSize, WithEvents
 {
     use Exportable;
     /**
