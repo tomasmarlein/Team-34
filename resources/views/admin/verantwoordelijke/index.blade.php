@@ -4,7 +4,7 @@
 
 @section('main')
     <div>
-        <h1>Verantwoordelijkebeheer</h1>
+        <h1>Verantwoordelijke overzicht</h1>
 
         <form method="get" action="#" id="searchForm">
             <div class="row">

@@ -62,7 +62,7 @@
                         <th>Email</th>
                         <th>Telefoon</th>
                         <th>Geboortedatum</th>
-                        <th></th>
+                        <th>Acties</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -125,7 +125,7 @@
                 $('.modal-title').text(`Edit ${voornaam} ${naam}`);
                 $('form').attr('action', `/admin/vrijwilligers/${id}`);
 
-                $('#naam').val(naam);
+                $('#name').val(naam);
                 $('#voornaam').val(voornaam);
                 $('#roepnaam').val(roepnaam);
                 $('#email').val(email);

@@ -40,11 +40,9 @@
                 <th>#</th>
                 <th>Naam</th>
                 <th>Email</th>
-                <th>Adres</th>
-                <th>Postcode</th>
                 <th>Telefoon</th>
                 <th>Geboortedatum</th>
-                <th></th>
+                <th>Acties</th>
             </tr>
             </thead>
             <tbody>

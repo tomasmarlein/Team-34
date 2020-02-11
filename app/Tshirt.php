@@ -8,6 +8,6 @@ class Tshirt extends Model
 {
     public function gebruikertshirt()
     {
-        return $this->hasMany('App\Gebruikers');
+        return $this->hasOne('App\Gebruikers');
     }
 }
