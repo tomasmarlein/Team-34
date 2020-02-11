@@ -119,6 +119,7 @@ class CreateGebruikersTable extends Migration
                 ]);
         }
 
+//        dummy Tomas
         DB::table('gebruikers')->insert(
             [
                 'naam' => "Marlein",
@@ -129,6 +130,7 @@ class CreateGebruikersTable extends Migration
                 'huisnummer' => "28",
                 'geboortedatum' => "19970226",
                 'telefoon' => '0493529625',
+                'rijksregisternr' => '97022627724',
                 'tweedetshirt' => False,
                 'postcode' => '2400',
                 'eersteAanmelding' => false,
@@ -136,6 +138,27 @@ class CreateGebruikersTable extends Migration
                 'tshirtId'=> 1,
                 'rolId' => 1,
             ]);
+
+//        dummy Arno
+        DB::table('gebruikers')->insert(
+            [
+                'naam' => "Gielis",
+                'voornaam' => "Arno",
+                'email' => "r0714654@student.thomasmore.be",
+                'password' => Hash::make("admin123"),
+                'straat' => "Teststraat",
+                'huisnummer' => "25",
+                'geboortedatum' => "19991227",
+                'rijksregisternr' => '99122730380',
+                'tweedetshirt' => False,
+                'postcode' => '2500',
+                'eersteAanmelding' => false,
+                'lunchpakket' => False,
+                'tshirtId'=> 1,
+                'rolId' => 1,
+            ]);
+
+
     }
 
 

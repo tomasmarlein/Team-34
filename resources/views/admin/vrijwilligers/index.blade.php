@@ -6,12 +6,17 @@
     <h1>Vrijwilligers</h1>
     @include('shared.alert')
 
-    <form method="get" action="/admin/vrijwilligers" id="searchForm">
+    <form method="get" action="/admin/qryVrijwilligers" id="searchForm">
         <div class="row">
-            <div class="col-sm-6 mb-2">
-                <label for="name">Filter Name or Email</label>
-                <input type="text" class="form-control" name="name" id="name"
-                       value="{{ request()->name }}" placeholder="Filter Name or Email">
+            <div class="col-sm-3 mb-2">
+                <label for="naam">Filter Naam</label>
+                <input type="text" class="form-control" name="naam" id="naam"
+                       value="{{ request()->naam }}" placeholder="Filter Naam">
+            </div>
+            <div class="col-sm-3 mb-2">
+                <label for="email">Filter Email</label>
+                <input type="email" class="form-control" name="email" id="email"
+                       value="{{ request()->email }}" placeholder="Filter Email">
             </div>
             <div class="col-sm-3 mb-2">
                 <label for="sort">Sort by</label>
@@ -177,6 +182,9 @@
                 // Show the modal
                 $('#modal-vrijwilliger').modal('show');
             });
+
+
+
         });
 
         // Delete a genre

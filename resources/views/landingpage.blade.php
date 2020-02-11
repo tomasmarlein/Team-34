@@ -1,105 +1,87 @@
 @extends('layouts.template')
-@section('title', 'Documentatie')
+@section('title', 'Tijdsregistratiesysteem')
 @section('css_after')
-    <style>
-        .card{margin-top: 2%}
-    </style>
-@endsection
+            <style>
+                body, html {
+                    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/hero.jfif") ;
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    background-size: cover;
+                    background-position: center;
+                    background-color: #443339 ;
+                    isolation: isolate;
+                }
 
 
-@section('main')
-    <div>
-        <h1>Documentatie</h1>
-        <p>Op deze pagina vind je documentatie en veelgstelde vragen over het tijdsregistratiesyteem</p>
+                .hero-text {
+                    text-align: center;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: white;
+                }
 
 
-        {{--admins documentatie--}}
-        @if(auth()->user()->rolId==1)
+                #footer{
+                    color: white;
+                }
 
-            <div id="accordion">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Evenement aanmaken
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Admins beheren
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Verenigingen toevoegen
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
-                @endif
-                {{--kernlid documentatie--}}
-                @if(auth()->user()->rolId==1 OR auth()->user()->rolId==2)
-                    <div class="card">
-                        <div class="card-header" id="headingFour">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    Verenigingen aanpassen
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                #footer hr{
+                    height: 1px;
+                    background-color: #ccc;
+                    border: none;
+                }
+                main{
+                    min-height: 70vh;
+                }
+                .hidden{
+                    display: none;
+                }
+
+                .btn-gladiolen{
+                    background: #0C225D;
+                    color: white;
+                }
+                .btn-gladiolen:hover{
+                    background: #5DB4FF;
+                    color: white;
+                }
+
+
+            </style>
+        @endsection
+
+        @section('main')
+
+            <header>
+
+                <div class="hero-text hidden">
+                    <h1>Tijdsregistratiesysteem</h1>
+                    <h1>Keizer Karel Olen</h1>
+                    @guest
+                        <p>Meld je hier aan om gebruik te maken van het Tijdsregistratiesysteem tijdens evenementen van VZW Keizer Karel Olen</p>
+                        <br><br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="/login"><button  type="button" class="btn btn-gladiolen btn-lg">Inloggen</button></a>
+                            </div>
+                            <div class="col-lg-6">
+                                <a href="/aanvraagverantwoordelijke"><button  href="/aanvraagverantwoordelijke" type="button" class="btn btn-gladiolen btn-lg">Samenwerking</button></a>
                             </div>
                         </div>
-                    </div>
-                @endif
-                {{--kernlid documentatie--}}
+                    @endguest
+                    {{--            @if(auth()->user()->admin)
 
-                <div class="card">
-                    <div class="card-header" id="headingFive">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                kernlid documentatie
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseFive+" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
+                                knoppen voor admins
+                                @endif--}}
                 </div>
-
-
-
-
-
-
-
-
-            </div>
+            </header>
+        @endsection
+        @section('script_after')
+            <script>
+                $(document).ready(function () {
+                    $('div.hidden').fadeIn(2000).removeClass('hidden');
+                });
+            </script>
 @endsection

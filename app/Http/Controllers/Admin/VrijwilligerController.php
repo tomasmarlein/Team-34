@@ -129,6 +129,9 @@ class VrijwilligerController extends Controller
         ]);
     }
 
+
+
+
     public function qryVrijwilligers()
     {
         $gebruikers = Gebruikers::orderBy('id')
