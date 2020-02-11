@@ -479,7 +479,7 @@
                             </div>
 
                             <div class="col-lg-4 cardpadding">
-                                <a href="#" class="card">
+                                <a href="/admin/tshirt" class="card">
                                     <div class="card__head">
                                         <div class="card__image" style="background-image: url('assets/adminpanel/tshirt.jfif');"></div>
                                         <div class="card__author">

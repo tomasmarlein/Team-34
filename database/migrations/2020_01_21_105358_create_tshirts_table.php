@@ -18,10 +18,10 @@ class CreateTshirtsTable extends Migration
             $table->string('maat');
             $table->string('geslacht');
             $table->integer('aantal');
-            $table->unsignedBigInteger('gebruikerId')->nullable();
-            $table->unsignedBigInteger('typeId')->nullable();
+            $table->unsignedBigInteger('gebruikers_id')->nullable();
+            $table->unsignedBigInteger('types_id')->nullable();
 
-            $table->foreign('gebruikerId')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('gebruikers_id')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
         });
         // Insert roles
         DB::table('tshirts')->insert(
@@ -31,8 +31,8 @@ class CreateTshirtsTable extends Migration
                     'maat' => "XL",
                     'geslacht' => 'V',
                     'aantal'=> 1,
-                    'gebruikerID'=> 1,
-                    'typeID'=> 1
+                    'gebruikers_id'=> 34,
+                    'types_id'=> 1
                 ]
             ]
         );

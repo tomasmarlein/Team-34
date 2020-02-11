@@ -11,7 +11,7 @@ class Gebruikers extends Model
 
     public function tshirt()
     {
-        return $this->belongsTo('App\Tshirt')->withDefault();
+        return $this->hasMany('App\Tshirt', 'gebruikers_id');
     }
 
     public function rol()

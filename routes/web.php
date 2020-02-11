@@ -65,7 +65,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('active/{id}','Admin\VerenigingController@active');
     Route::get('nonactive/{id}','Admin\VerenigingController@nonactive');
 
-
+//route Tshirt
+    Route::get('qryTshirt','Admin\TshirtController@qryTshirt');
+    Route::resource('Tshirt', 'Admin\TshirtController');
+    Route::get('tshirt', 'Admin\TshirtController@index');
 
 
 //    route verantwoordelijke
