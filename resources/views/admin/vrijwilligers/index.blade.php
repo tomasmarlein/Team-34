@@ -62,7 +62,7 @@
                         <th>Email</th>
                         <th>Telefoon</th>
                         <th>Geboortedatum</th>
-                        <th></th>
+                        <th>Acties</th>
                     </tr>
                     </thead>
                     <tbody>
