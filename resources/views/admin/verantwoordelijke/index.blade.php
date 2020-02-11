@@ -20,6 +20,7 @@
                 <thead>
                 <tr>
                     <th>Vereniging</th>
+                    <th>Type</th>
                     <th>Naam</th>
                     <th>Email</th>
                     <th>Telefoon</th>
@@ -51,54 +52,47 @@
                     $.each(data, function (key, value) {
                         let tr = "";
                         console.log(value.vereniginglid.length);
-                        if(value.vereniginglid.length == 1){
-                            let tr = `<tr>
+                        for(var i = 0; i<value.vereniginglid.length; i++){
+                            if(value.vereniginglid[i].id == value.hoofdverantwoordelijke){
+                                let tr = `<tr>
                                <td>${value.naam}</td>
-                               <td>${value.vereniginglid[0].naam} ${value.vereniginglid[0].voornaam}</td>
-                               <td>${value.vereniginglid[0].email}</td>
-                               <td>${value.vereniginglid[0].telefoon}</td>
-                               <td data-id="${value.vereniginglid[0].id}"
-                                   data-naam="${value.vereniginglid[0].naam}"
-                                   data-voornaam="${value.vereniginglid[0].voornaam}"
-                                   data-roepnaam="${value.vereniginglid[0].roepnaam}"
-                                   data-email="${value.vereniginglid[0].email}"
-                                   data-geboortedatum="${value.vereniginglid[0].geboortedatum}"
-                                   data-telefoon="${value.vereniginglid[0].telefoon}"
-                                   data-rijksregisternummer="${value.vereniginglid[0].rijksregisternr}">
+                               <td>Hoofdverantwoordelijke</td>
+                               <td>${value.vereniginglid[i].naam} ${value.vereniginglid[i].voornaam}</td>
+                               <td>${value.vereniginglid[i].email}</td>
+                               <td>${value.vereniginglid[i].telefoon}</td>
+                               <td data-id="${value.vereniginglid[i].id}"
+                                   data-naam="${value.vereniginglid[i].naam}"
+                                   data-voornaam="${value.vereniginglid[i].voornaam}"
+                                   data-roepnaam="${value.vereniginglid[i].roepnaam}"
+                                   data-email="${value.vereniginglid[i].email}"
+                                   data-geboortedatum="${value.vereniginglid[i].geboortedatum}"
+                                   data-telefoon="${value.vereniginglid[i].telefoon}"
+                                   data-rijksregisternummer="${value.vereniginglid[i].rijksregisternr}">
                                </td>
                            </tr>`;
-                            $('tbody').append(tr);
-                        } else {
-                            let tr = `<tr>
+                                $('tbody').append(tr);
+                            } if(value.vereniginglid[i].id == value.tweedeverantwoordelijke) {
+                                console.log('tweedeverantwoodelijke klopt')
+                                let tr = `<tr>
                                <td>${value.naam}</td>
-                               <td>${value.vereniginglid[0].naam} ${value.vereniginglid[0].voornaam}</td>
-                               <td>${value.vereniginglid[0].email}</td>
-                               <td>${value.vereniginglid[0].telefoon}</td>
-                               <td data-id="${value.vereniginglid[0].id}"
-                                   data-naam="${value.vereniginglid[0].naam}"
-                                   data-voornaam="${value.vereniginglid[0].voornaam}"
-                                   data-roepnaam="${value.vereniginglid[0].roepnaam}"
-                                   data-email="${value.vereniginglid[0].email}"
-                                   data-geboortedatum="${value.vereniginglid[0].geboortedatum}"
-                                   data-telefoon="${value.vereniginglid[0].telefoon}"
-                                   data-rijksregisternummer="${value.vereniginglid[0].rijksregisternr}">
-                               </td>
-                           </tr><tr>
-                               <td>${value.naam}</td>
-                               <td>${value.vereniginglid[1].naam} ${value.vereniginglid[1].voornaam}</td>
-                               <td>${value.vereniginglid[1].email}</td>
-                               <td>${value.vereniginglid[1].telefoon}</td>
-                               <td data-id="${value.vereniginglid[1].id}"
-                                   data-naam="${value.vereniginglid[1].naam}"
-                                   data-voornaam="${value.vereniginglid[1].voornaam}"
-                                   data-roepnaam="${value.vereniginglid[1].roepnaam}"
-                                   data-email="${value.vereniginglid[1].email}"
-                                   data-geboortedatum="${value.vereniginglid[1].geboortedatum}"
-                                   data-telefoon="${value.vereniginglid[1].telefoon}"
-                                   data-rijksregisternummer="${value.vereniginglid[1].rijksregisternr}">
+                               <td>Tweedeverantwoordelijke</td>
+                               <td>${value.vereniginglid[i].naam} ${value.vereniginglid[i].voornaam}</td>
+                               <td>${value.vereniginglid[i].email}</td>
+                               <td>${value.vereniginglid[i].telefoon}</td>
+                               <td data-id="${value.vereniginglid[i].id}"
+                                   data-naam="${value.vereniginglid[i].naam}"
+                                   data-voornaam="${value.vereniginglid[i].voornaam}"
+                                   data-roepnaam="${value.vereniginglid[i].roepnaam}"
+                                   data-email="${value.vereniginglid[i].email}"
+                                   data-geboortedatum="${value.vereniginglid[i].geboortedatum}"
+                                   data-telefoon="${value.vereniginglid[i].telefoon}"
+                                   data-rijksregisternummer="${value.vereniginglid[i].rijksregisternr}">
                                </td>
                            </tr>`;
-                            $('tbody').append(tr);
+                                $('tbody').append(tr);
+                        }
+
+
                         }
                     });
                     $('[data-toggle="tooltip"]').tooltip({
