@@ -30,6 +30,15 @@ class CreateLidVansTable extends Migration
                 ]
             );
         }
+        for ($i = 34; $i <= 43; $i++) {
+            DB::table('gebruikers_verenigings')->insert(
+                [
+                    'verenigings_id'=> $i-33,
+                    'gebruikers_id' => $i
+
+                ]
+            );
+        }
     }
 
 

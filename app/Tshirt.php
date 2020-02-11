@@ -8,6 +8,10 @@ class Tshirt extends Model
 {
     public function gebruikertshirt()
     {
-        return $this->hasOne('App\Gebruikers');
+        return $this->belongsTo('App\Gebruikers');
+    }
+    public function tshirtType()
+    {
+        return $this->belongsTo('App\TshirtType', 'id');
     }
 }

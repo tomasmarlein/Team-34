@@ -8,7 +8,7 @@ class tshirtType extends Model
 {
     public function tshirtType()
     {
-        return $this->hasMany('App\Tshirt');
+        return $this->hasMany('App\Tshirt', 'types_id');
     }
 
     public function tshirttypeEvenement()
