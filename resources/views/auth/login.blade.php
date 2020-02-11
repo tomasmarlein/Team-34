@@ -37,11 +37,27 @@
         .hidden{
             display: none;
         }
+
+
+
+
+
+    /*    login form new    */
+
+
+
     </style>
 @endsection
 
 
 @section('main')
+
+
+
+
+
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

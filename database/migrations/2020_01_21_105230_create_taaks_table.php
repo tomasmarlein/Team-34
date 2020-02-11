@@ -21,6 +21,19 @@ class CreateTaaksTable extends Migration
             $table->dateTime('eindDatum');
             $table->integer('aantalPersonen');
         });
+
+
+        for ($i = 1; $i <= 10; $i++) {
+            DB::table('taaks')->insert(
+                [
+                    'subtaak_id'=> $i,
+                    'taakgroep_id'=> $i,
+                    'startDatum'=> now(),
+                    'eindDatum'=> now(),
+                    'aantalPersonen'=> $i
+                ]
+            );
+        }
     }
 
     /**
