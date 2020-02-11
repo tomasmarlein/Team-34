@@ -97,9 +97,6 @@
                 let naam = $(this).closest('td').data('naam');
                 let voornaam = $(this).closest('td').data('voornaam');
                 let email = $(this).closest('td').data('email');
-                let straat = $(this).closest('td').data('straat');
-                let huisnummer = $(this).closest('td').data('huisnummer');
-                let postcode = $(this).closest('td').data('postcode');
                 let telefoon = $(this).closest('td').data('telefoon');
                 let geboortedatum = $(this).closest('td').data('geboortedatum');
                 // Update the modal
@@ -109,9 +106,6 @@
                 $('#naam').val(naam);
                 $('#voornaam').val(voornaam);
                 $('#email').val(email);
-                $('#straat').val(straat);
-                $('#huisnummer').val(huisnummer);
-                $('#postcode').val(postcode);
                 $('#telefoon').val(telefoon);
                 $('#geboortedatum').val(geboortedatum);
 
@@ -208,9 +202,6 @@
                                <td>${value.id}</td>
                                <td>${value.naam} ${value.voornaam}</td>
                                <td>${value.email}</td>
-                               <td>${value.straat} ${value.huisnummer}</td>
-                               <td>${value.postcode}</td>
-
                                <td>${value.telefoon}</td>
                                <td>${value.geboortedatum}</td>
 
@@ -219,9 +210,6 @@
                                    data-naam="${value.naam}"
                                    data-voornaam="${value.voornaam}"
                                    data-email="${value.email}"
-                                   data-straat="${value.straat}"
-                                   data-huisnummer="${value.huisnummer}"
-                                   data-postcode="${value.postcode}"
                                    data-geboortedatum="${value.geboortedatum}"
                                    data-telefoon="${value.telefoon}">
 

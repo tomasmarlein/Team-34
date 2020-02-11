@@ -53,8 +53,6 @@
                         <th>Naam</th>
                         <th>Vereniging</th>
                         <th>Email</th>
-                        <th>Adres</th>
-                        <th>Postcode</th>
                         <th>Telefoon</th>
                         <th>Geboortedatum</th>
                         <th></th>
@@ -114,9 +112,6 @@
                 let voornaam = $(this).closest('td').data('voornaam');
                 let roepnaam = $(this).closest('td').data('roepnaam');
                 let email = $(this).closest('td').data('email');
-                let straat = $(this).closest('td').data('straat');
-                let huisnummer = $(this).closest('td').data('huisnummer');
-                let postcode = $(this).closest('td').data('postcode');
                 let telefoon = $(this).closest('td').data('telefoon');
                 let geboortedatum = $(this).closest('td').data('geboortedatum');
                 // Update the modal
@@ -127,9 +122,6 @@
                 $('#voornaam').val(voornaam);
                 $('#roepnaam').val(roepnaam);
                 $('#email').val(email);
-                $('#straat').val(straat);
-                $('#huisnummer').val(huisnummer);
-                $('#postcode').val(postcode);
                 $('#telefoon').val(telefoon);
                 $('#geboortedatum').val(geboortedatum);
 
@@ -230,18 +222,6 @@
                             var verenigingnaam = 'Geen vereniging';
                         }
 
-                        if(value.straat == null) {
-                            var adres = 'Geen adres'
-                        } else {
-                            var adres = value.straat + ' ' + value.huisnummer
-                        }
-
-                        if(value.postcode == null) {
-                            var postcode = '/'
-                        } else {
-                            var postcode = value.postcode
-                        }
-
                         if(value.telefoon == null) {
                             var telefoon = '/'
                         } else {
@@ -259,9 +239,6 @@
                                <td>${value.naam} ${value.voornaam}</td>
                                <td>${verenigingnaam}</td>
                                <td>${value.email}</td>
-                               <td>${adres}</td>
-                               <td>${postcode}</td>
-
                                <td>${telefoon}</td>
                                <td>${geboortedatum}</td>
 
@@ -271,9 +248,6 @@
                                    data-voornaam="${value.voornaam}"
                                    data-roepnaam="${value.roepnaam}"
                                    data-email="${value.email}"
-                                   data-straat="${value.straat}"
-                                   data-huisnummer="${value.huisnummer}"
-                                   data-postcode="${value.postcode}"
                                    data-geboortedatum="${value.geboortedatum}"
                                    data-telefoon="${value.telefoon}">
 

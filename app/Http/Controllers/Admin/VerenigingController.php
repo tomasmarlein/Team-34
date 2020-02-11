@@ -226,10 +226,6 @@ class VerenigingController extends Controller
         Session::put('gebruikersnaam',$gebruikers->naam = $request->naam);
         Session::put('gebruikersvoornaam',$gebruikers->voornaam = $request->voornaam);
         Session::put('gebruikersemail',$gebruikers->email = $request->email);
-        Session::put('gebruikersstraat',$gebruikers->straat = $request->straat);
-        Session::put('gebruikershuisnummer',$gebruikers->huisnummer = $request->huisnummer);
-        Session::put('gebruikerspostcode',$gebruikers->postcode = $request->postcode);
-        Session::put('gebruikersgemeente',$gebruikers->gemeente = $request->gemeente);
         Session::put('gebruikerstelefoon',$gebruikers->telefoon = $request->telefoon);
         Session::put('gebruikersgeboortedatum',$gebruikers->geboortedatum = $request->geboortedatum);
         Session::put('rijksregisternr',$gebruikers->rijksregisternr = $request->rijksregisternr);
@@ -290,10 +286,6 @@ class VerenigingController extends Controller
         $gebruikers->naam = Session::get('gebruikersnaam');
         $gebruikers->voornaam = Session::get('gebruikersvoornaam');
         $gebruikers->email = Session::get('gebruikersemail');
-        $gebruikers->straat = Session::get('gebruikersstraat');
-        $gebruikers->huisnummer = Session::get('gebruikershuisnummer');
-        $gebruikers->postcode = Session::get('gebruikerspostcode');
-        $gebruikers->gemeente = Session::get('gebruikersgemeente');
         $gebruikers->telefoon = Session::get('gebruikerstelefoon');
         $gebruikers->geboortedatum = Session::get('gebruikersgeboortedatum');
         $gebruikers->rijksregisternr = Session::get('rijksregisternr');
@@ -324,6 +316,9 @@ class VerenigingController extends Controller
 
         $gebruiker = Gebruikers::find(str_replace($replace, "",$gebruiker_id));
         $gebruiker->lid()->sync(['verenigings_id' => $verenigings->id], ['gebruikers_id' => $gebruiker_id]);
+
+
+
 
         return view('landingpage');
     }

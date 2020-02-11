@@ -20,14 +20,11 @@ class CreateGebruikersTable extends Migration
             $table->string('naam')->nullable();
             $table->string('voornaam')->nullable();
             $table->string('roepnaam')->nullable();
-            $table->string('straat')->nullable();
-            $table->string('huisnummer')->nullable();
             $table->date('geboortedatum')->nullable();
             $table->string('telefoon')->nullable();
             $table->boolean('tweedetshirt')->nullable();
             $table->string('opmerking')->nullable();
             $table->string('rijksregisternr')->nullable();
-            $table->string('postcode')->nullable();
             $table->boolean('eersteAanmelding')->nullable();
             $table->boolean('lunchpakket')->nullable();
             $table->boolean('actief')->nullable();
@@ -49,12 +46,9 @@ class CreateGebruikersTable extends Migration
                     'voornaam' => "Gladiolen_$i",
                     'email' => "admin_$i@mailinator.com",
                     'password' => Hash::make("admin$i"),
-                    'straat' => "Straat_$i",
-                    'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
                     'tweedetshirt' => False,
-                    'postcode' => '2440',
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,
                     'tshirtId'=> 1,
@@ -68,12 +62,9 @@ class CreateGebruikersTable extends Migration
                     'voornaam' => "Gladiolen_$i",
                     'email' => "kernlid_$i@mailinator.com",
                     'password' => Hash::make("kernlid$i"),
-                    'straat' => "Straat_$i",
-                    'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
                     'tweedetshirt' => False,
-                    'postcode' => '2440',
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,
                     'tshirtId'=> 1,
@@ -87,12 +78,9 @@ class CreateGebruikersTable extends Migration
                     'voornaam' => "Gladiolen_$i",
                     'email' => "verantwoordelijke_$i@mailinator.com",
                     'password' => Hash::make("verant$i"),
-                    'straat' => "Straat_$i",
-                    'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
                     'tweedetshirt' => False,
-                    'postcode' => '2440',
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,
                     'tshirtId'=> 1,
@@ -106,12 +94,9 @@ class CreateGebruikersTable extends Migration
                     'voornaam' => "Gladiolen_$i",
                     'email' => "Vrijwilliger_$i@mailinator.com",
                     'password' => Hash::make("vrijwilliger$i"),
-                    'straat' => "Straat_$i",
-                    'huisnummer' => "$i + $i",
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
                     'tweedetshirt' => False,
-                    'postcode' => '2440',
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,
                     'tshirtId'=> 1,
@@ -125,12 +110,9 @@ class CreateGebruikersTable extends Migration
                 'voornaam' => "Tomas",
                 'email' => "r0676862@student.thomasmore.be",
                 'password' => Hash::make("admin123"),
-                'straat' => "Bosbessenstraat",
-                'huisnummer' => "28",
                 'geboortedatum' => "19970226",
                 'telefoon' => '0493529625',
                 'tweedetshirt' => False,
-                'postcode' => '2400',
                 'eersteAanmelding' => false,
                 'lunchpakket' => False,
                 'tshirtId'=> 1,

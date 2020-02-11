@@ -46,12 +46,6 @@
                     <label for="naam">Naam & Voornaam:</label>
                     <h4>{{Session::get('gebruikersnaam')}} {{Session::get('gebruikersvoornaam')}}</h4>
                 </div>
-
-                <div class="col-md-6 mb-3">
-                    <label for="naam">Adres:</label>
-                    <h4>{{Session::get('gebruikersstraat')}} {{Session::get('gebruikershuisnummer')}}</h4>
-                    <h4>{{Session::get('gebruikerspostcode')}} {{Session::get('gebruikersgemeente')}}</h4>
-                </div>
             </div>
 
 

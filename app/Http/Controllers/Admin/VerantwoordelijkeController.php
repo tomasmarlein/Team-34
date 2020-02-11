@@ -54,10 +54,7 @@ class VerantwoordelijkeController extends Controller
         }
         $gebruikers->rijksregisternr = $request->rijksregisternummer;
         $gebruikers->email = $request->email;
-        $gebruikers->straat = $request->straat;
         $gebruikers->password = Hash::make("azerty12");
-        $gebruikers->huisnummer = $request->huisnummer;
-        $gebruikers->postcode = $request->postcode;
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->tweedetshirt = 0;
@@ -127,9 +124,6 @@ class VerantwoordelijkeController extends Controller
                 'roepnaam' => null,
                 'email' => $data['email'],
                 'rijksregisternr' => $data['rijksregisternummer'],
-                'straat' => $data['straat'],
-                'huisnummer' => $data['huisnummer'],
-                'postcode' => $data['postcode'],
                 'geboortedatum' => $data['geboortedatum'],
                 'telefoon' => $data['telefoon'],
             ]);
@@ -140,9 +134,6 @@ class VerantwoordelijkeController extends Controller
                 'roepnaam' => $data['roepnaam'],
                 'email' => $data['email'],
                 'rijksregisternr' => $data['rijksregisternummer'],
-                'straat' => $data['straat'],
-                'huisnummer' => $data['huisnummer'],
-                'postcode' => $data['postcode'],
                 'geboortedatum' => $data['geboortedatum'],
                 'telefoon' => $data['telefoon'],
             ]);
