@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Exports\VrijwilligersExport;
-use App\Imports\GebruikersImport;
+use App\Imports\VrijwilligersImport;
 use App\Gebruikers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,7 +18,7 @@ class VrijwilligerController extends Controller
      */
     public function import()
     {
-        Excel::import(new GebruikersImport(),request()->file('file'));
+        Excel::import(new VrijwilligersImport(),request()->file('file'));
 
         return back();
     }
