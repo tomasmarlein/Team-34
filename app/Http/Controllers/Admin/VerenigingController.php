@@ -258,7 +258,6 @@ class VerenigingController extends Controller
             ->select('id')
             ->first();
 
-
         Session::put('verenigingssnaam',$verenigings->naam = $request->naam);
         Session::put('verenigingsrekeningnr',$verenigings->rekeningnr = $request->rekeningnr);
         Session::put('verenigingsbtwnr',$verenigings->btwnr = $request->btwnr);
