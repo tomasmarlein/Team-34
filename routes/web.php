@@ -19,7 +19,7 @@ Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 
 
-Route::view('/aanvraag', 'aanvragen.aanvraag');
+Route::view('/aanvraag', 'aanvragen.aanvraagverantwoordelijke');
 Route::view('/aanvraagverantwoordelijke', 'aanvragen.aanvraagverantwoordelijke');
 Route::view('/documentatie', 'Documentatie');
 
@@ -53,6 +53,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('qryEvenementen','Admin\EvenementController@qryEvenementen');
     Route::resource('evenementen', 'Admin\EvenementController');
 
+    //import en export vrijwilliger
+    Route::get('download','Admin\VrijwilligerController@export');
+    Route::post('import', 'Admin\VrijwilligerController@import')->name('import');
 
     //vereniginen
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
@@ -96,4 +99,15 @@ Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->g
     Route::get('qryVerenigingen', 'Verantwoordelijke\VerenigingController@qryVerenigingen');
     Route::resource('verenigingen', 'Verantwoordelijke\VerenigingController');
     Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@index');
+});
+
+//update profile & ww aanpassen
+Route::redirect('user', '/shared/profile');
+Route::middleware(['auth'])->prefix('user')->group(function () {
+    //profile
+    Route::get('profile', 'User\ProfileController@edit');
+    Route::post('profile', 'User\ProfileController@update');
+    //password
+    Route::get('password', 'User\PasswordController@edit');
+    Route::post('password', 'User\PasswordController@update');
 });

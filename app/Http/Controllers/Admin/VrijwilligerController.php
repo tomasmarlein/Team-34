@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\VrijwilligersExport;
+use App\Imports\GebruikersImport;
 use App\Gebruikers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VrijwilligerController extends Controller
 {
@@ -13,6 +16,18 @@ class VrijwilligerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function import()
+    {
+        Excel::import(new GebruikersImport(),request()->file('file'));
+
+        return back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new VrijwilligersExport(), 'Vrijwillers.xlsx');
+    }
+
     public function index()
     {
         return view('admin.vrijwilligers.index');
