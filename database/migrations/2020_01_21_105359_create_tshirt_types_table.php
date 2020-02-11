@@ -16,12 +16,22 @@ class CreateTshirtTypesTable extends Migration
         Schema::create('tshirt_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('tshirtId')->nullable();
-            $table->unsignedBigInteger('evenementId')->nullable();
+            $table->unsignedBigInteger('tshirtId');
+            $table->string('type');
+            $table->unsignedBigInteger('evenementId');
 
-            $table->foreign('tshirtId')->references('id')->on('tshirt')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('evenementId')->references('id')->on('evenementen')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('tshirtId')->references('id')->on('tshirts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('evenementId')->references('id')->on('evenements')->onDelete('cascade')->onUpdate('cascade');
         });
+
+            DB::table('tshirt_types')->insert(
+                [
+                    'type'=> 'Crew',
+                    'evenementId'=> 1,
+                    'tshirtId'=> 1,
+                ]
+            );
+
     }
 
 

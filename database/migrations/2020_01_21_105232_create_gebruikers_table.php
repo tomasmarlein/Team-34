@@ -45,10 +45,8 @@ class CreateGebruikersTable extends Migration
                     'password' => Hash::make("admin$i"),
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
-                    'tweedetshirt' => False,
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,
-                    'tshirtId'=> 1,
                     'rolId' => 1,
                 ]);
             }
@@ -61,10 +59,8 @@ class CreateGebruikersTable extends Migration
                     'password' => Hash::make("kernlid$i"),
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
-                    'tweedetshirt' => False,
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,
-                    'tshirtId'=> 1,
                     'rolId' => 2,
                 ]);
             }
@@ -77,10 +73,8 @@ class CreateGebruikersTable extends Migration
                     'password' => Hash::make("verant$i"),
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
-                    'tweedetshirt' => False,
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,
-                    'tshirtId'=> 1,
                     'rolId' => 3,
                 ]);
             }
@@ -93,10 +87,8 @@ class CreateGebruikersTable extends Migration
                     'password' => Hash::make("vrijwilliger$i"),
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
-                    'tweedetshirt' => False,
                     'eersteAanmelding' => false,
                     'lunchpakket' => False,
-                    'tshirtId'=> 1,
                     'rolId' => 4,
                 ]);
         }
@@ -111,10 +103,8 @@ class CreateGebruikersTable extends Migration
                 'geboortedatum' => "19970226",
                 'telefoon' => '0493529625',
                 'rijksregisternr' => '97022627724',
-                'tweedetshirt' => False,
                 'eersteAanmelding' => false,
                 'lunchpakket' => False,
-                'tshirtId'=> 1,
                 'rolId' => 1,
             ]);
 
@@ -125,15 +115,10 @@ class CreateGebruikersTable extends Migration
                 'voornaam' => "Arno",
                 'email' => "r0714654@student.thomasmore.be",
                 'password' => Hash::make("admin123"),
-                'straat' => "Teststraat",
-                'huisnummer' => "25",
                 'geboortedatum' => "19991227",
                 'rijksregisternr' => '99122730380',
-                'tweedetshirt' => False,
-                'postcode' => '2500',
                 'eersteAanmelding' => false,
                 'lunchpakket' => False,
-                'tshirtId'=> 1,
                 'rolId' => 1,
             ]);
 
