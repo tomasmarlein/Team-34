@@ -4,6 +4,9 @@
 
 @section('main')
     <div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+        </div>
         <h1>Samenwerken</h1>
 
         <p>Ben jij de verantwoordelijke van een vereniging of wil je als vrijwilliger komen helpen op evenementen van
@@ -30,8 +33,6 @@
             <input type="text" class="form-control" name="email" id="email" placeholder="E-mail">
         </div>
 
-
-
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="telefoon">Telefoon</label>
@@ -44,29 +45,6 @@
             <div class="col-md-6 mb-3">
                 <label for="rijksregisternr">Rijksregisternummer</label>
                 <input type="text" class="form-control"  name="rijksregisternr" id="rijksregisternr" placeholder="rijksregisternr" value="">
-            </div>
-        </div>
-
-
-        <div class="mb-3">
-            <label for="gemeente">Gemeente</label>
-            <input type="text" class="form-control" name="gemeente" id="gemeente" placeholder="Gemeente">
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="straat">Straat</label>
-                <input type="text" class="form-control" name="straat" id="straat" placeholder="Straatnaam" >
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <label for="huisnummer">Huisnummer</label>
-                <input type="text" class="form-control" name="huisnummer" id="huisnummer" placeholder="huisnummer">
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <label for="postcode">Postcode</label>
-                <input type="text" class="form-control" name="postcode" id="postcode" placeholder="postcode">
             </div>
         </div>
 

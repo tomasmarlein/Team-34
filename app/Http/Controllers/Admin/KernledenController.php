@@ -44,9 +44,6 @@ class KernledenController extends Controller
         $gebruikers->naam = $request->naam;
         $gebruikers->voornaam = $request->voornaam;
         $gebruikers->email = $request->email;
-        $gebruikers->straat = $request->straat;
-        $gebruikers->huisnummer = $request->huisnummer;
-        $gebruikers->postcode = $request->postcode;
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->rolId = 2;
@@ -93,9 +90,6 @@ class KernledenController extends Controller
             'naam' => $data['naam'],
             'voornaam' => $data['voornaam'],
             'email' => $data['email'],
-            'straat' => $data['straat'],
-            'huisnummer' => $data['huisnummer'],
-            'postcode' => $data['postcode'],
             'geboortedatum' => $data['geboortedatum'],
             'telefoon' => $data['telefoon'],
         ]);

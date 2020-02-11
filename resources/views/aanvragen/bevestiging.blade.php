@@ -3,27 +3,78 @@
 
 
 @section('main')
-    <form action="" method="get">
-        <h3>Bevestiging</h3>
-        <div class="mb-3">
-            <label for="naam">Vereniging</label>
-            <div class="input-group">
-                <p>{{$verenigings->id}}</p>
+
+
+
+        <form>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%"></div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="rekeningnr">Gebruiker id</label>
-                <p>{{$gebruikers->id}}</p>
+            <h2>Bevestiging</h2>
+            <hr class="mb-4">
+
+            <h3>Vereniging</h3>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="naam">Vereniging:</label>
+                    <h4>{{Session::get('verenigingssnaam')}}</h4>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="naam">Rekening Nummer:</label>
+                    <h4>{{Session::get('verenigingsrekeningnr')}}</h4>
+                </div>
             </div>
-        </div>
-
-        <hr class="mb-4">
-        <button type="submit" class="btn btn-primary btn-lg btn-block">
-            <a href="" class="btn btn-primary btn-lg btn-block">Bevestig</a>
-        </button>
 
 
-    </form>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="naam">Adres:</label>
+                    <h4>{{Session::get('verenigingsstraat')}} {{Session::get('verenigingshuisnummer')}}</h4>
+                    <h4>{{Session::get('verenigingspostcode')}} {{Session::get('verenigingsgemeente')}}</h4>
+                </div>
+            </div>
+
+
+
+            <hr class="mb-4">
+            <h3>Verantwoordelijke</h3>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="naam">Naam & Voornaam:</label>
+                    <h4>{{Session::get('gebruikersnaam')}} {{Session::get('gebruikersvoornaam')}}</h4>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="naam">Email:</label>
+                    <h4>{{Session::get('gebruikersemail')}} </h4>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="naam">Geboortedatum:</label>
+                    <h4>{{Session::get('gebruikersgeboortedatum')}}</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="naam">RijksregisterNummer:</label>
+                    <h4>{{Session::get('rijksregisternr')}} </h4>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="naam">Wachtwoord:</label>
+                    <p>Jouw standaard wachtwoord is <b>Azerty123</b>, wij raden aan om dit zo snel mogelijk te veranderen.</p>
+                </div>
+            </div>
+
+            <hr class="mb-4">
+            <a href="javascript:history.back()"  class="btn btn-primary btn-lg btn-block">Back</a>
+            <a href="aanvraagBevestigen" class="btn btn-primary btn-lg btn-block">Voltooien</a>
+        </form>
 @endsection

@@ -26,7 +26,7 @@
                         <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/aanvraag"><i class="fas fa-signature"></i> Aanvraag</a>
+                        <a class="nav-link" href="/aanvraagverantwoordelijke"><i class="fas fa-signature"></i> Aanvraag</a>
                     </li>
                 @endguest
                 @auth

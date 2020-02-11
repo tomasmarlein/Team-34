@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\VrijwilligersExport;
+use App\Imports\GebruikersImport;
 use App\Gebruikers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VrijwilligerController extends Controller
 {
@@ -13,6 +16,18 @@ class VrijwilligerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function import()
+    {
+        Excel::import(new GebruikersImport(),request()->file('file'));
+
+        return back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new VrijwilligersExport(), 'Vrijwillers.xlsx');
+    }
+
     public function index()
     {
         return view('admin.vrijwilligers.index');
@@ -44,9 +59,6 @@ class VrijwilligerController extends Controller
         $gebruikers->naam = $request->naam;
         $gebruikers->voornaam = $request->voornaam;
         $gebruikers->email = $request->email;
-        $gebruikers->straat = $request->straat;
-        $gebruikers->huisnummer = $request->huisnummer;
-        $gebruikers->postcode = $request->postcode;
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->rolId = 4;
@@ -96,9 +108,6 @@ class VrijwilligerController extends Controller
             'voornaam' => $data['voornaam'],
             'roepnaam' => $data['roepnaam'],
             'email' => $data['email'],
-            'straat' => $data['straat'],
-            'huisnummer' => $data['huisnummer'],
-            'postcode' => $data['postcode'],
             'geboortedatum' => $data['geboortedatum'],
             'telefoon' => $data['telefoon'],
         ]);

@@ -6,7 +6,20 @@
     <h1>Vrijwilligers</h1>
     @include('shared.alert')
 
-    <form method="get" action="/admin/qryVrijwilligers" id="searchForm">
+
+    <form action="{{url('admin/download')}}" method="get" >
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+            Download die shit
+        </button>
+    </form>
+    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" class="form-control">
+        <br>
+        <button class="btn btn-success">Import User Data</button>
+    </form>
+
+    <form method="get" action="/admin/vrijwilligers" id="searchForm">
         <div class="row">
             <div class="col-sm-3 mb-2">
                 <label for="naam">Filter Naam</label>
@@ -47,8 +60,6 @@
                         <th>Naam</th>
                         <th>Vereniging</th>
                         <th>Email</th>
-                        <th>Adres</th>
-                        <th>Postcode</th>
                         <th>Telefoon</th>
                         <th>Geboortedatum</th>
                         <th></th>
@@ -108,9 +119,6 @@
                 let voornaam = $(this).closest('td').data('voornaam');
                 let roepnaam = $(this).closest('td').data('roepnaam');
                 let email = $(this).closest('td').data('email');
-                let straat = $(this).closest('td').data('straat');
-                let huisnummer = $(this).closest('td').data('huisnummer');
-                let postcode = $(this).closest('td').data('postcode');
                 let telefoon = $(this).closest('td').data('telefoon');
                 let geboortedatum = $(this).closest('td').data('geboortedatum');
                 // Update the modal
@@ -121,9 +129,6 @@
                 $('#voornaam').val(voornaam);
                 $('#roepnaam').val(roepnaam);
                 $('#email').val(email);
-                $('#straat').val(straat);
-                $('#huisnummer').val(huisnummer);
-                $('#postcode').val(postcode);
                 $('#telefoon').val(telefoon);
                 $('#geboortedatum').val(geboortedatum);
 
@@ -226,16 +231,26 @@
                         }else{
                             var verenigingnaam = 'Geen vereniging';
                         }
+
+                        if(value.telefoon == null) {
+                            var telefoon = '/'
+                        } else {
+                            var telefoon = value.telefoon
+                        }
+
+                        if(value.geboortedatum == null) {
+                            var geboortedatum = '/'
+                        } else {
+                            var geboortedatum = value.geboortedatum
+                        }
+
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.naam} ${value.voornaam}</td>
                                <td>${verenigingnaam}</td>
                                <td>${value.email}</td>
-                               <td>${value.straat} ${value.huisnummer}</td>
-                               <td>${value.postcode}</td>
-
-                               <td>${value.telefoon}</td>
-                               <td>${value.geboortedatum}</td>
+                               <td>${telefoon}</td>
+                               <td>${geboortedatum}</td>
 
 
                                <td data-id="${value.id}"
@@ -243,9 +258,6 @@
                                    data-voornaam="${value.voornaam}"
                                    data-roepnaam="${value.roepnaam}"
                                    data-email="${value.email}"
-                                   data-straat="${value.straat}"
-                                   data-huisnummer="${value.huisnummer}"
-                                   data-postcode="${value.postcode}"
                                    data-geboortedatum="${value.geboortedatum}"
                                    data-telefoon="${value.telefoon}">
 

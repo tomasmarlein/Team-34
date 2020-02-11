@@ -62,40 +62,6 @@
                                value="">
                         <div class="invalid-feedback"></div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="straat">Straat</label>
-                        <input type="text" name="straat" id="straat"
-                               class="form-control"
-                               placeholder="Straat"
-                               minlength="3"
-                               required
-                               value="">
-                        <div class="invalid-feedback"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="huisnummer">Huisnummer</label>
-                        <input type="text" name="huisnummer" id="huisnummer"
-                               class="form-control"
-                               placeholder="Huisnummer"
-                               minlength="3"
-                               required
-                               value="">
-                        <div class="invalid-feedback"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="postcode">Postcode</label>
-                        <input type="text" name="postcode" id="postcode"
-                               class="form-control"
-                               placeholder="Postcode"
-                               minlength="3"
-                               required
-                               value="">
-                        <div class="invalid-feedback"></div>
-                    </div>
-
                     <div class="form-group">
                         <label for="rijksregisternummer">Rijksregisternummer</label>
                         <input type="text" name="rijksregisternummer" id="rijksregisternummer"

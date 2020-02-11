@@ -1,6 +1,7 @@
 @extends('layouts.template')
 @section('title', 'Tijdsregistratiesysteem')
 @section('css_after')
+
             <style>
                 body, html {
                     background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/hero.jfif") ;
@@ -77,11 +78,12 @@
                                 @endif--}}
                 </div>
             </header>
-        @endsection
-        @section('script_after')
-            <script>
-                $(document).ready(function () {
-                    $('div.hidden').fadeIn(2000).removeClass('hidden');
-                });
-            </script>
+
+@endsection
+@section('script_after')
+    <script>
+        $(document).ready(function () {
+            $('div.hidden').fadeIn(2000).removeClass('hidden');
+        });
+    </script>
 @endsection

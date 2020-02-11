@@ -23,7 +23,6 @@
                     <th>Naam</th>
                     <th>Email</th>
                     <th>Telefoon</th>
-                    <th>Adres</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -58,15 +57,11 @@
                                <td>${value.vereniginglid[0].naam} ${value.vereniginglid[0].voornaam}</td>
                                <td>${value.vereniginglid[0].email}</td>
                                <td>${value.vereniginglid[0].telefoon}</td>
-                               <td>${value.vereniginglid[0].straat}  ${value.vereniginglid[0].huisnummer}  ${value.vereniginglid[0].postcode}</td>
                                <td data-id="${value.vereniginglid[0].id}"
                                    data-naam="${value.vereniginglid[0].naam}"
                                    data-voornaam="${value.vereniginglid[0].voornaam}"
                                    data-roepnaam="${value.vereniginglid[0].roepnaam}"
                                    data-email="${value.vereniginglid[0].email}"
-                                   data-straat="${value.vereniginglid[0].straat}"
-                                   data-huisnummer="${value.vereniginglid[0].huisnummer}"
-                                   data-postcode="${value.vereniginglid[0].postcode}"
                                    data-geboortedatum="${value.vereniginglid[0].geboortedatum}"
                                    data-telefoon="${value.vereniginglid[0].telefoon}"
                                    data-rijksregisternummer="${value.vereniginglid[0].rijksregisternr}">
@@ -79,15 +74,11 @@
                                <td>${value.vereniginglid[0].naam} ${value.vereniginglid[0].voornaam}</td>
                                <td>${value.vereniginglid[0].email}</td>
                                <td>${value.vereniginglid[0].telefoon}</td>
-                               <td>${value.vereniginglid[0].straat}  ${value.vereniginglid[0].huisnummer}  ${value.vereniginglid[0].postcode}</td>
                                <td data-id="${value.vereniginglid[0].id}"
                                    data-naam="${value.vereniginglid[0].naam}"
                                    data-voornaam="${value.vereniginglid[0].voornaam}"
                                    data-roepnaam="${value.vereniginglid[0].roepnaam}"
                                    data-email="${value.vereniginglid[0].email}"
-                                   data-straat="${value.vereniginglid[0].straat}"
-                                   data-huisnummer="${value.vereniginglid[0].huisnummer}"
-                                   data-postcode="${value.vereniginglid[0].postcode}"
                                    data-geboortedatum="${value.vereniginglid[0].geboortedatum}"
                                    data-telefoon="${value.vereniginglid[0].telefoon}"
                                    data-rijksregisternummer="${value.vereniginglid[0].rijksregisternr}">
@@ -97,15 +88,11 @@
                                <td>${value.vereniginglid[1].naam} ${value.vereniginglid[1].voornaam}</td>
                                <td>${value.vereniginglid[1].email}</td>
                                <td>${value.vereniginglid[1].telefoon}</td>
-                               <td>${value.vereniginglid[1].straat}  ${value.vereniginglid[1].huisnummer}  ${value.vereniginglid[1].postcode}</td>
                                <td data-id="${value.vereniginglid[1].id}"
                                    data-naam="${value.vereniginglid[1].naam}"
                                    data-voornaam="${value.vereniginglid[1].voornaam}"
                                    data-roepnaam="${value.vereniginglid[1].roepnaam}"
                                    data-email="${value.vereniginglid[1].email}"
-                                   data-straat="${value.vereniginglid[1].straat}"
-                                   data-huisnummer="${value.vereniginglid[1].huisnummer}"
-                                   data-postcode="${value.vereniginglid[1].postcode}"
                                    data-geboortedatum="${value.vereniginglid[1].geboortedatum}"
                                    data-telefoon="${value.vereniginglid[1].telefoon}"
                                    data-rijksregisternummer="${value.vereniginglid[1].rijksregisternr}">
