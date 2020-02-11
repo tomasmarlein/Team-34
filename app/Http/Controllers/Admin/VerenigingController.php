@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Gebruikers;
+use App\GebruikersVerenigings;
 use App\Helpers\Json;
 use App\Verenigings;
 use foo\bar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use mysql_xdevapi\Result;
+use Session;
 
 
 class VerenigingController extends Controller
@@ -221,20 +223,20 @@ class VerenigingController extends Controller
         ]);
 
         $gebruikers = new Gebruikers();
-        $gebruikers->naam = $request->naam;
-        $gebruikers->voornaam = $request->voornaam;
-        $gebruikers->email = $request->email;
-        $gebruikers->straat = $request->straat;
-        $gebruikers->huisnummer = $request->huisnummer;
-        $gebruikers->postcode = $request->postcode;
-        $gebruikers->telefoon = $request->telefoon;
-        $gebruikers->geboortedatum = $request->geboortedatum;
-        $gebruikers->rolId = 3;
-        $gebruikers->password = \Hash::make("azerty123");;
-        $gebruikers->save();
+        Session::put('gebruikersnaam',$gebruikers->naam = $request->naam);
+        Session::put('gebruikersvoornaam',$gebruikers->voornaam = $request->voornaam);
+        Session::put('gebruikersemail',$gebruikers->email = $request->email);
+        Session::put('gebruikersstraat',$gebruikers->straat = $request->straat);
+        Session::put('gebruikershuisnummer',$gebruikers->huisnummer = $request->huisnummer);
+        Session::put('gebruikerspostcode',$gebruikers->postcode = $request->postcode);
+        Session::put('gebruikersgemeente',$gebruikers->gemeente = $request->gemeente);
+        Session::put('gebruikerstelefoon',$gebruikers->telefoon = $request->telefoon);
+        Session::put('gebruikersgeboortedatum',$gebruikers->geboortedatum = $request->geboortedatum);
+        Session::put('rijksregisternr',$gebruikers->rijksregisternr = $request->rijksregisternr);
+        Session::put('rollId',$gebruikers->rolId = 3);
+        Session::put('password',$gebruikers->password = \Hash::make("azerty123"));
 
         $result = compact('gebruikers');
-        $request->session()->put('gebruikersdata', $result);
         return view('aanvragen.aanvraag',$result);
 
     }
@@ -249,23 +251,81 @@ class VerenigingController extends Controller
 //        ]);
 
         $verenigings = new Verenigings();
-        $verenigings->naam = $request->naam;
-        $verenigings->rekeningnr = $request->rekeningnr;
-        $verenigings->btwnr = $request->btwnr;
-        $verenigings->straat = $request->straat;
-        $verenigings->hoofdverantwoordelijke = $request->hoofdverantwoordelijke;
-        $verenigings->huisnummer = $request->huisnummer;
-        $verenigings->postcode = $request->postcode;
-        $verenigings->gemeente = $request->gemeente;
-        $verenigings->actief = 0;
-        $verenigings->inaanvraag = 1;
-        $verenigings->save();
 
+        $replace = array('{"id":','}');
+
+        $gebruiker_id = Gebruikers::orderby('id')
+            ->where('rijksregisternr', Session::get('rijksregisternr'))
+            ->select('id')
+            ->first();
+
+
+        Session::put('verenigingssnaam',$verenigings->naam = $request->naam);
+        Session::put('verenigingsrekeningnr',$verenigings->rekeningnr = $request->rekeningnr);
+        Session::put('verenigingsbtwnr',$verenigings->btwnr = $request->btwnr);
+        Session::put('verenigingsstraat',$verenigings->straat = $request->straat);
+        Session::put('verenigingshuisnummer',$verenigings->huisnummer = $request->huisnummer);
+        Session::put('verenigingspostcode',$verenigings->postcode = $request->postcode);
+        Session::put('verenigingsgemeente',$verenigings->gemeente = $request->gemeente);
+        Session::put('verenigingsactief',$verenigings->actief = 0);
+        Session::put('inaanvraag',$verenigings->inaanvraag = 1);
+        Session::put('verenigingshoofdverantwoordelijke',   $verenigings->hoofdverantwoordelijke =  str_replace($replace, "",$gebruiker_id));
 
         $result = compact('verenigings');
-        $gebruikers = $request->session()->get('gebruikersdata');
         return view('aanvragen.bevestiging',$result);
 
+    }
+
+
+    public function aanvraagBevestigen(Request $request){
+//        $this->validate($request, [
+//            'verenigingnaam' => 'required',
+//            'rekeningnr' => 'required',
+//            'btwnr' => 'required',
+//        ]);
+
+        $verenigings = new Verenigings();
+        $gebruikers = new Gebruikers();
+
+        $gebruikers->naam = Session::get('gebruikersnaam');
+        $gebruikers->voornaam = Session::get('gebruikersvoornaam');
+        $gebruikers->email = Session::get('gebruikersemail');
+        $gebruikers->straat = Session::get('gebruikersstraat');
+        $gebruikers->huisnummer = Session::get('gebruikershuisnummer');
+        $gebruikers->postcode = Session::get('gebruikerspostcode');
+        $gebruikers->gemeente = Session::get('gebruikersgemeente');
+        $gebruikers->telefoon = Session::get('gebruikerstelefoon');
+        $gebruikers->geboortedatum = Session::get('gebruikersgeboortedatum');
+        $gebruikers->rijksregisternr = Session::get('rijksregisternr');
+        $gebruikers->rolId = Session::get('rollId');
+        $gebruikers->password = Session::get('password');
+
+        $gebruikers->save();
+
+        $gebruiker_id = Gebruikers::orderby('id')
+            ->where('rijksregisternr', Session::get('rijksregisternr'))
+            ->select('id')
+            ->first();
+
+        $verenigings->naam = Session::get('verenigingssnaam');
+        $verenigings->rekeningnr = Session::get('verenigingsrekeningnr');
+        $verenigings->btwnr = Session::get('verenigingsbtwnr');
+        $verenigings->straat = Session::get('verenigingsstraat');
+        $verenigings->huisnummer = Session::get('verenigingshuisnummer');
+        $verenigings->postcode = Session::get('verenigingspostcode');
+        $verenigings->gemeente = Session::get('verenigingsgemeente');
+        $verenigings->actief = Session::get('verenigingsactief');
+        $verenigings->inaanvraag = Session::get('inaanvraag');
+
+        $replace = array('{"id":','}');
+        $verenigings->hoofdverantwoordelijke =  str_replace($replace, "",$gebruiker_id);;
+
+        $verenigings->save();
+
+        $gebruiker = Gebruikers::find(str_replace($replace, "",$gebruiker_id));
+        $gebruiker->lid()->sync(['verenigings_id' => $verenigings->id], ['gebruikers_id' => $gebruiker_id]);
+
+        return view('landingpage');
     }
 
 }

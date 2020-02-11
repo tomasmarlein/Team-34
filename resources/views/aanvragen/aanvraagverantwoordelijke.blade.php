@@ -4,6 +4,9 @@
 
 @section('main')
     <div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+        </div>
         <h1>Samenwerken</h1>
 
         <p>Ben jij de verantwoordelijke van een vereniging of wil je als vrijwilliger komen helpen op evenementen van
@@ -29,8 +32,6 @@
             <label for="email">E-Mail</label>
             <input type="text" class="form-control" name="email" id="email" placeholder="E-mail">
         </div>
-
-
 
         <div class="row">
             <div class="col-md-6 mb-3">
