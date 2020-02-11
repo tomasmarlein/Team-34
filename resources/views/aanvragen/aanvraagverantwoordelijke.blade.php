@@ -5,7 +5,7 @@
 @section('main')
     <div>
         <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
         </div>
         <h1>Samenwerken</h1>
 
@@ -20,17 +20,26 @@
             <div class="col-md-6 mb-3">
                 <label for="naam">Naam</label>
                 <input type="text" class="form-control" name="naam" id="naam" placeholder="Naam" value="" required>
+{{--                <div class="invalid-feedback">--}}
+{{--                  Naam is Verplicht--}}
+{{--                </div>--}}
             </div>
             <div class="col-md-6 mb-3">
                 <label for="voornaam">voornaam</label>
-                <input type="text" class="form-control"  name="voornaam" id="voornaam" placeholder="Voornaam" value="">
+                <input type="text" class="form-control "  name="voornaam" id="voornaam" placeholder="Voornaam" value="" required>
+{{--                <div class="invalid-feedback">--}}
+{{--                    Voornaam is Verplicht--}}
+{{--                </div>--}}
             </div>
         </div>
 
 
         <div class="mb-3">
             <label for="email">E-Mail</label>
-            <input type="text" class="form-control" name="email" id="email" placeholder="E-mail">
+            <input type="text" class="form-control" name="email" id="email" placeholder="E-mail" required>
+{{--            <div class="invalid-feedback">--}}
+{{--                E-mail is Verplicht--}}
+{{--            </div>--}}
         </div>
 
         <div class="row">

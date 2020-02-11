@@ -6,11 +6,9 @@
     <div>
 
         <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
         </div>
-        <h1>Welkom {{$gebruikers->voornaam}} </h1>
-
-        <p>Vraag nu hieronder je vereniging aan:</p>
+        <h1>Welkom {{$gebruikers->voornaam}} {{$gebruikers->naam}}</h1>
     </div>
 
     <form action="{{url('verenigingAanvragenNext')}}" method="get">
@@ -18,18 +16,18 @@
         <div class="mb-3">
             <label for="naam">Naam Vereniging</label>
             <div class="input-group">
-                <input type="text" class="form-control" name="naam" id="naam" placeholder="Naam Vereniging">
+                <input type="text" required class="form-control" name="naam" id="naam" placeholder="Naam Vereniging">
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="rekeningnr">rekeningnr</label>
-                <input type="text" class="form-control"  name="rekeningnr" id="rekeningnr" placeholder="BE 0000 0000 0000 0000" value="">
+                <input type="text" required class="form-control"  name="rekeningnr" id="rekeningnr" placeholder="BE0000000000000000" value="">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="btwnr">BTW Nummer</label>
-                <input type="text" class="form-control"  name="btwnr" id="btwnr" placeholder="BTW" value="">
+                <input type="text" required class="form-control"  name="btwnr" id="btwnr" placeholder="BTW" value="">
             </div>
         </div>
 
@@ -57,7 +55,7 @@
         </div>
 
         <hr class="mb-4">
-        <a href="javascript:history.back()"  class="btn btn-primary btn-lg btn-block">Back</a>
+        <a href="javascript:history.back()"  class="btn btn-primary btn-lg btn-block">Ga Terug</a>
 
         <button type="submit" class="btn btn-primary btn-lg btn-block">
             Ga Verder

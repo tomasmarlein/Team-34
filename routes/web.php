@@ -31,6 +31,7 @@ Route::view('/', 'landingpage');
 Route::get('verenigingAanvragen','Admin\VerenigingController@verenigingAanvragen');
 Route::get('verenigingAanvragenNext','Admin\VerenigingController@verenigingAanvragenNext');
 Route::get('aanvraagBevestigen','Admin\VerenigingController@aanvraagBevestigen');
+Route::get('aanvraagVoltooid','Admin\VerenigingController@aanvraagVoltooid');
 Route::view('aanvragen.bevestiging', 'bevestiging');
 
 

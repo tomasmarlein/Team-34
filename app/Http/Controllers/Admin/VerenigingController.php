@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use mysql_xdevapi\Result;
 use Session;
+use Validator;
 
 
 class VerenigingController extends Controller
@@ -217,10 +218,22 @@ class VerenigingController extends Controller
      */
     public function verenigingAanvragen(Request $request)
     {
-        $this->validate($request, [
+//        $this->validate($request, [
+//            'naam' => 'required',
+//            'voornaam' => 'required',
+//            'email' => 'required',
+//        ]);
+//
+        $validator = Validator::make($request->all(), [
             'naam' => 'required',
             'voornaam' => 'required',
+            'email' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            Session::flash('error', $validator->messages()->first());
+            return redirect()->back()->withInput();
+        }
 
         $gebruikers = new Gebruikers();
         Session::put('gebruikersnaam',$gebruikers->naam = $request->naam);
@@ -319,7 +332,12 @@ class VerenigingController extends Controller
 
 
 
+        return view('aanvragen.aanvraagvoltooid');
+    }
 
+
+    public function aanvraagVoltooid(Request $request){
+        $request->session()->flush();
         return view('landingpage');
     }
 
