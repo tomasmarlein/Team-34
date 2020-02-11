@@ -65,7 +65,7 @@ class VerenigingController extends Controller
         ]);
 
         $verenigings = new Verenigings();
-        $verenigings->naam = $request->naam;
+        $verenigings->vnaam = $request->naam;
         $verenigings->rekeningnr = $request->rekeningnr;
         $verenigings->hoofdverantwoordelijke = $request->hoofdverantwoordelijke;
         $verenigings->btwnr = $request->btwnr;
@@ -121,7 +121,7 @@ class VerenigingController extends Controller
 
         $data = $request->all();
         $verenigings = \App\Verenigings::find($id)->update([
-            'naam' => $data['naam'],
+            'vnaam' => $data['naam'],
             'rekeningnr' => $data['rekeningnr'],
             'hoofdverantwoordelijke' => $data['hoofdverantwoordelijke'],
             'btwnr' => $data['btwnr'],
@@ -296,7 +296,7 @@ class VerenigingController extends Controller
             ->select('id')
             ->first();
 
-        $verenigings->naam = Session::get('verenigingssnaam');
+        $verenigings->vnaam = Session::get('verenigingssnaam');
         $verenigings->rekeningnr = Session::get('verenigingsrekeningnr');
         $verenigings->btwnr = Session::get('verenigingsbtwnr');
         $verenigings->straat = Session::get('verenigingsstraat');
