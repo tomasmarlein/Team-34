@@ -226,14 +226,14 @@
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${actief}</td>
-                               <td><a href="verenigingen/${ value.id }">${value.vnaam}</a></td>
+                               <td><a href="verenigingen/${ value.id }">${value.naam}</a></td>
                                <td>${value.vereniginglid[0].naam}</td>
                                <td>${value.rekeningnr}</td>
                                <td>${value.btwnr}</td>
                                <td>${value.straat} ${value.huisnummer} ${value.postcode} ${value.gemeente}</td>
 
                                <td data-id="${value.id}"
-                                   data-naam="${value.vnaam}"
+                                   data-naam="${value.naam}"
                                    data-hoofdverantwoordelijke="${value.hoofdverantwoordelijke}"
                                    data-rekeningnr="${value.rekeningnr}"
                                    data-btwnr="${value.btwnr}"

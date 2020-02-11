@@ -26,7 +26,7 @@ class VrijwilligersExport implements FromQuery, WithStrictNullComparison, WithHe
             ->join('gebruikers_verenigings', 'gebruikers.id', '=', 'gebruikers_verenigings.gebruikers_id')
             ->join('verenigings', 'gebruikers_verenigings.verenigings_id', '=', 'verenigings.id')
             ->where('rolId', 4)
-            ->select( 'verenigings.vnaam','gebruikers.email', 'gebruikers.naam', 'gebruikers.voornaam', 'gebruikers.roepnaam', 'gebruikers.geboortedatum', 'gebruikers.telefoon', 'gebruikers.opmerking', 'gebruikers.rijksregisternr', 'gebruikers.lunchpakket');
+            ->select( 'verenigings.naam as vnaam','gebruikers.email', 'gebruikers.naam', 'gebruikers.voornaam', 'gebruikers.roepnaam', 'gebruikers.geboortedatum', 'gebruikers.telefoon', 'gebruikers.opmerking', 'gebruikers.rijksregisternr', 'gebruikers.lunchpakket');
     }
 
     /**
