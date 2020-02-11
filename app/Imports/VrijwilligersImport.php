@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class GebruikersImport implements ToCollection, WithHeadingRow, WithChunkReading
+class VrijwilligersImport implements ToCollection, WithHeadingRow, WithChunkReading
 {
     /**
     * @param array $row
@@ -24,14 +24,10 @@ class GebruikersImport implements ToCollection, WithHeadingRow, WithChunkReading
                 'naam' => $row['naam'],
                 'voornaam' => $row['voornaam'],
                 'roepnaam' => $row['roepnaam'],
-                'straat' => $row['straat'],
-                'huisnummer' => $row['huisnummer'],
                 'geboortedatum' => $row['geboortedatum'],
                 'telefoon' => $row['telefoon'],
-                'tweedetshirt' => $row['tweedeshirt'],
                 'opmerking' => $row['opmerking'],
                 'rijksregisternr' => $row['rijksregisternr'],
-                'postcode' => $row['postcode'],
                 'lunchpakket' => $row['lunchpakket'],
                 'tshirtId' => $row['tshirt'],
                 'rolId' => 4
