@@ -227,7 +227,7 @@
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
                         if(value.lid.length == 1){
-                            var verenigingnaam = value.lid[0].naam;
+                            var verenigingnaam = value.lid[0].vnaam;
                         }else{
                             var verenigingnaam = 'Geen vereniging';
                         }

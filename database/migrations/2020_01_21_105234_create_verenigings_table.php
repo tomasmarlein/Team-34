@@ -15,7 +15,7 @@ class CreateVerenigingsTable extends Migration
     {
         Schema::create('verenigings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('naam');
+            $table->string('vnaam');
             $table->unsignedBigInteger('hoofdverantwoordelijke');
             $table->unsignedBigInteger('tweedeverantwoordelijke')->nullable();
             $table->boolean("actief")->nullable();
@@ -34,7 +34,7 @@ class CreateVerenigingsTable extends Migration
 
             DB::table('verenigings')->insert(
                 [
-                    'naam' => "vereniging zelfstandig",
+                    'vnaam' => "vereniging zelfstandig",
                     'rekeningnr' => "BE68539007547034",
                     'btwnr' => "BE0000.111.222",
                     "postcode" => "2440",
@@ -51,7 +51,7 @@ class CreateVerenigingsTable extends Migration
             for ($i = 2; $i <= 10; $i++) {
                 DB::table('verenigings')->insert(
                 [
-                    'naam' => "Vereniging_$i",
+                    'vnaam' => "Vereniging_$i",
                     'rekeningnr' => "BE68539007547034_$i",
                     'btwnr' => "BE0000.111.222",
                     "postcode" => "2440",
