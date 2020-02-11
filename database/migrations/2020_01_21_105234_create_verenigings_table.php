@@ -21,10 +21,10 @@ class CreateVerenigingsTable extends Migration
             $table->boolean("actief")->nullable();
             $table->string('rekeningnr');
             $table->string('btwnr');
-            $table->string('straat');
-            $table->string('huisnummer');
-            $table->string('gemeente');
-            $table->string('postcode');
+            $table->string('straat')->nullable();
+            $table->string('huisnummer')->nullable();
+            $table->string('gemeente')->nullable();
+            $table->string('postcode')->nullable();
             $table->unsignedBigInteger('contactpersoon')->nullable();
             $table->boolean('inaanvraag');
             //$table->foreign('hoofdverantwoordelijke')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');

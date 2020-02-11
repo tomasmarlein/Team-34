@@ -5,7 +5,7 @@
 @section('main')
     <div>
         <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%"></div>
         </div>
         <h1>Samenwerken</h1>
 
@@ -16,31 +16,46 @@
     <form action="{{url('verenigingAanvragen')}}" method="get">
         <hr class="mb-4">
         <h3>Verantwoordelijke toevoegen</h3>
+
+
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="naam">Naam</label>
-                <input type="text" class="form-control" name="naam" id="naam" placeholder="Naam" value="" required>
-{{--                <div class="invalid-feedback">--}}
-{{--                  Naam is Verplicht--}}
-{{--                </div>--}}
+                <label for="naam">Naam *</label>
+                <input oninput="checkNaam()" type="text" class="form-control is-invalid" name="naam" id="naam" placeholder="Naam" value="" required>
+                <div class="invalid-feedback">
+                  Naam is Verplicht
+                </div>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="voornaam">voornaam</label>
-                <input type="text" class="form-control "  name="voornaam" id="voornaam" placeholder="Voornaam" value="" required>
-{{--                <div class="invalid-feedback">--}}
-{{--                    Voornaam is Verplicht--}}
-{{--                </div>--}}
+                <label for="voornaam">voornaam *</label>
+                <input oninput="checkVoornaam()" type="text" class="form-control is-invalid"  name="voornaam" id="voornaam" placeholder="Voornaam" value="" required>
+                <div class="invalid-feedback">
+                    Voornaam is Verplicht
+                </div>
+
             </div>
         </div>
 
 
-        <div class="mb-3">
-            <label for="email">E-Mail</label>
-            <input type="text" class="form-control" name="email" id="email" placeholder="E-mail" required>
-{{--            <div class="invalid-feedback">--}}
-{{--                E-mail is Verplicht--}}
-{{--            </div>--}}
+
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="email">E-Mail *</label>
+                <input oninput="checkEmail()" type="text" class="form-control is-invalid" name="email" id="email" placeholder="E-mail" required>
+                <div class="invalid-feedback">
+                    E-mail is Verplicht
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="rijksregisternr">Rijksregisternummer</label>
+                <input type="text" class="form-control"  name="rijksregisternr" id="rijksregisternr" placeholder="rijksregisternr" value="">
+            </div>
         </div>
+
+
+
 
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -51,10 +66,7 @@
                 <label for="geboortedatum">Geboortedatum</label>
                 <input type="date" class="form-control"  name="geboortedatum" id="geboortedatum" placeholder="" value="">
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="rijksregisternr">Rijksregisternummer</label>
-                <input type="text" class="form-control"  name="rijksregisternr" id="rijksregisternr" placeholder="rijksregisternr" value="">
-            </div>
+
         </div>
 
         <hr class="mb-4">
@@ -64,3 +76,54 @@
     </form>
 @endsection
 
+@section('script_after')
+<script>
+    function checkNaam() {
+
+        var naamveld = document.getElementById("naam").value;
+
+        if(naamveld === ""){
+            $('#naam').addClass("is-invalid");
+
+        }else {
+
+            $('#naam').removeClass("is-invalid");
+            $('#naam').addClass("is-valid");
+        }
+    }
+
+
+    function checkVoornaam() {
+
+        var naamveld = document.getElementById("voornaam").value;
+
+        if(naamveld === ""){
+            $('#voornaam').addClass("is-invalid");
+
+        }else {
+
+            $('#voornaam').removeClass("is-invalid");
+            $('#voornaam').addClass("is-valid");
+        }
+    }
+
+
+
+
+    function checkEmail() {
+
+        var naamveld = document.getElementById("email").value;
+
+        if(naamveld === ""){
+            $('#email').addClass("is-invalid");
+
+        }else {
+
+            $('#email').removeClass("is-invalid");
+            $('#email').addClass("is-valid");
+        }
+    }
+</script>
+
+
+@endsection

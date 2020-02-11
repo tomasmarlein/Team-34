@@ -218,22 +218,12 @@ class VerenigingController extends Controller
      */
     public function verenigingAanvragen(Request $request)
     {
-//        $this->validate($request, [
-//            'naam' => 'required',
-//            'voornaam' => 'required',
-//            'email' => 'required',
-//        ]);
-//
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'naam' => 'required',
             'voornaam' => 'required',
             'email' => 'required',
         ]);
 
-        if ($validator->fails()) {
-            Session::flash('error', $validator->messages()->first());
-            return redirect()->back()->withInput();
-        }
 
         $gebruikers = new Gebruikers();
         Session::put('gebruikersnaam',$gebruikers->naam = $request->naam);
@@ -253,11 +243,11 @@ class VerenigingController extends Controller
 
     public function verenigingAanvragenNext(Request $request)
     {
-//        $this->validate($request, [
-//            'verenigingnaam' => 'required',
-//            'rekeningnr' => 'required',
-//            'btwnr' => 'required',
-//        ]);
+        $this->validate($request, [
+            'naam' => 'required',
+            'rekeningnr' => 'required',
+            'btwnr' => 'required',
+        ]);
 
         $verenigings = new Verenigings();
 
@@ -287,11 +277,6 @@ class VerenigingController extends Controller
 
 
     public function aanvraagBevestigen(Request $request){
-//        $this->validate($request, [
-//            'verenigingnaam' => 'required',
-//            'rekeningnr' => 'required',
-//            'btwnr' => 'required',
-//        ]);
 
         $verenigings = new Verenigings();
         $gebruikers = new Gebruikers();
