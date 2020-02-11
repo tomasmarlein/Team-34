@@ -2,6 +2,67 @@
 @section('title', 'Tshirt beheer')
 
 @section('main')
+    <form action="{{url('admin/download')}}" method="get" >
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+            Download die shit
+        </button>
+    </form>
+    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" class="form-control">
+        <br>
+        <button class="btn btn-success">Import User Data</button>
+    </form>
+
+    <form method="get" action="/admin/vrijwilligers" id="searchForm">
+        <div class="row">
+            <div class="col-sm-3 mb-2">
+                <label for="naam">Filter Naam</label>
+                <input type="text" class="form-control" name="naam" id="naam"
+                       value="{{ request()->naam }}" placeholder="Filter Naam">
+            </div>
+            <div class="col-sm-3 mb-2">
+                <label for="email">Filter Email</label>
+                <input type="email" class="form-control" name="email" id="email"
+                       value="{{ request()->email }}" placeholder="Filter Email">
+            </div>
+            <div class="col-sm-3 mb-2">
+                <label for="sort">Sort by</label>
+                <select class="form-control" name="sort" id="sort">
+                    <option value="%" selected>Name (A => Z)</option>
+                    <option value="%">Name (Z => A)</option>
+                    <option value="%">Email (A => Z)</option>
+                    <option value="%">Email (Z => A)</option>
+                    <option value="%">Not Active</option>
+                    <option value="%">Admin</option>
+                </select>
+            </div>
+            <div class="col-sm-3 mb-2">
+                <label>Voeg toe</label><br>
+                <a href="#!" class="btn btn-outline-success" id="btn-create">
+                    <i class="fas fa-plus-circle mr-1"></i>Nieuwe vrijwiliger
+                </a>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="table-responsive">
+        <table id="mytable" class="table table-hover">
+            <thead class="shadow">
+            <tr>
+                <th>#</th>
+                <th>Naam</th>
+                <th>Vereniging</th>
+                <th>Tshirt</th>
+                <th>Acties</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
 
 @endsection
 @section('script_after')
@@ -154,23 +215,7 @@
                     $('tbody').empty();
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
-                        if(value.lid.length == 1){
-                            var verenigingnaam = value.lid[0].naam;
-                        }else{
-                            var verenigingnaam = 'Geen vereniging';
-                        }
 
-                        if(value.telefoon == null) {
-                            var telefoon = '/'
-                        } else {
-                            var telefoon = value.telefoon
-                        }
-
-                        if(value.geboortedatum == null) {
-                            var geboortedatum = '/'
-                        } else {
-                            var geboortedatum = value.geboortedatum
-                        }
 
                         let tr = `<tr>
                                <td>${value.id}</td>
