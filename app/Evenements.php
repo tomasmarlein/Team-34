@@ -13,4 +13,10 @@ class Evenements extends Model
     {
         return $this->belongsToMany('App\Verenigings');
     }
+
+
+    public function eventTshirt()
+    {
+        return $this->belongsToMany('App\TshirtType');
+    }
 }

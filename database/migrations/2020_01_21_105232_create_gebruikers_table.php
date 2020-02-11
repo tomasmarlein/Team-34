@@ -20,23 +20,20 @@ class CreateGebruikersTable extends Migration
             $table->string('naam')->nullable();
             $table->string('voornaam')->nullable();
             $table->string('roepnaam')->nullable();
-            $table->string('straat')->nullable();
-            $table->string('huisnummer')->nullable();
+
             $table->date('geboortedatum')->nullable();
             $table->string('telefoon')->nullable();
-            $table->boolean('tweedetshirt')->nullable();
+
             $table->string('opmerking')->nullable();
             $table->string('rijksregisternr')->nullable();
-            $table->string('postcode')->nullable();
+
             $table->boolean('eersteAanmelding')->nullable();
             $table->boolean('lunchpakket')->nullable();
             $table->boolean('actief')->nullable();
             $table->string('qrcode')->nullable();
             $table->string('foto')->nullable();
-            $table->unsignedBigInteger('tshirtId')->nullable();
             $table->unsignedBigInteger('rolId')->nullable();
 
-            $table->foreign('tshirtId')->references('id')->on('tshirts')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('rolId')->references('id')->on('rols')->onDelete('cascade')->onUpdate('cascade');
         });
 
