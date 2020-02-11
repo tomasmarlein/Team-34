@@ -128,7 +128,6 @@ class CreateGebruikersTable extends Migration
                 'voornaam' => "Arno",
                 'email' => "r0714654@student.thomasmore.be",
                 'password' => Hash::make("admin123"),
-                'straat' => "Teststraat",
                 'huisnummer' => "25",
                 'geboortedatum' => "19991227",
                 'rijksregisternr' => '99122730380',
