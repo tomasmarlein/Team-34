@@ -61,14 +61,14 @@
                     <h1>Tijdsregistratiesysteem</h1>
                     <h1>Keizer Karel Olen</h1>
                     @guest
-                        <p>Meld je hier aan om gebruik te maken van het Tijdsregistratiesysteem tijdens evenementen van VZW Keizer Karel Olen</p>
+                        <p>Meld je hier aan om gebruik te maken van het Tijdsregistratiesysteem van VZW Keizer Karel Olen</p>
                         <br><br>
                         <div class="row">
                             <div class="col-lg-6">
                                 <a href="/login"><button  type="button" class="btn btn-gladiolen btn-lg">Inloggen</button></a>
                             </div>
                             <div class="col-lg-6">
-                                <a href="/aanvraagverantwoordelijke"><button  href="/aanvraagverantwoordelijke" type="button" class="btn btn-gladiolen btn-lg">Samenwerking</button></a>
+                                <a href="/aanvraagverantwoordelijke"><button  href="/aanvraagverantwoordelijke" type="button" class="btn btn-gladiolen btn-lg">Vereniging aanvragen</button></a>
                             </div>
                         </div>
                     @endguest

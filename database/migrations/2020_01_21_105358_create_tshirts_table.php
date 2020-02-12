@@ -36,6 +36,20 @@ class CreateTshirtsTable extends Migration
                 ]
             ]
         );
+
+        DB::table('tshirts')->insert(
+            [
+                [
+                    'id' => 2,
+                    'maat' => "XL",
+                    'geslacht' => 'V',
+                    'aantal'=> 2,
+                    'gebruikers_id'=> 34,
+                    'types_id'=> 2
+                ]
+            ]
+        );
+
     }
 
     /**

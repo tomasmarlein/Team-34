@@ -28,4 +28,9 @@ class Verenigings extends Model
     {
         return $this->hasOne('App\Gebruikers');
     }
+
+    public function tijdVer()
+    {
+        return $this->hasMany('App\Tijdsregistratie');
+    }
 }

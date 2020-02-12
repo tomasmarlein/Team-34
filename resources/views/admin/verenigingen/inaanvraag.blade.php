@@ -12,7 +12,7 @@
                 <th>#</th>
                 <th>Status</th>
                 <th>Naam</th>
-                <th>HoofdVerantwoordelijke</th>
+                <th>Hoofdverantwoordelijke</th>
                 <th>Rekeningnummer</th>
                 <th>BTW Nummer</th>
                 <th>Adres</th>

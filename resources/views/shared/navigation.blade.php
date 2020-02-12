@@ -26,13 +26,13 @@
                         <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/aanvraagverantwoordelijke"><i class="fas fa-signature"></i> Aanvraag</a>
+                        <a class="nav-link" href="/aanvraagverantwoordelijke"><i class="fas fa-signature"></i> Vereniging aanvragen</a>
                     </li>
                 @endguest
                 @auth
                         @if(auth()->user()->rolId==1)
                         <li class="nav-item">
-                            <a class="nav-link" href="/home"><i class="fas fa-user-shield"></i> adminpaneel</a>
+                            <a class="nav-link" href="/home"><i class="fas fa-user-shield"></i> adminpanel</a>
                         </li>
                         @endif
                             @if(auth()->user()->rolId==3)
