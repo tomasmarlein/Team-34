@@ -19,4 +19,9 @@ class Evenements extends Model
     {
         return $this->belongsToMany('App\TshirtType');
     }
+
+    public function eventTijd()
+    {
+        return $this->hasMany('App\Tijdsregistratie');
+    }
 }
