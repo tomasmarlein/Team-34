@@ -26,7 +26,7 @@ class VrijwilligerController extends Controller
 
     public function export()
     {
-        return Excel::download(new VrijwilligersExport(), 'Vrijwillers.xlsx');
+        return Excel::download(new VrijwilligersExport(), 'Vrijwilligers.xlsx');
     }
 
     public function index()

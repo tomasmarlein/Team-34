@@ -23,9 +23,10 @@ class VrijwilligersExport implements FromQuery, WithStrictNullComparison, WithHe
     public function query()
     {
         return Gebruikers::query()
-            ->with('lid')
+            ->join('gebruikers_verenigings', 'gebruikers.id', '=', 'gebruikers_verenigings.gebruikers_id')
+            ->join('verenigings', 'gebruikers_verenigings.verenigings_id', '=', 'verenigings.id')
             ->where('rolId', 4)
-            ->select( 'email', 'naam', 'voornaam', 'roepnaam', 'geboortedatum', 'telefoon', 'tweedetshirt', 'opmerking', 'rijksregisternr', 'lunchpakket', 'tshirtId');
+            ->select( 'verenigings.naam as vnaam','gebruikers.email', 'gebruikers.naam', 'gebruikers.voornaam', 'gebruikers.roepnaam', 'gebruikers.geboortedatum', 'gebruikers.telefoon', 'gebruikers.opmerking', 'gebruikers.rijksregisternr', 'gebruikers.lunchpakket');
     }
 
     /**
@@ -41,11 +42,9 @@ class VrijwilligersExport implements FromQuery, WithStrictNullComparison, WithHe
             'Roepnaam',
             'Geboortedatum',
             'Telefoon',
-            '2de T-shirt',
             'Opmerking',
             'Rijksregisternr',
-            'Lunchpakket',
-            'T-Shirt'
+            'Lunchpakket (0=geen, 1=wel)',
         ];
     }
 

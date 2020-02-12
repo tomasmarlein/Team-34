@@ -235,25 +235,27 @@
                     $('tbody').empty();
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
-                        if(value.lid.length == 1){
-                            var verenigingnaam = value.lid[0].naam;
-                        }else{
-                            var verenigingnaam = 'Geen vereniging';
-                        }
+                        for(var i=0; i<value.lid.length; i++){
 
-                        if(value.telefoon == null) {
-                            var telefoon = '/'
-                        } else {
-                            var telefoon = value.telefoon
-                        }
+                            if(value.lid.length == 0){
+                                var verenigingnaam = 'Geen vereniging';
+                            }else{
+                                var verenigingnaam = value.lid[i].naam;
+                            }
 
-                        if(value.geboortedatum == null) {
-                            var geboortedatum = '/'
-                        } else {
-                            var geboortedatum = value.geboortedatum
-                        }
+                            if(value.telefoon == null) {
+                                var telefoon = '/'
+                            } else {
+                                var telefoon = value.telefoon
+                            }
 
-                        let tr = `<tr>
+                            if(value.geboortedatum == null) {
+                                var geboortedatum = '/'
+                            } else {
+                                var geboortedatum = value.geboortedatum
+                            }
+
+                            let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.naam} ${value.voornaam}</td>
                                <td>${verenigingnaam}</td>
@@ -280,8 +282,10 @@
                                     </div>
                                </td>
                            </tr>`;
-                        // Append row to tbody
-                        $('tbody').append(tr);
+                            // Append row to tbody
+                            $('tbody').append(tr);
+                        }
+
                     });
                 })
                 .fail(function (e) {
