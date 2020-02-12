@@ -3,6 +3,12 @@
 @section('title', 'Vrijwilligers')
 @section('css_after')
     <style>
+        .upload{
+            position:absolute;
+            right: 18%;
+            top: 15%;
+        }
+
         .download{
             position: absolute;
             right: 13.7%;
@@ -14,6 +20,13 @@
     <h1>Vrijwilligers</h1>
     @include('shared.alert')
 
+    <div class="upload">
+        <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input style="height: 45px" type="file" name="file" class="form-control" id="uploadFile">
+            <button style="color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" class="btn btn-success" id="importeerVrijwilliger">Voeg vrijwilligers toe</button>
+        </form>
+    </div>
     <div class="download">
         <form style="text-align: right" action="{{url('admin/download')}}" method="get" >
             <button data-toggle="tooltip" title="Exporteer alle vrijwilligers" style="height: 45px; width:55px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
@@ -21,14 +34,7 @@
             </button>
         </form>
     </div>
-
-
-    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file" class="form-control">
-        <br>
-        <button class="btn btn-success">Importeer vrijwilligersdata</button>
-    </form>
+    <br>
 
     <form method="get" action="/admin/vrijwilligers" id="searchForm">
         <div class="row">
@@ -99,6 +105,11 @@
 
 
         $(function () {
+            $('#importeerVrijwilliger').hide();
+
+            $("#uploadFile").change(function (){
+                $('#importeerVrijwilliger').show();
+            });
 
             // submit form when leaving text field 'artist'
             $('#name').blur(function () {
