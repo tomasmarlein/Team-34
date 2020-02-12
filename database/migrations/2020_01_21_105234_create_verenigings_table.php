@@ -41,10 +41,11 @@ class CreateVerenigingsTable extends Migration
                     'straat' => "straat",
                     'huisnummer' => "20",
                     'gemeente' => "Geel",
-                    'hoofdverantwoordelijke' => "1",
+                    'hoofdverantwoordelijke' => "23",
+                    'tweedeverantwoordelijke' => "44",
                     'actief' => false,
                     'inaanvraag' => true,
-                    'contactpersoon' => 1,
+                    'contactpersoon' => 23,
                 ]
             );
 
@@ -58,10 +59,10 @@ class CreateVerenigingsTable extends Migration
                     'straat' => "straat_$i",
                     'huisnummer' => "$i",
                     'gemeente' => "Geel",
-                    'hoofdverantwoordelijke' => $i + 21,
+                    'hoofdverantwoordelijke' => $i + 22,
                     'actief' => false,
                     'inaanvraag' => false,
-                    'contactpersoon' => 2,
+                    'contactpersoon' => $i + 22,
                 ]
             );
         }

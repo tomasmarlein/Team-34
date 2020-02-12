@@ -7,6 +7,7 @@ use App\Imports\VrijwilligersImport;
 use App\Gebruikers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
 class VrijwilligerController extends Controller
@@ -62,6 +63,7 @@ class VrijwilligerController extends Controller
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->rolId = 4;
+//        $gebruikers->password = Hash::make("gladiolen");
         $gebruikers->save();
 
         return response()->json([
@@ -141,12 +143,25 @@ class VrijwilligerController extends Controller
 
 
 
-    public function qryVrijwilligers()
+    public function qryVrijwilligers(Request $request)
     {
+        $naam = '%' . $request->input('name') . '%';
+
         $gebruikers = Gebruikers::orderBy('id')
-            ->where('rolId', '=', 4)
-            ->with ('lid')
-            ->get();
-        return $gebruikers;
+                ->where('rolId', '=', 4)
+                ->where('naam', 'like', 'Vrijwilliger_0')
+                ->with ('lid')
+                ->get();
+            return $gebruikers;
     }
+
+
+//    public function qryVrijwilligers()
+//    {
+//        $gebruikers = Gebruikers::orderBy('id')
+//            ->where('rolId', '=', 4)
+//            ->with ('lid')
+//            ->get();
+//        return $gebruikers;
+//    }
 }

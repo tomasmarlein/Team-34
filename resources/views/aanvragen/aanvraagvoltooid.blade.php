@@ -25,7 +25,7 @@
         </div>
 
         <hr class="mb-4">
-        <h4>Bedannkt voor uw aanmelding om samen te werken.</h4>
+        <h4>Bedankt voor uw aanmelding om samen te werken.</h4>
         <h4>Uw account is gemaakt & uw vereniging is aangevraagd.</h4>
         <a href="aanvraagVoltooid" class="btn btn-primary btn-lg btn-block">Naar Home</a>
     </form>

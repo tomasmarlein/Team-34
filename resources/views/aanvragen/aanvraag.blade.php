@@ -74,6 +74,12 @@
 @endsection
 @section('script_after')
     <script>
+
+
+
+
+
+
         function checkNaam() {
 
             var naamveld = document.getElementById("naam").value;
@@ -87,6 +93,7 @@
                 $('#naam').addClass("is-valid");
             }
         }
+
 
 
         function checkBTW() {

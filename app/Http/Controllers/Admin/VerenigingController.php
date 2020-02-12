@@ -225,6 +225,9 @@ class VerenigingController extends Controller
         ]);
 
 
+        $gegenereerdWachtwoord = $this->randomWachtwoord();
+
+
         $gebruikers = new Gebruikers();
         Session::put('gebruikersnaam',$gebruikers->naam = $request->naam);
         Session::put('gebruikersvoornaam',$gebruikers->voornaam = $request->voornaam);
@@ -233,7 +236,8 @@ class VerenigingController extends Controller
         Session::put('gebruikersgeboortedatum',$gebruikers->geboortedatum = $request->geboortedatum);
         Session::put('rijksregisternr',$gebruikers->rijksregisternr = $request->rijksregisternr);
         Session::put('rollId',$gebruikers->rolId = 3);
-        Session::put('password',$gebruikers->password = \Hash::make("azerty123"));
+        Session::put('opmerking',$gebruikers->opmerking = $gegenereerdWachtwoord);
+        Session::put('password',$gebruikers->password = \Hash::make($gegenereerdWachtwoord));
 
         $result = compact('gebruikers');
         return view('aanvragen.aanvraag',$result);
@@ -287,7 +291,8 @@ class VerenigingController extends Controller
         $gebruikers->geboortedatum = Session::get('gebruikersgeboortedatum');
         $gebruikers->rijksregisternr = Session::get('rijksregisternr');
         $gebruikers->rolId = Session::get('rollId');
-        $gebruikers->password = Session::get('password');
+        $gebruikers->password =  Session::get('password');
+        $gebruikers->opmerking = Session::get('opmerking');
 
         $gebruikers->save();
 
@@ -325,4 +330,12 @@ class VerenigingController extends Controller
         return view('landingpage');
     }
 
+
+
+
+    public function randomWachtwoord($lengte = 10) {
+        $wachtwoord = array_merge(range('a', 'z'), range('A', 'Z'),range(0,9));
+        shuffle($wachtwoord);
+        return substr(implode($wachtwoord), 0, $lengte);
+    }
 }

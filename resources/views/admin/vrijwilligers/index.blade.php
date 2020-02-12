@@ -22,14 +22,14 @@
     <form method="get" action="/admin/vrijwilligers" id="searchForm">
         <div class="row">
             <div class="col-sm-3 mb-2">
-                <label for="naam">Filter Naam</label>
-                <input type="text" class="form-control" name="naam" id="naam"
-                       value="{{ request()->naam }}" placeholder="Filter Naam">
+                <label for="name">Filter Naam</label>
+                <input type="text" class="form-control" name="name" id="name"
+                       value="{{ request()->name }}" placeholder="Filter Naam">
             </div>
             <div class="col-sm-3 mb-2">
-                <label for="email">Filter Email</label>
-                <input type="email" class="form-control" name="email" id="email"
-                       value="{{ request()->email }}" placeholder="Filter Email">
+                <label for="emailadres">Filter Email</label>
+                <input type="email" class="form-control" name="emailadres" id="emailadres"
+                       value="{{ request()->emailadres }}" placeholder="Filter Email">
             </div>
             <div class="col-sm-3 mb-2">
                 <label for="sort">Sort by</label>
@@ -62,7 +62,9 @@
                         <th>Email</th>
                         <th>Telefoon</th>
                         <th>Geboortedatum</th>
-                        <th>Acties</th>
+                        <th>
+
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -79,6 +81,13 @@
 @section('script_after')
     <script>
         $(function () {
+
+            // submit form when leaving text field 'artist'
+            $('#name').blur(function () {
+                $('#searchForm').submit();
+            });
+
+
             loadTable();
 
             $('tbody').on('click', '.btn-delete', function () {
@@ -125,7 +134,7 @@
                 $('.modal-title').text(`Edit ${voornaam} ${naam}`);
                 $('form').attr('action', `/admin/vrijwilligers/${id}`);
 
-                $('#name').val(naam);
+                $('#naam').val(naam);
                 $('#voornaam').val(voornaam);
                 $('#roepnaam').val(roepnaam);
                 $('#email').val(email);
@@ -226,25 +235,27 @@
                     $('tbody').empty();
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
-                        if(value.lid.length == 1){
-                            var verenigingnaam = value.lid[0].naam;
-                        }else{
-                            var verenigingnaam = 'Geen vereniging';
-                        }
+                        for(var i=0; i<value.lid.length; i++){
 
-                        if(value.telefoon == null) {
-                            var telefoon = '/'
-                        } else {
-                            var telefoon = value.telefoon
-                        }
+                            if(value.lid.length == 0){
+                                var verenigingnaam = 'Geen vereniging';
+                            }else{
+                                var verenigingnaam = value.lid[i].naam;
+                            }
 
-                        if(value.geboortedatum == null) {
-                            var geboortedatum = '/'
-                        } else {
-                            var geboortedatum = value.geboortedatum
-                        }
+                            if(value.telefoon == null) {
+                                var telefoon = '/'
+                            } else {
+                                var telefoon = value.telefoon
+                            }
 
-                        let tr = `<tr>
+                            if(value.geboortedatum == null) {
+                                var geboortedatum = '/'
+                            } else {
+                                var geboortedatum = value.geboortedatum
+                            }
+
+                            let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.naam} ${value.voornaam}</td>
                                <td>${verenigingnaam}</td>
@@ -271,8 +282,10 @@
                                     </div>
                                </td>
                            </tr>`;
-                        // Append row to tbody
-                        $('tbody').append(tr);
+                            // Append row to tbody
+                            $('tbody').append(tr);
+                        }
+
                     });
                 })
                 .fail(function (e) {
