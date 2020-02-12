@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Gebruikers;
+use App\Tshirt;
 use App\Verenigings;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -43,6 +44,15 @@ class VrijwilligersImport implements ToCollection, WithHeadingRow, WithChunkRead
 
                     $gebruiker_id = \App\Gebruikers::orderBy('id', 'desc')->first();
                     $verId = \App\Verenigings::where('naam', $row['vereniging'])->first();
+
+                    if($row['maat'] != null){
+                        Tshirt::create([
+                            'maat' => $row['maat'],
+                            'geslacht' => $row['geslacht'],
+                            'aantal' => $row['aantal'],
+                            'gebruikers_id' => $gebruiker_id->id
+                        ]);
+                    }
 
                     \App\Gebruikers::find($gebruiker_id->id)->lid()->attach($verId->id);
 

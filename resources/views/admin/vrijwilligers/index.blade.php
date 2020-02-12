@@ -6,13 +6,13 @@
         .upload{
             position:absolute;
             right: 18%;
-            top: 15%;
+            top: 11%;
         }
 
         .download{
             position: absolute;
             right: 13.7%;
-            top: 15%;
+            top: 11%;
         }
     </style>
 @endsection
