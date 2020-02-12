@@ -40,16 +40,6 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email"
-                                       class="form-control"
-                                       placeholder="Email"
-                                       value="">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <label for="roepnaam">Roepnaam</label>
                                 <input type="text" name="roepnaam" id="roepnaam"
                                        class="form-control"
@@ -58,10 +48,33 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email"
+                                       class="form-control"
+                                       placeholder="Email"
+                                       value="">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
                     </div>
 
-
                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="rijksregisternr">Rijksregisternummer</label>
+                                <input oninput="checkRijks()" type="tel" name="rijksregisternr" id="rijksregisternr"
+                                       class="form-control"
+                                       placeholder="Rijksregisternummer"
+                                       required
+                                       value=""
+                                       minlength="11"
+                                       maxlength="11">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="telefoon">Telefoon</label>
@@ -73,7 +86,10 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
+                    </div>
 
+
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="geboortedatum">Geboortedatum</label>

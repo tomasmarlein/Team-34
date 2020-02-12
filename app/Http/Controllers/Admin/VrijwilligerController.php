@@ -61,6 +61,7 @@ class VrijwilligerController extends Controller
         $gebruikers->email = $request->email;
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
+        $gebruikers->rijksregisternr = $request->rijksregisternr;
         $gebruikers->rolId = 4;
 //        $gebruikers->password = Hash::make("gladiolen");
         $gebruikers->save();
@@ -111,6 +112,7 @@ class VrijwilligerController extends Controller
             'email' => $data['email'],
             'geboortedatum' => $data['geboortedatum'],
             'telefoon' => $data['telefoon'],
+            'rijksregisternr' => $data['rijksregisternr'],
         ]);
 
 

@@ -80,6 +80,15 @@
 
 @section('script_after')
     <script>
+
+        $( document ).ready(function() {
+            var inp = $("input[id='rijksregisternr'] ");
+            inp.bind('keyup', function(){
+                this.value = this.value.replace(/[^0-9]/,'');
+            });
+        });
+
+
         $(function () {
 
             // submit form when leaving text field 'artist'
@@ -130,6 +139,7 @@
                 let email = $(this).closest('td').data('email');
                 let telefoon = $(this).closest('td').data('telefoon');
                 let geboortedatum = $(this).closest('td').data('geboortedatum');
+                let rijksregisternr = $(this).closest('td').data('rijksregisternr');
                 // Update the modal
                 $('.modal-title').text(`Edit ${voornaam} ${naam}`);
                 $('form').attr('action', `/admin/vrijwilligers/${id}`);
@@ -140,6 +150,7 @@
                 $('#email').val(email);
                 $('#telefoon').val(telefoon);
                 $('#geboortedatum').val(geboortedatum);
+                $('#rijksregisternr').val(rijksregisternr);
 
                 $('input[name="_method"]').val('put');
                 // Show the modal
@@ -270,7 +281,8 @@
                                    data-roepnaam="${value.roepnaam}"
                                    data-email="${value.email}"
                                    data-geboortedatum="${value.geboortedatum}"
-                                   data-telefoon="${value.telefoon}">
+                                   data-telefoon="${value.telefoon}"
+                                   data-rijksregisternr="${value.rijksregisternr}">
 
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">
