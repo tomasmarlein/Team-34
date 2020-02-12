@@ -4,31 +4,29 @@ namespace App\Exports;
 
 use App\Gebruikers;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
+use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Events\AfterSheet;
-use Maatwebsite\Excel\Concerns\WithEvents;
 
-class VrijwilligersExport implements FromQuery, WithStrictNullComparison, WithHeadings, ShouldAutoSize, WithEvents, ShouldQueue, WithTitle
+class VrijwilligerTshirtExport implements FromQuery, WithStrictNullComparison, WithHeadings, ShouldAutoSize, WithEvents, WithTitle
 {
-    use Exportable;
     /**
     * @return \Illuminate\Support\Collection
     */
-
     public function query()
     {
         return Gebruikers::query()
             ->join('gebruikers_verenigings', 'gebruikers.id', '=', 'gebruikers_verenigings.gebruikers_id')
             ->join('verenigings', 'gebruikers_verenigings.verenigings_id', '=', 'verenigings.id')
-            ->leftJoin('tshirts', 'gebruikers.id', '=', 'tshirts.gebruikers_id')
+            ->join('tshirts', 'gebruikers.id', '=', 'tshirts.gebruikers_id')
+            ->leftJoin('tshirt_types', 'tshirts.types_id', '=', 'tshirt_types.id')
             ->where('rolId', 4)
-            ->select( 'verenigings.naam as vnaam','gebruikers.email', 'gebruikers.naam', 'gebruikers.voornaam', 'gebruikers.roepnaam', 'gebruikers.geboortedatum', 'gebruikers.telefoon', 'gebruikers.opmerking', 'gebruikers.rijksregisternr', 'gebruikers.lunchpakket');
+            ->select( 'verenigings.naam as vnaam', 'gebruikers.naam', 'gebruikers.voornaam', 'gebruikers.roepnaam', 'tshirts.maat', 'tshirts.geslacht', 'tshirts.aantal', 'tshirt_types.type');
     }
 
     /**
@@ -38,15 +36,13 @@ class VrijwilligersExport implements FromQuery, WithStrictNullComparison, WithHe
     {
         return [
             'Vereniging',
-            'E-mail',
             'Naam',
             'Voornaam',
             'Roepnaam',
-            'Geboortedatum',
-            'Telefoon',
-            'Opmerking',
-            'Rijksregisternr',
-            'Lunchpakket (0=geen, 1=wel)',
+            'Maat',
+            'Geslacht',
+            'Aantal',
+            'Type'
         ];
     }
 
@@ -66,6 +62,6 @@ class VrijwilligersExport implements FromQuery, WithStrictNullComparison, WithHe
 
     public function title(): string
     {
-        return 'Info';
+        return 'Tshirts';
     }
 }

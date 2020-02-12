@@ -32,7 +32,7 @@
                 @auth
                         @if(auth()->user()->rolId==1)
                         <li class="nav-item">
-                            <a class="nav-link" href="/home"><i class="fas fa-user-shield"></i> adminpanel</a>
+                            <a class="nav-link" href="/home"><i class="fas fa-user-shield"></i> Adminpaneel</a>
                         </li>
                         @endif
                             @if(auth()->user()->rolId==3)
@@ -43,19 +43,19 @@
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#!" data-toggle="dropdown">
-                            {{ auth()->user()->naam }} <span class="caret"></span>
+                            {{ auth()->user()->voornaam }}  {{ auth()->user()->naam }} <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="/user/profile"><i class="fas fa-user-cog"></i> Update Profile</a>
-                            <a class="dropdown-item" href="/user/password"><i class="fas fa-key"></i> New Password</a>
+                            <a class="dropdown-item" href="/user/profile"><i class="fas fa-user-cog"></i> Wijzig mijn gegevens</a>
+                            <a class="dropdown-item" href="/user/password"><i class="fas fa-key"></i> Wijzig mijn wachtwoord</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Log uit</a>
                             @if(auth()->user()->rolId==1)
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/admin/evenementen"><i class="fas fa-calendar-week"></i> Evenementen</a>
                                 <a class="dropdown-item" href="/admin/verenigingen"><i class="fab fa-vuejs"></i> Verenigingen</a>
                                 <a class="dropdown-item" href="/admin/kernleden"><i class="fas fa-users"></i> Kernleden</a>
-                                <a class="dropdown-item" href="/admin/verantwoordelijke"><i class="far fa-user"></i> Verantwoordelijke</a>
+                                <a class="dropdown-item" href="/admin/verantwoordelijke"><i class="far fa-user"></i> Verantwoordelijken</a>
                                 <a class="dropdown-item" href="/admin/vrijwilligers"><i class="fas fa-hands-helping"></i> Vrijwilligers</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user-clock"></i>Tijdsregistratie</a>
                             @endif

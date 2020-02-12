@@ -8,7 +8,7 @@
                     @csrf
                     <button type="submit" class="btn btn-success">Opslaan</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        Close
+                        Sluit
                     </button>
             </div>
             <div class="modal-body">
@@ -27,7 +27,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="startdatum">startdatum</label>
+                            <label for="startdatum">Startdatum</label>
                             <input type="datetime" name="startdatum" id="startdatum"
                                    class="form-control"
                                    placeholder="Startdatum"
@@ -39,7 +39,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group ">
-                            <label for="einddatum">einddatum</label>
+                            <label for="einddatum">Einddatum</label>
                             <input type="datetime" name="einddatum" id="einddatum"
                                    class="form-control"
                                    placeholder="Einddatum"

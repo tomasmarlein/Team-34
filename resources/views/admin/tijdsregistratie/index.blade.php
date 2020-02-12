@@ -8,18 +8,18 @@
         <div class="row">
 
             <div class="col-sm-3 mb-2">
-                <label for="email">Filter Email</label>
+                <label for="email">Filter op e-mail adres: </label>
                 <input type="email" class="form-control" name="email" id="email"
-                       value="{{ request()->email }}" placeholder="Filter Email">
+                       value="{{ request()->email }}" placeholder="E-mail adres">
             </div>
             <div class="col-sm-6 mb-2">
-                <label for="sort">Sort by</label>
+                <label for="sort">Sorteer op: </label>
                 <select class="form-control" name="sort" id="sort">
-                    <option value="%" selected>Name (A => Z)</option>
-                    <option value="%">Name (Z => A)</option>
-                    <option value="%">Email (A => Z)</option>
-                    <option value="%">Email (Z => A)</option>
-                    <option value="%">Not Active</option>
+                    <option value="%" selected>Naam (A => Z)</option>
+                    <option value="%">Naam (Z => A)</option>
+                    <option value="%">E-mail (A => Z)</option>
+                    <option value="%">E-mail (Z => A)</option>
+                    <option value="%">Niet actief</option>
                     <option value="%">Admin</option>
                 </select>
             </div>

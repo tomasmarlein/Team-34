@@ -283,7 +283,7 @@
 
             <div class="row">
 
-                <div class="col-8"> <h1 class="display-4">Adminpanel</h1>
+                <div class="col-8"> <h1 class="display-4">Adminpaneel</h1>
 
                     </div>
                 <form class="col-4">
@@ -376,13 +376,13 @@
                                                 </div>
                                                 <div class="author__content">
                                                     <p class="author__header">Verenigingen in aanvraag</p>
-                                                    <p class="author__subheader">Beheer aanvragen</p>
+                                                    <p class="author__subheader">Beheer verenigingen in aanvraag</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card__body">
-                                        <h2 class="card__headline">Aanvragen</h2>
+                                        <h2 class="card__headline">Verenigingen in aanvraag</h2>
                                         <p class="card__text">Verenigingen waarvan de verantwoordelijke reeds een aanvraag heeft ingediend, kunnen hier worden goed- of afgekeurd.</p>
                                     </div>
                                     <div class="card__foot">

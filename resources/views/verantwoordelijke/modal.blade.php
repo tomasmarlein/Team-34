@@ -1,19 +1,18 @@
-<div class="modal" id="modal-vrijwilliger">
+<div class="modal" id="modal-lid">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
 
-                <div class="modal-header">
-                    <h5 class="modal-title">Vrijwilligers</h5>
-            <form action="" method="post">
-                    @method('')
-                    @csrf
-                <button type="submit" class="btn btn-success">Opslaan</button>
+            <div class="modal-header">
+                <h5 class="modal-title">Lid</h5>
+
+                <button type="submit" class="btn btn-success">Bewaar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
-                    Sluit
+                    Close
                 </button>
-
-                </div>
-
+            </div>
+            <form action="" method="post">
+                @method('')
+                @csrf
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -40,16 +39,6 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="roepnaam">Roepnaam</label>
-                                <input type="text" name="roepnaam" id="roepnaam"
-                                       class="form-control"
-                                       placeholder="Roepnaam"
-                                       value="">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" name="email" id="email"
                                        class="form-control"
@@ -58,23 +47,20 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="rijksregisternr">Rijksregisternummer</label>
-                                <input oninput="checkRijks()" type="tel" name="rijksregisternr" id="rijksregisternr"
+                                <label for="roepnaam">Roepnaam</label>
+                                <input type="text" name="roepnaam" id="roepnaam"
                                        class="form-control"
-                                       placeholder="Rijksregisternummer"
-                                       required
-                                       value=""
-                                       minlength="11"
-                                       maxlength="11">
+                                       placeholder="Roepnaam"
+                                       value="">
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
+                    </div>
 
+
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="telefoon">Telefoon</label>
@@ -86,10 +72,7 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
-                    </div>
 
-
-                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="geboortedatum">Geboortedatum</label>

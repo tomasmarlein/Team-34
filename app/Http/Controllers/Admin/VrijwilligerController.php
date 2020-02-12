@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\HeadVrijwilligerExport;
 use App\Exports\VrijwilligersExport;
 use App\Imports\VrijwilligersImport;
 use App\Gebruikers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
 class VrijwilligerController extends Controller
@@ -26,7 +26,7 @@ class VrijwilligerController extends Controller
 
     public function export()
     {
-        return Excel::download(new VrijwilligersExport(), 'Vrijwilligers.xlsx');
+        return Excel::download(new HeadVrijwilligerExport(), 'Vrijwilligers.xlsx');
     }
 
     public function index()
@@ -62,6 +62,7 @@ class VrijwilligerController extends Controller
         $gebruikers->email = $request->email;
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
+        $gebruikers->rijksregisternr = $request->rijksregisternr;
         $gebruikers->rolId = 4;
 //        $gebruikers->password = Hash::make("gladiolen");
         $gebruikers->save();
@@ -112,6 +113,7 @@ class VrijwilligerController extends Controller
             'email' => $data['email'],
             'geboortedatum' => $data['geboortedatum'],
             'telefoon' => $data['telefoon'],
+            'rijksregisternr' => $data['rijksregisternr'],
         ]);
 
 
@@ -145,12 +147,12 @@ class VrijwilligerController extends Controller
 
     public function qryVrijwilligers(Request $request)
     {
-        $naam = '%' . $request->input('name') . '%';
+        $naam = $request->get('name');
 
         $gebruikers = Gebruikers::orderBy('id')
                 ->where('rolId', '=', 4)
-                ->where('naam', 'like', 'Vrijwilliger_0')
-                ->with ('lid')
+                ->where('naam', 'like', '%'.$naam.'%')
+                ->with('lid')
                 ->get();
             return $gebruikers;
     }

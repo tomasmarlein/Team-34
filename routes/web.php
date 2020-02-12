@@ -101,6 +101,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 Route::middleware(['auth', 'verantwoordelijke'])->group(function () {
 
     Route::view('/verant', 'verantwoordelijke.vereniging');
+    Route::get('qryLeden', 'Admin\KernledenController@qryKernleden');
+
 
 });
 

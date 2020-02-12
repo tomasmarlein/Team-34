@@ -113,7 +113,7 @@ class KernledenController extends Controller
 
         return response()->json([
             'type' => 'success',
-            'text' => "De vrijwilliger <b>$gebruikers->naam $gebruikers->voornaam</b> is verwijderd!"
+            'text' => "Kernlid: <b>$gebruikers->naam $gebruikers->voornaam</b> is verwijderd!"
         ]);
     }
 

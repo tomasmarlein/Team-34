@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Gebruikers;
+use App\Verenigings;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -19,19 +20,34 @@ class VrijwilligersImport implements ToCollection, WithHeadingRow, WithChunkRead
     {
         foreach ($rows as $row)
         {
-            Gebruikers::create([
-                'email' => $row['email'],
-                'naam' => $row['naam'],
-                'voornaam' => $row['voornaam'],
-                'roepnaam' => $row['roepnaam'],
-                'geboortedatum' => $row['geboortedatum'],
-                'telefoon' => $row['telefoon'],
-                'opmerking' => $row['opmerking'],
-                'rijksregisternr' => $row['rijksregisternr'],
-                'lunchpakket' => $row['lunchpakket'],
-                'tshirtId' => $row['tshirt'],
-                'rolId' => 4
-            ]);
+            $datum = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['geboortedatum']);
+
+            $verenigingnaams = \App\Verenigings::where('naam',$row['vereniging'])->first();
+            $rijks = \App\Gebruikers::where('rijksregisternr', $row['rijksregisternr'])->first();
+
+
+            if($verenigingnaams != null){
+                if($rijks == null){
+                    Gebruikers::create([
+                        'email' => $row['email'],
+                        'naam' => $row['naam'],
+                        'voornaam' => $row['voornaam'],
+                        'roepnaam' => $row['roepnaam'],
+                        'geboortedatum' => $datum->format('Y-m-d'),
+                        'telefoon' => $row['telefoon'],
+                        'opmerking' => $row['opmerking'],
+                        'rijksregisternr' => $row['rijksregisternr'],
+                        'lunchpakket' => $row['lunchpakket'],
+                        'rolId' => 4
+                    ]);
+
+                    $gebruiker_id = \App\Gebruikers::orderBy('id', 'desc')->first();
+                    $verId = \App\Verenigings::where('naam', $row['vereniging'])->first();
+
+                    \App\Gebruikers::find($gebruiker_id->id)->lid()->attach($verId->id);
+
+                }
+            }
         }
     }
 

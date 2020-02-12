@@ -50,9 +50,12 @@
 
 
     <form>
+        <div>
         <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
                  aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+            </div>
+            <h1>Bevestig je gegevens</h1>
         </div>
         <hr class="mb-4">
 
