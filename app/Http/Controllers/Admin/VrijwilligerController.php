@@ -7,7 +7,6 @@ use App\Imports\VrijwilligersImport;
 use App\Gebruikers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
 class VrijwilligerController extends Controller
@@ -145,12 +144,12 @@ class VrijwilligerController extends Controller
 
     public function qryVrijwilligers(Request $request)
     {
-        $naam = '%' . $request->input('name') . '%';
+        $naam = $request->get('name');
 
         $gebruikers = Gebruikers::orderBy('id')
                 ->where('rolId', '=', 4)
-                ->where('naam', 'like', 'Vrijwilliger_0')
-                ->with ('lid')
+                ->where('naam', 'like', '%'.$naam.'%')
+                ->with('lid')
                 ->get();
             return $gebruikers;
     }
