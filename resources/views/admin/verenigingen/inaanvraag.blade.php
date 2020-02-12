@@ -3,7 +3,7 @@
 @section('title', 'Verenigingen')
 
 @section('main')
-    <h1>Aangevraagde Verenigingen</h1>
+    <h1>Verenigingen in aanvraag</h1>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -16,7 +16,7 @@
                 <th>Rekeningnummer</th>
                 <th>BTW Nummer</th>
                 <th>Adres</th>
-                <th></th>
+                <th>Acties</th>
             </tr>
             </thead>
             <tbody>
@@ -52,7 +52,7 @@
                             deleteVereniging(id);
                             modal.close();
                         }),
-                        Noty.button('Cancel', 'btn btn-secondary ml-2', function () {
+                        Noty.button('Annuleer', 'btn btn-secondary ml-2', function () {
                             modal.close();
                         })
                     ]

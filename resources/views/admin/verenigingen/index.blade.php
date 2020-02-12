@@ -16,12 +16,12 @@
     <form method="get" action="#" id="searchForm">
         <div class="row">
             <div class="col-sm-6 mb-2">
-                <p>Filter Naam of Email</p>
+                <p>Filter op naam of e-mail adres: </p>
                 <input type="text" class="form-control" name="artist" id="artist"
-                       value="" placeholder="Filter Name Or Email">
+                       value="" placeholder="Naam of e-mail adres">
             </div>
             <div class="col-sm-4 mb-2">
-                <p>sort</p>
+                <p>Sorteer: </p>
                 <select class="form-control" name="#" id="#">
                     <option>naam (A=>Z)</option>
                 </select>
@@ -47,7 +47,7 @@
                 <th>Rekeningnummer</th>
                 <th>BTW Nummer</th>
                 <th>Adres</th>
-                <th></th>
+                <th>Acties</th>
             </tr>
             </thead>
             <tbody>

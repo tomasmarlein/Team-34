@@ -4,14 +4,14 @@
 
 @section('main')
     <div>
-        <h1>Verantwoordelijke overzicht</h1>
+        <h1>Overzicht verantwoordelijken</h1>
 
         <form method="get" action="#" id="searchForm">
             <div class="row">
                 <div class="col-sm-6 mb-2">
-                    <p>Filter Naam of Email</p>
+                    <p>Filter op naam of e-mail adres: </p>
                     <input type="text" class="form-control" name="artist" id="artist"
-                           value="" placeholder="Filter Name Or Email">
+                           value="" placeholder="Naam of e-mail">
                 </div>
             </div>
         </form>

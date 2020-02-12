@@ -7,20 +7,20 @@
     <form method="get" action="#" id="searchForm">
         <div class="row">
             <div class="col-sm-6 mb-2">
-                <p>Filter Naam of Email</p>
+                <p>Filter op naam of e-mail adres: </p>
                 <input type="text" class="form-control" name="artist" id="artist"
-                       value="" placeholder="Filter Name Or Email">
+                       value="" placeholder="Naam of e-mail adres">
             </div>
             <div class="col-sm-4 mb-2">
-                <p>sort</p>
+                <p>Sorteer op: </p>
                 <select class="form-control" name="#" id="#">
-                    <option>naam (A=>Z)</option>
+                    <option>Naam (A=>Z)</option>
                 </select>
             </div>
             <div class="col-sm-3 mb-2">
-                <label>Voeg toe</label><br>
+                <label>Voeg toe: </label><br>
                 <a href="#!" class="btn btn-outline-success" id="btn-create">
-                    <i class="fas fa-plus-circle mr-1"></i>Nieuwe evenement
+                    <i class="fas fa-plus-circle mr-1"></i>Nieuw evenement
                 </a>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <th>Einddatum</th>
                 <th>Startdatum</th>
                 <th>Actief</th>
-                <th></th>
+                <th>Acties</th>
             </tr>
             </thead>
             <tbody>
@@ -76,7 +76,7 @@
                             deleteEvenement(id);
                             modal.close();
                         }),
-                        Noty.button('Cancel', 'btn btn-secondary ml-2', function () {
+                        Noty.button('Annuleer', 'btn btn-secondary ml-2', function () {
                             modal.close();
                         })
                     ]

@@ -165,8 +165,8 @@ class VerantwoordelijkeController extends Controller
     public function qryVerantwoordelijke()
     {
         $gebruikers = Verenigings::orderBy('naam')
-            ->with ('vereniginglid')
-            ->get();
+        ->with ('vereniginglid')
+        ->get();
         return $gebruikers;
     }
 
