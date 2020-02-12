@@ -61,6 +61,9 @@
                 let id = $(this).closest('td').data('id');
                 let naam = $(this).closest('td').data('naam');
                 let voornaam = $(this).closest('td').data('voornaam');
+
+                let volledigenaam = naam +  " " + voornaam;
+
                 let vereniging = $(this).closest('td').data('vereniging');
                 let checkIn = $(this).closest('td').data('checkIn');
                 let checkUit = $(this).closest('td').data('checkUit');
@@ -69,6 +72,7 @@
                 let adminCheckIn = $(this).closest('td').data('admCheckIn');
                 let adminCheckUit = $(this).closest('td').data('admCheckUit');
 
+                console.log(checkIn);
 
 
 
@@ -79,6 +83,7 @@
 
                 $('#naam').val(naam);
                 $('#voornaam').val(voornaam);
+                $('#volledigenaam').val(volledigenaam);
                 $('#vereniging').val(vereniging);
                 $('#checkIn').val(checkIn);
                 $('#checkUit').val(checkUit);
@@ -172,6 +177,7 @@
                         }else{
                             var adminUit = "<i class=\"fas fa-times-circle\"></i>";
                         }
+
 
 
 
