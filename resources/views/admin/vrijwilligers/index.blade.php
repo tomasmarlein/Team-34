@@ -16,7 +16,7 @@
 
     <div class="download">
         <form style="text-align: right" action="{{url('admin/download')}}" method="get" >
-            <button data-toggle="tooltip" title="Export alle vrijwilligers" style="height: 45px; width:55px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
+            <button data-toggle="tooltip" title="Exporteer alle vrijwilligers" style="height: 45px; width:55px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
                 <i class="fas fa-download"></i>
             </button>
         </form>
@@ -27,34 +27,34 @@
         @csrf
         <input type="file" name="file" class="form-control">
         <br>
-        <button class="btn btn-success">Import User Data</button>
+        <button class="btn btn-success">Importeer vrijwilligersdata</button>
     </form>
 
     <form method="get" action="/admin/vrijwilligers" id="searchForm">
         <div class="row">
             <div class="col-sm-3 mb-2">
-                <label for="name">Filter Naam</label>
+                <label for="name">Filter op naam: </label>
                 <input type="text" class="form-control" name="name" id="name"
-                       value="{{ request()->name }}" placeholder="Filter Naam">
+                       value="{{ request()->name }}" placeholder="Naam">
             </div>
             <div class="col-sm-3 mb-2">
-                <label for="emailadres">Filter Email</label>
+                <label for="emailadres">Filter op e-mail adres: </label>
                 <input type="email" class="form-control" name="emailadres" id="emailadres"
-                       value="{{ request()->emailadres }}" placeholder="Filter Email">
+                       value="{{ request()->emailadres }}" placeholder="E-mail adres">
             </div>
             <div class="col-sm-3 mb-2">
-                <label for="sort">Sort by</label>
+                <label for="sort">Sorteer op: </label>
                 <select class="form-control" name="sort" id="sort">
-                    <option value="%" selected>Name (A => Z)</option>
-                    <option value="%">Name (Z => A)</option>
-                    <option value="%">Email (A => Z)</option>
-                    <option value="%">Email (Z => A)</option>
-                    <option value="%">Not Active</option>
+                    <option value="%" selected>Naam (A => Z)</option>
+                    <option value="%">Naam (Z => A)</option>
+                    <option value="%">E-mail (A => Z)</option>
+                    <option value="%">E-mail (Z => A)</option>
+                    <option value="%">Niet actief</option>
                     <option value="%">Admin</option>
                 </select>
             </div>
             <div class="col-sm-3 mb-2">
-                <label>Voeg toe</label><br>
+                <label>Voeg toe: </label><br>
                 <a href="#!" class="btn btn-outline-success" id="btn-create">
                     <i class="fas fa-plus-circle mr-1"></i>Nieuwe vrijwiliger
                 </a>
@@ -73,9 +73,7 @@
                         <th>Email</th>
                         <th>Telefoon</th>
                         <th>Geboortedatum</th>
-                        <th>
-
-                        </th>
+                        <th>Acties</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -107,10 +105,10 @@
                 let naam = $(this).closest('td').data('naam');
                 let voornaam = $(this).closest('td').data('voornaam');
                 // Set some values for Noty
-                let text = `<p>Delete de vrijwilliger <b>${voornaam} ${naam}</b>?</p>`;
+                let text = `<p>Verwijder de vrijwilliger <b>${voornaam} ${naam}</b>?</p>`;
                 let type = 'warning';
-                let btnText = 'Delete Vrijwilliger';
-                let btnClass = 'btn-success';
+                let btnText = 'Verwijder vrijwilliger';
+                let btnClass = 'btn-danger';
 
                 // Show Noty
                 let modal = new Noty({
@@ -125,7 +123,7 @@
                             deleteGebruiker(id);
                             modal.close();
                         }),
-                        Noty.button('Cancel', 'btn btn-secondary ml-2', function () {
+                        Noty.button('Annuleer', 'btn btn-secondary ml-2', function () {
                             modal.close();
                         })
                     ]
