@@ -96,7 +96,7 @@
                 // Get data attributes from td tag
                 let id = $(this).closest('td').data('id');
                 let naam = $(this).closest('td').data('naam');
-                let hoofdverantwoordelijke = $(this).closest('td').data('hoofdverantwoordelijke');
+                let voornaam = $(this).closest('td').data('voornaam');
                 let rekeningnr = $(this).closest('td').data('rekeningnr');
                 let btwnr = $(this).closest('td').data('btwnr');
                 let straat = $(this).closest('td').data('straat');
@@ -109,7 +109,7 @@
                 $('form').attr('action', `/admin/verenigingen/${id}`);
 
                 $('#naam').val(naam);
-                $('#hoofdverantwoordelijke').val(hoofdverantwoordelijke);
+                $('#voornaam').val(voornaam);
                 $('#rekeningnr').val(rekeningnr);
                 $('#btwnr').val(btwnr);
                 $('#straat').val(straat);

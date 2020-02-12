@@ -89,7 +89,7 @@ class TijdsregistratieController extends Controller
     public function qryTijdsregistratie()
     {
         $tijdsregistratie = Tijdsregistratie::orderBy('checkIn')
-            ->with ('verenigingTijd','gebruikerstijd','evenement')
+            ->with ('verenigingTijd','gebruikerstijd','evenement', 'gebruikerstijd.lid')
             ->get();
         return $tijdsregistratie;
     }
