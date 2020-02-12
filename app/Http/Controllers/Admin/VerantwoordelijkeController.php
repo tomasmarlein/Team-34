@@ -169,4 +169,12 @@ class VerantwoordelijkeController extends Controller
         ->get();
         return $gebruikers;
     }
+
+
+
+    public function qryLeden(){
+        $gebruikers = Gebruikers::orderBy('naam')
+            ->where('vereniging' , '=' , 'PianoVereniging')
+            ->get();
+    }
 }
