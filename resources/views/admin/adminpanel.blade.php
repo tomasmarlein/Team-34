@@ -300,9 +300,9 @@
             </div>
 
 
-            <p class="lead">Welkom {{ Auth::user()->naam }} in het tijdsregistratiesysteem van Keizer Karel Olen</p>
+            <p class="lead">Welkom {{ Auth::user()->naam }} in het tijdsregistratiesysteem van Keizer Karel Olen!</p>
             <hr class="my-4">
-            <p>Beheer hier evenementen, verenigingen, vrijwilligers en de tijdsregistratie voor evenementen van Keizer
+            <p>Beheer hier evenementen, kernleden, aanvragen, verantwoordelijken, verenigingen, vrijwilligers, T-shirts, lunchpakketten en tijdsregistraties voor evenementen van Keizer
                 Karel Olen.</p>
 
 
@@ -328,7 +328,7 @@
                                     </div>
                                     <div class="card__body">
                                         <h2 class="card__headline">Evenementen</h2>
-                                        <p class="card__text">Beheer Evenementen</p>
+                                        <p class="card__text">Wijzig gegevens van evenementen, maak nieuwe evenementen aan en verwijder er.</p>
                                     </div>
                                     <div class="card__foot">
                                         <span class="card__link">Ga verder</span>
@@ -355,9 +355,7 @@
                                     </div>
                                     <div class="card__body">
                                         <h2 class="card__headline">Kernleden</h2>
-                                        <p class="card__text">Kernleden zijn gebruikers aangesteld door admins om
-                                            verenigigen, verantwoordelijke en gebruikers te beheren
-                                            het tijdsregistraties kunnen beheren</p>
+                                        <p class="card__text">Kernleden zijn gebruikers aangesteld door admins. Hier kan je de kernleden aanmaken, wijzigen en eventueel verwijderen.</p>
                                     </div>
                                     <div class="card__foot">
                                         <span class="card__link">Ga verder</span>
@@ -385,8 +383,7 @@
                                     </div>
                                     <div class="card__body">
                                         <h2 class="card__headline">Aanvragen</h2>
-                                        <p class="card__text">Indien een vereniging aanvraag doet om mee te helpen op
-                                            evenementen van Keizer Karel Olen zijn deze aanvragen hier te vinden.</p>
+                                        <p class="card__text">Verenigingen waarvan de verantwoordelijke reeds een aanvraag heeft ingediend, kunnen hier worden goed- of afgekeurd.</p>
                                     </div>
                                     <div class="card__foot">
                                         <span class="card__link">Ga verder</span>
@@ -405,15 +402,15 @@
                                                     <i class="fas fa-user"></i>
                                                 </div>
                                                 <div class="author__content">
-                                                    <p class="author__header">Verantwoordelijke</p>
-                                                    <p class="author__subheader">Beheer verantwoordelijke</p>
+                                                    <p class="author__header">Verantwoordelijken</p>
+                                                    <p class="author__subheader">Overzicht verantwoordelijken</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card__body">
-                                        <h2 class="card__headline">Verantwoordelijke</h2>
-                                        <p class="card__text">Beheer de verantwoordelijke van verenigingen.</p>
+                                        <h2 class="card__headline">Verantwoordelijken</h2>
+                                        <p class="card__text">Bekijk alle verantwoordelijke van de verschillende verenigingen.</p>
                                     </div>
                                     <div class="card__foot">
                                         <span class="card__link">Ga verder</span>
@@ -440,8 +437,7 @@
                                     </div>
                                     <div class="card__body">
                                         <h2 class="card__headline">Verenigingen</h2>
-                                        <p class="card__text">Verenigenen die meeerken aan evenementen van Keizer karel
-                                            Oler.</p>
+                                        <p class="card__text">Wijzig verenigingen hun gegevens, maak nieuwe verenigingen aan of verwijder ze, zet verenigingen op actief of non-actief.</p>
                                     </div>
                                     <div class="card__foot">
                                         <span class="card__link">Ga verder</span>
@@ -468,8 +464,7 @@
                                     </div>
                                     <div class="card__body">
                                         <h2 class="card__headline">Vrijwilligers</h2>
-                                        <p class="card__text">Beheer vrijwilligers die tijdens het evenement zullen meewerken
-                                            aan een veilig en fantastisch evenement.</p>
+                                        <p class="card__text">Wijzig vrijwilligers hun gegevens, maak nieuwe vrijwilligers aan of verwijder ze.</p>
                                     </div>
                                     <div class="card__foot">
                                         <span class="card__link">Ga verder</span>
@@ -496,7 +491,7 @@
                                     </div>
                                     <div class="card__body">
                                         <h2 class="card__headline">T-shirts</h2>
-                                        <p class="card__text">Beheer hier alles in verband met de t-shirts per verenigingen.</p>
+                                        <p class="card__text">Bekijk alle types van t-shirts per vereniging en het aantal per maat.</p></p>
                                     </div>
                                     <div class="card__foot">
                                         <span class="card__link">Ga verder</span>
@@ -515,16 +510,16 @@
                                                     <i class="fas fa-hamburger"></i>
                                                 </div>
                                                 <div class="author__content">
-                                                    <p class="author__header">Lunchpakketen</p>
-                                                    <p class="author__subheader">Beheer lunchpakketen</p>
+                                                    <p class="author__header">Lunchpakketten</p>
+                                                    <p class="author__subheader">Beheer lunchpakketten</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card__body">
-                                        <h2 class="card__headline">Lunchpakketen</h2>
-                                        <p class="card__text">Lunchpakketen voor de verenigenen die meewerken aan evenementen van Keizer karel
-                                            Olen</p>
+                                        <h2 class="card__headline">Lunchpakketten</h2>
+                                        <p class="card__text">Wijs lunchpakketten toe aan gebruikers van verenigingen.
+                                            </p>
                                     </div>
                                     <div class="card__foot">
                                         <span class="card__link">Ga verder</span>
@@ -543,15 +538,15 @@
                                                     <i class="fas fa-stopwatch"></i>
                                                 </div>
                                                 <div class="author__content">
-                                                    <p class="author__header">Tijdsregistratie dashboard</p>
+                                                    <p class="author__header">Tijdsregistraties</p>
                                                     <p class="author__subheader">Beheer tijdsregistratie</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card__body">
-                                        <h2 class="card__headline">Tijdsregistratie dashboard</h2>
-                                        <p class="card__text">Tijdsregistratie per vereniging die meewerkt aan het evenement van vzw Keizen Karel Olen.</p>
+                                        <h2 class="card__headline">Tijdsregistraties</h2>
+                                        <p class="card__text">Bekijk tijdsregistraties per vereniging per gebruiker en vul eventuele check in of check uit tijden aan.</p>
                                     </div>
                                     <div class="card__foot">
                                         <span class="card__link">Ga verder</span>
