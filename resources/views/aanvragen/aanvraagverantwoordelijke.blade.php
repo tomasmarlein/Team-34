@@ -36,9 +36,6 @@
             </div>
         </div>
 
-
-
-
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="email">E-Mail *</label>
@@ -49,8 +46,11 @@
             </div>
 
             <div class="col-md-6 mb-3">
-                <label for="rijksregisternr">Rijksregisternummer</label>
-                <input type="text" class="form-control"  name="rijksregisternr" id="rijksregisternr" placeholder="rijksregisternr" value="">
+                <label for="rijksregisternr">Rijksregisternummer *   <b>NIET: </b>89.05.14-168.85 <b> WEL: </b> 88051416885 </label>
+                <input oninput="checkRijks()" type="text" class="form-control is-invalid"  name="rijksregisternr" id="rijksregisternr" placeholder="rijksregisternr" value="">
+                <div class="invalid-feedback">
+                    Rijksregisternummer is Verplicht
+                </div>
             </div>
         </div>
 
@@ -78,6 +78,18 @@
 
 @section('script_after')
 <script>
+
+
+    $( document ).ready(function() {
+        var inp = $("input[id='rijksregisternr'] ");
+        inp.bind('keyup', function(){
+            this.value = this.value.replace(/[^0-9]/,'');
+        });
+    });
+
+
+
+
     function checkNaam() {
 
         var naamveld = document.getElementById("naam").value;
@@ -121,6 +133,20 @@
 
             $('#email').removeClass("is-invalid");
             $('#email').addClass("is-valid");
+        }
+    }
+
+    function checkRijks() {
+
+        var naamveld = document.getElementById("rijksregisternr").value;
+
+        if(naamveld === ""){
+            $('#rijksregisternr').addClass("is-invalid");
+
+        }else {
+
+            $('#rijksregisternr').removeClass("is-invalid");
+            $('#rijksregisternr').addClass("is-valid");
         }
     }
 </script>
