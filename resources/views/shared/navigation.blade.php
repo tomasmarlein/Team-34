@@ -43,7 +43,7 @@
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#!" data-toggle="dropdown">
-                            {{ auth()->user()->naam }} <span class="caret"></span>
+                            {{ auth()->user()->voornaam }}  {{ auth()->user()->naam }} <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="/user/profile"><i class="fas fa-user-cog"></i> Update Profile</a>
