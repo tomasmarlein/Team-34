@@ -22,14 +22,14 @@
     <form method="get" action="/admin/vrijwilligers" id="searchForm">
         <div class="row">
             <div class="col-sm-3 mb-2">
-                <label for="naam">Filter Naam</label>
-                <input type="text" class="form-control" name="naam" id="naam"
-                       value="{{ request()->naam }}" placeholder="Filter Naam">
+                <label for="name">Filter Naam</label>
+                <input type="text" class="form-control" name="name" id="name"
+                       value="{{ request()->name }}" placeholder="Filter Naam">
             </div>
             <div class="col-sm-3 mb-2">
-                <label for="email">Filter Email</label>
-                <input type="email" class="form-control" name="email" id="email"
-                       value="{{ request()->email }}" placeholder="Filter Email">
+                <label for="emailadres">Filter Email</label>
+                <input type="email" class="form-control" name="emailadres" id="emailadres"
+                       value="{{ request()->emailadres }}" placeholder="Filter Email">
             </div>
             <div class="col-sm-3 mb-2">
                 <label for="sort">Sort by</label>
@@ -62,7 +62,9 @@
                         <th>Email</th>
                         <th>Telefoon</th>
                         <th>Geboortedatum</th>
-                        <th>Acties</th>
+                        <th>
+
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -79,6 +81,13 @@
 @section('script_after')
     <script>
         $(function () {
+
+            // submit form when leaving text field 'artist'
+            $('#name').blur(function () {
+                $('#searchForm').submit();
+            });
+
+
             loadTable();
 
             $('tbody').on('click', '.btn-delete', function () {
@@ -125,7 +134,7 @@
                 $('.modal-title').text(`Edit ${voornaam} ${naam}`);
                 $('form').attr('action', `/admin/vrijwilligers/${id}`);
 
-                $('#name').val(naam);
+                $('#naam').val(naam);
                 $('#voornaam').val(voornaam);
                 $('#roepnaam').val(roepnaam);
                 $('#email').val(email);
