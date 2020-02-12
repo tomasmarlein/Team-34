@@ -1,17 +1,28 @@
 @extends('layouts.template')
 
 @section('title', 'Vrijwilligers')
-
+@section('css_after')
+    <style>
+        .download{
+            position: absolute;
+            right: 13.7%;
+            top: 15%;
+        }
+    </style>
+@endsection
 @section('main')
     <h1>Vrijwilligers</h1>
     @include('shared.alert')
 
+    <div class="download">
+        <form style="text-align: right" action="{{url('admin/download')}}" method="get" >
+            <button data-toggle="tooltip" title="Export alle vrijwilligers" style="height: 45px; width:55px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
+                <i class="fas fa-download"></i>
+            </button>
+        </form>
+    </div>
 
-    <form action="{{url('admin/download')}}" method="get" >
-        <button type="submit" class="btn btn-primary btn-lg btn-block">
-            Download die shit
-        </button>
-    </form>
+
     <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file" class="form-control">
@@ -235,27 +246,23 @@
                     $('tbody').empty();
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
-                        for(var i=0; i<value.lid.length; i++){
-
-                            if(value.lid.length == 0){
-                                var verenigingnaam = 'Geen vereniging';
-                            }else{
+                        if(value.lid.length != 0){
+                            for(var i=0; i<value.lid.length; i++) {
                                 var verenigingnaam = value.lid[i].naam;
-                            }
 
-                            if(value.telefoon == null) {
-                                var telefoon = '/'
-                            } else {
-                                var telefoon = value.telefoon
-                            }
+                                if (value.telefoon == null) {
+                                    var telefoon = '/'
+                                } else {
+                                    var telefoon = value.telefoon
+                                }
 
-                            if(value.geboortedatum == null) {
-                                var geboortedatum = '/'
-                            } else {
-                                var geboortedatum = value.geboortedatum
-                            }
+                                if (value.geboortedatum == null) {
+                                    var geboortedatum = '/'
+                                } else {
+                                    var geboortedatum = value.geboortedatum
+                                }
 
-                            let tr = `<tr>
+                                let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.naam} ${value.voornaam}</td>
                                <td>${verenigingnaam}</td>
@@ -282,8 +289,54 @@
                                     </div>
                                </td>
                            </tr>`;
-                            // Append row to tbody
-                            $('tbody').append(tr);
+                                // Append row to tbody
+                                $('tbody').append(tr);
+                            }
+                        } else {
+                                    var verenigingnaam = 'Geen vereniging';
+
+                                if (value.telefoon == null) {
+                                    var telefoon = '/'
+                                } else {
+                                    var telefoon = value.telefoon
+                                }
+
+                                if (value.geboortedatum == null) {
+                                    var geboortedatum = '/'
+                                } else {
+                                    var geboortedatum = value.geboortedatum
+                                }
+
+                                let tr = `<tr>
+                               <td>${value.id}</td>
+                               <td>${value.naam} ${value.voornaam}</td>
+                               <td>${verenigingnaam}</td>
+                               <td>${value.email}</td>
+                               <td>${telefoon}</td>
+                               <td>${geboortedatum}</td>
+
+
+                               <td data-id="${value.id}"
+                                   data-naam="${value.naam}"
+                                   data-voornaam="${value.voornaam}"
+                                   data-roepnaam="${value.roepnaam}"
+                                   data-email="${value.email}"
+                                   data-geboortedatum="${value.geboortedatum}"
+                                   data-telefoon="${value.telefoon}">
+
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Verwijder ${value.naam} ${value.voornaam}">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                               </td>
+                           </tr>`;
+                                // Append row to tbody
+                                $('tbody').append(tr);
+
                         }
 
                     });
