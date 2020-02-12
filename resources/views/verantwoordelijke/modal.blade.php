@@ -1,19 +1,18 @@
-<div class="modal" id="modal-vrijwilliger">
+<div class="modal" id="modal-lid">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
 
-                <div class="modal-header">
-                    <h5 class="modal-title">Vrijwilligers</h5>
-            <form action="" method="post">
-                    @method('')
-                    @csrf
+            <div class="modal-header">
+                <h5 class="modal-title">Lid</h5>
+
                 <button type="submit" class="btn btn-success">Bewaar</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
                     Close
                 </button>
-
-                </div>
-
+            </div>
+            <form action="" method="post">
+                @method('')
+                @csrf
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
