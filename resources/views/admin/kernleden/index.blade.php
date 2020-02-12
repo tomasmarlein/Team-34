@@ -9,23 +9,23 @@
     <form method="get" action="/admin/kernleden" id="searchForm">
         <div class="row">
             <div class="col-sm-6 mb-2">
-                <label for="name">Filter Name or Email</label>
+                <label for="name">Filter op naam of e-mail adres: </label>
                 <input type="text" class="form-control" name="name" id="name"
-                       value="{{ request()->name }}" placeholder="Filter Name or Email">
+                       value="{{ request()->name }}" placeholder="Naam of e-mail adres">
             </div>
             <div class="col-sm-3 mb-2">
-                <label for="sort">Sort by</label>
+                <label for="sort">Sorteer op: </label>
                 <select class="form-control" name="sort" id="sort">
-                    <option value="%" selected>Name (A => Z)</option>
-                    <option value="%">Name (Z => A)</option>
-                    <option value="%">Email (A => Z)</option>
-                    <option value="%">Email (Z => A)</option>
-                    <option value="%">Not Active</option>
+                    <option value="%" selected>Naam (A => Z)</option>
+                    <option value="%">Naam (Z => A)</option>
+                    <option value="%">E-mail (A => Z)</option>
+                    <option value="%">E-mail (Z => A)</option>
+                    <option value="%">Niet actief</option>
                     <option value="%">Admin</option>
                 </select>
             </div>
             <div class="col-sm-3 mb-2">
-                <label>Voeg toe</label><br>
+                <label>Voeg toe: </label><br>
                 <a href="#!" class="btn btn-outline-success" id="btn-create">
                     <i class="fas fa-plus-circle mr-1"></i>Nieuw kernlid
                 </a>
@@ -64,10 +64,10 @@
                 let naam = $(this).closest('td').data('naam');
                 let voornaam = $(this).closest('td').data('voornaam');
                 // Set some values for Noty
-                let text = `<p>Delete kernlid: <b>${voornaam} ${naam}</b>?</p>`;
+                let text = `<p>Verwijder kernlid: <b>${voornaam} ${naam}</b>?</p>`;
                 let type = 'warning';
-                let btnText = 'Delete Kernlid';
-                let btnClass = 'btn-success';
+                let btnText = 'Verwijder Kernlid';
+                let btnClass = 'btn-danger';
 
                 // Show Noty
                 let modal = new Noty({
@@ -82,7 +82,7 @@
                             deleteGebruiker(id);
                             modal.close();
                         }),
-                        Noty.button('Cancel', 'btn btn-secondary ml-2', function () {
+                        Noty.button('Annuleer', 'btn btn-secondary ml-2', function () {
                             modal.close();
                         })
                     ]
@@ -98,7 +98,7 @@
                 let telefoon = $(this).closest('td').data('telefoon');
                 let geboortedatum = $(this).closest('td').data('geboortedatum');
                 // Update the modal
-                $('.modal-title').text(`Edit ${voornaam} ${naam}`);
+                $('.modal-title').text(`Wijzig ${voornaam} ${naam}`);
                 $('form').attr('action', `/admin/kernleden/${id}`);
 
                 $('#naam').val(naam);
