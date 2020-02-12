@@ -4,54 +4,8 @@
 
 @section('main')
 
-    <h1>Vrijwilligers</h1>
+    <h1>Leden van mijn vereniging</h1>
     @include('shared.alert')
-
-
-    <form action="{{url('admin/download')}}" method="get" >
-        <button type="submit" class="btn btn-primary btn-lg btn-block">
-            Download die shit
-        </button>
-    </form>
-    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file" class="form-control">
-        <br>
-        <button class="btn btn-success">Import User Data</button>
-    </form>
-
-    <form method="get" action="/admin/vrijwilligers" id="searchForm">
-        <div class="row">
-            <div class="col-sm-3 mb-2">
-                <label for="name">Filter Naam</label>
-                <input type="text" class="form-control" name="name" id="name"
-                       value="{{ request()->name }}" placeholder="Filter Naam">
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="emailadres">Filter Email</label>
-                <input type="email" class="form-control" name="emailadres" id="emailadres"
-                       value="{{ request()->emailadres }}" placeholder="Filter Email">
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="sort">Sort by</label>
-                <select class="form-control" name="sort" id="sort">
-                    <option value="%" selected>Name (A => Z)</option>
-                    <option value="%">Name (Z => A)</option>
-                    <option value="%">Email (A => Z)</option>
-                    <option value="%">Email (Z => A)</option>
-                    <option value="%">Not Active</option>
-                    <option value="%">Admin</option>
-                </select>
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label>Voeg toe</label><br>
-                <a href="#!" class="btn btn-outline-success" id="btn-create">
-                    <i class="fas fa-plus-circle mr-1"></i>Nieuwe vrijwiliger
-                </a>
-            </div>
-        </div>
-    </form>
-
 
     <div class="table-responsive">
         <table id="mytable" class="table table-hover">
@@ -76,18 +30,12 @@
 
 
 
-    @include('admin.vrijwilligers.modal')
+    @include('verantwoordelijke.modal')
 @endsection
 
 @section('script_after')
     <script>
         $(function () {
-
-            // submit form when leaving text field 'artist'
-            $('#name').blur(function () {
-                $('#searchForm').submit();
-            });
-
 
             loadTable();
 
@@ -97,9 +45,9 @@
                 let naam = $(this).closest('td').data('naam');
                 let voornaam = $(this).closest('td').data('voornaam');
                 // Set some values for Noty
-                let text = `<p>Delete de vrijwilliger <b>${voornaam} ${naam}</b>?</p>`;
+                let text = `<p>Verwijder de vrijwilliger <b>${voornaam} ${naam}</b>?</p>`;
                 let type = 'warning';
-                let btnText = 'Delete Vrijwilliger';
+                let btnText = 'Verwijder Vrijwilliger';
                 let btnClass = 'btn-success';
 
                 // Show Noty
@@ -115,7 +63,7 @@
                             deleteGebruiker(id);
                             modal.close();
                         }),
-                        Noty.button('Cancel', 'btn btn-secondary ml-2', function () {
+                        Noty.button('Annuleren', 'btn btn-secondary ml-2', function () {
                             modal.close();
                         })
                     ]
@@ -147,7 +95,7 @@
                 $('#modal-vrijwilliger').modal('show');
             });
 
-            $('#modal-vrijwilliger form').submit(function (e) {
+            $('#modal-lid form').submit(function (e) {
                 // Don't submit the form
                 e.preventDefault();
                 // Get the action property (the URL to submit)
@@ -166,7 +114,7 @@
                             text: data.text
                         }).show();
                         // Hide the modal
-                        $('#modal-vrijwilliger').modal('hide');
+                        $('#modal-lid').modal('hide');
                         // Rebuild the table
                         loadTable();
                     })
@@ -195,7 +143,7 @@
                 $('#naam').val('');
                 $('input[name="_method"]').val('post');
                 // Show the modal
-                $('#modal-vrijwilliger').modal('show');
+                $('#modal-lid').modal('show');
             });
 
 
@@ -229,33 +177,13 @@
 
         // Load genres with AJAX
         function loadTable() {
-            $.getJSON('/admin/qryVrijwilligers')
+            $.getJSON('qryLeden')
                 .done(function (data) {
                     console.log('data', data);
                     // Clear tbody tag
                     $('tbody').empty();
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
-                        for(var i=0; i<value.lid.length; i++){
-
-                            if(value.lid.length == 0){
-                                var verenigingnaam = 'Geen vereniging';
-                            }else{
-                                var verenigingnaam = value.lid[i].naam;
-                            }
-
-                            if(value.telefoon == null) {
-                                var telefoon = '/'
-                            } else {
-                                var telefoon = value.telefoon
-                            }
-
-                            if(value.geboortedatum == null) {
-                                var geboortedatum = '/'
-                            } else {
-                                var geboortedatum = value.geboortedatum
-                            }
-
                             let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.naam} ${value.voornaam}</td>
@@ -296,8 +224,6 @@
     </script>
 @endsection
 
-
-@endsection
 
 
 

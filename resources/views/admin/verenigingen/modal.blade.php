@@ -6,9 +6,9 @@
                 <form action="" method="post">
                     @method('')
                     @csrf
-                    <button type="submit" class="btn btn-success">Bewaar</button>
+                    <button type="submit" class="btn btn-success">Opslaan</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        Close
+                        Sluit
                     </button>
             </div>
             <div class="modal-body">
