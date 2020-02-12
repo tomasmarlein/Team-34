@@ -21,12 +21,25 @@ class CreateTijdsregistratiesTable extends Migration
             $table->dateTime('manCheckUit')->nullable();
             $table->dateTime('adminCheckIn')->nullable();
             $table->dateTime('adminCheckUit')->nullable();
-            $table->unsignedBigInteger('userId');
-            $table->unsignedBigInteger('evenementId');
-            $table->unsignedBigInteger('verenigingId');
-            $table->foreign('userId')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('gebruikers_id');
+            $table->unsignedBigInteger('evenements_id');
+            $table->unsignedBigInteger('verenigings_id');
+
+            $table->foreign('gebruikers_id')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
         });
 
+        for ($i = 1; $i <= 10; $i++) {
+
+            DB::table('tijdsregistraties')->insert(
+                [
+                    'checkIn'=> now(),
+                    'checkUit'=> now()->addHour(),
+                    'gebruikers_id' => $i+32,
+                    'evenements_id' => 1,
+                    'verenigings_id' => $i,
+                ]
+            );
+        }
     }
 
     /**
