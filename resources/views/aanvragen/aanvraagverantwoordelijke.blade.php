@@ -7,10 +7,9 @@
         <div class="progress">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%"></div>
         </div>
-        <h1>Samenwerken</h1>
+        <h1>Vereniging aanvragen</h1>
 
-        <p>Ben jij de verantwoordelijke van een vereniging of wil je als vrijwilliger komen helpen op evenementen van
-            VZW Keizer Karel Olen vul dan het hieronder geplaatste formulier in:
+        <p>Ben jij de verantwoordelijke van een vereniging? Vul hier jouw contactgegevens in, en klik op "Ga verder". Op de volgende pagina kan je de info van jouw vereniging verder aanvullen.
     </div>
 
     <form action="{{url('verenigingAanvragen')}}" method="get">
@@ -39,7 +38,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="email">E-Mail *</label>
-                <input oninput="checkEmail()" type="text" class="form-control is-invalid" name="email" id="email" placeholder="E-mail" required>
+                <input oninput="checkEmail()" type="email" class="form-control is-invalid" name="email" id="email" placeholder="E-mail" required>
                 <div class="invalid-feedback">
                     E-mail is Verplicht
                 </div>
