@@ -4,7 +4,7 @@
 @section('main')
 
 
-    <form method="get" action="/admin/vrijwilligers" id="searchForm">
+    <form method="get" action="#" id="searchForm">
         <div class="row">
 
             <div class="col-sm-3 mb-2">
@@ -97,7 +97,7 @@
                 $('#modal-tijdsregistratie').modal('show');
             });
 
-            $('#modal-vrijwilliger form').submit(function (e) {
+            $('#modal-tijdsregistratie form').submit(function (e) {
                 // Don't submit the form
                 e.preventDefault();
                 // Get the action property (the URL to submit)

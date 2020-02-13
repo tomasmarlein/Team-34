@@ -1,18 +1,11 @@
 @extends('layouts.template')
 @section('title', 'Tshirt beheer')
+@section('css_after')
 
+@endsection
 @section('main')
-    <form action="{{url('admin/download')}}" method="get" >
-        <button type="submit" class="btn btn-primary btn-lg btn-block">
-            Download die shit
-        </button>
-    </form>
-    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file" class="form-control">
-        <br>
-        <button class="btn btn-success">Import User Data</button>
-    </form>
+ <h1>Overzicht T-shirts</h1>
+
 
     <form method="get" action="/admin/vrijwilligers" id="searchForm">
         <div class="row">
@@ -40,7 +33,7 @@
             <div class="col-sm-3 mb-2">
                 <label>Voeg toe</label><br>
                 <a href="#!" class="btn btn-outline-success" id="btn-create">
-                    <i class="fas fa-plus-circle mr-1"></i>Nieuwe vrijwiliger
+                    <i class="fas fa-plus-circle mr-1"></i>Beheer Tshirts
                 </a>
             </div>
         </div>
@@ -218,12 +211,10 @@
 
 
                         let tr = `<tr>
-                               <td>${value.id}</td>
-                               <td>${value.naam} ${value.voornaam}</td>
-                               <td>${verenigingnaam}</td>
-                               <td>${value.email}</td>
-                               <td>${telefoon}</td>
-                               <td>${geboortedatum}</td>
+                              <td>${value.id}</td>
+                              <td>${value.naam}</td>
+                              <td>V naam</td>
+                              <td>Thsirt-type + size</td>
 
 
                                <td data-id="${value.id}"
