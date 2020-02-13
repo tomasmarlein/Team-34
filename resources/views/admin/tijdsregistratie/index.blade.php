@@ -4,26 +4,22 @@
 @section('main')
 
 
-    <form method="get" action="/admin/vrijwilligers" id="searchForm">
+    <form method="get" action="#" id="searchForm">
         <div class="row">
+
             <div class="col-sm-3 mb-2">
-                <label for="naam">Filter Naam</label>
-                <input type="text" class="form-control" name="naam" id="naam"
-                       value="{{ request()->naam }}" placeholder="Filter Naam">
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="email">Filter Email</label>
+                <label for="email">Filter op e-mail adres: </label>
                 <input type="email" class="form-control" name="email" id="email"
-                       value="{{ request()->email }}" placeholder="Filter Email">
+                       value="{{ request()->email }}" placeholder="E-mail adres">
             </div>
             <div class="col-sm-6 mb-2">
-                <label for="sort">Sort by</label>
+                <label for="sort">Sorteer op: </label>
                 <select class="form-control" name="sort" id="sort">
-                    <option value="%" selected>Name (A => Z)</option>
-                    <option value="%">Name (Z => A)</option>
-                    <option value="%">Email (A => Z)</option>
-                    <option value="%">Email (Z => A)</option>
-                    <option value="%">Not Active</option>
+                    <option value="%" selected>Naam (A => Z)</option>
+                    <option value="%">Naam (Z => A)</option>
+                    <option value="%">E-mail (A => Z)</option>
+                    <option value="%">E-mail (Z => A)</option>
+                    <option value="%">Niet actief</option>
                     <option value="%">Admin</option>
                 </select>
             </div>
@@ -52,7 +48,7 @@
             </tbody>
         </table>
     </div>
-
+    @include('admin.tijdsregistratie.modal')
 @endsection
 @section('script_after')
     <script>
@@ -62,27 +58,46 @@
 
             $('tbody').on('click', '.btn-edit', function () {
                 // Get data attributes from td tag
-
+                let id = $(this).closest('td').data('id');
                 let naam = $(this).closest('td').data('naam');
                 let voornaam = $(this).closest('td').data('voornaam');
 
+                let volledigenaam = naam +  " " + voornaam;
+
+                let vereniging = $(this).closest('td').data('vereniging');
+                let checkIn = $(this).closest('td').data('checkIn');
+                let checkUit = $(this).closest('td').data('checkUit');
+                let manCheckIn = $(this).closest('td').data('manCheckIn');
+                let manCheckUit = $(this).closest('td').data('manCheckUit');
+                let adminCheckIn = $(this).closest('td').data('admCheckIn');
+                let adminCheckUit = $(this).closest('td').data('admCheckUit');
+
+                console.log(checkIn);
+
+
+
                 // Update the modal
-                $('.modal-title').text(`Edit ${voornaam} ${naam}`);
-                $('form').attr('action', `/admin/vrijwilligers/${id}`);
+
+                $('.modal-title').text(`Edit tijdsregistratie voor ${voornaam} ${naam}`);
+                $('form').attr('action', `/admin/tijdsregistratie/${id}`);
 
                 $('#naam').val(naam);
                 $('#voornaam').val(voornaam);
-                $('#roepnaam').val(roepnaam);
-                $('#email').val(email);
-                $('#telefoon').val(telefoon);
-                $('#geboortedatum').val(geboortedatum);
+                $('#volledigenaam').val(volledigenaam);
+                $('#vereniging').val(vereniging);
+                $('#checkIn').val(checkIn);
+                $('#checkUit').val(checkUit);
+                $('#manCheckIn').val(manCheckIn);
+                $('#manCheckUit').val(manCheckUit);
+                $('#adminCheckIn').val(adminCheckIn);
+                $('#adminCheckUit').val(adminCheckUit);
 
                 $('input[name="_method"]').val('put');
                 // Show the modal
-                $('#modal-vrijwilliger').modal('show');
+                $('#modal-tijdsregistratie').modal('show');
             });
 
-            $('#modal-vrijwilliger form').submit(function (e) {
+            $('#modal-tijdsregistratie form').submit(function (e) {
                 // Don't submit the form
                 e.preventDefault();
                 // Get the action property (the URL to submit)
@@ -101,7 +116,7 @@
                             text: data.text
                         }).show();
                         // Hide the modal
-                        $('#modal-vrijwilliger').modal('hide');
+                        $('#modal-tijdsregistratie').modal('hide');
                         // Rebuild the table
                         loadTable();
                     })
@@ -145,23 +160,24 @@
                         if(value.manCheckIn != null){
                             var manueelIN = value.manCheckIn;
                         }else{
-                            var manueelIN = "<i class=\"far fa-window-close\"></i>";
+                            var manueelIN = "<i class=\"fas fa-times-circle\"></i>";
                         }
                         if(value.manCheckUit != null){
                             var manueelUit = value.manCheckUit;
                         }else{
-                            var manueelUit = "<i class=\"far fa-window-close\"></i>";
+                            var manueelUit = "<i class=\"fas fa-times-circle\"></i>";
                         }
                         if(value.adminCheckIn != null){
                             var adminIn = value.adminCheckIn;
                         }else{
-                            var adminIn = "<i class=\"far fa-window-close\"></i>";
+                            var adminIn = "<i class=\"fas fa-times-circle\"></i>";
                         }
                         if(value.adminCheckUit != null){
                             var adminUit = value.adminCheckUit;
                         }else{
-                            var adminUit = "<i class=\"far fa-window-close\"></i>";
+                            var adminUit = "<i class=\"fas fa-times-circle\"></i>";
                         }
+
 
 
 
@@ -180,15 +196,17 @@
                                <td data-id="${value.id}"
                                    data-naam="${value.gebruikerstijd.naam}"
                                    data-voornaam="${value.gebruikerstijd.voornaam}"
-                                   data-checkIn =""
-                                   data-checkUit=""
-                                   data-checkIn=""
-                                   data-
-
+                                   data-vereniging="${value.vereniging_tijd.naam}"
+                                   data-checkIn ="${value.checkIn}"
+                                   data-checkUit="${value.checkUit} "
+                                   data-manCheckIn="${value.manCheckIn}"
+                                   data-manCheckUit="${value.manCheckUit}"
+                                   data-admCheckIn="${value.adminCheckIn}"
+                                   data-admCheckUit="${value.adminCheckUit}"
 
 
                                     <div class="btn-group btn-group-sm">
-                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}">
+                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig tijdsregistratie ${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                     </div>

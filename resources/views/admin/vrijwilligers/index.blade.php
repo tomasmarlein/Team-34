@@ -3,10 +3,16 @@
 @section('title', 'Vrijwilligers')
 @section('css_after')
     <style>
+        .upload{
+            position:absolute;
+            right: 18%;
+            top: 12%;
+        }
+
         .download{
             position: absolute;
             right: 13.7%;
-            top: 15%;
+            top: 12%;
         }
     </style>
 @endsection
@@ -14,6 +20,13 @@
     <h1>Vrijwilligers</h1>
     @include('shared.alert')
 
+    <div class="upload">
+        <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input style="height: 45px" type="file" name="file" class="form-control" id="uploadFile">
+            <button style="color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" class="btn btn-success" id="importeerVrijwilliger">Voeg vrijwilligers toe</button>
+        </form>
+    </div>
     <div class="download">
         <form style="text-align: right" action="{{url('admin/download')}}" method="get" >
             <button data-toggle="tooltip" title="Exporteer alle vrijwilligers" style="height: 45px; width:55px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
@@ -21,14 +34,7 @@
             </button>
         </form>
     </div>
-
-
-    <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file" class="form-control">
-        <br>
-        <button class="btn btn-success">Importeer vrijwilligersdata</button>
-    </form>
+    <br>
 
     <form method="get" action="/admin/vrijwilligers" id="searchForm">
         <div class="row">
@@ -89,7 +95,21 @@
 
 @section('script_after')
     <script>
+
+        $( document ).ready(function() {
+            var inp = $("input[id='rijksregisternr'] ");
+            inp.bind('keyup', function(){
+                this.value = this.value.replace(/[^0-9]/,'');
+            });
+        });
+
+
         $(function () {
+            $('#importeerVrijwilliger').hide();
+
+            $("#uploadFile").change(function (){
+                $('#importeerVrijwilliger').show();
+            });
 
             // submit form when leaving text field 'artist'
             $('#name').blur(function () {
@@ -139,6 +159,7 @@
                 let email = $(this).closest('td').data('email');
                 let telefoon = $(this).closest('td').data('telefoon');
                 let geboortedatum = $(this).closest('td').data('geboortedatum');
+                let rijksregisternr = $(this).closest('td').data('rijksregisternr');
                 // Update the modal
                 $('.modal-title').text(`Edit ${voornaam} ${naam}`);
                 $('form').attr('action', `/admin/vrijwilligers/${id}`);
@@ -149,6 +170,7 @@
                 $('#email').val(email);
                 $('#telefoon').val(telefoon);
                 $('#geboortedatum').val(geboortedatum);
+                $('#rijksregisternr').val(rijksregisternr);
 
                 $('input[name="_method"]').val('put');
                 // Show the modal
@@ -320,7 +342,8 @@
                                    data-roepnaam="${value.roepnaam}"
                                    data-email="${value.email}"
                                    data-geboortedatum="${value.geboortedatum}"
-                                   data-telefoon="${value.telefoon}">
+                                   data-telefoon="${value.telefoon}"
+                                   data-rijksregisternr="${value.rijksregisternr}">
 
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">

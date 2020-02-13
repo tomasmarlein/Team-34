@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Gebruikers;
+use App\Tshirt;
 use App\Verenigings;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -22,25 +23,12 @@ class VrijwilligersImport implements ToCollection, WithHeadingRow, WithChunkRead
         {
             $datum = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['geboortedatum']);
 
-            $verenigingnaam = Verenigings::orderBy('naam')
-                ->where('naam', $row['vereniging'])
-                ->select('naam');
+            $verenigingnaams = \App\Verenigings::where('naam',$row['vereniging'])->first();
+            $rijks = \App\Gebruikers::where('rijksregisternr', $row['rijksregisternr'])->first();
 
 
-            $gebruiker = Gebruikers::orderBy('naam')
-                ->where([
-                    ['naam', '=', $row['naam']],
-                    ['voornaam', '=', $row['voornaam']],
-                    ['geboortedatum', '=', $datum->format('Y-m-d')]])
-                ->select('naam');
-
-            $n = Gebruikers::find($row['naam']);
-            $v = Gebruikers::find($row['voornaam']);
-            $d = Gebruikers::find($datum->format('Y-m-d'));
-
-            if($verenigingnaam != null){
-                if(empty($n) && empty($v) && empty($d)){
-                    dd('kies ma');
+            if($verenigingnaams != null){
+                if($rijks == null){
                     Gebruikers::create([
                         'email' => $row['email'],
                         'naam' => $row['naam'],
@@ -53,20 +41,21 @@ class VrijwilligersImport implements ToCollection, WithHeadingRow, WithChunkRead
                         'lunchpakket' => $row['lunchpakket'],
                         'rolId' => 4
                     ]);
-                } else {
-                    dd('nope');
 
-//                    $gebruiker_id = Gebruikers::orderBy('id', 'desc')
-//                        ->first()
-//                        ->select('id');
+                    $gebruiker_id = \App\Gebruikers::orderBy('id', 'desc')->first();
+                    $verId = \App\Verenigings::where('naam', $row['vereniging'])->first();
 
-//                    $verId = Verenigings::orderBy('naam')
-//                        ->where('naam', '=', $row['vereniging'])
-//                        ->select('id');
+                    if($row['maat'] != null){
+                        Tshirt::create([
+                            'maat' => $row['maat'],
+                            'geslacht' => $row['geslacht'],
+                            'aantal' => $row['aantal'],
+                            'gebruikers_id' => $gebruiker_id->id
+                        ]);
+                    }
 
-                    //$gebruiker = Gebruikers::find($gebruiker_id);
+                    \App\Gebruikers::find($gebruiker_id->id)->lid()->attach($verId->id);
 
-                    //$gebruiker->lid()->sync(['verenigings_id' => $verId], ['gebruikers_id' => $gebruiker_id]);
                 }
             }
         }

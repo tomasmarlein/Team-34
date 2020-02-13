@@ -76,11 +76,16 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('tijdsregistratie', 'Admin\TijdsregistratieController');
     Route::get('tijdsregistratie', 'Admin\TijdsregistratieController@index');
 
+    //route Lunchpakket
+    Route::get('qryTijdsregistratie','Admin\TijdsregistratieController@qryTijdsregistratie');
+    Route::resource('tijdsregistratie', 'Admin\TijdsregistratieController');
+    Route::get('tijdsregistratie', 'Admin\TijdsregistratieController@index');
 
-//    route verantwoordelijke
-    Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
-    Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
-    Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
+
+//route verantwoordelijke
+    Route::get('qryTijdsregistratie', 'Admin\LunchpakketController@qryTijdsregistratie');
+    Route::resource('Lunchpakket', 'Admin\LunchpakketController');
+    Route::get('Lunchpakket', 'Admin\LunchpakketController@index');
 
 
     //vrijwilligers CRUD

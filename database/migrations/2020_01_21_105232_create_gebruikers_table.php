@@ -85,10 +85,10 @@ class CreateGebruikersTable extends Migration
                     'voornaam' => "Gladiolen_$i",
                     'email' => "Vrijwilliger_$i@mailinator.com",
                     'password' => Hash::make("vrijwilliger$i"),
+                    'lunchpakket'=>true,
                     'geboortedatum' => now(),
                     'telefoon' => '1813',
                     'eersteAanmelding' => false,
-                    'lunchpakket' => False,
                     'rolId' => 4,
                 ]);
         }

@@ -27,6 +27,7 @@
         <hr class="mb-4">
         <h4>Bedankt voor uw aanmelding om samen te werken.</h4>
         <h4>Uw account is gemaakt & uw vereniging is aangevraagd.</h4>
+        <h4>Vanaf het moment dat uw vereniging is goedgekeurd zal u kunnen inloggen als verantwoordelijke.</h4>
         <a href="aanvraagVoltooid" class="btn btn-primary btn-lg btn-block">Naar Home</a>
     </form>
 @endsection

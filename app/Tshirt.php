@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tshirt extends Model
 {
+    public $timestamps = false;
+    protected $guarded = [];
+
     public function gebruikertshirt()
     {
         return $this->belongsTo('App\Gebruikers');

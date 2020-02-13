@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\HeadVrijwilligerExport;
 use App\Exports\VrijwilligersExport;
 use App\Imports\VrijwilligersImport;
 use App\Gebruikers;
@@ -25,7 +26,7 @@ class VrijwilligerController extends Controller
 
     public function export()
     {
-        return Excel::download(new VrijwilligersExport(), 'Vrijwilligers.xlsx');
+        return Excel::download(new HeadVrijwilligerExport(), 'Vrijwilligers.xlsx');
     }
 
     public function index()
@@ -61,6 +62,7 @@ class VrijwilligerController extends Controller
         $gebruikers->email = $request->email;
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
+        $gebruikers->rijksregisternr = $request->rijksregisternr;
         $gebruikers->rolId = 4;
 //        $gebruikers->password = Hash::make("gladiolen");
         $gebruikers->save();
@@ -111,6 +113,7 @@ class VrijwilligerController extends Controller
             'email' => $data['email'],
             'geboortedatum' => $data['geboortedatum'],
             'telefoon' => $data['telefoon'],
+            'rijksregisternr' => $data['rijksregisternr'],
         ]);
 
 

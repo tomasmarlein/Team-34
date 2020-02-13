@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Tijdsregiestratie;
-use App\Tijdsregistratie;
+use App\Gebruikers;
+use App\Lunchpakket;
+use Facades\App\Helpers\Json;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class TijdsregistratieController extends Controller
+class LunchpakketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,14 @@ class TijdsregistratieController extends Controller
      */
     public function index()
     {
-        return view('admin.tijdsregistratie.index');
+
+        $lunchpakket = Gebruikers::with ('lid')
+            ->where('lunchpakket',true)
+            ->get();
+        $result = compact('lunchpakket');
+        Json::dump($result);
+
+        return view('admin.lunchpakket.index', $result);
     }
 
     /**
@@ -43,10 +51,10 @@ class TijdsregistratieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tijdsregiestratie  $tijdsregiestratie
+     * @param  \App\Lunchpakket  $lunchpakket
      * @return \Illuminate\Http\Response
      */
-    public function show(Tijdsregiestratie $tijdsregiestratie)
+    public function show(Lunchpakket $lunchpakket)
     {
         //
     }
@@ -54,10 +62,10 @@ class TijdsregistratieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tijdsregiestratie  $tijdsregiestratie
+     * @param  \App\Lunchpakket  $lunchpakket
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tijdsregiestratie $tijdsregiestratie)
+    public function edit(Lunchpakket $lunchpakket)
     {
         //
     }
@@ -66,10 +74,10 @@ class TijdsregistratieController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tijdsregiestratie  $tijdsregiestratie
+     * @param  \App\Lunchpakket  $lunchpakket
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tijdsregiestratie $tijdsregiestratie)
+    public function update(Request $request, Lunchpakket $lunchpakket)
     {
         //
     }
@@ -77,20 +85,12 @@ class TijdsregistratieController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tijdsregiestratie  $tijdsregiestratie
+     * @param  \App\Lunchpakket  $lunchpakket
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tijdsregiestratie $tijdsregiestratie)
+    public function destroy(Lunchpakket $lunchpakket)
     {
         //
     }
 
-
-    public function qryTijdsregistratie()
-    {
-        $tijdsregistratie = Tijdsregistratie::orderBy('checkIn')
-            ->with ('verenigingTijd','gebruikerstijd','evenement', 'gebruikerstijd.lid')
-            ->get();
-        return $tijdsregistratie;
-    }
 }
