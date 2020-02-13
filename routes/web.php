@@ -105,11 +105,17 @@ Route::middleware(['auth', 'verantwoordelijke'])->group(function () {
 
     Route::view('/verant', 'verantwoordelijke.vereniging');
 
+    Route::get('qryLeden', 'Verantwoordelijke\VerenigingController@qryLeden');
+
+
+
 });
 
 Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->group(function () {
 
     Route::get('qryVerenigingen', 'Verantwoordelijke\VerenigingController@qryVerenigingen');
+    Route::get('qryLeden', 'Verantwoordelijke\VerenigingController@qryLeden');
+
     Route::resource('verenigingen', 'Verantwoordelijke\VerenigingController');
     Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@index');
 });

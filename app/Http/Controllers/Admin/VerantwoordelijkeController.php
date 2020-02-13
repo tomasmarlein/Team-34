@@ -172,9 +172,5 @@ class VerantwoordelijkeController extends Controller
 
 
 
-    public function qryLeden(){
-        $gebruikers = Gebruikers::orderBy('naam')
-            ->where('vereniging' , '=' , 'PianoVereniging')
-            ->get();
-    }
+
 }
