@@ -157,7 +157,7 @@
                 '_token': '{{ csrf_token() }}',
                 '_method': 'delete'
             };
-            $.post(`/admin/vrijwilligers/${id}`, pars, 'json')
+            $.post(`/verantwoordelijke/vrijwilligers/${id}`, pars, 'json')
                 .done(function (data) {
                     console.log('data', data);
                     // Show toast
@@ -213,7 +213,7 @@
                            </tr>`;
                             // Append row to tbody
                             $('tbody').append(tr);
-                        }
+
 
                     });
                 })

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Verantwoordelijke;
 
+use App\Gebruikers;
 use App\Verantwoordelijke;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -94,5 +95,14 @@ class VerenigingController extends Controller
                        })
             ->get();
         return $verenigingen;
+    }
+
+
+    public function qryLeden(){
+        $gebruikers = Gebruikers::orderBy('naam')
+            ->where('vereniging' , '=' , 'PianoVereniging')
+            ->get();
+
+        return $gebruikers;
     }
 }
