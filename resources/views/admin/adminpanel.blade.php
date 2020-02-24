@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.templatesnoshade')
 @section('title', 'Tijdsregistratiesysteem')
 @section('css_after')
     <style>

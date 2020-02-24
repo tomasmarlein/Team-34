@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.templatesnoshade')
 @section('title', 'Tijdsregistratiesysteem')
 @section('css_after')
 
@@ -72,10 +72,10 @@
                             </div>
                         </div>
                     @endguest
-                    {{--            @if(auth()->user()->admin)
+                    @if(auth()->user()->rollId==1)
 
-                                knoppen voor admins
-                                @endif--}}
+
+                                @endif
                 </div>
             </header>
 
