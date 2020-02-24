@@ -45,18 +45,17 @@
             </div>
             <div class="col-sm-3 mb-2">
                 <label for="emailadres">Filter op e-mail adres: </label>
-                <input type="email" class="form-control" name="emailadres" id="emailadres"
-                       value="{{ request()->emailadres }}" placeholder="E-mail adres">
+                <input type="email" class="form-control" name="" id="emailadres"
+                       value="" placeholder="E-mail adres">
             </div>
             <div class="col-sm-3 mb-2">
                 <label for="sort">Sorteer op: </label>
-                <select class="form-control" name="sort" id="sort">
+                <select class="form-control" name="" id="sort">
                     <option value="%" selected>Naam (A => Z)</option>
                     <option value="%">Naam (Z => A)</option>
                     <option value="%">E-mail (A => Z)</option>
                     <option value="%">E-mail (Z => A)</option>
-                    <option value="%">Niet actief</option>
-                    <option value="%">Admin</option>
+                    <option value="%">Vereniging</option>
                 </select>
             </div>
             <div class="col-sm-3 mb-2">

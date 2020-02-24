@@ -145,16 +145,14 @@ class VrijwilligerController extends Controller
 
 
 
-    public function qryVrijwilligers(Request $request)
+    public function qryVrijwilligers($id, Request $request)
     {
-        $naam = $request->get('name');
 
-        $gebruikers = Gebruikers::orderBy('id')
-                ->where('rolId', '=', 4)
-                ->where('naam', 'like', '%'.$naam.'%')
-                ->with('lid')
-                ->get();
-            return $gebruikers;
+        $naam = $request->input('name');
+        $gebruikers = Gebruikers::orderBy('id')->where('naam', 'LIKE', $naam)->where('rolId', '=', 4)->with ('lid')->get();
+
+        return $gebruikers;
+
     }
 
 
