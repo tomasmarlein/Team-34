@@ -8,6 +8,7 @@ use App\Imports\VrijwilligersImport;
 use App\Gebruikers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
 
 class VrijwilligerController extends Controller
@@ -20,8 +21,27 @@ class VrijwilligerController extends Controller
     public function import()
     {
         Excel::import(new VrijwilligersImport(),request()->file('file'));
+        $files = File::files(public_path());
 
-        return back();
+        $bestand = '';
+        $gelukt = '';
+
+        foreach($files as $file){
+            if($file->getRelativePathname() == 'importLog.txt'){
+                $bestand = $file->getRelativePathname();
+                if($file->getSize() == 0){
+                    $gelukt="Alles is succesvol geïmporteerd";
+                    return redirect()->back()->with('alert', $gelukt);
+                } else {
+                    return response()->download($bestand);
+                }
+            }
+        }
+    }
+
+    public function downloadTeplate()
+    {
+        return response()->download(public_path(). "/template/ImportTemplate.xlsx");
     }
 
     public function export()

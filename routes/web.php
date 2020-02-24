@@ -56,6 +56,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //import en export vrijwilliger
     Route::get('download','Admin\VrijwilligerController@export');
+    Route::get('downloadTemplate','Admin\VrijwilligerController@downloadTeplate');
     Route::post('import', 'Admin\VrijwilligerController@import')->name('import');
 
     //vereniginen

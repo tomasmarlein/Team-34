@@ -3,6 +3,11 @@
 @section('title', 'Vrijwilligers')
 @section('css_after')
     <style>
+        .template{
+            float: right;
+            padding: 5px;
+        }
+
         .upload{
             float:right;
             padding: 5px;
@@ -10,16 +15,18 @@
 
         .download{
             float:right;
+            padding: 5px;
         }
     </style>
 @endsection
 @section('main')
     <div class="row">
-        <div class="col-sm-7 mb-2">
+        <div class="col-sm-5 mb-2">
     <h1>Vrijwilligers</h1>
     @include('shared.alert')
         </div>
-        <div class="col-sm-5 mb-2">
+        <div class="col-sm-7 mb-2">
+
     <div class="upload">
         <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -27,6 +34,13 @@
             <button style="color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" class="btn btn-success" id="importeerVrijwilliger">Voeg vrijwilligers toe</button>
         </form>
     </div>
+            <div class="template">
+                <form style="text-align: right" action="{{url('admin/downloadTemplate')}}" method="get" >
+                    <button data-toggle="tooltip" title="Download template" style="height: 45px; width:165px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
+                        Import template
+                    </button>
+                </form>
+            </div>
     <div class="download">
         <form style="text-align: right" action="{{url('admin/download')}}" method="get" >
             <button data-toggle="tooltip" title="Exporteer alle vrijwilligers" style="height: 45px; width:55px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
@@ -38,6 +52,14 @@
         </div>
     </div>
 
+    @if (session('alert'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ session('alert') }}
+        </div>
+    @endif
 
 
     <div class="row" style="text-align: right;">
@@ -94,7 +116,6 @@
             $('#name').blur(function () {
                 $('#searchForm').submit();
             });
-
 
             loadTable();
 
