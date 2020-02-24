@@ -60,10 +60,27 @@
                             <input type="datetime-local" name="checkUit" id="checkUit"
                                    class="form-control"
                                    placeholder="CheckUit"
-                                   value="" disabled>
+                                   value="06/09/2020 22:30" disabled>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
+
+                    <div class="container">
+                        <br><br><br>
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <label for="">Simple Date &amp; Time</label>
+                                <div class='input-group date' id='example1'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                 </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
             </div>
                 <div class="row">
                     <div class="col-md-3">

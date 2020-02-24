@@ -77,10 +77,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //route Tijdsregistratie
     Route::get('qryTijdsregistratie','Admin\TijdsregistratieController@qryTijdsregistratie');
     Route::resource('tijdsregistratie', 'Admin\TijdsregistratieController');
-    Route::get('tijdsregistratie', 'Admin\TijdsregistratieController@index');
+    Route::get('Tijdsregistratie', 'Admin\TijdsregistratieController@index');
 
 
-//    route verantwoordelijke
+//   route verantwoordelijke
     Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
     Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
     Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');

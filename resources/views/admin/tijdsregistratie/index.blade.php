@@ -191,8 +191,6 @@
                                <td align="center">${manueelUit}</td>
                                <td align="center">${adminIn}</td>
                                <td align="center">${adminUit}</td>
-
-
                                <td data-id="${value.id}"
                                    data-naam="${value.gebruikerstijd.naam}"
                                    data-voornaam="${value.gebruikerstijd.voornaam}"
@@ -222,6 +220,12 @@
         }
     </script>
 @endsection
-
+@section('script_after')
+    <script>
+        $(function () {
+            $('#example1').datetimepicker();
+        });
+    </script>
+@stop
 
 
