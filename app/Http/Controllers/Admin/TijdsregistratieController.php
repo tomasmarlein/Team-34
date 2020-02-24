@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Tijdsregiestratie;
+
 use App\Tijdsregistratie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

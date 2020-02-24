@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title', 'Tijdsregistratie')
+@section('title', 'Lunchpakket')
 @section('css_after')
     <style>
 

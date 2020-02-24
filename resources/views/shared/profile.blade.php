@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.templatesnoshade')
 @section('title', 'User update')
 @section('css_after')
     <style>

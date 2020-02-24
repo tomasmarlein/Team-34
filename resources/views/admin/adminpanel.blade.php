@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.templatesnoshade')
 @section('title', 'Tijdsregistratiesysteem')
 @section('css_after')
     <style>
@@ -529,7 +529,7 @@
                             </div>
 
                             <div class="col-lg-4 cardpadding">
-                                <a href="/admin/tijdsregistratie" class="card">
+                                <a href="/admin/Tijdsregistratie" class="card">
                                     <div class="card__head">
                                         <div class="card__image" style="background-image: url('assets/adminpanel/time.jfif');"></div>
                                         <div class="card__author">
