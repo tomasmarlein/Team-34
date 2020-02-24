@@ -70,22 +70,20 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('Tshirt', 'Admin\TshirtController');
     Route::get('tshirt', 'Admin\TshirtController@index');
 
-
-//route Tijdsregistratie
-    Route::get('qryTijdsregistratie','Admin\TijdsregistratieController@qryTijdsregistratie');
-    Route::resource('tijdsregistratie', 'Admin\TijdsregistratieController');
-    Route::get('tijdsregistratie', 'Admin\TijdsregistratieController@index');
-
     //route Lunchpakket
-    Route::get('qryTijdsregistratie','Admin\TijdsregistratieController@qryTijdsregistratie');
-    Route::resource('tijdsregistratie', 'Admin\TijdsregistratieController');
-    Route::get('tijdsregistratie', 'Admin\TijdsregistratieController@index');
-
-
-//route verantwoordelijke
-    Route::get('qryTijdsregistratie', 'Admin\LunchpakketController@qryTijdsregistratie');
     Route::resource('Lunchpakket', 'Admin\LunchpakketController');
     Route::get('Lunchpakket', 'Admin\LunchpakketController@index');
+
+    //route Tijdsregistratie
+    Route::get('qryTijdsregistratie','Admin\TijdsregistratieController@qryTijdsregistratie');
+    Route::resource('tijdsregistratie', 'Admin\TijdsregistratieController');
+    Route::get('tijdsregistratie', 'Admin\TijdsregistratieController@index');
+
+
+//    route verantwoordelijke
+    Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
+    Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
+    Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');
 
 
     //vrijwilligers CRUD
@@ -106,7 +104,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 Route::middleware(['auth', 'verantwoordelijke'])->group(function () {
 
     Route::view('/verant', 'verantwoordelijke.vereniging');
-    Route::get('qryLeden', 'Admin\KernledenController@qryKernleden');
+
+    Route::get('qryLeden', 'Verantwoordelijke\VerenigingController@qryLeden');
+
 
 
 });
@@ -114,6 +114,9 @@ Route::middleware(['auth', 'verantwoordelijke'])->group(function () {
 Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->group(function () {
 
     Route::get('qryVerenigingen', 'Verantwoordelijke\VerenigingController@qryVerenigingen');
+    Route::get('getVereniging', 'Verantwoordelijke\VerenigingController@getVereniging');
+    Route::get('showLeden/{id}', 'Verantwoordelijke\VerenigingController@showLeden');
+
     Route::resource('verenigingen', 'Verantwoordelijke\VerenigingController');
     Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@index');
 });

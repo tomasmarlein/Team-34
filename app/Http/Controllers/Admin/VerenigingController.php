@@ -195,11 +195,9 @@ class VerenigingController extends Controller
     public function approve($id, Verenigings $verenigings)
     {
         $inaanvraag = Verenigings::find($id);
-
         if ($verenigings->inaanvraag !== 0) {
             $inaanvraag->update(['inaanvraag' => 0]);
         }
-
         return redirect('admin/verenigingen');
     }
 

@@ -4,22 +4,22 @@
 @section('css_after')
     <style>
         .upload{
-            position:absolute;
-            right: 18%;
-            top: 12%;
+            float:right;
+            padding: 5px;
         }
 
         .download{
-            position: absolute;
-            right: 13.7%;
-            top: 12%;
+            float:right;
         }
     </style>
 @endsection
 @section('main')
+    <div class="row">
+        <div class="col-sm-7 mb-2">
     <h1>Vrijwilligers</h1>
     @include('shared.alert')
-
+        </div>
+        <div class="col-sm-5 mb-2">
     <div class="upload">
         <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -35,6 +35,8 @@
         </form>
     </div>
     <br>
+        </div>
+    </div>
 
     <form method="get" action="/admin/vrijwilligers" id="searchForm">
         <div class="row">

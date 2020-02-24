@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Verantwoordelijke;
 
+use App\Gebruikers;
 use App\Verantwoordelijke;
+use App\Verenigings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -45,10 +47,22 @@ class VerenigingController extends Controller
      * @param  \App\Verantwoordelijke  $verantwoordelijke
      * @return \Illuminate\Http\Response
      */
-    public function show(Verantwoordelijke $verantwoordelijke)
+    public function show($id)
     {
-        //
+        $vereniging = Verenigings::with('vereniginglid')->findOrFail($id);;
+        $result = compact('vereniging');
+        (new \App\Helpers\Json)->dump($result);
+        return view('verantwoordelijke.show', $result);  // Pass $result to the view
     }
+
+    public function showLeden($id)
+    {
+        $vereniging = Verenigings::with('vereniginglid')->findOrFail($id);;
+        $result = compact('vereniging');
+        (new \App\Helpers\Json)->dump($result);
+        return view('verantwoordelijke.show', $result);  // Pass $result to the view
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -95,4 +109,19 @@ class VerenigingController extends Controller
             ->get();
         return $verenigingen;
     }
+
+
+
+    public function getVereniging()
+    {
+
+        $vereniging = Verenigings::orderBy('naam')
+            ->where(function ($query) {
+                $query->where('hoofdverantwoordelijke', auth()->id())
+                    ->orWhere('tweedeverantwoordelijke', auth()->id());
+            })
+            ->get();
+        return $vereniging;
+    }
+
 }

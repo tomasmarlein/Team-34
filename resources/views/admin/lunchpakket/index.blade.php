@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title', 'Tijdsregistratie')
+@section('title', 'Lunchpakket')
 @section('css_after')
     <style>
 
@@ -59,7 +59,9 @@
             @foreach($lunchpakket as $lunchpakket)
                 <tr>
                     <td>{{ $lunchpakket->id }}</td>
-                    <td>V naam{{--{{ $lunchpakket->lid->naam}}--}}</td>
+                    @foreach($lunchpakket->lid as $lid)
+                        <td>{{ $lid->naam }}</td>
+                        @endforeach
                     <td>{{ $lunchpakket->naam }}</td>
                     <td>
 

@@ -13,8 +13,8 @@
 {{--  Navigation  --}}
 @include('shared.navigation')
 {{--  Navigation  --}}
-<main class="container mt-3" id="content">
-        @yield('main', 'Pagina onder constructie...')
+<main class="container mt-3">
+    @yield('main', 'Pagina onder constructie...')
 </main>
 {{--  Footer  --}}
 @include('shared.footer')
