@@ -38,38 +38,15 @@
         </div>
     </div>
 
-    <form method="get" action="/admin/vrijwilligers" id="searchForm">
-        <div class="row">
-            <div class="col-sm-3 mb-2">
-                <label for="name">Filter op naam: </label>
-                <input type="text" class="form-control" name="name" id="name"
-                       value="{{ request()->name }}" placeholder="Naam">
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="emailadres">Filter op e-mail adres: </label>
-                <input type="email" class="form-control" name="emailadres" id="emailadres"
-                       value="{{ request()->emailadres }}" placeholder="E-mail adres">
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="sort">Sorteer op: </label>
-                <select class="form-control" name="sort" id="sort">
-                    <option value="%" selected>Naam (A => Z)</option>
-                    <option value="%">Naam (Z => A)</option>
-                    <option value="%">E-mail (A => Z)</option>
-                    <option value="%">E-mail (Z => A)</option>
-                    <option value="%">Niet actief</option>
-                    <option value="%">Admin</option>
-                </select>
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label>Voeg toe: </label><br>
-                <a href="#!" class="btn btn-outline-success" id="btn-create">
-                    <i class="fas fa-plus-circle mr-1"></i>Nieuwe vrijwiliger
-                </a>
-            </div>
-        </div>
-    </form>
 
+
+    <div class="row" style="text-align: right;">
+        <div class="col-sm-12 mb-2">
+            <a href="#!" class="btn btn-outline-success" id="btn-create">
+                <i class="fas fa-plus-circle mr-1"></i>Nieuwe vrijwiliger
+            </a>
+        </div>
+    </div>
 
             <div class="table-responsive">
                 <table id="mytable" class="table table-hover">

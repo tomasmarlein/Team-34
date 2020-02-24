@@ -71,7 +71,6 @@
                             </div>
                         </div>
                     @endguest
-
                 </div>
             </header>
 

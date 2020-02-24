@@ -7,37 +7,13 @@
  <h1>Overzicht T-shirts</h1>
 
 
-    <form method="get" action="/admin/vrijwilligers" id="searchForm">
-        <div class="row">
-            <div class="col-sm-3 mb-2">
-                <label for="naam">Filter Naam</label>
-                <input type="text" class="form-control" name="naam" id="naam"
-                       value="{{ request()->naam }}" placeholder="Filter Naam">
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="email">Filter Email</label>
-                <input type="email" class="form-control" name="email" id="email"
-                       value="{{ request()->email }}" placeholder="Filter Email">
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="sort">Sort by</label>
-                <select class="form-control" name="sort" id="sort">
-                    <option value="%" selected>Name (A => Z)</option>
-                    <option value="%">Name (Z => A)</option>
-                    <option value="%">Email (A => Z)</option>
-                    <option value="%">Email (Z => A)</option>
-                    <option value="%">Not Active</option>
-                    <option value="%">Admin</option>
-                </select>
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label>Voeg toe</label><br>
-                <a href="#!" class="btn btn-outline-success" id="btn-create">
-                    <i class="fas fa-plus-circle mr-1"></i>Beheer Tshirts
-                </a>
-            </div>
-        </div>
-    </form>
+ <div class="row" style="text-align: right;">
+     <div class="col-sm-12 mb-2">
+         <a href="#!" class="btn btn-outline-success" id="btn-create">
+             <i class="fas fa-plus-circle mr-1"></i>Beheer Tshirts
+         </a>
+     </div>
+ </div>
 
 
     <div class="table-responsive">

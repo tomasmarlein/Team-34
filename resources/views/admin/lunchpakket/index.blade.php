@@ -21,27 +21,7 @@
         </form>
     </div>
     <br>
-    <form method="get" action="#" id="searchForm">
-        <div class="row">
-
-            <div class="col-sm-3 mb-2">
-                <label for="email">Zoek op naam: </label>
-                <input type="email" class="form-control" name="email" id="email"
-                       value="{{ request()->email }}" placeholder="E-mail adres">
-            </div>
-            <div class="col-sm-6 mb-2">
-                <label for="sort">Zoek op Vereniging </label>
-                <select class="form-control" name="sort" id="sort">
-                    <option value="%" selected>Naam (A => Z)</option>
-                    <option value="%">Naam (Z => A)</option>
-                    <option value="%">E-mail (A => Z)</option>
-                    <option value="%">E-mail (Z => A)</option>
-                    <option value="%">Niet actief</option>
-                    <option value="%">Admin</option>
-                </select>
-            </div>
-        </div>
-    </form>
+    
 
 
     <div class="table-responsive">
