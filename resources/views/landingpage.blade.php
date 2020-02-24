@@ -72,10 +72,6 @@
                             </div>
                         </div>
                     @endguest
-                    @if(auth()->user()->rollId==1)
-
-
-                                @endif
                 </div>
             </header>
 
