@@ -61,6 +61,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //vereniginen
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
+    Route::get('getHoofd','Admin\VerenigingController@getVerant');
     Route::get('getAllVerenigingen','Admin\VerenigingController@getAllVerenigingen');
     Route::resource('verenigingen', 'Admin\VerenigingController');
     Route::get('active/{id}','Admin\VerenigingController@active');
