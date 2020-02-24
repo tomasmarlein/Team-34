@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Gebruikers;
+use Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,7 +12,7 @@ class PasswordController extends Controller
     // Edit user password
     public function edit()
     {
-        return view('user.password');
+        return view('shared.password');
     }
 
     // Update and encrypt user password
@@ -22,13 +24,22 @@ class PasswordController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
 
+        $gebruikers = new Gebruikers();
+
         // Update encrypted user password in the database and redirect to previous page
-        $gebruikers = gebruikers::findOrFail(auth()->id());
-        if (!Hash::check($request->current_password, $gebruikers->password)) {
-            session()->flash('danger', "Your current password doesn't mach the password in the database");
-            return back();
-        }
-        $gebruikers->password = Hash::make($request->password);
+//        $gebruiker = Gebruikers::findOrFail(auth()->id());
+
+        $gebruiker = Gebruikers::orderBy('id')
+            ->where('id','=',auth()->id())
+            ->get();
+
+//        if (!Hash::check($request->password, $gebruiker->password)) {
+//            session()->flash('danger', "Gelieve het correcte huidige wachtwoord in te geven.");
+//            return back();
+//        }
+        $gebruiker->password = Hash::make($request->password);
+        $gebruikers->password = $gebruiker->password;
+
         $gebruikers->save();
         session()->flash('success', 'Uw wachtwoord is verandert');
         return back();

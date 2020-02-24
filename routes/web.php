@@ -114,7 +114,8 @@ Route::middleware(['auth', 'verantwoordelijke'])->group(function () {
 Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->group(function () {
 
     Route::get('qryVerenigingen', 'Verantwoordelijke\VerenigingController@qryVerenigingen');
-    Route::get('qryLeden', 'Verantwoordelijke\VerenigingController@qryLeden');
+    Route::get('getVereniging', 'Verantwoordelijke\VerenigingController@getVereniging');
+    Route::get('showLeden/{id}', 'Verantwoordelijke\VerenigingController@showLeden');
 
     Route::resource('verenigingen', 'Verantwoordelijke\VerenigingController');
     Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@index');
