@@ -1,12 +1,22 @@
 @extends('layouts.template')
 @section('title', 'Tshirt beheer')
 @section('css_after')
-
+    <style>
+        .download{
+            float:right;
+        }
+    </style>
 @endsection
 @section('main')
  <h1>Overzicht T-shirts</h1>
 
-
+ <div class="download">
+     <form style="text-align: right" action="{{url('admin/downloadTshirt')}}" method="get" >
+         <button data-toggle="tooltip" title="Exporteer alle tshirts" style="height: 45px; width:55px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
+             <i class="fas fa-download"></i>
+         </button>
+     </form>
+ </div>
 
 
     <div class="table-responsive">

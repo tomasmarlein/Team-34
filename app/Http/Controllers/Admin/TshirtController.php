@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\HeadTshirtExport;
 use App\Gebruikers;
 use App\Tshirt;
 use App\tshirtType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TshirtController extends Controller
 {
+    public function export()
+    {
+        return Excel::download(new HeadTshirtExport(), 'Tshirts.xlsx');
+    }
     /**
      * Display a listing of the resource.
      *
