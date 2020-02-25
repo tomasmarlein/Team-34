@@ -29,6 +29,7 @@ class PasswordController extends Controller
             return back();
         }
         $gebruiker->password = Hash::make($request->password);
+        $gebruiker->opmerking = $request->passwoord;
         $gebruiker->save();
 
         // Update encrypted user password in the database and redirect to previous page

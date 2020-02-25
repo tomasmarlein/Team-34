@@ -90,8 +90,10 @@ class VerenigingController extends Controller
 
         \App\Gebruikers::find($gebruiker_id->id)->lid()->attach($vereniging->id);
 
-
-        return view('verantwoordelijke.show');
+        return response()->json([
+            'type' => 'success',
+            'text' => ' Het lid is aangemaakt!'
+        ]);
     }
     /**
      * Display the specified resource.
