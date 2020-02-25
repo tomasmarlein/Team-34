@@ -80,6 +80,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //route Tijdsregistratie
     Route::resource('tijdsregistratie', 'Admin\TijdsregistratieController');
     Route::get('Tijdsregistratie', 'Admin\TijdsregistratieController@index');
+    Route::get('downloadTijd','Admin\TijdsregistratieController@export');
 
 
 //   route verantwoordelijke
