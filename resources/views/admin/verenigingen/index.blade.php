@@ -52,7 +52,7 @@
         $(function () {
             loadTable();
             loadDropdown();
-            $('select').selectpicker();
+
 
             $('tbody').on('click', '.btn-delete', function () {
                 // Get data attributes from td tag
@@ -94,7 +94,6 @@
                 let huisnummer = $(this).closest('td').data('huisnummer');
                 let postcode = $(this).closest('td').data('postcode');
                 let gemeente = $(this).closest('td').data('gemeente');
-                let hoofdv = $(this).closest('td').data('hoofdverantwoordelijke');
 
                 // Update the modal
                 $('.modal-title').text(`Edit ${naam}`);
@@ -136,6 +135,7 @@
                         $('#modal-vereniging').modal('hide');
                         // Rebuild the table
                         loadTable();
+                        loadDropdown();
                     })
                     .fail(function (e) {
                         console.log('error', e);
@@ -186,6 +186,7 @@
                     }).show();
                     // Rebuild the table
                     loadTable();
+                    loadDropdown();
                 })
                 .fail(function (e) {
                     console.log('error', e);
@@ -216,18 +217,18 @@
 
 
 
+
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${actief}</td>
                                <td><a href="verenigingen/${ value.id }">${value.naam}</a></td>
-                               <td>${value.vereniginglid[0].naam}</td>
+                               <td>${value.vereniginglid.naam}</td>
                                <td>${value.rekeningnr}</td>
                                <td>${value.btwnr}</td>
                                <td>${value.straat} ${value.huisnummer} ${value.postcode} ${value.gemeente}</td>
 
                                <td data-id="${value.id}"
                                    data-naam="${value.naam}"
-                                   data-hoofdverantwoordelijke="${value.vereniginglid[0].naam}"
                                    data-rekeningnr="${value.rekeningnr}"
                                    data-btwnr="${value.btwnr}"
                                    data-straat="${value.straat}"
@@ -268,13 +269,13 @@
                 .done(function (data) {
                     console.log(data)
                     // Clear dropdown
-                    $('#hoofdverantwoordelijke').empty();
+                    $('#hoofdv').empty();
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
 
                         let options = `<option value="${value.id}">${value.naam}</option>`;
                         // Append row to tbody
-                        $('#hoofdverantwoordelijke').append(options).selectpicker('refresh');
+                        $('#hoofdv').append(options);
 
                     });
                 })
