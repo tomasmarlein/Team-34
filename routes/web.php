@@ -77,9 +77,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('Lunchpakket', 'Admin\LunchpakketController@index');
 
     //route Tijdsregistratie
-    Route::get('qryTijdsregistratie','Admin\TijdsregistratieController@qryTijdsregistratie');
     Route::resource('tijdsregistratie', 'Admin\TijdsregistratieController');
-    Route::get('Tijdsregistratie', 'Admin\TijdsregistratieController@index');
+    Route::get('tijdsregistratie', 'Admin\TijdsregistratieController@index');
 
 
 //   route verantwoordelijke

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-
+use App\Verenigings;
 use App\Tijdsregistratie;
+use Facades\App\Helpers\Json;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +17,16 @@ class TijdsregistratieController extends Controller
      */
     public function index()
     {
-        return view('admin.tijdsregistratie.index');
+        $verenigingen = verenigings::orderby('naam')
+            ->get((['id','naam']));
+
+        $tijdsregistraties = Tijdsregistratie::orderBy('checkIn', 'desc')
+            ->with ('verenigingTijd','gebruikerstijd','evenement', 'gebruikerstijd.lid')
+            ->get();
+        $result = compact('tijdsregistraties', 'verenigingen');
+        Json::dump($result);
+
+        return view('admin.tijdsregistratie.index', $result);
     }
 
     /**
@@ -46,7 +56,7 @@ class TijdsregistratieController extends Controller
      * @param  \App\Tijdsregiestratie  $tijdsregiestratie
      * @return \Illuminate\Http\Response
      */
-    public function show(Tijdsregiestratie $tijdsregiestratie)
+    public function show(Tijdsregistratie $tijdsregiestratie)
     {
         //
     }
@@ -57,9 +67,11 @@ class TijdsregistratieController extends Controller
      * @param  \App\Tijdsregiestratie  $tijdsregiestratie
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tijdsregiestratie $tijdsregiestratie)
+    public function edit(Tijdsregistratie $tijdsregiestratie)
     {
-        //
+        $result = compact('tijdsregiestratie');
+        Json::dump($result);
+        return view('admin.tijdsregistratie.edit', $result);
     }
 
     /**
@@ -85,12 +97,4 @@ class TijdsregistratieController extends Controller
         //
     }
 
-
-    public function qryTijdsregistratie()
-    {
-        $tijdsregistratie = Tijdsregistratie::orderBy('checkIn', 'desc')
-            ->with ('verenigingTijd','gebruikerstijd','evenement', 'gebruikerstijd.lid')
-            ->get();
-        return $tijdsregistratie;
-    }
 }
