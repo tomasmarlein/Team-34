@@ -8,6 +8,7 @@ use App\Imports\VrijwilligersImport;
 use App\Gebruikers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
 
 class VrijwilligerController extends Controller
@@ -20,8 +21,27 @@ class VrijwilligerController extends Controller
     public function import()
     {
         Excel::import(new VrijwilligersImport(),request()->file('file'));
+        $files = File::files(public_path());
 
-        return back();
+        $bestand = '';
+        $gelukt = '';
+
+        foreach($files as $file){
+            if($file->getRelativePathname() == 'importLog.txt'){
+                $bestand = $file->getRelativePathname();
+                if($file->getSize() == 0){
+                    $gelukt="Alles is succesvol geïmporteerd";
+                    return redirect()->back()->with('alert', $gelukt);
+                } else {
+                    return response()->download($bestand);
+                }
+            }
+        }
+    }
+
+    public function downloadTemplate()
+    {
+        return response()->download(public_path(). "/template/ImportTemplate.xlsx");
     }
 
     public function export()
@@ -53,7 +73,8 @@ class VrijwilligerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'naam' => 'required|min:3|unique:gebruikers,naam'
+            'naam' => 'required|min:3',
+            'rijksregisternr' => 'required|min:10|numeric|unique:gebruikers,rijksregisternr'
         ]);
 
         $gebruikers = new Gebruikers();
@@ -64,7 +85,6 @@ class VrijwilligerController extends Controller
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->rijksregisternr = $request->rijksregisternr;
         $gebruikers->rolId = 4;
-//        $gebruikers->password = Hash::make("gladiolen");
         $gebruikers->save();
 
         return response()->json([
@@ -145,25 +165,13 @@ class VrijwilligerController extends Controller
 
 
 
-    public function qryVrijwilligers(Request $request)
+    public function qryVrijwilligers()
     {
-        $naam = $request->get('name');
-
         $gebruikers = Gebruikers::orderBy('id')
-                ->where('rolId', '=', 4)
-                ->where('naam', 'like', '%'.$naam.'%')
-                ->with('lid')
-                ->get();
-            return $gebruikers;
+            ->where('rolId', '=', 4)
+            ->orWhere('rolId', 3)
+            ->with ('lid')
+            ->get();
+        return $gebruikers;
     }
-
-
-//    public function qryVrijwilligers()
-//    {
-//        $gebruikers = Gebruikers::orderBy('id')
-//            ->where('rolId', '=', 4)
-//            ->with ('lid')
-//            ->get();
-//        return $gebruikers;
-//    }
 }

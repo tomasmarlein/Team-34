@@ -3,6 +3,11 @@
 @section('title', 'Vrijwilligers')
 @section('css_after')
     <style>
+        .template{
+            float: right;
+            padding: 5px;
+        }
+
         .upload{
             float:right;
             padding: 5px;
@@ -10,16 +15,18 @@
 
         .download{
             float:right;
+            padding: 5px;
         }
     </style>
 @endsection
 @section('main')
     <div class="row">
-        <div class="col-sm-7 mb-2">
+        <div class="col-sm-5 mb-2">
     <h1>Vrijwilligers</h1>
     @include('shared.alert')
         </div>
-        <div class="col-sm-5 mb-2">
+        <div class="col-sm-7 mb-2">
+
     <div class="upload">
         <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -27,6 +34,13 @@
             <button style="color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" class="btn btn-success" id="importeerVrijwilliger">Voeg vrijwilligers toe</button>
         </form>
     </div>
+            <div class="template">
+                <form style="text-align: right" action="{{url('admin/downloadTemplate')}}" method="get" >
+                    <button data-toggle="tooltip" title="Download template" style="height: 45px; width:165px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
+                        Import template
+                    </button>
+                </form>
+            </div>
     <div class="download">
         <form style="text-align: right" action="{{url('admin/download')}}" method="get" >
             <button data-toggle="tooltip" title="Exporteer alle vrijwilligers" style="height: 45px; width:55px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
@@ -38,38 +52,23 @@
         </div>
     </div>
 
-    <form method="get" action="/admin/vrijwilligers" id="searchForm">
-        <div class="row">
-            <div class="col-sm-3 mb-2">
-                <label for="name">Filter op naam: </label>
-                <input type="text" class="form-control" name="name" id="name"
-                       value="{{ request()->name }}" placeholder="Naam">
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="emailadres">Filter op e-mail adres: </label>
-                <input type="email" class="form-control" name="emailadres" id="emailadres"
-                       value="{{ request()->emailadres }}" placeholder="E-mail adres">
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="sort">Sorteer op: </label>
-                <select class="form-control" name="sort" id="sort">
-                    <option value="%" selected>Naam (A => Z)</option>
-                    <option value="%">Naam (Z => A)</option>
-                    <option value="%">E-mail (A => Z)</option>
-                    <option value="%">E-mail (Z => A)</option>
-                    <option value="%">Niet actief</option>
-                    <option value="%">Admin</option>
-                </select>
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label>Voeg toe: </label><br>
-                <a href="#!" class="btn btn-outline-success" id="btn-create">
-                    <i class="fas fa-plus-circle mr-1"></i>Nieuwe vrijwiliger
-                </a>
-            </div>
+    @if (session('alert'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ session('alert') }}
         </div>
-    </form>
+    @endif
 
+
+    <div class="row" style="text-align: right;">
+        <div class="col-sm-12 mb-2">
+            <a href="#!" class="btn btn-outline-success" id="btn-create">
+                <i class="fas fa-plus-circle mr-1"></i>Nieuwe vrijwiliger
+            </a>
+        </div>
+    </div>
 
             <div class="table-responsive">
                 <table id="mytable" class="table table-hover">

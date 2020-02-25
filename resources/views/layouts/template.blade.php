@@ -20,6 +20,8 @@
 @include('shared.footer')
 {{--  Footer  --}}
 <script src="{{ mix('js/app.js') }}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+{{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>--}}
 @yield('script_after')
 @if(env('APP_DEBUG'))
     <script>
@@ -28,3 +30,5 @@
 @endif
 </body>
 </html>
+
+

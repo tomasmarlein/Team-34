@@ -47,17 +47,18 @@
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
+
                     <div class="col-md-6">
-                        <div class="form-group ">
-                            <label for="hoofdverantwoordelijke">Hoofdverantwoordelijke</label>
-                            <input type="text" name="hoofdverantwoordelijke" id="hoofdverantwoordelijke"
-                                   class="form-control"
-                                   placeholder="Hoofdverantwoordelijke"
-                                   minlength="3"
-                                   value="">
+                        <div class="form-group">
+                            <label for="hoofdv">Hoofdverantwoordelijke</label>
+                            <select class="form-control" name="hoofdverant" id="hoofdv">
+                                <option selected value="" id="aangeduidehoofd"></option>
+                            </select>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
+
+
                     <div class="col-md-6">
                         <div class="form-group ">
                             <label for="straat">Straat</label>

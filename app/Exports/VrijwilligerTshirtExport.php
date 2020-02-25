@@ -25,7 +25,6 @@ class VrijwilligerTshirtExport implements FromQuery, WithStrictNullComparison, W
             ->join('verenigings', 'gebruikers_verenigings.verenigings_id', '=', 'verenigings.id')
             ->join('tshirts', 'gebruikers.id', '=', 'tshirts.gebruikers_id')
             ->leftJoin('tshirt_types', 'tshirts.types_id', '=', 'tshirt_types.id')
-            ->where('rolId', 4)
             ->select( 'verenigings.naam as vnaam', 'gebruikers.naam', 'gebruikers.voornaam', 'gebruikers.roepnaam', 'tshirts.maat', 'tshirts.geslacht', 'tshirts.aantal', 'tshirt_types.type');
     }
 

@@ -13,28 +13,17 @@
             color:green;
         }
     </style>
-    <form method="get" action="#" id="searchForm">
-        <div class="row">
-            <div class="col-sm-6 mb-2">
-                <p>Filter op naam of e-mail adres: </p>
-                <input type="text" class="form-control" name="artist" id="artist"
-                       value="" placeholder="Naam of e-mail adres">
-            </div>
-            <div class="col-sm-4 mb-2">
-                <p>Sorteer: </p>
-                <select class="form-control" name="#" id="#">
-                    <option>naam (A=>Z)</option>
-                </select>
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label>Voeg toe</label><br>
-                <a href="#!" class="btn btn-outline-success" id="btn-create">
-                    <i class="fas fa-plus-circle mr-1"></i>Nieuwe vereniging
-                </a>
-            </div>
-        </div>
 
-    </form>
+
+    <div class="row" style="text-align: right;">
+        <div class="col-sm-12 mb-2">
+            <a href="#!" class="btn btn-outline-success" id="btn-create">
+                <i class="fas fa-plus-circle mr-1"></i>Nieuwe vereniging
+            </a>
+        </div>
+    </div>
+
+
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -62,6 +51,8 @@
     <script>
         $(function () {
             loadTable();
+            loadDropdown();
+
 
             $('tbody').on('click', '.btn-delete', function () {
                 // Get data attributes from td tag
@@ -117,6 +108,7 @@
                 $('#postcode').val(postcode);
                 $('#gemeente').val(gemeente);
 
+
                 $('input[name="_method"]').val('put');
                 // Show the modal
                 $('#modal-vereniging').modal('show');
@@ -143,6 +135,7 @@
                         $('#modal-vereniging').modal('hide');
                         // Rebuild the table
                         loadTable();
+                        loadDropdown();
                     })
                     .fail(function (e) {
                         console.log('error', e);
@@ -193,6 +186,7 @@
                     }).show();
                     // Rebuild the table
                     loadTable();
+                    loadDropdown();
                 })
                 .fail(function (e) {
                     console.log('error', e);
@@ -201,7 +195,7 @@
 
         // Load genres with AJAX
         function loadTable() {
-            $.getJSON('qryVerenigingen')
+            $.getJSON('/admin/qryVerenigingen')
                 .done(function (data) {
                     console.log(data)
                     // Clear tbody tag
@@ -221,21 +215,26 @@
                             var path = "active";
                         }
 
-
+                        var obj = $.grep(value.vereniginglid, function(obj){return obj.id === value.hoofdverantwoordelijke;})[0];
+                        if(value.hoofdverantwoordelijke == obj.id){
+                            var hoofdv = obj.voornaam + ' ' + obj.naam;
+                        }else{
+                            var hoofdv = "Geen verantwoordelijke";
+                        }
 
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${actief}</td>
                                <td><a href="verenigingen/${ value.id }">${value.naam}</a></td>
-                               <td>${value.vereniginglid[0].naam}</td>
+                               <td>${hoofdv}</td>
                                <td>${value.rekeningnr}</td>
                                <td>${value.btwnr}</td>
                                <td>${value.straat} ${value.huisnummer} ${value.postcode} ${value.gemeente}</td>
 
                                <td data-id="${value.id}"
                                    data-naam="${value.naam}"
-                                   data-hoofdverantwoordelijke="${value.hoofdverantwoordelijke}"
                                    data-rekeningnr="${value.rekeningnr}"
+                                   data-hoofdvId="${value.rekeningnr}"
                                    data-btwnr="${value.btwnr}"
                                    data-straat="${value.straat}"
                                    data-huisnummer="${value.huisnummer}"
@@ -264,6 +263,32 @@
                     console.log('error', e);
                 })
         }
+
+
+
+
+
+
+        function loadDropdown() {
+            $.getJSON('/admin/getHoofd')
+                .done(function (data) {
+                    console.log(data)
+                    // Clear dropdown
+                    $('#hoofdv').empty();
+                    // Loop over each item in the array
+                    $.each(data, function (key, value) {
+
+                        let options = `<option value="${value.id}">${value.voornaam} ${value.naam}</option>`;
+                        // Append row to tbody
+                        $('#hoofdv').append(options);
+
+                    });
+                })
+                .fail(function (e) {
+                    console.log('error', e);
+                })
+        }
+
 
     </script>
 @endsection

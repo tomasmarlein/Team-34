@@ -7,37 +7,13 @@
  <h1>Overzicht T-shirts</h1>
 
 
-    <form method="get" action="/admin/vrijwilligers" id="searchForm">
-        <div class="row">
-            <div class="col-sm-3 mb-2">
-                <label for="naam">Filter Naam</label>
-                <input type="text" class="form-control" name="naam" id="naam"
-                       value="{{ request()->naam }}" placeholder="Filter Naam">
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="email">Filter Email</label>
-                <input type="email" class="form-control" name="email" id="email"
-                       value="{{ request()->email }}" placeholder="Filter Email">
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="sort">Sort by</label>
-                <select class="form-control" name="sort" id="sort">
-                    <option value="%" selected>Name (A => Z)</option>
-                    <option value="%">Name (Z => A)</option>
-                    <option value="%">Email (A => Z)</option>
-                    <option value="%">Email (Z => A)</option>
-                    <option value="%">Not Active</option>
-                    <option value="%">Admin</option>
-                </select>
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label>Voeg toe</label><br>
-                <a href="#!" class="btn btn-outline-success" id="btn-create">
-                    <i class="fas fa-plus-circle mr-1"></i>Beheer Tshirts
-                </a>
-            </div>
-        </div>
-    </form>
+ <div class="row" style="text-align: right;">
+     <div class="col-sm-12 mb-2">
+         <a href="#!" class="btn btn-outline-success" id="btn-create">
+             <i class="fas fa-plus-circle mr-1"></i>Beheer Tshirts
+         </a>
+     </div>
+ </div>
 
 
     <div class="table-responsive">
@@ -56,70 +32,65 @@
             </tbody>
         </table>
     </div>
-
+ @include('admin.tshirt.modal')
 @endsection
 @section('script_after')
     <script>
         $(function () {
             loadTable();
-
-            $('tbody').on('click', '.btn-delete', function () {
-                // Get data attributes from td tag
-                let id = $(this).closest('td').data('id');
-                let naam = $(this).closest('td').data('naam');
-                let voornaam = $(this).closest('td').data('voornaam');
-                // Set some values for Noty
-                let text = `<p>Delete de vrijwilliger <b>${voornaam} ${naam}</b>?</p>`;
-                let type = 'warning';
-                let btnText = 'Delete Vrijwilliger';
-                let btnClass = 'btn-success';
-
-                // Show Noty
-                let modal = new Noty({
-                    timeout: false,
-                    layout: 'center',
-                    modal: true,
-                    type: type,
-                    text: text,
-                    buttons: [
-                        Noty.button(btnText, `btn ${btnClass}`, function () {
-                            // Delete genre and close modal
-                            deleteGebruiker(id);
-                            modal.close();
-                        }),
-                        Noty.button('Cancel', 'btn btn-secondary ml-2', function () {
-                            modal.close();
-                        })
-                    ]
-                }).show();
-            });
+            loadDropdown();
 
             $('tbody').on('click', '.btn-edit', function () {
                 // Get data attributes from td tag
-                let id = $(this).closest('td').data('id');
+                let id = $(this).closest('td').data('tshirtid');
                 let naam = $(this).closest('td').data('naam');
                 let voornaam = $(this).closest('td').data('voornaam');
-                let roepnaam = $(this).closest('td').data('roepnaam');
-                let email = $(this).closest('td').data('email');
-                let telefoon = $(this).closest('td').data('telefoon');
-                let geboortedatum = $(this).closest('td').data('geboortedatum');
+                let vereniging = $(this).closest('td').data('vereniging');
+                let maat = $(this).closest('td').data('tshirtmaat');
+                let geslacht = $(this).closest('td').data('tshirtgeslacht');
+                let aantal = $(this).closest('td').data('tshirtaantal');
+                let type = $(this).closest('td').data('tshirttype');
+                let gebruikerId = $(this).closest('td').data('id');
                 // Update the modal
-                $('.modal-title').text(`Edit ${voornaam} ${naam}`);
-                $('form').attr('action', `/admin/vrijwilligers/${id}`);
+                $('.modal-title').text(`Edit tshirt voor ${voornaam} ${naam}`);
+                $('form').attr('action', `/admin/tshirt/${id}`);
+
+                if(maat === ''){
+                    $('#tshirt_maat').val('0');
+                } else{
+                    $('#tshirt_maat').val(maat);
+                }
+
+                if(geslacht === ''){
+                    $('#tshirt_geslacht').val('0');
+                } else{
+                    $('#tshirt_geslacht').val(geslacht);
+                }
+
+                if(aantal === ''){
+                    $('#tshirt_aantal').val('0');
+                } else{
+                    $('#tshirt_aantal').val(aantal);
+                }
+
+                if(type === ''){
+                    $('#dropdown-types').val('leeg');
+                } else{
+                    $('#dropdown-types').val(type);
+                }
 
                 $('#naam').val(naam);
                 $('#voornaam').val(voornaam);
-                $('#roepnaam').val(roepnaam);
-                $('#email').val(email);
-                $('#telefoon').val(telefoon);
-                $('#geboortedatum').val(geboortedatum);
+                $('#vereniging').val(vereniging);
+                $('#gebruikerId').val(gebruikerId);
+
 
                 $('input[name="_method"]').val('put');
                 // Show the modal
-                $('#modal-vrijwilliger').modal('show');
+                $('#modal-tshirt').modal('show');
             });
 
-            $('#modal-vrijwilliger form').submit(function (e) {
+            $('#modal-tshirt form').submit(function (e) {
                 // Don't submit the form
                 e.preventDefault();
                 // Get the action property (the URL to submit)
@@ -138,7 +109,7 @@
                             text: data.text
                         }).show();
                         // Hide the modal
-                        $('#modal-vrijwilliger').modal('hide');
+                        $('#modal-tshirt').modal('hide');
                         // Rebuild the table
                         loadTable();
                     })
@@ -163,11 +134,11 @@
             $('#btn-create').click(function () {
                 // Update the modal
                 $('.modal-title').text(`Nieuwe gebruiker`);
-                $('form').attr('action', `/admin/vrijwilligers`);
+                $('form').attr('action', `/admin/tshirt`);
                 $('#naam').val('');
                 $('input[name="_method"]').val('post');
                 // Show the modal
-                $('#modal-vrijwilliger').modal('show');
+                $('#modal-tshirt').modal('show');
             });
 
 
@@ -197,7 +168,15 @@
                 });
         }
 
-
+        //dropdown inladen
+        function loadDropdown(){
+            $.getJSON('qryTshirtTypes')
+                .done(function (data) {
+                    console.log('data', data);
+                    $.each(data, function (key, value) {
+                        $('#dropdown-types').append('<option value="'+ value.id + '">' + value.type + '</option>');
+                    })
+                })}
 
         // Load genres with AJAX
         function loadTable() {
@@ -208,35 +187,135 @@
                     $('tbody').empty();
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
+                        if(value.lid.length != 0){
+                            for(var i=0; i<value.lid.length; i++) {
+                                var verenigingnaam = value.lid[i].naam;
+                                if(value.tshirt.length != 0){
+                                    for(var i=0; i<value.tshirt.length; i++){
+
+                                        let tr = `<tr>
+                                            <td>${value.id}</td>
+                                            <td>${value.naam} ${value.voornaam}</td>
+                                            <td>${verenigingnaam}</td>
+                                            <td>${value.tshirt[i].maat} ${value.tshirt[i].geslacht} ${value.tshirt[i].tshirt_type.type} ${value.tshirt[i].aantal} stuks</td>
 
 
-                        let tr = `<tr>
-                              <td>${value.id}</td>
-                              <td>${value.naam}</td>
-                              <td>V naam</td>
-                              <td>Thsirt-type + size</td>
+                                               <td data-tshirtid="${value.tshirt[i].id}"
+                                                   data-id="${value.id}"
+                                                   data-naam="${value.naam}"
+                                                   data-voornaam="${value.voornaam}"
+                                                   data-vereniging="${verenigingnaam}"
+                                                   data-tshirtmaat="${value.tshirt[i].maat}"
+                                                   data-tshirtgeslacht="${value.tshirt[i].geslacht}"
+                                                   data-tshirtaantal="${value.tshirt[i].aantal}"
+                                                   data-tshirttype="${value.tshirt[i].tshirt_type.id}">
+
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                    </div>
+                                               </td>
+                                           </tr>`;
+                                        // Append row to tbody
+                                        $('tbody').append(tr);
+                                    }
+                                } else {
+                                    var verenigingnaam = value.lid[i].naam;
+
+                                    let tr = `<tr>
+                                            <td>${value.id}</td>
+                                            <td>${value.naam} ${value.voornaam}</td>
+                                            <td>${verenigingnaam}</td>
+                                            <td>Geen tshirt</td>
 
 
-                               <td data-id="${value.id}"
-                                   data-naam="${value.naam}"
-                                   data-voornaam="${value.voornaam}"
-                                   data-roepnaam="${value.roepnaam}"
-                                   data-email="${value.email}"
-                                   data-geboortedatum="${value.geboortedatum}"
-                                   data-telefoon="${value.telefoon}">
+                                               <td data-tshirtid=""
+                                                   data-id="${value.id}"
+                                                   data-naam="${value.naam}"
+                                                   data-voornaam="${value.voornaam}"
+                                                   data-vereniging="${verenigingnaam}"
+                                                   data-tshirtmaat=""
+                                                   data-tshirtgeslacht=""
+                                                   data-tshirtaantal=""
+                                                   data-tshirttype="">
 
-                                    <div class="btn-group btn-group-sm">
-                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Verwijder ${value.naam} ${value.voornaam}">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </div>
-                               </td>
-                           </tr>`;
-                        // Append row to tbody
-                        $('tbody').append(tr);
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                    </div>
+                                               </td>
+                                           </tr>`;
+                                    // Append row to tbody
+                                    $('tbody').append(tr);
+                                }
+
+                            }
+                        } else {
+                            var verenigingnaam = 'Geen vereniging';
+                            if(value.tshirt.length != 0){
+                                for(var i=0; i<value.tshirt.length; i++){
+
+                                    let tr = `<tr>
+                                            <td>${value.id}</td>
+                                            <td>${value.naam} ${value.voornaam}</td>
+                                            <td>${verenigingnaam}</td>
+                                            <td>${value.tshirt[i].maat} ${value.tshirt[i].geslacht} ${value.tshirt[i].tshirt_type.type} ${value.tshirt[i].aantal} stuks</td>
+
+
+                                               <td data-tshirtid="${value.tshirt[i].id}"
+                                                   data-id="${value.id}"
+                                                   data-naam="${value.naam}"
+                                                   data-voornaam="${value.voornaam}"
+                                                   data-vereniging="${verenigingnaam}"
+                                                   data-tshirtmaat="${value.tshirt[i].maat}"
+                                                   data-tshirtgeslacht="${value.tshirt[i].geslacht}"
+                                                   data-tshirtaantal="${value.tshirt[i].aantal}"
+                                                   data-tshirttype="${value.tshirt[i].tshirt_type.id}">
+
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                    </div>
+                                               </td>
+                                           </tr>`;
+                                    // Append row to tbody
+                                    $('tbody').append(tr);
+                                }
+                            } else {
+                                var verenigingnaam = 'Geen vereniging';
+
+                                let tr = `<tr>
+                                            <td>${value.id}</td>
+                                            <td>${value.naam} ${value.voornaam}</td>
+                                            <td>${verenigingnaam}</td>
+                                            <td>Geen tshirt</td>
+
+
+                                               <td data-tshirtid=""
+                                                   data-id="${value.id}"
+                                                   data-naam="${value.naam}"
+                                                   data-voornaam="${value.voornaam}"
+                                                   data-vereniging="${verenigingnaam}"
+                                                   data-tshirtmaat=""
+                                                   data-tshirtgeslacht=""
+                                                   data-tshirtaantal=""
+                                                   data-tshirttype="">
+
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                    </div>
+                                               </td>
+                                           </tr>`;
+                                // Append row to tbody
+                                $('tbody').append(tr);
+                            }
+
+                        }
                     });
                 })
                 .fail(function (e) {

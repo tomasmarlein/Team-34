@@ -56,10 +56,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //import en export vrijwilliger
     Route::get('download','Admin\VrijwilligerController@export');
+    Route::get('downloadTemplate','Admin\VrijwilligerController@downloadTemplate');
     Route::post('import', 'Admin\VrijwilligerController@import')->name('import');
 
     //vereniginen
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
+    Route::get('getHoofd','Admin\VerenigingController@getVerant');
     Route::get('getAllVerenigingen','Admin\VerenigingController@getAllVerenigingen');
     Route::resource('verenigingen', 'Admin\VerenigingController');
     Route::get('active/{id}','Admin\VerenigingController@active');
@@ -67,7 +69,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 //route Tshirt
     Route::get('qryTshirt','Admin\TshirtController@qryTshirt');
-    Route::resource('Tshirt', 'Admin\TshirtController');
+    Route::get('qryTshirtTypes','Admin\TshirtController@qryTshirtTypes');
+    Route::resource('tshirt', 'Admin\TshirtController');
     Route::get('tshirt', 'Admin\TshirtController@index');
 
     //route Lunchpakket
@@ -77,10 +80,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //route Tijdsregistratie
     Route::get('qryTijdsregistratie','Admin\TijdsregistratieController@qryTijdsregistratie');
     Route::resource('tijdsregistratie', 'Admin\TijdsregistratieController');
-    Route::get('tijdsregistratie', 'Admin\TijdsregistratieController@index');
+    Route::get('Tijdsregistratie', 'Admin\TijdsregistratieController@index');
 
 
-//    route verantwoordelijke
+//   route verantwoordelijke
     Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
     Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
     Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');

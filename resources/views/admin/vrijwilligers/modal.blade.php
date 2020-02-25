@@ -69,7 +69,6 @@
                                        placeholder="Rijksregisternummer"
                                        required
                                        value=""
-                                       minlength="11"
                                        maxlength="11">
                                 <div class="invalid-feedback"></div>
                             </div>

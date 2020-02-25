@@ -1,6 +1,13 @@
 @extends('layouts.template')
 @section('title', 'Tijdsregistratie')
-
+@section('css_after')
+    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+    <style>
+        th{
+            min-width: 120px;
+        }
+    </style>
+@endsection
 @section('main')
 
 
@@ -40,6 +47,8 @@
                 <th>Man-CheckUit</th>
                 <th>AdminCheckin</th>
                 <th>AdminCheckuit</th>
+                <th>Finale CheckIn</th>
+                <th>Finale Checkuit</th>
                 <th>Acties</th>
             </tr>
             </thead>
@@ -72,7 +81,6 @@
                 let adminCheckIn = $(this).closest('td').data('admCheckIn');
                 let adminCheckUit = $(this).closest('td').data('admCheckUit');
 
-                console.log(checkIn);
 
 
 
@@ -157,6 +165,7 @@
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
 
+
                         if(value.manCheckIn != null){
                             var manueelIN = value.manCheckIn;
                         }else{
@@ -181,6 +190,10 @@
 
 
 
+                        var d1 = moment(value.checkIn,"MM-DD-YYYY HH:mm");
+                        console.log(d1._i + "test");
+                        console.log(value.checkIn);
+
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.gebruikerstijd.naam + " " + value.gebruikerstijd.voornaam} </td>
@@ -191,8 +204,8 @@
                                <td align="center">${manueelUit}</td>
                                <td align="center">${adminIn}</td>
                                <td align="center">${adminUit}</td>
-
-
+                               <td align="center">${adminUit}</td>
+                               <td align="center">${adminUit}</td>
                                <td data-id="${value.id}"
                                    data-naam="${value.gebruikerstijd.naam}"
                                    data-voornaam="${value.gebruikerstijd.voornaam}"
@@ -203,8 +216,6 @@
                                    data-manCheckUit="${value.manCheckUit}"
                                    data-admCheckIn="${value.adminCheckIn}"
                                    data-admCheckUit="${value.adminCheckUit}"
-
-
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig tijdsregistratie ${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}">
                                             <i class="fas fa-edit"></i>
@@ -220,6 +231,7 @@
                     console.log('error', e);
                 })
         }
+
     </script>
 @endsection
 
