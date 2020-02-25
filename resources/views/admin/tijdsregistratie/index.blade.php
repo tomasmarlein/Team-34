@@ -6,26 +6,38 @@
         th{
             min-width: 120px;
         }
+
+        .download{
+            float:right;
+            padding: 5px;
+        }
     </style>
 @endsection
 @section('main')
     <div class="container">
 <h1>Tijdsregistratie</h1>
+        <div class="download">
+            <form style="text-align: right" action="{{url('admin/downloadTijd')}}" method="get" >
+                <button data-toggle="tooltip" title="Exporteer alle vrijwilligers" style="height: 45px; width:55px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
+                    <i class="fas fa-download"></i>
+                </button>
+            </form>
+        </div>
 
     <form method="get" action="#" id="searchForm">
         <div class="row">
             <div class="col-sm-4 mb-2">
                 <label for="sort">Verenigingen: </label>
-                <select class="form-control" name="sort" id="sort">
+                <select class="form-control" name="sort" id="vereniging_id">
                     <option value="%" selected>Alle Verenigingen</option>
                     @foreach ($verenigingen as $vereniging)
-                        <option value="{{$vereniging->id}}">{{$vereniging->naam}}</option>
+                        <option value="{{$vereniging->id}}">{{ucfirst($vereniging->naam)}}</option>
                     @endforeach
                 </select>
             </div>
             <div class="col-sm-3 mb-2">
                 <label for="email">Filter naam:</label>
-                <input type="email" class="form-control" name="email" id="email"
+                <input type="email" class="form-control" name="email" id="naam"
                        value="{{ request()->email }}" placeholder="Naam of voornaam">
             </div>
         </div>
@@ -133,7 +145,9 @@
             </tbody>
         </table>
     </div>
+
     </div>
+
 @endsection
 
 
