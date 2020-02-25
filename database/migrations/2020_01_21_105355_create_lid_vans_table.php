@@ -15,12 +15,13 @@ class CreateLidVansTable extends Migration
     {
         Schema::create('gebruikers_verenigings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('verenigings_id');
-            $table->unsignedBigInteger('gebruikers_id');
+            $table->unsignedBigInteger('verenigings_id')->unsigned();
+            $table->unsignedBigInteger('gebruikers_id')->unsigned();
 
-            $table->foreign('gebruikers_id')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('verenigings_id')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
+
         });
+
+
         for ($i = 23; $i <= 32; $i++) {
             DB::table('gebruikers_verenigings')->insert(
                 [
@@ -42,7 +43,7 @@ class CreateLidVansTable extends Migration
         DB::table('gebruikers_verenigings')->insert(
             [
                 'verenigings_id'=> 1,
-                'gebruikers_id' => 44
+                'gebruikers_id' => 46
 
             ]
         );

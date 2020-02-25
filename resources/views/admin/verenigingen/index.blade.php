@@ -215,14 +215,18 @@
                             var path = "active";
                         }
 
-
-
+                        var obj = $.grep(value.vereniginglid, function(obj){return obj.id === value.hoofdverantwoordelijke;})[0];
+                        if(value.hoofdverantwoordelijke == obj.id){
+                            var hoofdv = obj.voornaam + ' ' + obj.naam;
+                        }else{
+                            var hoofdv = "Geen verantwoordelijke";
+                        }
 
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${actief}</td>
                                <td><a href="verenigingen/${ value.id }">${value.naam}</a></td>
-                               <td>${value.vereniginglid.naam}</td>
+                               <td>${hoofdv}</td>
                                <td>${value.rekeningnr}</td>
                                <td>${value.btwnr}</td>
                                <td>${value.straat} ${value.huisnummer} ${value.postcode} ${value.gemeente}</td>

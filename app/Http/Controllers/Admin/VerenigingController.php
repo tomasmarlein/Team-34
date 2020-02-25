@@ -125,6 +125,7 @@ class VerenigingController extends Controller
             'naam' => $data['naam'],
             'rekeningnr' => $data['rekeningnr'],
             'hoofdverantwoordelijke' => $data['hoofdverant'],
+            'contactpersoon' => $data['hoofdverant'],
             'btwnr' => $data['btwnr'],
             'straat' => $data['straat'],
             'huisnummer' => $data['huisnummer'],
@@ -134,7 +135,7 @@ class VerenigingController extends Controller
 
         $replace = array('{"id":','}');
         $gebruiker = Gebruikers::find(str_replace($replace, "",$data['hoofdverant']));
-        $gebruiker->lid()->sync(['verenigings_id' => $id], ['gebruikers_id' => $data['hoofdverant']]);
+        $gebruiker->lid()->attach(['verenigings_id' => $id]);
 
         return response()->json([
             'type' => 'success',
