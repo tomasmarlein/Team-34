@@ -9,7 +9,8 @@
     </style>
 @endsection
 @section('main')
-
+    <div class="container">
+<h1>Tijdsregistratie</h1>
 
     <form method="get" action="#" id="searchForm">
         <div class="row">
@@ -131,6 +132,7 @@
 
             </tbody>
         </table>
+    </div>
     </div>
 @endsection
 
