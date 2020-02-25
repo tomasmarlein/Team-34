@@ -16,16 +16,16 @@
         <div class="row">
             <div class="col-sm-4 mb-2">
                 <label for="sort">Verenigingen: </label>
-                <select class="form-control" name="sort" id="sort">
+                <select class="form-control" name="sort" id="vereniging_id">
                     <option value="%" selected>Alle Verenigingen</option>
                     @foreach ($verenigingen as $vereniging)
-                        <option value="{{$vereniging->id}}">{{$vereniging->naam}}</option>
+                        <option value="{{$vereniging->id}}">{{ucfirst($vereniging->naam)}}</option>
                     @endforeach
                 </select>
             </div>
             <div class="col-sm-3 mb-2">
                 <label for="email">Filter naam:</label>
-                <input type="email" class="form-control" name="email" id="email"
+                <input type="email" class="form-control" name="email" id="naam"
                        value="{{ request()->email }}" placeholder="Naam of voornaam">
             </div>
         </div>
@@ -133,7 +133,9 @@
             </tbody>
         </table>
     </div>
+
     </div>
+
 @endsection
 
 
