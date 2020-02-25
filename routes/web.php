@@ -56,10 +56,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //import en export vrijwilliger
     Route::get('download','Admin\VrijwilligerController@export');
+    Route::get('downloadTemplate','Admin\VrijwilligerController@downloadTeplate');
     Route::post('import', 'Admin\VrijwilligerController@import')->name('import');
 
     //vereniginen
     Route::get('qryVerenigingen','Admin\VerenigingController@qryVerenigingen');
+    Route::get('getHoofd','Admin\VerenigingController@getVerant');
     Route::get('getAllVerenigingen','Admin\VerenigingController@getAllVerenigingen');
     Route::resource('verenigingen', 'Admin\VerenigingController');
     Route::get('active/{id}','Admin\VerenigingController@active');

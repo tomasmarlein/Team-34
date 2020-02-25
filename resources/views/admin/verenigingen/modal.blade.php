@@ -48,13 +48,11 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label for="hoofdverantwoordelijke">Hoofdverantwoordelijke</label>
-                            <input type="text" name="hoofdverantwoordelijke" id="hoofdverantwoordelijke"
-                                   class="form-control"
-                                   placeholder="Hoofdverantwoordelijke"
-                                   minlength="3"
-                                   value="">
+                            <select class="form-control selectpicker dropleft" name="hoofdverantwoordelijke" id="hoofdverantwoordelijke" data-live-search="true" data-none-results-text="I found no results">
+
+                            </select>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>

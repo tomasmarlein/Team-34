@@ -21,14 +21,22 @@ class VrijwilligersExport implements FromQuery, WithStrictNullComparison, WithHe
     * @return \Illuminate\Support\Collection
     */
 
+    private $verenigingnaam;
+
+    public function __construct(string $verenigingnaam)
+    {
+        $this->verenigingnaam = $verenigingnaam;
+    }
+
     public function query()
     {
         return Gebruikers::query()
             ->join('gebruikers_verenigings', 'gebruikers.id', '=', 'gebruikers_verenigings.gebruikers_id')
             ->join('verenigings', 'gebruikers_verenigings.verenigings_id', '=', 'verenigings.id')
-            ->leftJoin('tshirts', 'gebruikers.id', '=', 'tshirts.gebruikers_id')
+            ->where('verenigings.naam', $this->verenigingnaam)
             ->where('rolId', 4)
             ->select( 'verenigings.naam as vnaam','gebruikers.email', 'gebruikers.naam', 'gebruikers.voornaam', 'gebruikers.roepnaam', 'gebruikers.geboortedatum', 'gebruikers.telefoon', 'gebruikers.opmerking', 'gebruikers.rijksregisternr', 'gebruikers.lunchpakket');
+
     }
 
     /**
@@ -66,6 +74,6 @@ class VrijwilligersExport implements FromQuery, WithStrictNullComparison, WithHe
 
     public function title(): string
     {
-        return 'Info';
+        return $this->verenigingnaam;
     }
 }

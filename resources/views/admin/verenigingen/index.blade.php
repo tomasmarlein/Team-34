@@ -51,6 +51,8 @@
     <script>
         $(function () {
             loadTable();
+            loadDropdown();
+            $('select').selectpicker();
 
             $('tbody').on('click', '.btn-delete', function () {
                 // Get data attributes from td tag
@@ -92,6 +94,7 @@
                 let huisnummer = $(this).closest('td').data('huisnummer');
                 let postcode = $(this).closest('td').data('postcode');
                 let gemeente = $(this).closest('td').data('gemeente');
+                let hoofdv = $(this).closest('td').data('hoofdverantwoordelijke');
 
                 // Update the modal
                 $('.modal-title').text(`Edit ${naam}`);
@@ -105,6 +108,7 @@
                 $('#huisnummer').val(huisnummer);
                 $('#postcode').val(postcode);
                 $('#gemeente').val(gemeente);
+
 
                 $('input[name="_method"]').val('put');
                 // Show the modal
@@ -190,7 +194,7 @@
 
         // Load genres with AJAX
         function loadTable() {
-            $.getJSON('qryVerenigingen')
+            $.getJSON('/admin/qryVerenigingen')
                 .done(function (data) {
                     console.log(data)
                     // Clear tbody tag
@@ -223,7 +227,7 @@
 
                                <td data-id="${value.id}"
                                    data-naam="${value.naam}"
-                                   data-hoofdverantwoordelijke="${value.hoofdverantwoordelijke}"
+                                   data-hoofdverantwoordelijke="${value.vereniginglid[0].naam}"
                                    data-rekeningnr="${value.rekeningnr}"
                                    data-btwnr="${value.btwnr}"
                                    data-straat="${value.straat}"
@@ -253,6 +257,32 @@
                     console.log('error', e);
                 })
         }
+
+
+
+
+
+
+        function loadDropdown() {
+            $.getJSON('/admin/getHoofd')
+                .done(function (data) {
+                    console.log(data)
+                    // Clear dropdown
+                    $('#hoofdverantwoordelijke').empty();
+                    // Loop over each item in the array
+                    $.each(data, function (key, value) {
+
+                        let options = `<option value="${value.id}">${value.naam}</option>`;
+                        // Append row to tbody
+                        $('#hoofdverantwoordelijke').append(options).selectpicker('refresh');
+
+                    });
+                })
+                .fail(function (e) {
+                    console.log('error', e);
+                })
+        }
+
 
     </script>
 @endsection

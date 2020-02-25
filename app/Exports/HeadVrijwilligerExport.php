@@ -16,9 +16,11 @@ class HeadVrijwilligerExport implements WithMultipleSheets
 
     public function sheets(): array
     {
+        $verenigingen = \App\Verenigings::all();
 
-        $sheets[]= new VrijwilligersExport('Info', 'Info');
-        $sheets[] = new VrijwilligerTshirtExport('Tshirt', 'Tshirt');
+        foreach($verenigingen as $vereniging){
+            $sheets[] = new VrijwilligersExport($vereniging->naam);
+        }
 
         return $sheets;
     }

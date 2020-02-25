@@ -174,6 +174,16 @@ class VerenigingController extends Controller
     }
 
 
+    public function getVerant()
+    {
+        $verant = Gebruikers::orderBy('id')
+            ->where('rolId', '=', 3)
+            ->get();
+
+        return $verant;
+    }
+
+
     public function qryVerenigingenInAanvraag()
     {
         $verenigings = Verenigings::orderBy('naam')
