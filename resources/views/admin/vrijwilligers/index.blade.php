@@ -112,12 +112,10 @@
             $("#uploadFile").change(function (){
                 $('#importeerVrijwilliger').show();
             });
-
             // submit form when leaving text field 'artist'
             $('#name').blur(function () {
                 $('#searchForm').submit();
             });
-
 
             loadTable();
 
@@ -186,7 +184,7 @@
                 let action = $(this).attr('action');
                 // Serialize the form and send it as a parameter with the post
                 let pars = $(this).serialize();
-                console.log(pars);
+                console.log(pars + action);
                 // Post the data to the URL
                 $.post(action, pars, 'json')
                     .done(function (data) {

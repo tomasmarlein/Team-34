@@ -26,6 +26,8 @@
 
             </tbody>
         </table>
+
+        <h2>Staat je vereniging hier niet? Dan zal deze nog goedgekeurd moeten worden.</h2>
     </div>
 @endsection
 
