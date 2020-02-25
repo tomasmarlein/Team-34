@@ -18,30 +18,22 @@ class PasswordController extends Controller
     // Update and encrypt user password
     public function update(Request $request)
     {
-        // Validate $request
         $this->validate($request,[
             'current_password' => 'required',
             'password' => 'required|min:8|confirmed',
         ]);
 
-        $gebruikers = new Gebruikers();
+        $gebruiker = Gebruikers::findOrFail(auth()->id());
+        if (!Hash::check($request->current_password, $gebruiker->password)) {
+            session()->flash('danger', "Your current password doesn't mach the password in the database");
+            return back();
+        }
+        $gebruiker->password = Hash::make($request->password);
+        $gebruiker->save();
 
         // Update encrypted user password in the database and redirect to previous page
-//        $gebruiker = Gebruikers::findOrFail(auth()->id());
-
-        $gebruiker = Gebruikers::orderBy('id')
-            ->where('id','=',auth()->id())
-            ->get();
-
-//        if (!Hash::check($request->password, $gebruiker->password)) {
-//            session()->flash('danger', "Gelieve het correcte huidige wachtwoord in te geven.");
-//            return back();
-//        }
-        $gebruiker->password = Hash::make($request->password);
-        $gebruikers->password = $gebruiker->password;
-
-        $gebruikers->save();
-        session()->flash('success', 'Uw wachtwoord is verandert');
+        session()->flash('success', 'Your password has been updated');
         return back();
+
     }
 }
