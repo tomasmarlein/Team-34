@@ -46,7 +46,11 @@ class EvenementController extends Controller
         $evenements->naam = $request->naam;
         $evenements->startdatum = $request->startdatum;
         $evenements->einddatum = $request->einddatum;
-        $evenements->actief = $request->actief;
+        if ($request->has('actief')){
+            $evenements->actief = 1;
+        } else {
+            $evenements->actief = 0;
+        }
         $evenements->save();
         return response()->json([
             'type' => 'success',
@@ -109,7 +113,7 @@ class EvenementController extends Controller
 
         return response()->json([
             'type' => 'success',
-            'text' => "The vrijwilliger <b>$evenements->name</b> is geupdate"
+            'text' => "Het evenement <b>$evenements->name</b> is geupdate"
         ]);
     }
 

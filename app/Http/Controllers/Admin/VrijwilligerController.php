@@ -39,7 +39,7 @@ class VrijwilligerController extends Controller
         }
     }
 
-    public function downloadTeplate()
+    public function downloadTemplate()
     {
         return response()->download(public_path(). "/template/ImportTemplate.xlsx");
     }
@@ -74,7 +74,7 @@ class VrijwilligerController extends Controller
     {
         $this->validate($request,[
             'naam' => 'required|min:3',
-            'rijksregisternr' => 'required|min:10|max:12|numeric|unique:gebruikers,rijksregisternr'
+            'rijksregisternr' => 'required|min:10|numeric|unique:gebruikers,rijksregisternr'
         ]);
 
         $gebruikers = new Gebruikers();

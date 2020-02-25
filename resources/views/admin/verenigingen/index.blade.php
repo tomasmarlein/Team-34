@@ -94,11 +94,12 @@
                 let huisnummer = $(this).closest('td').data('huisnummer');
                 let postcode = $(this).closest('td').data('postcode');
                 let gemeente = $(this).closest('td').data('gemeente');
+                let hoofdvId = $(this).closest('td').data('idhoofd');
 
                 // Update the modal
                 $('.modal-title').text(`Edit ${naam}`);
                 $('form').attr('action', `/admin/verenigingen/${id}`);
-
+                console.log(hoofdvId);
                 $('#naam').val(naam);
                 $('#voornaam').val(voornaam);
                 $('#rekeningnr').val(rekeningnr);
@@ -107,6 +108,8 @@
                 $('#huisnummer').val(huisnummer);
                 $('#postcode').val(postcode);
                 $('#gemeente').val(gemeente);
+                $('#hoofdv').val(hoofdvId);
+
 
 
                 $('input[name="_method"]').val('put');
@@ -135,7 +138,7 @@
                         $('#modal-vereniging').modal('hide');
                         // Rebuild the table
                         loadTable();
-                        loadDropdown();
+                        loadDropdown(id);
                     })
                     .fail(function (e) {
                         console.log('error', e);
@@ -186,7 +189,6 @@
                     }).show();
                     // Rebuild the table
                     loadTable();
-                    loadDropdown();
                 })
                 .fail(function (e) {
                     console.log('error', e);
@@ -215,14 +217,18 @@
                             var path = "active";
                         }
 
-
-
+                        var obj = $.grep(value.vereniginglid, function(obj){return obj.id === value.hoofdverantwoordelijke;})[0];
+                        if(value.hoofdverantwoordelijke == obj.id){
+                            var hoofdv = obj.voornaam + ' ' + obj.naam;
+                        }else{
+                            var hoofdv = "Geen verantwoordelijke";
+                        }
 
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${actief}</td>
                                <td><a href="verenigingen/${ value.id }">${value.naam}</a></td>
-                               <td>${value.vereniginglid.naam}</td>
+                               <td>${hoofdv}</td>
                                <td>${value.rekeningnr}</td>
                                <td>${value.btwnr}</td>
                                <td>${value.straat} ${value.huisnummer} ${value.postcode} ${value.gemeente}</td>
@@ -230,6 +236,7 @@
                                <td data-id="${value.id}"
                                    data-naam="${value.naam}"
                                    data-rekeningnr="${value.rekeningnr}"
+                                   data-idhoofd="${value.hoofdverantwoordelijke}"
                                    data-btwnr="${value.btwnr}"
                                    data-straat="${value.straat}"
                                    data-huisnummer="${value.huisnummer}"
@@ -264,25 +271,17 @@
 
 
 
-        function loadDropdown() {
+        function loadDropdown(){
             $.getJSON('/admin/getHoofd')
                 .done(function (data) {
-                    console.log(data)
-                    // Clear dropdown
-                    $('#hoofdv').empty();
-                    // Loop over each item in the array
+                    console.log('data', data);
                     $.each(data, function (key, value) {
-
-                        let options = `<option value="${value.id}">${value.naam}</option>`;
-                        // Append row to tbody
-                        $('#hoofdv').append(options);
-
-                    });
-                })
-                .fail(function (e) {
-                    console.log('error', e);
+                        $('#hoofdv').append('<option value="'+ value.id + '">' + value.naam + ' ' +  value.voornaam + '</option>');
+                    })
                 })
         }
+
+
 
 
     </script>

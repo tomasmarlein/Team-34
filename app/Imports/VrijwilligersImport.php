@@ -83,7 +83,7 @@ class VrijwilligersImport implements ToCollection, WithHeadingRow, WithChunkRead
                     fwrite($fp, $row['rijksregisternr']);
                     fwrite($fp, '" op rij ');
                     fwrite($fp, $teller);
-                    fwrite($fp, ' bestaat al in de database.' . "\n");
+                    fwrite($fp, ' bestaat al in de database of het is leeg in de excel.' . "\n");
                 }
             } else {
                 fwrite($fp, 'De vereniging "');

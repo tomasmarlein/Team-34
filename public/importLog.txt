@@ -1,1 +1,1 @@
-Het rijksregisternummer "97522877754" op rij 2 bestaat al in de database.
+Het rijksregisternummer "" op rij 2 bestaat al in de database of het is leeg in de excel.

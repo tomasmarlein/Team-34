@@ -22,6 +22,7 @@ class CreateTshirtsTable extends Migration
             $table->unsignedBigInteger('types_id')->nullable();
 
             $table->foreign('gebruikers_id')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('types_id')->references('id')->on('tshirt_types')->onDelete('cascade')->onUpdate('cascade');
         });
         // Insert roles
         DB::table('tshirts')->insert(
