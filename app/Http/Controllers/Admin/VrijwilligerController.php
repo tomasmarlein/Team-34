@@ -39,7 +39,7 @@ class VrijwilligerController extends Controller
         }
     }
 
-    public function downloadTeplate()
+    public function downloadTemplate()
     {
         return response()->download(public_path(). "/template/ImportTemplate.xlsx");
     }

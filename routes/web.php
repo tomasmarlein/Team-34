@@ -56,7 +56,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     //import en export vrijwilliger
     Route::get('download','Admin\VrijwilligerController@export');
-    Route::get('downloadTemplate','Admin\VrijwilligerController@downloadTeplate');
+    Route::get('downloadTemplate','Admin\VrijwilligerController@downloadTemplate');
     Route::post('import', 'Admin\VrijwilligerController@import')->name('import');
 
     //vereniginen
@@ -69,7 +69,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 //route Tshirt
     Route::get('qryTshirt','Admin\TshirtController@qryTshirt');
-    Route::resource('Tshirt', 'Admin\TshirtController');
+    Route::get('qryTshirtTypes','Admin\TshirtController@qryTshirtTypes');
+    Route::resource('tshirt', 'Admin\TshirtController');
     Route::get('tshirt', 'Admin\TshirtController@index');
 
     //route Lunchpakket

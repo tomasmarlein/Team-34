@@ -86,6 +86,9 @@
                 $('#naam').val(naam);
                 $('#startdatum').val(startdatum);
                 $('#einddatum').val(einddatum);
+
+                $('#modal-evenementen #actief').prop('checked', actief == '1');
+
                 $('#actief').val(actief);
                 $('input[name="_method"]').val('put');
 
@@ -201,7 +204,8 @@
                                <td data-id="${value.id}"
                                    data-startdatum="${value.startdatum}"
                                    data-einddatum="${value.einddatum}"
-                                   data-naam="${value.naam}">
+                                   data-naam="${value.naam}"
+                                   data-actief="${value.actief}">
                                     <div class="btn-group btn-group-sm">
                                         <a href="evenementen/${ value.id }" class="btn btn-outline-info " data-toggle="tooltip" title="Bekijk verenigingen">
                                             <i class="fas fa-bars"></i>

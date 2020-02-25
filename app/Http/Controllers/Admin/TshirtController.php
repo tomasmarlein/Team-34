@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Gebruikers;
 use App\Tshirt;
+use App\tshirtType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -69,9 +70,36 @@ class TshirtController extends Controller
      * @param  \App\Tshirt  $tshirt
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tshirt $tshirt)
+    public function update($id = null, Request $request)
     {
-        //
+        $data = $request->all();
+
+        if($id){
+            $tshirt = \App\Tshirt::find($id)->update([
+                'maat' => $data['tshirt_maat'],
+                'geslacht' => $data['tshirt_geslacht'],
+                'aantal' => $data['tshirt_aantal'],
+                'types_id' => $data['type_id']
+            ]);
+        } else {
+            $maat = $data['tshirt_maat'];
+            $geslacht = $data['tshirt_geslacht'];
+            $aantal = $data['tshirt_aantal'];
+            $gebruikerId = $data['gebruikerId'];
+            $typeId = $data['type_id'];
+            Tshirt::create([
+                'maat' => $maat,
+                'geslacht' => $geslacht,
+                'aantal' => $aantal,
+                'gebruikers_id' => $gebruikerId,
+                'types_id' => $typeId
+            ]);
+        }
+
+        return response()->json([
+            'type' => 'success',
+            'text' => 'De vrijwilliger is aangepast!'
+        ]);
     }
 
     /**
@@ -88,8 +116,17 @@ class TshirtController extends Controller
     public function qryTshirt()
     {
         $Tshirts = Gebruikers::orderBy('id')
+            ->where('rolId', 3)
+            ->orWhere('rolId', 4)
             ->with ('lid','tshirt', 'tshirt.tshirtType')
             ->get();
         return $Tshirts;
+    }
+
+    public function qryTshirtTypes()
+    {
+        $Types = tshirtType::orderBy('type')
+            ->get();
+        return $Types;
     }
 }
