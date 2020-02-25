@@ -234,6 +234,7 @@
                                <td data-id="${value.id}"
                                    data-naam="${value.naam}"
                                    data-rekeningnr="${value.rekeningnr}"
+                                   data-hoofdvId="${value.rekeningnr}"
                                    data-btwnr="${value.btwnr}"
                                    data-straat="${value.straat}"
                                    data-huisnummer="${value.huisnummer}"
@@ -277,7 +278,7 @@
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
 
-                        let options = `<option value="${value.id}">${value.naam}</option>`;
+                        let options = `<option value="${value.id}">${value.voornaam} ${value.naam}</option>`;
                         // Append row to tbody
                         $('#hoofdv').append(options);
 
