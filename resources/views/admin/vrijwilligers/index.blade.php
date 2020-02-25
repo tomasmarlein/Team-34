@@ -117,6 +117,7 @@
             });
 
             loadTable();
+            loadDropdown();
 
             $('tbody').on('click', '.btn-delete', function () {
                 // Get data attributes from td tag
@@ -159,6 +160,7 @@
                 let telefoon = $(this).closest('td').data('telefoon');
                 let geboortedatum = $(this).closest('td').data('geboortedatum');
                 let rijksregisternr = $(this).closest('td').data('rijksregisternr');
+                let verid = $(this).closest('td').data('verid');
                 // Update the modal
                 $('.modal-title').text(`Edit ${voornaam} ${naam}`);
                 $('form').attr('action', `/admin/vrijwilligers/${id}`);
@@ -170,6 +172,12 @@
                 $('#telefoon').val(telefoon);
                 $('#geboortedatum').val(geboortedatum);
                 $('#rijksregisternr').val(rijksregisternr);
+
+                if (verid === ''){
+                    $('#dropdown-vereniging').val('leeg');
+                } else {
+                    $('#dropdown-vereniging').val(verid);
+                }
 
                 $('input[name="_method"]').val('put');
                 // Show the modal
@@ -254,7 +262,17 @@
                 });
         }
 
-
+        //dropdown inladen
+        function loadDropdown(){
+            $.getJSON('qryGetAllVerenigingen')
+                .done(function (data) {
+                    console.log('data', data);
+                    $.each(data, function (key, value) {
+                        $('#dropdown-vereniging').append('<option value="'+ value.id + '">' + value.naam + '</option>');
+                    })
+                }
+                )
+        }
 
         // Load genres with AJAX
         function loadTable() {
@@ -296,7 +314,8 @@
                                    data-roepnaam="${value.roepnaam}"
                                    data-email="${value.email}"
                                    data-geboortedatum="${value.geboortedatum}"
-                                   data-telefoon="${value.telefoon}">
+                                   data-telefoon="${value.telefoon}"
+                                   data-verid="${value.lid[i].id}">
 
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">
@@ -342,7 +361,8 @@
                                    data-email="${value.email}"
                                    data-geboortedatum="${value.geboortedatum}"
                                    data-telefoon="${value.telefoon}"
-                                   data-rijksregisternr="${value.rijksregisternr}">
+                                   data-rijksregisternr="${value.rijksregisternr}"
+                                   data-verid="">
 
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">

@@ -91,6 +91,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //vrijwilligers CRUD
     Route::get('qryVrijwilligers', 'Admin\VrijwilligerController@qryVrijwilligers');
     Route::resource('vrijwilligers', 'Admin\VrijwilligerController');
+    Route::get('qryGetAllVerenigingen', 'Admin\VrijwilligerController@qryGetAllVerenigingen');
 
     //kernleden CRUD
     Route::get('qryKernleden', 'Admin\KernledenController@qryKernleden');

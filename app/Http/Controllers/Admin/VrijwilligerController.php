@@ -6,6 +6,8 @@ use App\Exports\HeadVrijwilligerExport;
 use App\Exports\VrijwilligersExport;
 use App\Imports\VrijwilligersImport;
 use App\Gebruikers;
+use App\Tshirt;
+use App\Verenigings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
@@ -87,6 +89,21 @@ class VrijwilligerController extends Controller
         $gebruikers->rolId = 4;
         $gebruikers->save();
 
+        $gebruiker_id = \App\Gebruikers::orderBy('id', 'desc')->first();
+
+        $tshirt = new Tshirt();
+        $tshirt->maat = 0;
+        $tshirt->geslacht = 0;
+        $tshirt->aantal = 0;
+        $tshirt->gebruikers_id = $gebruiker_id->id;
+        $tshirt->save();
+
+        $verenigingId = $request->vereniging_id;
+
+        if($verenigingId != 'leeg'){
+            \App\Gebruikers::find($gebruiker_id->id)->lid()->attach($verenigingId);
+        }
+
         return response()->json([
             'type' => 'success',
             'text' => "De gebruiker <b>$gebruikers->name</b> is toegevoegd"
@@ -136,6 +153,12 @@ class VrijwilligerController extends Controller
             'rijksregisternr' => $data['rijksregisternr'],
         ]);
 
+        $verenigingId = $request->vereniging_id;
+
+        if($verenigingId != 'leeg'){
+            $gebruiker = Gebruikers::find($id);
+            $gebruiker->lid()->sync(['verenigings_id' => $verenigingId], ['gebruikers_id' => $id]);
+        }
 
         return response()->json([
             'type' => 'success',
@@ -173,5 +196,12 @@ class VrijwilligerController extends Controller
             ->with ('lid')
             ->get();
         return $gebruikers;
+    }
+
+    public function qryGetAllVerenigingen()
+    {
+        $vereniging = Verenigings::orderBy('naam')
+            ->get();
+        return $vereniging;
     }
 }
