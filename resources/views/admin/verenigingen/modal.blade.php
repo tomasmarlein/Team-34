@@ -47,15 +47,18 @@
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
+
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="hoofdverantwoordelijke">Hoofdverantwoordelijke</label>
-                            <select class="form-control selectpicker dropleft" name="hoofdverantwoordelijke" id="hoofdverantwoordelijke" data-live-search="true" data-none-results-text="I found no results">
+                            <label for="hoofdv">Hoofdverantwoordelijke</label>
+                            <select class="form-control" name="hoofdverant" id="hoofdv">
 
                             </select>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
+
+
                     <div class="col-md-6">
                         <div class="form-group ">
                             <label for="straat">Straat</label>

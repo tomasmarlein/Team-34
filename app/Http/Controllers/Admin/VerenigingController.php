@@ -67,7 +67,7 @@ class VerenigingController extends Controller
         $verenigings = new Verenigings();
         $verenigings->naam = $request->naam;
         $verenigings->rekeningnr = $request->rekeningnr;
-        $verenigings->hoofdverantwoordelijke = $request->hoofdverantwoordelijke;
+        $verenigings->hoofdverantwoordelijke = $request->hoofdverant;
         $verenigings->btwnr = $request->btwnr;
         $verenigings->straat = $request->straat;
         $verenigings->huisnummer = $request->huisnummer;
@@ -119,17 +119,22 @@ class VerenigingController extends Controller
     public function update($id, Request $request, Verenigings $verenigings)
     {
 
+
         $data = $request->all();
         $verenigings = \App\Verenigings::find($id)->update([
             'naam' => $data['naam'],
             'rekeningnr' => $data['rekeningnr'],
-            'hoofdverantwoordelijke' => $data['hoofdverantwoordelijke'],
+            'hoofdverantwoordelijke' => $data['hoofdverant'],
             'btwnr' => $data['btwnr'],
             'straat' => $data['straat'],
             'huisnummer' => $data['huisnummer'],
             'postcode' => $data['postcode'],
             'gemeente' => $data['gemeente'],
         ]);
+
+        $replace = array('{"id":','}');
+        $gebruiker = Gebruikers::find(str_replace($replace, "",$data['hoofdverant']));
+        $gebruiker->lid()->sync(['verenigings_id' => $id], ['gebruikers_id' => $data['hoofdverant']]);
 
         return response()->json([
             'type' => 'success',
