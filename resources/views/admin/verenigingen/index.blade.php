@@ -276,9 +276,10 @@
                 .done(function (data) {
                     console.log('data', data);
                     $.each(data, function (key, value) {
-                        $('#hoofdv').append('<option value="'+ value.id + '">' + value.naam + ' ' +  value.voornaam + '</option>');
+                        $('#hoofdv').append('<option value="'+ value.id + '">' + value.naam + ' ' +  value.voornaam + '</option>').select2();
                     })
-                })
+                });
+
         }
 
 
