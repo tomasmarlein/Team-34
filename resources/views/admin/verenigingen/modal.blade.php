@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label for="hoofdv">Hoofdverantwoordelijke</label>
                             <select class="form-control" name="hoofdverant" id="hoofdv">
-                                <option selected value="" id="aangeduidehoofd"></option>
+                                <option value="leeg">Selecteer een hoofdverantwoordelijke</option>
                             </select>
                             <div class="invalid-feedback"></div>
                         </div>
