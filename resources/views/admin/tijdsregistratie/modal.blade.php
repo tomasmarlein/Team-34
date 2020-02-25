@@ -1,5 +1,3 @@
-
-
 <div class="modal" id="modal-tijdsregistratie">
     <div class="modal-dialog modal-dialog-centered modal-xl">
 
@@ -24,7 +22,6 @@
                             <label for="naam">Naam</label>
                             <input type="text" name="volledigenaam" id="volledigenaam"
                                    class="form-control"
-                                   format="Y-mm-d"
                                    placeholder="volledigenaam"
                                    value="" disabled>
                             <div class="invalid-feedback"></div>
@@ -46,20 +43,33 @@
                     <div class="col-md-3">
                         <div class="form-group ">
                             <label for="checkIn">Checkin</label>
-                            <input type="datetime-local"  name="" id="checkIn"
+                            <input type="datetime-local"  name=""
                                    class="form-control"
                                    placeholder="checkIn"
-                                   value="">
+                                   value="2018-01-30T23:59">
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="CheckUit">CheckUit</label>
-                            <input type="datetime-local" name="checkUit" id="checkUit"
+                            <input type="datetime" name="checkUit" id="checkUit"
                                    class="form-control"
                                    placeholder="CheckUit"
                                    value="" disabled>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="einddatum">checkUit</label>
+                            <input type="checkUit" name="checkUit" id="checkUit"
+                                   class="form-control"
+                                   placeholder="checkUit"
+                                   minlength="3"
+                                   value="">
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>

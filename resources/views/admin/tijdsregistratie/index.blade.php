@@ -2,6 +2,11 @@
 @section('title', 'Tijdsregistratie')
 @section('css_after')
     <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+    <style>
+        th{
+            min-width: 120px;
+        }
+    </style>
 @endsection
 @section('main')
 
@@ -182,15 +187,11 @@
                             var adminUit = "<i class=\"fas fa-times-circle\"></i>";
                         }
 
-                        if(value.adminIn != null){
-                            var final = value.adminIn
-                        }elseif(value.manCheckIn != null){
-                            var final = value.manCheckIn
-                        }
 
 
-                        var d1 = moment(value.checkIn,"YYYY-MM-DDTHH:mm:ss");
-                        console.log(d1._i);
+
+                        var d1 = moment(value.checkIn,"MM-DD-YYYY HH:mm");
+                        console.log(d1._i + "test");
                         console.log(value.checkIn);
 
                         let tr = `<tr>
