@@ -34,10 +34,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="btwnr">BTW Nummer</label>
-                <input oninput="checkBTW()" type="text" required class="form-control is-invalid"  name="btwnr" id="btwnr" placeholder="BTW" value="">
-                <div class="invalid-feedback">
-                    BTW Nummer is Verplicht
-                </div>
+                <input type="text" required class="form-control"  name="btwnr" id="btwnr" placeholder="BTW" value="">
             </div>
         </div>
 
@@ -93,25 +90,6 @@
                 $('#naam').addClass("is-valid");
             }
         }
-
-
-
-        function checkBTW() {
-
-            var naamveld = document.getElementById("btwnr").value;
-
-            if(naamveld === ""){
-                $('#btwnr').addClass("is-invalid");
-
-            }else {
-
-                $('#btwnr').removeClass("is-invalid");
-                $('#btwnr').addClass("is-valid");
-            }
-        }
-
-
-
 
         function checkRekening() {
 

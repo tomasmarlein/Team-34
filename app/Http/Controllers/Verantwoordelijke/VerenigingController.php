@@ -149,7 +149,6 @@ class VerenigingController extends Controller
             'opmerking' => $data['opmerking'],
         ]);
 
-
         return response()->json([
             'type' => 'success',
             'text' => ' Het lid is aangepast!'

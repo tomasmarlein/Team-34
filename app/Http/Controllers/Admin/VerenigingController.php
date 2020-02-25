@@ -264,7 +264,6 @@ class VerenigingController extends Controller
         $this->validate($request, [
             'naam' => 'required',
             'rekeningnr' => 'required',
-            'btwnr' => 'required',
         ]);
 
         $verenigings = new Verenigings();
