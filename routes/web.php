@@ -119,6 +119,10 @@ Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->g
     Route::get('qryVerenigingen', 'Verantwoordelijke\VerenigingController@qryVerenigingen');
     Route::get('getVereniging', 'Verantwoordelijke\VerenigingController@getVereniging');
     Route::get('showLeden/{id}', 'Verantwoordelijke\VerenigingController@showLeden');
+    Route::get('aanvraagVoltooid','Admin\VerenigingController@aanvraagVoltooid');
+
+
+
 
     Route::resource('verenigingen', 'Verantwoordelijke\VerenigingController');
     Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@index');

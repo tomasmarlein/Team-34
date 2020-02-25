@@ -52,10 +52,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="telefoon">Telefoon</label>
@@ -65,9 +61,7 @@
                 <label for="geboortedatum">Geboortedatum</label>
                 <input type="date" class="form-control"  name="geboortedatum" id="geboortedatum" placeholder="" value="">
             </div>
-
         </div>
-
         <hr class="mb-4">
         <button type="submit" class="btn btn-primary btn-lg btn-block">
             Ga verder
