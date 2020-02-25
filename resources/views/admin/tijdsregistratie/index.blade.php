@@ -1,6 +1,8 @@
 @extends('layouts.template')
 @section('title', 'Tijdsregistratie')
-
+@section('css_after')
+    <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+@endsection
 @section('main')
 
 
@@ -40,6 +42,8 @@
                 <th>Man-CheckUit</th>
                 <th>AdminCheckin</th>
                 <th>AdminCheckuit</th>
+                <th>Finale CheckIn</th>
+                <th>Finale Checkuit</th>
                 <th>Acties</th>
             </tr>
             </thead>
@@ -72,7 +76,6 @@
                 let adminCheckIn = $(this).closest('td').data('admCheckIn');
                 let adminCheckUit = $(this).closest('td').data('admCheckUit');
 
-                console.log(checkIn);
 
 
 
@@ -157,6 +160,7 @@
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
 
+
                         if(value.manCheckIn != null){
                             var manueelIN = value.manCheckIn;
                         }else{
@@ -178,8 +182,16 @@
                             var adminUit = "<i class=\"fas fa-times-circle\"></i>";
                         }
 
+                        if(value.adminIn != null){
+                            var final = value.adminIn
+                        }elseif(value.manCheckIn != null){
+                            var final = value.manCheckIn
+                        }
 
 
+                        var d1 = moment(value.checkIn,"YYYY-MM-DDTHH:mm:ss");
+                        console.log(d1._i);
+                        console.log(value.checkIn);
 
                         let tr = `<tr>
                                <td>${value.id}</td>
@@ -191,6 +203,8 @@
                                <td align="center">${manueelUit}</td>
                                <td align="center">${adminIn}</td>
                                <td align="center">${adminUit}</td>
+                               <td align="center">${adminUit}</td>
+                               <td align="center">${adminUit}</td>
                                <td data-id="${value.id}"
                                    data-naam="${value.gebruikerstijd.naam}"
                                    data-voornaam="${value.gebruikerstijd.voornaam}"
@@ -201,8 +215,6 @@
                                    data-manCheckUit="${value.manCheckUit}"
                                    data-admCheckIn="${value.adminCheckIn}"
                                    data-admCheckUit="${value.adminCheckUit}"
-
-
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig tijdsregistratie ${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}">
                                             <i class="fas fa-edit"></i>
@@ -218,14 +230,9 @@
                     console.log('error', e);
                 })
         }
+
     </script>
 @endsection
-@section('script_after')
-    <script>
-        $(function () {
-            $('#example1').datetimepicker();
-        });
-    </script>
-@stop
+
 
 
