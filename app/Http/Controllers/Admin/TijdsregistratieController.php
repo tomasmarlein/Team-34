@@ -27,7 +27,7 @@ class TijdsregistratieController extends Controller
         return Excel::download(new HeadTijdsregistratieExport(), 'Tijdsregistraties.xlsx');
     }
 
-    public function index()
+    public function index(Request $request )
 
     {
         $vereniging_id = $request->input('vereniging_id') ?? '%';
