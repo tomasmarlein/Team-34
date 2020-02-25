@@ -2,21 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\HeadTijdsregistratieExport;
 use App\Verenigings;
 use App\Tijdsregistratie;
 use Facades\App\Helpers\Json;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TijdsregistratieController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+
+
+
+    public function export()
+    {
+        return Excel::download(new HeadTijdsregistratieExport(), 'Tijdsregistraties.xlsx');
+    }
+
+    public function index()
+
     {
         $vereniging_id = $request->input('vereniging_id') ?? '%';
         $naam = '%' . $request->input('naam') . '%';

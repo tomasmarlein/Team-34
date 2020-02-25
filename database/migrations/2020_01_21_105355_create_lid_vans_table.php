@@ -18,7 +18,6 @@ class CreateLidVansTable extends Migration
             $table->unsignedBigInteger('verenigings_id')->unsigned();
             $table->unsignedBigInteger('gebruikers_id')->unsigned();
 
-
         });
 
 

@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="tshirt_maat">T-shirt maat</label>
                                 <select class="form-control" name="tshirt_maat" id="tshirt_maat">
@@ -62,7 +62,7 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="tshirt_geslacht">T-shirt geslacht</label>
                                 <select class="form-control" name="tshirt_geslacht" id="tshirt_geslacht">
@@ -73,15 +73,7 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="dropdown-types">T-shirt type</label>
-                                <select class="form-control" id="dropdown-types" name="type_id">
-                                    <option value="leeg">Selecteer een T-shirt type</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="tshirt_aantal">T-shirt aantal</label>
                                 <select class="form-control" name="tshirt_aantal" id="tshirt_aantal">
