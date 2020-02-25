@@ -82,7 +82,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('Tijdsregistratie', 'Admin\TijdsregistratieController@index');
 
 
-//    route verantwoordelijke
+//   route verantwoordelijke
     Route::get('qryVerantwoordelijke', 'Admin\VerantwoordelijkeController@qryVerantwoordelijke');
     Route::resource('verantwoordelijke', 'Admin\VerantwoordelijkeController');
     Route::get('verantwoordelijke', 'Admin\VerantwoordelijkeController@index');

@@ -73,7 +73,8 @@ class VrijwilligerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'naam' => 'required|min:3|unique:gebruikers,naam'
+            'naam' => 'required|min:3',
+            'rijksregisternr' => 'required|min:10|max:12|numeric|unique:gebruikers,rijksregisternr'
         ]);
 
         $gebruikers = new Gebruikers();
@@ -84,7 +85,6 @@ class VrijwilligerController extends Controller
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->rijksregisternr = $request->rijksregisternr;
         $gebruikers->rolId = 4;
-//        $gebruikers->password = Hash::make("gladiolen");
         $gebruikers->save();
 
         return response()->json([
@@ -169,6 +169,7 @@ class VrijwilligerController extends Controller
     {
         $gebruikers = Gebruikers::orderBy('id')
             ->where('rolId', '=', 4)
+            ->orWhere('rolId', 3)
             ->with ('lid')
             ->get();
         return $gebruikers;

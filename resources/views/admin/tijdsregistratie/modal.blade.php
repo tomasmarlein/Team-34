@@ -13,7 +13,6 @@
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
                         Close
                     </button>
-
             </div>
 
             <div class="modal-body">
@@ -44,81 +43,55 @@
                     <div class="col-md-3">
                         <div class="form-group ">
                             <label for="checkIn">Checkin</label>
-                            <input type="datetime-local"  name="" id="checkIn"
+                            <input type="datetime-local"  name=""
                                    class="form-control"
                                    placeholder="checkIn"
+                                   value="2018-01-30T23:59">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="CheckUit">CheckUit</label>
+                            <input type="datetime" name="checkUit" id="checkUit"
+                                   class="form-control"
+                                   placeholder="CheckUit"
+                                   value="" disabled>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="einddatum">checkUit</label>
+                            <input type="checkUit" name="checkUit" id="checkUit"
+                                   class="form-control"
+                                   placeholder="checkUit"
                                    minlength="3"
-                                   value=""
-                                    disabled>
+                                   value="">
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="CheckUit">CheckUit</label>
-                            <input type="datetime-local" name="checkUit" id="checkUit"
-                                   class="form-control"
-                                   placeholder="CheckUit"
-                                   value="" disabled>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
             </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="CheckUit">CheckUit</label>
-                            <input type="datetime-local" name="checkUit" id="checkUit"
-                                   class="form-control"
-                                   placeholder="CheckUit"
-                                   value="" disabled>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
 
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="CheckUit">CheckUit</label>
-                            <input type="datetime-local" name="checkUit" id="checkUit"
-                                   class="form-control"
-                                   placeholder="CheckUit"
-                                   value="" disabled>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="CheckUit">CheckUit</label>
-                            <input type="datetime-local" name="checkUit" id="checkUit"
-                                   class="form-control"
-                                   placeholder="CheckUit"
-                                   value="" >
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="datetime">CheckUit</label>
-                            <input type="date" name="checkUit" id="checkUit"
-                                   class="form-control"
-                                   placeholder="CheckUit"
-                                   value="" >
-                            <div class="invalid-feedback"></div>
-                        </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="naam">test</label>
+                        <input type="text" name="volledigenaam" id="naam"
+                               class="form-control"
+                               placeholder="volledigenaam"
+                               value="" disabled>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
 
-
-
-
                     </div>
-                </div>
             </div>
 
             </form>
         </div>
     </div>
 </div>
+

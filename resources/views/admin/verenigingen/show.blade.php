@@ -24,7 +24,6 @@
                <th>achternaam</th>
                <th>telefoon</th>
                <th style="text-align: center">Opmerking</th>
-               <th>t-shirt</th>
                <th style="text-align: center">lunchpakket</th>
                <th>acties</th>
            </tr>
@@ -39,13 +38,6 @@
                     <td style="text-align: center"><i class="fas fa-comment-slash"></i></td>
                    @else
                        <td style="text-align: center"><a href=""><i class="fas fa-comment"  data-toggle="tooltip" title="{{$item->opmerking}}"></i></a></td>
-                   @endif
-                   @if($item->tshirtId == 1 && $item->tweedetshirt == 1)
-                       <td style="text-align: center"><i class="fas fa-tshirt"></i> <i class="fas fa-tshirt"></i></td>
-                   @elseif($item->tshirtId == 1 && $item->tweedetshirt == 0)
-                       <td style="text-align: center"><i class="fas fa-tshirt"></i></td>
-                   @else
-                       <td style="text-align: center">Geen</td>
                    @endif
                    @if($item->lunchpakket == 0)
                     <td style="text-align: center"><i style='color: darkred' class="fas fa-minus-square"></i></td>
@@ -81,7 +73,7 @@
        </table>
    </div>
 
-
+   @include('admin.verenigingen.modalvereniging')
 @endsection
 
 @section('script_after')

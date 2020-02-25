@@ -56,7 +56,6 @@
         @section('main')
 
             <header>
-
                 <div class="hero-text hidden">
                     <h1>Tijdsregistratiesysteem</h1>
                     <h1>Keizer Karel Olen</h1>
