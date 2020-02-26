@@ -277,23 +277,39 @@
                                     var adminCheckUit = "<i class='far fa-times-circle'></i>";
                                 }
 
-                                if(value.adminCheckIn != null){
+                                adIn = value.adminCheckIn;
+                                manIn = value.manCheckIn;
+                                chIn = value.checkIn;
+
+                                if(value.adminCheckIn != null && adIn != '0000-00-00 00:00:00'){
                                     var finaleIn = value.adminCheckIn;
                                 } else {
-                                    if(value.manCheckIn != null){
+                                    if(value.manCheckIn != null && manIn != '0000-00-00 00:00:00'){
                                         var finaleIn = value.manCheckIn;
                                     } else {
-                                        var finaleIn = value.checkIn;
+                                        if(chIn != null && chIn != '0000-00-00 00:00:00'){
+                                            var finaleIn = value.checkIn;
+                                        } else {
+                                            var finaleIn = 'Geen check in tijd';
+                                        }
                                     }
                                 }
 
-                                if(value.adminCheckUit != null){
+                                adUit = value.adminCheckUit;
+                                manUit = value.manCheckUit;
+                                chUit = value.checkUit;
+
+                                if(value.adminCheckUit != null && adUit != '0000-00-00 00:00:00'){
                                     var finaleUit = value.adminCheckUit;
                                 } else {
-                                    if(value.manCheckUit != null){
+                                    if(value.manCheckUit != null && manUit != '0000-00-00 00:00:00'){
                                         var finaleUit = value.manCheckUit;
                                     } else {
-                                        var finaleUit = value.checkUit;
+                                        if(chUit != null && chUit != '0000-00-00 00:00:00'){
+                                            var finaleUit = value.checkUit;
+                                        } else {
+                                            var finaleUit = 'Geen check uit tijd';
+                                        }
                                     }
                                 }
 
