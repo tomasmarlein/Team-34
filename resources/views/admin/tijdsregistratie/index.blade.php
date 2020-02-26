@@ -39,7 +39,7 @@
                     <th>AdminCheckuit</th>
                     <th>Finale CheckIn</th>
                     <th>Finale Checkuit</th>
-                    <th align="center">Acties</th>
+                    <th >Acties</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -59,9 +59,9 @@
                         let id = $(this).closest('td').data('id');
                         let naam = $(this).closest('td').data('naam');
                         // Set some values for Noty
-                        let text = `<p>Verwijder het evenement <b>${naam}</b>?</p>`;
+                        let text = `<p>Verwijder de trijdergeistraat <b>${naam}</b>?</p>`;
 
-                        let  btnText = `Verwijder evenement`;
+                        let  btnText = `Verwijder tijdsregistratie`;
                         let btnClass = 'btn-danger';
                         let type = 'error';
                         // Show Noty
@@ -88,21 +88,24 @@
                         // Get data attributes from td tag
                         let id = $(this).closest('td').data('id');
                         let naam = $(this).closest('td').data('naam');
-                        let Checkin = $(this).closest('td').data('checkIn');
+                        let voornaam = $(this).closest('td').data('voornaam');
+                        let vereniging = $(this).closest('td').data('vereniging');
+                        let checkin = $(this).closest('td').data('checkIn');
                         let checkUit = $(this).closest('td').data('checkUit');
-                        let actief = $(this).closest('td').data('actief');
+                        let manCheckIn = $(this).closest('td').data('manCheckIn');
+                        let manCheckUit = $(this).closest('td').data('manCheckUit');
                         // Update the modal
-                        $('.modal-title').text(`Edit ${naam}`);
-                        $('form').attr('action', `/admin/evenementen/${id}`);
+                        $('.modal-title').text(`Edit ${naam} ${voornaam}`);
+                        $('form').attr('action', `/admin/tijdsregistratie/${id}`);
 
                         $('#naam').val(naam);
+                        $('#voornaam').val(voornaam);
                         $('#vereniging').val(vereniging);
-                        $('#Checkin').val(Checkin);
+                        $('#checkIn').val(checkin);
                         $('#checkUit').val(checkUit);
+                        $('#manCheckIn').val(manCheckIn);
+                        $('#manCheckUit').val(manCheckUit);
 
-                        $('#modal-tijdsregistratie #actief').prop('checked', actief == '1');
-
-                        $('#actief').val(actief);
                         $('input[name="_method"]').val('put');
 
                         // Show the modal
@@ -266,6 +269,7 @@
 
                                <td data-id="${value.id}".
                                    data-naam="${value.gebruikerstijd.naam}"
+                                   data-voornaam="${value.gebruikerstijd.voornaam}"
                                    data-vereniging="${value.vereniging_tijd.naam}"
                                    data-checkIn="${value.checkIn}"
                                    data-checkUit="${value.checkUit}"
@@ -275,10 +279,10 @@
                                    data-adminCheckUit="${value.adminCheckUit}"
                                     align="center">
                                     <div class="btn-group btn-group-sm">
-                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.vereniging_tijd.naam}">
+                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Verwijder ${value.vereniging_tijd.naam}">
+                                        <a href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Verwijder ${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
