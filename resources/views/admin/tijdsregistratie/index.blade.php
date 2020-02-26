@@ -225,7 +225,7 @@
                                 if(value.checkUit != null && b != '0000-00-00 00:00:00'){
                                     var checkUit = value.checkUit
                                 } else {
-                                    var checkuit = "<i class='far fa-times-circle'></i>";
+                                    var checkUit = "<i class='far fa-times-circle'></i>";
                                 }
 
                                 if(value.manCheckIn != null && c != '0000-00-00 00:00:00'){
