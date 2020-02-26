@@ -286,17 +286,6 @@
                 <div class="col-8"> <h1 class="display-4">Adminpaneel</h1>
 
                     </div>
-                <form class="col-4">
-                    <div class="form-group" >
-                        <select class="form-control">
-                            @foreach($evenementen as $evenement)
-                                <option value="{{ $evenement->id }}" class="dropdown-item" href="#">{{ $evenement->naam }}</option>
-                            @endforeach
-                            <option value="%" class="dropdown-item" href="#">alle evenementen</option>
-                        </select>
-
-                    </div>
-                </form>
             </div>
 
 
