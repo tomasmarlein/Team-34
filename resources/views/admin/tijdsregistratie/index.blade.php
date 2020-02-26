@@ -210,26 +210,31 @@
                             console.log(data);
                             $('tbody').empty();
                             // Loop over each item in the array
-                            $.each(data, function (key, value) {
-                                if(value.checkIn != null && value.checkIn !== 0){
+                                $.each(data, function (key, value) {
+
+                                    a = value.checkIn;
+                                    b = value.checkUit;
+                                    c = value.manCheckIn;
+                                    d = value.manCheckUit
+                                if(value.checkIn != null && a != '0000-00-00 00:00:00'){
                                     var checkIn = value.checkIn
                                 } else {
                                     var checkIn = "<i class='far fa-times-circle'></i>";
                                 }
 
-                                if(value.checkUit != null && value.checkUit !== 0){
+                                if(value.checkUit != null && b != '0000-00-00 00:00:00'){
                                     var checkUit = value.checkUit
                                 } else {
                                     var checkuit = "<i class='far fa-times-circle'></i>";
                                 }
 
-                                if(value.manCheckIn != null && value.manCheckIn !== 0){
+                                if(value.manCheckIn != null && c != '0000-00-00 00:00:00'){
                                     var manCheckIn = value.manCheckIn;
                                 } else {
                                     var manCheckIn = "<i class='far fa-times-circle'></i>";
                                 }
 
-                                if(value.manCheckUit != null && value.manCheckUit !== 0){
+                                if(value.manCheckUit != null && d != '0000-00-00 00:00:00'){
                                     var manCheckUit = value.manCheckUit;
                                 } else {
                                     var manCheckUit = "<i class='far fa-times-circle'></i>";
