@@ -7,8 +7,12 @@
     @include('shared.alert')
 
 
-    <div class="row" style="text-align: right;">
-        <div class="col-sm-12 mb-2">
+
+    <div class="row">
+        <div class="col-sm-6 mb-2">
+            <input class="form-control" id="myInput" type="text" placeholder="Zoek op naam, email, ...">
+        </div>
+        <div class="col-sm-6 mb-2" style="text-align: right;">
             <a href="#!" class="btn btn-outline-success" id="btn-create">
                 <i class="fas fa-plus-circle mr-1"></i>Nieuw kernlid
             </a>
@@ -29,7 +33,7 @@
                 <th>Acties</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="myTable">
 
             </tbody>
         </table>
@@ -39,6 +43,16 @@
 
 @section('script_after')
     <script>
+
+        // search table
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+
         $(function () {
             loadTable();
 

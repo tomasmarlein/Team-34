@@ -7,6 +7,13 @@
         <h1>Overzicht verantwoordelijken</h1>
 
 
+        <div class="row">
+            <div class="col-sm-6 mb-2">
+                <input class="form-control" id="myInput" type="text" placeholder="Zoek op naam, email, ...">
+            </div>
+        </div>
+
+
         <div class="table-responsive">
             <table id="verant-table" class="table table-striped">
                 <thead>
@@ -19,7 +26,7 @@
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
 
                 </tbody>
             </table>
@@ -29,6 +36,18 @@
 @endsection
 @section('script_after')
     <script>
+        // search table
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+
+
+
+
         $(function () {
             loadTable();
         });
