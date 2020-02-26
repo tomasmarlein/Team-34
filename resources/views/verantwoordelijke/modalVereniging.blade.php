@@ -2,16 +2,12 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Vereniging Modal</h5>
                 <form action="" method="post">
                     @method('')
                     @csrf
-                    <button type="submit" class="btn btn-success">Opslaan</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                        Sluit
-                    </button>
-                    <div class="modal-body">
+                    <h5 class="modal-title">Vereniging Modal</h5>
 
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group ">
@@ -91,6 +87,13 @@
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div style="float: right; padding: 1%">
+                            <button type="submit" class="btn btn-success">Opslaan</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                Sluit
+                            </button>
                         </div>
                     </div>
                 </form>

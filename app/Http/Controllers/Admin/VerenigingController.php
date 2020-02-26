@@ -153,7 +153,6 @@ class VerenigingController extends Controller
      */
     public function destroy($id, Verenigings $verenigings)
     {
-
         $vereniging = \App\Verenigings::find($id)->delete();
 
         return response()->json([

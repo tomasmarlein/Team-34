@@ -122,7 +122,10 @@ Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->g
     Route::get('qryVerenigingen', 'Verantwoordelijke\VerenigingController@qryVerenigingen');
     Route::get('getVereniging', 'Verantwoordelijke\VerenigingController@getVereniging');
     Route::get('showLeden/{id}', 'Verantwoordelijke\VerenigingController@showLeden');
+    Route::get('updateVereniging/{id}', 'Verantwoordelijke\VerenigingController@updateVereniging');
     Route::get('aanvraagVoltooid','Admin\VerenigingController@aanvraagVoltooid');
+
+
 
 
 

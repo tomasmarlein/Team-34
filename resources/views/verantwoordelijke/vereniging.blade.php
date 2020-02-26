@@ -55,7 +55,7 @@
 
             // Update the modal
             $('.modal-title').text(`Wijzig ${naam}`);
-            $('form').attr('action', `/verantwoordelijke/verenigingen/${id}`);
+            $('form').attr('action', `updateVereniging/${id}`);
             $('#naam').val(naam);
             $('#voornaam').val(voornaam);
             $('#rekeningnr').val(rekeningnr);
@@ -66,7 +66,7 @@
             $('#gemeente').val(gemeente);
 
 
-            $('input[name="_method"]').val('put');
+            $('input[name="_method"]').val('get');
             // Show the modal
             $('#modal-vereniging').modal('show');
         });
