@@ -233,7 +233,6 @@
                     $.getJSON('qryTijdsregistratie')
                         .done(function (data) {
                             // Clear tbody tag
-
                             $('tbody').empty();
                             // Loop over each item in the array
                                 $.each(data, function (key, value) {
@@ -278,6 +277,26 @@
                                     var adminCheckUit = "<i class='far fa-times-circle'></i>";
                                 }
 
+                                if(value.adminCheckIn != null){
+                                    var finaleIn = value.adminCheckIn;
+                                } else {
+                                    if(value.manCheckIn != null){
+                                        var finaleIn = value.manCheckIn;
+                                    } else {
+                                        var finaleIn = value.checkIn;
+                                    }
+                                }
+
+                                if(value.adminCheckUit != null){
+                                    var finaleUit = value.adminCheckUit;
+                                } else {
+                                    if(value.manCheckUit != null){
+                                        var finaleUit = value.manCheckUit;
+                                    } else {
+                                        var finaleUit = value.checkUit;
+                                    }
+                                }
+
                                 let tr = `<tr>
                                <td>${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}</td>
                                <td>${value.vereniging_tijd.naam}</td>
@@ -287,8 +306,8 @@
                                <td align="center">${manCheckUit}</td>
                                <td align="center">${adminCheckIn}</td>
                                <td align="center">${adminCheckUit}</td>
-                               <td align="center">${value.checkIn}</td>
-                               <td align="center">${value.checkUit}</td>
+                               <td align="center">${finaleIn}</td>
+                               <td align="center">${finaleUit}</td>
 
 
                                <td data-id="${value.id}"

@@ -10,7 +10,7 @@ class Tijdsregistratie extends Model
 
     public $timestamps = false;
     protected $guarded = [];
-    protected $fillable = ['adminCheckIn'];
+    protected $fillable = ['adminCheckIn', 'adminCheckUit'];
 
 
 
