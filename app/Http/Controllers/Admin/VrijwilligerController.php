@@ -183,7 +183,7 @@ class VrijwilligerController extends Controller
 
         if($verenigingId != 'leeg'){
             $gebruiker = Gebruikers::find($id);
-            $gebruiker->lid()->sync(['verenigings_id' => $verenigingId], ['gebruikers_id' => $id]);
+            $gebruiker->lid()->attach(['verenigings_id' => $verenigingId]);
         }
 
         return response()->json([
