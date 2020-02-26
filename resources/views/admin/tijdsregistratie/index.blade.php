@@ -24,7 +24,7 @@
             </form>
         </div>
 
-    <form method="get" action="#" id="searchForm">
+    <form method="get" action="/admin/tijdsregistratie/" id="searchForm">
         <div class="row">
             <div class="col-sm-4 mb-2">
                 <label for="sort">Verenigingen: </label>
@@ -69,56 +69,56 @@
                 <td>{{$volledigenaam = $registratie->gebruikerstijd->naam . " " . $registratie->gebruikerstijd->voornaam}}</td>
                 <td>{{$registratie->verenigingtijd->naam}}</td>
                     @if ($registratie->checkIn != null)
-                        <td>{{$registratie->checkIn}}</td>
+                        <td align="center">{{$registratie->checkIn}}</td>
                         @else
                         <td><i class="far fa-times-circle"></i></td>
                     @endif
 
                     @if ($registratie->checkUit != null)
-                        <td>{{$registratie->checkUit}}</td>
+                        <td align="center">{{$registratie->checkUit}}</td>
                     @else
                         <td><i class="far fa-times-circle"></i></td>
                     @endif
 
                     @if ($registratie->manCheckIn != null)
-                        <td>{{$registratie->manCheckIn}}</td>
+                        <td align="center">{{$registratie->manCheckIn}}</td>
                     @else
                         <td align="center"><i class="far fa-times-circle"></i></td>
                     @endif
 
                     @if ($registratie->manCheckUit != null)
-                        <td>{{$registratie->manCheckUit}}</td>
+                        <td align="center">{{$registratie->manCheckUit}}</td>
                     @else
                         <td align="center"><i class="far fa-times-circle"></i></td>
                     @endif
 
                     @if ($registratie->adminCheckIn != null)
-                        <td>{{$registratie->adminCheckIn}}</td>
+                        <td align="center">{{$registratie->adminCheckIn}}</td>
                     @else
                         <td align="center"><i class="far fa-times-circle"></i></td>
                     @endif
 
                     @if ($registratie->adminCheckUit != null)
-                        <td>{{$registratie->adminCheckIn}}</td>
+                        <td align="center">{{$registratie->adminCheckIn}}</td>
                     @else
                         <td align="center"><i class="far fa-times-circle"></i></td>
                     @endif
 
 
                     @if($registratie->adminCheckIn != null)
-                        <td>{{$registratie->adminCheckIn}}</td>
+                        <td align="center">{{$registratie->adminCheckIn}}</td>
                     @elseif($registratie->manCheckIn != null)
-                        <td>{{$registratie->manCheckIn}}</td>
+                        <td align="center">{{$registratie->manCheckIn}}</td>
                     @else
-                        <td>{{$registratie->checkIn}}</td>
+                        <td align="center">{{$registratie->checkIn}}</td>
                     @endif
 
                     @if($registratie->adminCheckUit != null)
-                        <td>{{$registratie->adminCheckUit}}</td>
+                        <td align="center">{{$registratie->adminCheckUit}}</td>
                     @elseif($registratie->manCheckUit != null)
-                        <td>{{$registratie->manCheckUit}}</td>
+                        <td align="center">{{$registratie->manCheckUit}}</td>
                     @else
-                        <td>{{$registratie->checkUit}}</td>
+                        <td align="center">{{$registratie->checkUit}}</td>
                     @endif
 
                 <td>
