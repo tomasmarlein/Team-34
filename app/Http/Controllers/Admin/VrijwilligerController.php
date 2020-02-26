@@ -76,7 +76,8 @@ class VrijwilligerController extends Controller
     {
         $this->validate($request,[
             'naam' => 'required|min:3',
-            'rijksregisternr' => 'required|min:10|numeric|unique:gebruikers,rijksregisternr'
+            'rijksregisternr' => 'required|min:10|numeric|unique:gebruikers,rijksregisternr',
+            'rol_id' => 'required'
         ]);
 
         $gebruikers = new Gebruikers();
@@ -86,7 +87,13 @@ class VrijwilligerController extends Controller
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
         $gebruikers->rijksregisternr = $request->rijksregisternr;
-        $gebruikers->rolId = 4;
+
+        if($request->rol_id != 'leeg'){
+            $gebruikers->rolId = $request->rol_id;
+        } else {
+            $gebruikers->rolId = 4;
+        }
+
         $gebruikers->save();
 
         $gebruiker_id = \App\Gebruikers::orderBy('id', 'desc')->first();
@@ -143,15 +150,30 @@ class VrijwilligerController extends Controller
     public function update($id, Request $request, Gebruikers $gebruikers)
     {
         $data = $request->all();
-        $gebruiker = \App\Gebruikers::find($id)->update([
-            'naam' => $data['naam'],
-            'voornaam' => $data['voornaam'],
-            'roepnaam' => $data['roepnaam'],
-            'email' => $data['email'],
-            'geboortedatum' => $data['geboortedatum'],
-            'telefoon' => $data['telefoon'],
-            'rijksregisternr' => $data['rijksregisternr'],
-        ]);
+
+        if($request->rol_id != 'leeg'){
+            $gebruiker = \App\Gebruikers::find($id)->update([
+                'naam' => $data['naam'],
+                'voornaam' => $data['voornaam'],
+                'roepnaam' => $data['roepnaam'],
+                'email' => $data['email'],
+                'geboortedatum' => $data['geboortedatum'],
+                'telefoon' => $data['telefoon'],
+                'rijksregisternr' => $data['rijksregisternr'],
+                'rolId' => $data['rol_id']
+            ]);
+        } else {
+            $gebruiker = \App\Gebruikers::find($id)->update([
+                'naam' => $data['naam'],
+                'voornaam' => $data['voornaam'],
+                'roepnaam' => $data['roepnaam'],
+                'email' => $data['email'],
+                'geboortedatum' => $data['geboortedatum'],
+                'telefoon' => $data['telefoon'],
+                'rijksregisternr' => $data['rijksregisternr'],
+                'rolId' => 4
+            ]);
+        }
 
         $verenigingId = $request->vereniging_id;
 
