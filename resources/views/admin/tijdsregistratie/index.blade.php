@@ -73,20 +73,22 @@
                         <td><i class="far fa-times-circle"></i></td>
                     @endif
 
-                    @if ($registratie->checkUit != null)
-                        <td align="center">{{$registratie->checkUit}}</td>
+
+                    @if ($registratie->checkUit != '0000-00-00 00:00:00')
+                        <td>{{$registratie->checkUit}}</td>
                     @else
                         <td><i class="far fa-times-circle"></i></td>
                     @endif
 
-                    @if ($registratie->manCheckIn != null)
-                        <td align="center">{{$registratie->manCheckIn}}</td>
+                    @if ($registratie->manCheckIn != '0000-00-00 00:00:00')
+                        <td>{{$registratie->manCheckIn}}</td>
+
                     @else
                         <td align="center"><i class="far fa-times-circle"></i></td>
                     @endif
 
-                    @if ($registratie->manCheckUit != null)
-                        <td align="center">{{$registratie->manCheckUit}}</td>
+                    @if ($registratie->manCheckUit != '0000-00-00 00:00:00')
+                        <td>{{$registratie->manCheckUit}}</td>
                     @else
                         <td align="center"><i class="far fa-times-circle"></i></td>
                     @endif
@@ -108,6 +110,9 @@
                         <td align="center">{{$registratie->adminCheckIn}}</td>
                     @elseif($registratie->manCheckIn != null)
                         <td align="center">{{$registratie->manCheckIn}}</td>
+                        <td>{{$registratie->adminCheckIn}}</td>
+                    @elseif($registratie->manCheckIn != '0000-00-00 00:00:00')
+                        <td>{{$registratie->manCheckIn}}</td>
                     @else
                         <td align="center">{{$registratie->checkIn}}</td>
                     @endif
@@ -116,6 +121,9 @@
                         <td align="center">{{$registratie->adminCheckUit}}</td>
                     @elseif($registratie->manCheckUit != null)
                         <td align="center">{{$registratie->manCheckUit}}</td>
+                        <td>{{$registratie->adminCheckUit}}</td>
+                    @elseif($registratie->manCheckUit != '0000-00-00 00:00:00')
+                        <td>{{$registratie->manCheckUit}}</td>
                     @else
                         <td align="center">{{$registratie->checkUit}}</td>
                     @endif
