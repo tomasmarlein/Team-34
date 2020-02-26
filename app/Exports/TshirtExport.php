@@ -36,6 +36,8 @@ class TshirtExport implements FromQuery, WithStrictNullComparison, WithHeadings,
             ->join('verenigings', 'gebruikers_verenigings.verenigings_id', '=', 'verenigings.id')
             ->where([
                 ['tshirts.maat', '!=', '0'],
+                ['tshirts.geslacht', '!=', '0'],
+                ['tshirts.aantal', '!=', '0'],
                 ['verenigings.naam', $this->verenigingnaam]
             ])
             ->select('verenigings.naam as vnaam', 'gebruikers.naam as gnaam', 'gebruikers.voornaam as gvnaam','gebruikers.roepnaam as grnaam', 'tshirts.maat', 'tshirts.geslacht', 'tshirts.aantal');
