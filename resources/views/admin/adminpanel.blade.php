@@ -286,17 +286,6 @@
                 <div class="col-8"> <h1 class="display-4">Adminpaneel</h1>
 
                     </div>
-                <form class="col-4">
-                    <div class="form-group" >
-                        <select class="form-control">
-                            @foreach($evenementen as $evenement)
-                                <option value="{{ $evenement->id }}" class="dropdown-item" href="#">{{ $evenement->naam }}</option>
-                            @endforeach
-                            <option value="%" class="dropdown-item" href="#">alle evenementen</option>
-                        </select>
-
-                    </div>
-                </form>
             </div>
 
 
@@ -501,24 +490,24 @@
                             </div>
 
                             <div class="col-lg-4 cardpadding">
-                                <a href="/admin/Lunchpakket" class="card">
+                                <a href="/admin/Admin" class="card">
                                     <div class="card__head">
-                                        <div class="card__image" style="background-image: url('assets/adminpanel/lunch.jfif');"></div>
+                                        <div class="card__image" style="background-image: url('assets/adminpanel/admin.jpg');"></div>
                                         <div class="card__author">
                                             <div class="author">
                                                 <div class="author__image">
-                                                    <i class="fas fa-hamburger"></i>
+                                                    <i class="fas fa-user"></i>
                                                 </div>
                                                 <div class="author__content">
-                                                    <p class="author__header">Lunchpakketten</p>
-                                                    <p class="author__subheader">Beheer lunchpakketten</p>
+                                                    <p class="author__header">Administrators</p>
+                                                    <p class="author__subheader">Beheer administrators</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card__body">
-                                        <h2 class="card__headline">Lunchpakketten</h2>
-                                        <p class="card__text">Wijs lunchpakketten toe aan gebruikers van verenigingen.
+                                        <h2 class="card__headline">Administrators</h2>
+                                        <p class="card__text">Wijzig administrators, maak nieuwe administrators aan of verijwder ze.
                                             </p>
                                     </div>
                                     <div class="card__foot">

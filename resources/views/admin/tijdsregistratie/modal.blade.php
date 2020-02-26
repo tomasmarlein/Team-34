@@ -13,48 +13,106 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                         <div class="form-group ">
                             <label for="naam">Naam</label>
                             <input type="text" name="naam" id="naam"
                                    class="form-control"
                                    placeholder="Naam"
                                    minlength="3"
-                                   value="">
+                                   value="" disabled>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
-
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group ">
-                            <label for="startdatum">Startdatum</label>
-                            <input type="date" name="startdatum" id="startdatum"
+                            <label for="voornaam">Voornaam</label>
+                            <input type="text" name="voornaam" id="voornaam"
                                    class="form-control"
-                                   placeholder="Startdatum"
+                                   placeholder="Vooraam"
                                    minlength="3"
-                                   value="">
+                                   value="" disabled>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <label for="vereniging">Vereniging</label>
+                            <input type="text" name="vereniging" id="vereniging"
+                                   class="form-control"
+                                   placeholder="Vereniging"
+                                   minlength="3"
+                                   value="" disabled>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group ">
-                            <label for="einddatum">Einddatum</label>
-                            <input type="date" name="einddatum" id="einddatum"
+                            <label for="checkIn">Check in</label>
+                            <input type="text" name="checkIn" id="checkIn"
+                                   class="form-control"
+                                   placeholder="checkIn"
+                                   minlength="3"
+                                   value="" disabled>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group ">
+                            <label for="checkUit">Check uit</label>
+                            <input type="text" name="checkUit" id="checkUit"
                                    class="form-control"
                                    placeholder="Einddatum"
                                    minlength="3"
-                                   value="">
+                                   value="" disabled>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
 
-                    <div class="col-md-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="actief" name="actief">
-                            <label class="form-check-label" for="actief">
-                                Actief?
-                            </label>
+                    <div class="col-md-3">
+                        <div class="form-group ">
+                            <label for="manCheckIn">Manuele check in</label>
+                            <input type="text" name="manCheckIn" id="manCheckIn"
+                                   class="form-control"
+                                   placeholder="Einddatum"
+                                   minlength="3"
+                                   value="" disabled>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group ">
+                            <label for="manCheckUit">Manuele check uit</label>
+                            <input type="text" name="manCheckUit" id="manCheckUit"
+                                   class="form-control"
+                                   placeholder="Einddatum"
+                                   minlength="3"
+                                   value="" disabled>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="adminCheckIn">Admin check in</label>
+                            <input type="datetime-local" name="adminCheckIn" id="adminCheckIn"
+                                   class="form-control"
+                                   minlength="3"
+                                   value="">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="adminCheckUit">Admin check uit</label>
+                            <input type="datetime-local" name="adminCheckUit" id="adminCheckUit"
+                                   class="form-control"
+                                   minlength="3"
+                                   value="">
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
 

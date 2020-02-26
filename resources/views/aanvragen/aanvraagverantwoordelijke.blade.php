@@ -46,7 +46,7 @@
 
             <div class="col-md-6 mb-3">
                 <label for="rijksregisternr">Rijksregisternummer *   <b>NIET: </b>89.05.14-168.85 <b> WEL: </b> 88051416885 </label>
-                <input oninput="checkRijks()" type="text" class="form-control is-invalid"  name="rijksregisternr" id="rijksregisternr" placeholder="rijksregisternr" value="">
+                <input maxlength="11" oninput="checkRijks()" type="text" class="form-control is-invalid"  name="rijksregisternr" id="rijksregisternr" placeholder="rijksregisternr" value="">
                 <div class="invalid-feedback">
                     Rijksregisternummer is Verplicht
                 </div>
@@ -59,7 +59,9 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="geboortedatum">Geboortedatum</label>
-                <input type="date" class="form-control"  name="geboortedatum" id="geboortedatum" placeholder="" value="">
+                <input type="date" class="form-control is-invalid"  name="geboortedatum" id="geboortedatum" placeholder="" value="">
+            <div class="invalid-feedback">
+                geboortedatum is Verplicht
             </div>
         </div>
         <hr class="mb-4">

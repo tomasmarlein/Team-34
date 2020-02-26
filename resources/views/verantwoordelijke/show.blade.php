@@ -40,7 +40,9 @@
                         <td style="text-align: center">{{$item->rijksregisternr}}</td>
                     @endif
 
-                    @if($item->geboortedatum == null)
+                    @if($item->geboortedatum == "0001-01-01")
+                        <td style="text-align: center;color: darkred"><i data-toggle="tooltip" title="Nog niet ingevuld" class="fas fa-question-circle"></i></td>
+                    @elseif ($item->geboortedatum == null)
                         <td style="text-align: center;color: darkred"><i data-toggle="tooltip" title="Nog niet ingevuld" class="fas fa-question-circle"></i></td>
                     @else
                         <td style="text-align: center">{{$item->geboortedatum}}</td>

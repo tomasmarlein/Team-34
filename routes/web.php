@@ -75,9 +75,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('downloadTshirt','Admin\TshirtController@export');
 
 
-    //route Lunchpakket
-    Route::resource('Lunchpakket', 'Admin\LunchpakketController');
-    Route::get('Lunchpakket', 'Admin\LunchpakketController@index');
+    //route administrator
+    Route::resource('Admin', 'Admin\AdminController');
+    Route::get('Admin', 'Admin\AdminController@index');
+    Route::get('qryAdmins', 'Admin\AdminController@qryAdmins');
 
     //route Tijdsregistratie
     Route::get('qryTijdsregistratie','Admin\TijdsregistratieController@qryTijdsregistratie');
@@ -125,6 +126,7 @@ Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->g
     Route::get('showLeden/{id}', 'Verantwoordelijke\VerenigingController@showLeden');
     Route::get('updateVereniging/{id}', 'Verantwoordelijke\VerenigingController@updateVereniging');
     Route::get('aanvraagVoltooid','Admin\VerenigingController@aanvraagVoltooid');
+
 
 
     Route::resource('verenigingen', 'Verantwoordelijke\VerenigingController');

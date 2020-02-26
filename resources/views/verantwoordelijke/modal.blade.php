@@ -42,7 +42,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="rijksregisternr">Rijksregisternummer * <b>NIET: </b>89.05.14-168.85 <b>
                                     WEL: </b> 88051416885 </label>
-                            <input oninput="checkRijks()" type="text" class="form-control"
+                            <input minlength="11" in maxlength="11" oninput="checkRijks()" type="text" class="form-control"
                                    name="rijksregisternr" id="rijksregisternr" placeholder="rijksregisternr" value="">
                         </div>
                     </div>

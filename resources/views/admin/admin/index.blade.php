@@ -1,9 +1,9 @@
 @extends('layouts.template')
 
-@section('title', 'Kernleden')
+@section('title', 'Admin')
 
 @section('main')
-    <h1>Kernleden</h1>
+    <h1>Admins</h1>
     @include('shared.alert')
 
 
@@ -14,7 +14,7 @@
         </div>
         <div class="col-sm-6 mb-2" style="text-align: right;">
             <a href="#!" class="btn btn-outline-success" id="btn-create">
-                <i class="fas fa-plus-circle mr-1"></i>Nieuw kernlid
+                <i class="fas fa-plus-circle mr-1"></i>Nieuwe admin
             </a>
         </div>
     </div>
@@ -38,7 +38,7 @@
             </tbody>
         </table>
     </div>
-    @include('admin.kernleden.modal')
+    @include('admin.admin.modal')
 @endsection
 
 @section('script_after')
@@ -62,9 +62,9 @@
                 let naam = $(this).closest('td').data('naam');
                 let voornaam = $(this).closest('td').data('voornaam');
                 // Set some values for Noty
-                let text = `<p>Verwijder kernlid: <b>${voornaam} ${naam}</b>?</p>`;
+                let text = `<p>Verwijder adin: <b>${voornaam} ${naam}</b>?</p>`;
                 let type = 'warning';
-                let btnText = 'Verwijder Kernlid';
+                let btnText = 'Verwijder Admin';
                 let btnClass = 'btn-danger';
 
                 // Show Noty
@@ -90,6 +90,7 @@
             $('tbody').on('click', '.btn-edit', function () {
                 // Get data attributes from td tag
                 let id = $(this).closest('td').data('id');
+                let rolid = $(this).closest('td').data('rolid');
                 let naam = $(this).closest('td').data('naam');
                 let voornaam = $(this).closest('td').data('voornaam');
                 let email = $(this).closest('td').data('email');
@@ -97,20 +98,24 @@
                 let geboortedatum = $(this).closest('td').data('geboortedatum');
                 // Update the modal
                 $('.modal-title').text(`Wijzig ${voornaam} ${naam}`);
-                $('form').attr('action', `/admin/kernleden/${id}`);
+                $('form').attr('action', `/admin/Admin/${id}`);
 
                 $('#naam').val(naam);
                 $('#voornaam').val(voornaam);
                 $('#email').val(email);
                 $('#telefoon').val(telefoon);
                 $('#geboortedatum').val(geboortedatum);
+                $('#dropdown-rol').val('1');
+                $('#wachtwoord').val('De persoon moet dit zelf aanpassen.');
+                $("#wachtwoord").attr("disabled", true);
+                $("#wachtwoord").prop('type', 'text');
 
                 $('input[name="_method"]').val('put');
                 // Show the modal
-                $('#modal-kernleden').modal('show');
+                $('#modal-admin').modal('show');
             });
 
-            $('#modal-kernleden form').submit(function (e) {
+            $('#modal-admin form').submit(function (e) {
                 // Don't submit the form
                 e.preventDefault();
                 // Get the action property (the URL to submit)
@@ -128,7 +133,7 @@
                             text: data.text
                         }).show();
                         // Hide the modal
-                        $('#modal-kernleden').modal('hide');
+                        $('#modal-admin').modal('hide');
                         // Rebuild the table
                         loadTable();
                     })
@@ -152,12 +157,20 @@
 
             $('#btn-create').click(function () {
                 // Update the modal
-                $('.modal-title').text(`Nieuw kernlid`);
-                $('form').attr('action', `/admin/kernleden`);
+                $('.modal-title').text(`Nieuwe admin`);
+                $('form').attr('action', `/admin/Admin`);
+                $("#wachtwoord").attr("disabled", false);
+                $("#wachtwoord").prop('type', 'password');
                 $('#naam').val('');
+                $('#voornaam').val('');
+                $('#email').val('');
+                $('#telefoon').val('');
+                $('#geboortedatum').val('');
+                $('#wachtwoord').val('');
+                $('#dropdown-rol').val('leeg');
                 $('input[name="_method"]').val('post');
                 // Show the modal
-                $('#modal-kernleden').modal('show');
+                $('#modal-admin').modal('show');
             });
         });
 
@@ -168,7 +181,7 @@
                 '_token': '{{ csrf_token() }}',
                 '_method': 'delete'
             };
-            $.post(`/admin/kernleden/${id}`, pars, 'json')
+            $.post(`/admin/Admin/${id}`, pars, 'json')
                 .done(function (data) {
                     console.log('data', data);
                     // Show toast
@@ -186,7 +199,7 @@
 
         // Load genres with AJAX
         function loadTable() {
-            $.getJSON('/admin/qryKernleden')
+            $.getJSON('/admin/qryAdmins')
                 .done(function (data) {
                     console.log('data', data);
                     // Clear tbody tag
@@ -194,12 +207,24 @@
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
 
+                        if(value.telefoon != null){
+                            var telefoon = value.telefoon;
+                        } else {
+                            var telefoon = 'Geen telefoon';
+                        }
+
+                        if(value.geboortedatum != null){
+                            var geboortedatum = value.geboortedatum;
+                        } else {
+                            var geboortedatum = 'Geen geboortedatum';
+                        }
+
                         let tr = `<tr>
 
                                <td align="ceenter">${value.naam} ${value.voornaam}</td>
                                <td>${value.email}</td>
-                               <td>${value.telefoon}</td>
-                               <td>${value.geboortedatum}</td>
+                               <td>${telefoon}</td>
+                               <td>${geboortedatum}</td>
 
 
                                <td align="center"
@@ -208,7 +233,8 @@
                                    data-voornaam="${value.voornaam}"
                                    data-email="${value.email}"
                                    data-geboortedatum="${value.geboortedatum}"
-                                   data-telefoon="${value.telefoon}">
+                                   data-telefoon="${value.telefoon}"
+                                   data-rolid="${value.rolId}>
 
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">

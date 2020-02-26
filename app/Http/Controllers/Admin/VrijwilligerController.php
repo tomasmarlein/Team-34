@@ -76,7 +76,11 @@ class VrijwilligerController extends Controller
     {
         $this->validate($request,[
             'naam' => 'required|min:3',
-            'rijksregisternr' => 'required|min:10|numeric|unique:gebruikers,rijksregisternr',
+            'voornaam' => 'required',
+            'telefoon' => 'required',
+            'rijksregisternr' => 'required',
+            'geboortedatum' => 'required',
+
             'rol_id' => 'required'
         ]);
 

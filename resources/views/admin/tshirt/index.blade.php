@@ -23,13 +23,13 @@
         <table id="mytable" class="table table-hover">
             <thead class="shadow">
             <tr>
-                <th>#</th>
-                <th>Naam</th>
+
+                <th style="text-align: center">Naam</th>
                 <th>Vereniging</th>
                 <th>Tshirt maat</th>
                 <th>Tshirt geslacht</th>
                 <th>Tshirt aantal</th>
-                <th>Acties</th>
+                <th style="text-align: center">Acties</th>
             </tr>
             </thead>
             <tbody>
@@ -199,15 +199,16 @@
                                         }
 
                                         let tr = `<tr>
-                                            <td>${value.id}</td>
-                                            <td>${value.naam} ${value.voornaam}</td>
+
+                                            <td align="center">${value.naam} ${value.voornaam}</td>
                                             <td>${verenigingnaam}</td>
                                             <td>${maat}</td>
                                             <td>${geslacht}</td>
                                             <td>${aantal}</td>
 
 
-                                               <td data-tshirtid="${value.tshirt[i].id}"
+                                               <td align="center"
+                                               data-tshirtid="${value.tshirt[i].id}"
                                                    data-id="${value.id}"
                                                    data-naam="${value.naam}"
                                                    data-voornaam="${value.voornaam}"
@@ -230,15 +231,16 @@
                                     var verenigingnaam = value.lid[i].naam;
 
                                     let tr = `<tr>
-                                            <td>${value.id}</td>
-                                            <td>${value.naam} ${value.voornaam}</td>
+
+                                            <td align="center">${value.naam} ${value.voornaam}</td>
                                             <td>${verenigingnaam}</td>
                                             <td></td>
                                             <td>Geen tshirt</td>
                                             <td></td>
 
 
-                                               <td data-tshirtid=""
+                                               <td align="center"
+                                               data-tshirtid=""
                                                    data-id="${value.id}"
                                                    data-naam="${value.naam}"
                                                    data-voornaam="${value.voornaam}"
@@ -283,15 +285,16 @@
                                     }
 
                                     let tr = `<tr>
-                                            <td>${value.id}</td>
-                                            <td>${value.naam} ${value.voornaam}</td>
+
+                                            <td align="center">${value.naam} ${value.voornaam}</td>
                                             <td>${verenigingnaam}</td>
                                             <td>${maat}</td>
                                             <td>${geslacht}</td>
                                             <td>${aantal}</td>
 
 
-                                               <td data-tshirtid="${value.tshirt[i].id}"
+                                               <td align="center"
+                                                data-tshirtid="${value.tshirt[i].id}"
                                                    data-id="${value.id}"
                                                    data-naam="${value.naam}"
                                                    data-voornaam="${value.voornaam}"
@@ -314,15 +317,16 @@
                                 var verenigingnaam = 'Geen vereniging';
 
                                 let tr = `<tr>
-                                            <td>${value.id}</td>
-                                            <td>${value.naam} ${value.voornaam}</td>
+
+                                            <td align="center">${value.naam} ${value.voornaam}</td>
                                             <td>${verenigingnaam}</td>
                                             <td></td>
                                             <td>Geen tshirt</td>
                                             <td></td>
 
 
-                                               <td data-tshirtid=""
+                                               <td align="center"
+                                               data-tshirtid=""
                                                    data-id="${value.id}"
                                                    data-naam="${value.naam}"
                                                    data-voornaam="${value.voornaam}"
