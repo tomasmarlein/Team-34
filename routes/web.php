@@ -72,6 +72,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('qryTshirtTypes','Admin\TshirtController@qryTshirtTypes');
     Route::resource('tshirt', 'Admin\TshirtController');
     Route::get('tshirt', 'Admin\TshirtController@index');
+    Route::get('downloadTshirt','Admin\TshirtController@export');
+
 
     //route Lunchpakket
     Route::resource('Lunchpakket', 'Admin\LunchpakketController');
@@ -120,7 +122,10 @@ Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->g
     Route::get('qryVerenigingen', 'Verantwoordelijke\VerenigingController@qryVerenigingen');
     Route::get('getVereniging', 'Verantwoordelijke\VerenigingController@getVereniging');
     Route::get('showLeden/{id}', 'Verantwoordelijke\VerenigingController@showLeden');
+    Route::get('updateVereniging/{id}', 'Verantwoordelijke\VerenigingController@updateVereniging');
     Route::get('aanvraagVoltooid','Admin\VerenigingController@aanvraagVoltooid');
+
+
 
 
 

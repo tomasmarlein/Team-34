@@ -36,8 +36,8 @@
     </div>
             <div class="template">
                 <form style="text-align: right" action="{{url('admin/downloadTemplate')}}" method="get" >
-                    <button data-toggle="tooltip" title="Download template" style="height: 45px; width:165px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
-                        Import template
+                    <button data-toggle="tooltip" title="Download template" style="height: 45px; width:195px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
+                        Voorbeeld template
                     </button>
                 </form>
             </div>
@@ -161,6 +161,7 @@
                 let geboortedatum = $(this).closest('td').data('geboortedatum');
                 let rijksregisternr = $(this).closest('td').data('rijksregisternr');
                 let verid = $(this).closest('td').data('verid');
+                let rolid = $(this).closest('td').data('rolid')
                 // Update the modal
                 $('.modal-title').text(`Edit ${voornaam} ${naam}`);
                 $('form').attr('action', `/admin/vrijwilligers/${id}`);
@@ -178,6 +179,8 @@
                 } else {
                     $('#dropdown-vereniging').val(verid);
                 }
+
+                $('#dropdown-rol').val(rolid);
 
                 $('input[name="_method"]').val('put');
                 // Show the modal
@@ -315,7 +318,8 @@
                                    data-email="${value.email}"
                                    data-geboortedatum="${value.geboortedatum}"
                                    data-telefoon="${value.telefoon}"
-                                   data-verid="${value.lid[i].id}">
+                                   data-verid="${value.lid[i].id}"
+                                   data-rolid="${value.rolId}">
 
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">
