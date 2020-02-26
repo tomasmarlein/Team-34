@@ -30,6 +30,7 @@
             <tr>
                 <th>#</th>
                 <th>Vereniging</th>
+
                 <th>Naam</th>
 
                 <th>Acties</th>
@@ -63,7 +64,6 @@
             </tbody>
         </table>
     </div>
-    @include('admin.tijdsregistratie.modal')
 @endsection
 @section('script_after')
     <script>

@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label for="rijksregisternummer">Rijksregisternummer</label>
-                        <input type="text" name="rijksregisternummer" id="rijksregisternummer"
+                        <input maxlength="11"  type="text" name="rijksregisternummer" id="rijksregisternummer"
                                class="form-control"
                                placeholder="Rijksregisternummer"
                                minlength="3"

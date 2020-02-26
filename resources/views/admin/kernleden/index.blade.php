@@ -25,12 +25,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>#</th>
-                <th>Naam</th>
+
+                <th style="text-align: center">Naam</th>
                 <th>Email</th>
                 <th>Telefoon</th>
                 <th>Geboortedatum</th>
-                <th>Acties</th>
+                <th style="text-align: center">Acties</th>
             </tr>
             </thead>
             <tbody id="myTable">
@@ -195,14 +195,15 @@
                     $.each(data, function (key, value) {
 
                         let tr = `<tr>
-                               <td>${value.id}</td>
-                               <td>${value.naam} ${value.voornaam}</td>
+
+                               <td align="ceenter">${value.naam} ${value.voornaam}</td>
                                <td>${value.email}</td>
                                <td>${value.telefoon}</td>
                                <td>${value.geboortedatum}</td>
 
 
-                               <td data-id="${value.id}"
+                               <td align="center"
+                                   data-id="${value.id}"
                                    data-naam="${value.naam}"
                                    data-voornaam="${value.voornaam}"
                                    data-email="${value.email}"

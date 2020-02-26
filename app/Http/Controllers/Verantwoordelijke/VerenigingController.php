@@ -67,7 +67,19 @@ class VerenigingController extends Controller
             $gebruikers->telefoon = "";
 
         }
-        $gebruikers->geboortedatum = $request->geboortedatum;
+
+
+       // $gebruikers->geboortedatum = $request->geboortedatum;
+
+        if($gebruikers->geboortedatum = $request->geboortedatum != null){
+            $gebruikers->geboortedatum = $request->geboortedatum;
+
+        }else{
+            $gebruikers->geboortedatum = date("0001-01-01 00:00:00");
+
+        }
+
+
 
         if($gebruikers->rijksregisternr = $request->rijksregisternr != null){
             $gebruikers->rijksregisternr = $request->rijksregisternr;
