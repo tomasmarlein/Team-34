@@ -17,13 +17,13 @@ class CreateGebruikersTable extends Migration
             $table->bigIncrements('id');
             $table->string('email');
             $table->string('password')->nullable();
-            $table->string('naam')->nullable();
-            $table->string('voornaam')->nullable();
+            $table->string('naam');
+            $table->string('voornaam');
             $table->string('roepnaam')->nullable();
             $table->date('geboortedatum')->nullable();
             $table->string('telefoon')->nullable();
             $table->string('opmerking')->nullable();
-            $table->string('rijksregisternr')->nullable();
+            $table->string('rijksregisternr');
             $table->boolean('eersteAanmelding')->nullable();
             $table->boolean('lunchpakket')->nullable();
             $table->boolean('actief')->nullable();
