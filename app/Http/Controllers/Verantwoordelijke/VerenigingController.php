@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Verantwoordelijke;
 
 use App\Gebruikers;
+use App\Tshirt;
 use App\Verantwoordelijke;
 use App\Verenigings;
 use Illuminate\Http\Request;
@@ -101,6 +102,13 @@ class VerenigingController extends Controller
             ->first();
 
         \App\Gebruikers::find($gebruiker_id->id)->lid()->attach($vereniging->id);
+
+        $tshirt = new Tshirt();
+        $tshirt->maat = 0;
+        $tshirt->geslacht = 0;
+        $tshirt->aantal = 0;
+        $tshirt->gebruikers_id = $gebruiker_id->id;
+        $tshirt->save();
 
         return response()->json([
             'type' => 'success',

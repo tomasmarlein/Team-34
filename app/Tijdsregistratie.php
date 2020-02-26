@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tijdsregistratie extends Model
 {
+
+
+    public $timestamps = false;
+    protected $guarded = [];
+    protected $fillable = ['adminCheckIn'];
+
+
+
     public function gebruikerstijd()
     {
         return $this->belongsTo('App\Gebruikers', 'gebruikers_id');
