@@ -18,8 +18,7 @@ class CreateTaakVansTable extends Migration
             $table->unsignedBigInteger('verenigings_id');
             $table->unsignedBigInteger('taaks_id');
 
-            $table->foreign('verenigings_id')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('taaks_id')->references('id')->on('taaks')->onDelete('cascade')->onUpdate('cascade');
+
         });
 
         for ($i = 1; $i <= 10; $i++) {

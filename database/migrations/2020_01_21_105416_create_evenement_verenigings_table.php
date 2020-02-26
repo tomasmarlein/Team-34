@@ -18,8 +18,7 @@ class CreateEvenementVerenigingsTable extends Migration
             $table->unsignedBigInteger('evenements_id');
             $table->unsignedBigInteger('verenigings_id');
 
-            $table->foreign('evenements_id')->references('id')->on('evenements')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('verenigings_id')->references('id')->on('verenigings')->onDelete('cascade')->onUpdate('cascade');
+
         });
         for ($i = 1; $i <= 10; $i++) {
         DB::table('evenements_verenigings')->insert(

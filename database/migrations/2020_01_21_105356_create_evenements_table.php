@@ -22,8 +22,8 @@ class CreateEvenementsTable extends Migration
         });
         DB::table('evenements')->insert(
             [
-                'startdatum'=> now(),
-                'einddatum' => now(),
+                'startdatum'=> "20200527",
+                'einddatum' => "20200531",
                 'naam' => "Gladiolen",
                 'actief' => true
             ]

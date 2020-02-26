@@ -20,7 +20,7 @@ class CreateVerenigingsTable extends Migration
             $table->unsignedBigInteger('tweedeverantwoordelijke')->nullable();
             $table->boolean("actief")->nullable();
             $table->string('rekeningnr');
-            $table->string('btwnr')->nullable();
+            $table->string('btwnr');
             $table->string('straat')->nullable();
             $table->string('huisnummer')->nullable();
             $table->string('gemeente')->nullable();
@@ -41,31 +41,13 @@ class CreateVerenigingsTable extends Migration
                     'straat' => "straat",
                     'huisnummer' => "20",
                     'gemeente' => "Geel",
-                    'hoofdverantwoordelijke' => "23",
-                    'tweedeverantwoordelijke' => "44",
+                    'hoofdverantwoordelijke' => "9",
+                    'tweedeverantwoordelijke' => null,
                     'actief' => false,
-                    'inaanvraag' => true,
+                    'inaanvraag' => false,
                     'contactpersoon' => 23,
                 ]
             );
-
-            for ($i = 2; $i <= 10; $i++) {
-                DB::table('verenigings')->insert(
-                [
-                    'naam' => "Vereniging_$i",
-                    'rekeningnr' => "BE68539007547034_$i",
-                    'btwnr' => "BE0000.111.222",
-                    "postcode" => "2440",
-                    'straat' => "straat_$i",
-                    'huisnummer' => "$i",
-                    'gemeente' => "Geel",
-                    'hoofdverantwoordelijke' => $i + 22,
-                    'actief' => false,
-                    'inaanvraag' => false,
-                    'contactpersoon' => $i + 22,
-                ]
-            );
-        }
     }
 
     /**
