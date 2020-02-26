@@ -66,7 +66,7 @@
                 <tr>
                 <td>{{$registratie->id}}</td>
                 <td>{{$volledigenaam = $registratie->gebruikerstijd->naam . " " . $registratie->gebruikerstijd->voornaam}}</td>
-                <td>{{$registratie->verenigingtijd->naam}}</td>
+                <td>{{$registratie->verenigingTijd->naam}}</td>
                     @if ($registratie->checkIn != null)
                         <td>{{$registratie->checkIn}}</td>
                         @else
