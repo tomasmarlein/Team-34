@@ -57,7 +57,7 @@ class VerenigingController extends Controller
         $this->validate($request, [
             'naam' => 'required',
             'rekeningnr' => 'required',
-            'hoofdverantwoordelijke' => 'required',
+            'hoofdverant' => 'required',
             'btwnr' => 'required',
             'straat' => 'required',
             'huisnummer' => 'required',
@@ -75,8 +75,12 @@ class VerenigingController extends Controller
         $verenigings->postcode = $request->postcode;
         $verenigings->gemeente = $request->gemeente;
         $verenigings->actief = 0;
+        $verenigings->inaanvraag = 0;
         $verenigings->save();
 
+        $replace = array('{"id":','}');
+        $gebruiker = Gebruikers::find(str_replace($replace, "",$request->hoofdverant));
+        $gebruiker->lid()->attach(['verenigings_id' => $verenigings->id]);
 
         return response()->json([
             'type' => 'success',
@@ -359,4 +363,15 @@ class VerenigingController extends Controller
         shuffle($wachtwoord);
         return substr(implode($wachtwoord), 0, $lengte);
     }
+
+
+
+
+
+
 }
+
+
+
+
+
