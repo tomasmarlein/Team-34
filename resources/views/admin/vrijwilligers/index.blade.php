@@ -348,7 +348,8 @@
                                    data-geboortedatum="${value.geboortedatum}"
                                    data-telefoon="${value.telefoon}"
                                    data-verid="${value.lid[i].id}"
-                                   data-rolid="${value.rolId}">
+                                   data-rolid="${value.rolId}"
+                                   data-rijksregisternr="${value.rijksregisternr}">
 
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam} ${value.voornaam}">
