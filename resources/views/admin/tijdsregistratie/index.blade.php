@@ -67,25 +67,25 @@
                 <td>{{$registratie->id}}</td>
                 <td>{{$volledigenaam = $registratie->gebruikerstijd->naam . " " . $registratie->gebruikerstijd->voornaam}}</td>
                 <td>{{$registratie->verenigingTijd->naam}}</td>
-                    @if ($registratie->checkIn != null)
+                    @if ($registratie->checkIn != strtotime('0000-00-00 00:00:00'))
                         <td>{{$registratie->checkIn}}</td>
                         @else
                         <td><i class="far fa-times-circle"></i></td>
                     @endif
 
-                    @if ($registratie->checkUit != null)
+                    @if ($registratie->checkUit != strtotime('0000-00-00 00:00:00'))
                         <td>{{$registratie->checkUit}}</td>
                     @else
                         <td><i class="far fa-times-circle"></i></td>
                     @endif
 
-                    @if ($registratie->manCheckIn != null)
+                    @if ($registratie->manCheckIn != strtotime('0000-00-00 00:00:00'))
                         <td>{{$registratie->manCheckIn}}</td>
                     @else
                         <td align="center"><i class="far fa-times-circle"></i></td>
                     @endif
 
-                    @if ($registratie->manCheckUit != null)
+                    @if ($registratie->manCheckUit != strtotime('0000-00-00 00:00:00'))
                         <td>{{$registratie->manCheckUit}}</td>
                     @else
                         <td align="center"><i class="far fa-times-circle"></i></td>
@@ -106,7 +106,7 @@
 
                     @if($registratie->adminCheckIn != null)
                         <td>{{$registratie->adminCheckIn}}</td>
-                    @elseif($registratie->manCheckIn != null)
+                    @elseif($registratie->manCheckIn != strtotime('0000-00-00 00:00:00'))
                         <td>{{$registratie->manCheckIn}}</td>
                     @else
                         <td>{{$registratie->checkIn}}</td>
@@ -114,7 +114,7 @@
 
                     @if($registratie->adminCheckUit != null)
                         <td>{{$registratie->adminCheckUit}}</td>
-                    @elseif($registratie->manCheckUit != null)
+                    @elseif($registratie->manCheckUit != strtotime('0000-00-00 00:00:00'))
                         <td>{{$registratie->manCheckUit}}</td>
                     @else
                         <td>{{$registratie->checkUit}}</td>
