@@ -177,19 +177,6 @@
             })
             .fail(function (e) {
                 console.log('error', e);
-                // e.responseJSON.errors contains an array of all the validation errors
-                console.log('error message', e.responseJSON.errors);
-                // Loop over the e.responseJSON.errors array and create an ul list with all the error messages
-                let msg = '<ul>';
-                $.each(e.responseJSON.errors, function (key, value) {
-                    msg += `<li>${value}</li>`;
-                });
-                msg += '</ul>';
-                // Noty the errors
-                new Noty({
-                    type: 'error',
-                    text: msg
-                }).show();
             });
     });
 
