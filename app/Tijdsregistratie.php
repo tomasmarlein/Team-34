@@ -13,7 +13,7 @@ class Tijdsregistratie extends Model
 
     public function verenigingTijd()
     {
-        return $this->belongsTo('App\Verenigings', 'id');
+        return $this->belongsTo('App\Verenigings', 'verenigings_id');
     }
 
     public function evenement()
