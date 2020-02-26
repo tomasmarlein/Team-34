@@ -20,7 +20,7 @@ class CreateVerenigingsTable extends Migration
             $table->unsignedBigInteger('tweedeverantwoordelijke')->nullable();
             $table->boolean("actief")->nullable();
             $table->string('rekeningnr');
-            $table->string('btwnr');
+            $table->string('btwnr')->nullable();
             $table->string('straat')->nullable();
             $table->string('huisnummer')->nullable();
             $table->string('gemeente')->nullable();
