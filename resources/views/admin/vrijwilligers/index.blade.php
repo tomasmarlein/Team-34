@@ -318,7 +318,7 @@
                                     var email = "<i  data-toggle=\"tooltip\" title=\"Nog niet ingevuld\" style='color: darkred' class=\"fas fa-question-circle\"></i>\n";
                                 }
                                 else {
-                                    var email = value.telefoon
+                                    var email = value.email
                                 }
 
                                 if (value.geboortedatum == "0001-01-01 00:00:00:") {

@@ -75,9 +75,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('downloadTshirt','Admin\TshirtController@export');
 
 
-    //route Lunchpakket
-    Route::resource('Lunchpakket', 'Admin\LunchpakketController');
-    Route::get('Lunchpakket', 'Admin\LunchpakketController@index');
+    //route administrator
+    Route::resource('Admin', 'Admin\AdminController');
+    Route::get('Admin', 'Admin\AdminController@index');
+    Route::get('qryAdmins', 'Admin\AdminController@qryAdmins');
 
     //route Tijdsregistratie
     Route::get('qryTijdsregistratie','Admin\TijdsregistratieController@qryTijdsregistratie');
