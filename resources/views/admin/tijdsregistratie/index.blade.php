@@ -90,10 +90,12 @@
                         let naam = $(this).closest('td').data('naam');
                         let voornaam = $(this).closest('td').data('voornaam');
                         let vereniging = $(this).closest('td').data('vereniging');
-                        let checkin = $(this).closest('td').data('checkIn');
-                        let checkUit = $(this).closest('td').data('checkUit');
-                        let manCheckIn = $(this).closest('td').data('manCheckIn');
-                        let manCheckUit = $(this).closest('td').data('manCheckUit');
+                        let checkin = $(this).closest('td').data('checkin');
+                        let checkUit = $(this).closest('td').data('checkuit');
+                        let manCheckIn = $(this).closest('td').data('mancheckin');
+                        let manCheckUit = $(this).closest('td').data('mancheckuit');
+                        let adminCheckIn = $(this).closest('td').data('admincheckin');
+                        let adminCheckUit = $(this).closest('td').data('admincheckuit');
                         // Update the modal
                         $('.modal-title').text(`Edit ${naam} ${voornaam}`);
                         $('form').attr('action', `/admin/tijdsregistratie/${id}`);
@@ -101,10 +103,33 @@
                         $('#naam').val(naam);
                         $('#voornaam').val(voornaam);
                         $('#vereniging').val(vereniging);
-                        $('#checkIn').val(checkin);
-                        $('#checkUit').val(checkUit);
-                        $('#manCheckIn').val(manCheckIn);
-                        $('#manCheckUit').val(manCheckUit);
+
+                        if(checkin != null){
+                            $('#checkIn').val(checkin);
+                        } else {
+                            $('#checkIn').val('Geen check in');
+                        }
+
+                        if(checkUit != null){
+                            $('#checkUit').val(checkUit);
+                        } else {
+                            $('#checkUit').val('Geen check uit');
+                        }
+
+                        if(manCheckIn != null){
+                            $('#manCheckIn').val(manCheckIn);
+                        } else{
+                            $('#manCheckIn').val('Geen manuele check in');
+                        }
+
+                        if(manCheckUit != null){
+                            $('#manCheckUit').val(manCheckUit);
+                        } else {
+                            $('#manCheckUit').val('Geen manuele check uit');
+                        }
+
+                        $('#adminCheckIn').val(adminCheckIn);
+                        $('#adminCheckUit').val(adminCheckUit)
 
                         $('input[name="_method"]').val('put');
 
@@ -209,7 +234,6 @@
                         .done(function (data) {
                             // Clear tbody tag
 
-                            console.log(data);
                             $('tbody').empty();
                             // Loop over each item in the array
                                 $.each(data, function (key, value) {
@@ -267,16 +291,16 @@
                                <td align="center">${value.checkUit}</td>
 
 
-                               <td data-id="${value.id}".
+                               <td data-id="${value.id}"
                                    data-naam="${value.gebruikerstijd.naam}"
                                    data-voornaam="${value.gebruikerstijd.voornaam}"
                                    data-vereniging="${value.vereniging_tijd.naam}"
-                                   data-checkIn="${value.checkIn}"
-                                   data-checkUit="${value.checkUit}"
-                                   data-manCheckIn="${value.manCheckIn}"
-                                   data-manCheckUit="${value.manCheckUit}"
-                                   data-adminCheckIn="${value.adminCheckIn}"
-                                   data-adminCheckUit="${value.adminCheckUit}"
+                                   data-checkin="${value.checkIn}"
+                                   data-checkuit="${value.checkUit}"
+                                   data-mancheckin="${value.manCheckIn}"
+                                   data-mancheckuit="${value.manCheckUit}"
+                                   data-admincheckin="${value.adminCheckIn}"
+                                   data-admincheckuit="${value.adminCheckUit}"
                                     align="center">
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}">

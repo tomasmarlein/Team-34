@@ -82,9 +82,21 @@ class TijdsregistratieController extends Controller
      * @param  \App\Tijdsregiestratie  $tijdsregiestratie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tijdsregiestratie $tijdsregiestratie)
+    public function update($id, Request $request)
     {
-        //
+        $data = $request->all();
+
+        \App\Tijdsregistratie::find($id)
+            ->update([
+                'adminCheckIn' => $data['adminCheckIn'],
+                'adminCheckUit' => $data['adminCheckUit'],
+            ]);
+
+
+        return response()->json([
+            'type' => 'success',
+            'text' => "De tijdsregistratie is geupdate"
+        ]);
     }
 
     /**

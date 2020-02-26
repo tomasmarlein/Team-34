@@ -95,6 +95,27 @@
                         </div>
                     </div>
 
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="adminCheckIn">Admin check in</label>
+                            <input type="datetime-local" name="adminCheckIn" id="adminCheckIn"
+                                   class="form-control"
+                                   minlength="3"
+                                   value="">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group ">
+                            <label for="adminCheckUit">Admin check uit</label>
+                            <input type="datetime-local" name="adminCheckUit" id="adminCheckUit"
+                                   class="form-control"
+                                   minlength="3"
+                                   value="">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
 
                 </div>
                 </form>
