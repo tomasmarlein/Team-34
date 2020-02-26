@@ -23,12 +23,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>#</th>
-                <th>Naam</th>
+
+                <th style="text-align: center">Naam</th>
                 <th>Einddatum</th>
                 <th>Startdatum</th>
                 <th>Actief</th>
-                <th>Acties</th>
+                <th style="text-align: center">Acties</th>
             </tr>
             </thead>
             <tbody id="myTable">
@@ -209,13 +209,14 @@
                     // Loop over each item in the array
                     $.each(data, function (key, value) {
                         let tr = `<tr>
-                               <td>${value.id}</td>
-                               <td>${value.naam}</td>
+
+                               <td style="text-align: center">${value.naam}</td>
                                <td>${value.startdatum}</td>
                                <td>${value.einddatum}</td>
                                <td>${value.actief}</td>
 
-                               <td data-id="${value.id}"
+                               <td style="text-align: center"
+                               data-id="${value.id}"
                                    data-startdatum="${value.startdatum}"
                                    data-einddatum="${value.einddatum}"
                                    data-naam="${value.naam}"
