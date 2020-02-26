@@ -228,18 +228,18 @@
                             var path = "active";
                         }
 
-                        var obj = $.grep(value.vereniginglid, function(obj){return obj.id === value.hoofdverantwoordelijke;})[0];
-                        if(value.hoofdverantwoordelijke == obj.id){
-                            var hoofdv = obj.voornaam + ' ' + obj.naam;
-                        }else{
-                            var hoofdv = "Geen verantwoordelijke";
-                        }
+                        // var obj = $.grep(value.vereniginglid, function(obj){return obj.id === value.hoofdverantwoordelijke;})[0];
+                        // if(value.hoofdverantwoordelijke == obj.id){
+                        //     var hoofdv = obj.voornaam + ' ' + obj.naam;
+                        // }else{
+                        //     var hoofdv = "Geen verantwoordelijke";
+                        // }
 
                         let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${actief}</td>
                                <td><a href="verenigingen/${ value.id }">${value.naam}</a></td>
-                               <td>${hoofdv}</td>
+                               <td>${value.hoofdverantwoordelijke}</td>
                                <td>${value.rekeningnr}</td>
                                <td>${value.btwnr}</td>
                                <td>${value.straat} ${value.huisnummer} ${value.postcode} ${value.gemeente}</td>
@@ -258,9 +258,7 @@
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.naam}">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Verwijder ${value.naam}">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
+
                                             <a href="${path}/${value.id}" class="btn btn-outline-secondary btn-actief">
                                                ${buttonIcon}
                                             </a>
