@@ -23,24 +23,6 @@
             </form>
         </div>
 
-    <form method="get" action="/admin/tijdsregistratie/" id="searchForm">
-        <div class="row">
-            <div class="col-sm-4 mb-2">
-                <label for="sort">Verenigingen: </label>
-                <select class="form-control" name="sort" id="vereniging_id">
-                    <option value="%" selected>Alle Verenigingen</option>
-                    @foreach ($verenigingen as $vereniging)
-                        <option value="{{$vereniging->id}}">{{ucfirst($vereniging->naam)}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-sm-3 mb-2">
-                <label for="email">Filter naam:</label>
-                <input type="email" class="form-control" name="email" id="naam"
-                       value="{{ request()->email }}" placeholder="Naam of voornaam">
-            </div>
-        </div>
-    </form>
 
 
     <div class="table-responsive">
@@ -62,92 +44,243 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($tijdsregistraties as $registratie)
-                <tr>
-                <td>{{$registratie->id}}</td>
-                <td>{{$volledigenaam = $registratie->gebruikerstijd->naam . " " . $registratie->gebruikerstijd->voornaam}}</td>
-                <td>{{$registratie->verenigingTijd->naam}}</td>
-                    @if ($registratie->checkIn != null)
-                        <td align="center">{{$registratie->checkIn}}</td>
-                        @else
-                        <td><i class="far fa-times-circle"></i></td>
-                    @endif
-
-                    @if ($registratie->checkUit != null)
-                        <td align="center">{{$registratie->checkUit}}</td>
-                    @else
-                        <td><i class="far fa-times-circle"></i></td>
-                    @endif
-
-                    @if ($registratie->manCheckIn != null)
-                        <td align="center">{{$registratie->manCheckIn}}</td>
-                    @else
-                        <td align="center"><i class="far fa-times-circle"></i></td>
-                    @endif
-
-                    @if ($registratie->manCheckUit != null)
-                        <td align="center">{{$registratie->manCheckUit}}</td>
-                    @else
-                        <td align="center"><i class="far fa-times-circle"></i></td>
-                    @endif
-
-                    @if ($registratie->adminCheckIn != null)
-                        <td align="center">{{$registratie->adminCheckIn}}</td>
-                    @else
-                        <td align="center"><i class="far fa-times-circle"></i></td>
-                    @endif
-
-                    @if ($registratie->adminCheckUit != null)
-                        <td align="center">{{$registratie->adminCheckIn}}</td>
-                    @else
-                        <td align="center"><i class="far fa-times-circle"></i></td>
-                    @endif
-
-
-                    @if($registratie->adminCheckIn != null)
-                        <td align="center">{{$registratie->adminCheckIn}}</td>
-                    @elseif($registratie->manCheckIn != null)
-                        <td align="center">{{$registratie->manCheckIn}}</td>
-                    @else
-                        <td align="center">{{$registratie->checkIn}}</td>
-                    @endif
-
-                    @if($registratie->adminCheckUit != null)
-                        <td align="center">{{$registratie->adminCheckUit}}</td>
-                    @elseif($registratie->manCheckUit != null)
-                        <td align="center">{{$registratie->manCheckUit}}</td>
-                    @else
-                        <td align="center">{{$registratie->checkUit}}</td>
-                    @endif
-
-                <td>
-                    <form action="tijdsregistratie/{{$registratie->id}}" method="post">
-                        @method('delete')
-                        @csrf
-                        <div class="btn-group btn-group-sm">
-                            <a href="tijdsregistratie/{{ $registratie->id }}/edit" class="btn btn-outline-success"
-                               data-toggle="tooltip"
-                               title="Edit tijdsregistratie voor {{$volledigenaam}}">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <button type="submit" class="btn btn-outline-danger"
-                                    data-toggle="tooltip"
-                                    title="Delete {{ $volledigenaam }}">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </form>
-                </td>
-                </tr>
-                @endforeach
 
             </tbody>
         </table>
     </div>
-
-    </div>
-
+        @include('admin.tijdsregistratie.modal')
 @endsection
+@section('script_after')
+                <script>
+                    $(function () {
+                        loadTable();
+
+                        $('tbody').on('click', '.btn-delete', function () {
+                            // Get data attributes from td tag
+                            let id = $(this).closest('td').data('id');
+                            let naam = $(this).closest('td').data('naam');
+                            // Set some values for Noty
+                            let text = `<p>Verwijder het evenement <b>${naam}</b>?</p>`;
+
+                            let  btnText = `Verwijder evenement`;
+                            let btnClass = 'btn-danger';
+                            let type = 'error';
+                            // Show Noty
+                            let modal = new Noty({
+                                timeout: false,
+                                layout: 'center',
+                                modal: true,
+                                type: type,
+                                text: text,
+                                buttons: [
+                                    Noty.button(btnText, `btn ${btnClass}`, function () {
+                                        // Delete genre and close modal
+                                        deleteEvenement(id);
+                                        modal.close();
+                                    }),
+                                    Noty.button('Annuleer', 'btn btn-secondary ml-2', function () {
+                                        modal.close();
+                                    })
+                                ]
+                            }).show();
+                        });
+
+                        $('tbody').on('click', '.btn-edit', function () {
+                            // Get data attributes from td tag
+                            let id = $(this).closest('td').data('id');
+                            let naam = $(this).closest('td').data('naam');
+                            let Checkin = $(this).closest('td').data('checkIn');
+                            let checkUit = $(this).closest('td').data('checkUit');
+                            let actief = $(this).closest('td').data('actief');
+                            // Update the modal
+                            $('.modal-title').text(`Edit ${naam}`);
+                            $('form').attr('action', `/admin/evenementen/${id}`);
+
+                            $('#naam').val(naam);
+                            $('#vereniging').val(vereniging);
+                            $('#Checkin').val(Checkin);
+                            $('#checkUit').val(checkUit);
+
+                            $('#modal-tijdsregistratie #actief').prop('checked', actief == '1');
+
+                            $('#actief').val(actief);
+                            $('input[name="_method"]').val('put');
+
+                            // Show the modal
+                            $('#modal-tijdsregistratie').modal('show');
+                        });
+
+                        $('#modal-tijdsregistratie form').submit(function (e) {
+                            // Don't submit the form
+                            e.preventDefault();
+                            // Get the action property (the URL to submit)
+                            let action = $(this).attr('action');
+                            // Serialize the form and send it as a parameter with the post
+                            let pars = $(this).serialize();
+                            console.log(pars);
+                            // Post the data to the URL
+                            $.post(action, pars, 'json')
+                                .done(function (data) {
+                                    console.log(data);
+                                    // Noty success message
+                                    new Noty({
+                                        type: data.type,
+                                        text: data.text
+                                    }).show();
+                                    // Hide the modal
+                                    $('#modal-tijdsregistratie').modal('hide');
+                                    // Rebuild the table
+                                    loadTable();
+                                })
+                                .fail(function (e) {
+                                    console.log('error', e);
+                                    // e.responseJSON.errors contains an array of all the validation errors
+                                    console.log('error message', e.responseJSON.errors);
+                                    // Loop over the e.responseJSON.errors array and create an ul list with all the error messages
+                                    let msg = '<ul>';
+                                    $.each(e.responseJSON.errors, function (key, value) {
+                                        msg += `<li>${value}</li>`;
+                                    });
+                                    msg += '</ul>';
+                                    // Noty the errors
+                                    new Noty({
+                                        type: 'error',
+                                        text: msg
+                                    }).show();
+                                });
+                        });
+
+                        $('#btn-create').click(function () {
+                            // Update the modal
+                            $('.modal-title').text(`Nieuw Tijdsregiestratie`);
+
+                            $('form').attr('action', `/admin/Tijdsregiestratie`);
+
+                            $('#checkIn').val('');
+                            $('#checkUit').val('');
+                            $('#manCheckIn').val('');
+                            $('#manCheckUit').val('');
+                            $('#adminCheckIn').val('');
+                            $('#adminCheckIn').val('');
+                            $('input[name="_method"]').val('post');
+
+                            // Show the modal
+                            $('#modal-evenementen').modal('show');
+                        });
+
+
+
+
+
+                    });
+                    //
+                    // Delete a
+                    function deleteEvenement(id) {
+                        // Delete from the database
+                        let pars = {
+                            '_token': '{{ csrf_token() }}',
+                            '_method': 'delete'
+                        };
+                        $.post(`/admin/Tijdsregiestratie/${id}`, pars, 'json')
+                            .done(function (data) {
+                                console.log('data', data);
+                                // Show toast
+                                console.log({id})
+                                console.log()
+                                new Noty({
+                                    type: data.type,
+                                    text: data.text
+                                }).show();
+                                // Rebuild the table
+                                loadTable();
+                            })
+                            .fail(function (e) {
+                                console.log('error', e);
+                            });
+                    }
+
+                    // Load genres with AJAX
+                    function loadTable() {
+
+
+                        $.getJSON('qryTijdsregistratie')
+                            .done(function (data) {
+                                // Clear tbody tag
+
+                                console.log(data);
+                                $('tbody').empty();
+                                // Loop over each item in the array
+                                $.each(data, function (key, value) {
+                                    if(value.manCheckIn != null){
+                                        var manCheckIn = value.manCheckIn;
+                                    } else {
+                                        var manCheckIn = "<i class='far fa-times-circle'></i>";
+                                    }
+
+                                    if(value.manCheckUit != null){
+                                        var manCheckUit = value.manCheckUit;
+                                    } else {
+                                        var manCheckUit = "<i class='far fa-times-circle'></i>";
+                                    }
+
+                                    if(value.adminCheckIn != null){
+                                        var adminCheckIn = value.adminCheckIn;
+                                    } else {
+                                        var adminCheckIn = "<i class='far fa-times-circle'></i>";
+                                    }
+
+                                    if(value.adminCheckUit != null){
+                                        var adminCheckUit = value.adminCheckUit;
+                                    } else {
+                                        var adminCheckUit = "<i class='far fa-times-circle'></i>";
+                                    }
+
+                                    let tr = `<tr>
+                               <td>${value.id}</td>
+                               <td>${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}</td>
+                               <td>${value.vereniging_tijd.naam}</td>
+                               <td>${value.checkIn}</td>
+                               <td>${value.checkUit}</td>
+                               <td>${manCheckIn}</td>
+                               <td>${manCheckUit}</td>
+                               <td>${adminCheckIn}</td>
+                               <td>${adminCheckUit}</td>
+                               <td>${value.checkIn}</td>
+                               <td>${value.checkUit}</td>
+
+
+                               <td data-id="${value.id}".
+                                   data-naam="${value.gebruikerstijd.naam}"
+                                   data-vereniging="${value.vereniging_tijd.naam}"
+                                   data-checkIn="${value.checkIn}"
+                                   data-checkUit="${value.checkUit}"
+                                   data-manCheckIn="${value.manCheckIn}"
+                                   data-manCheckUit="${value.manCheckUit}"
+                                   data-adminCheckIn="${value.adminCheckIn}"
+                                   data-adminCheckUit="${value.adminCheckUit}"
+                                    >
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.vereniging_tijd.naam}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Verwijder ${value.vereniging_tijd.naam}">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                               </td>
+                           </tr>`;
+                                    // Append row to tbody
+                                    $('tbody').append(tr);
+
+                                });
+                            })
+                            .fail(function (e) {
+                                console.log('error', e);
+                            })
+                    }
+                </script>
+
+@stop
 
 
 

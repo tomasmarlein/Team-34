@@ -29,21 +29,7 @@ class TijdsregistratieController extends Controller
 
     public function index(Request $request )
     {
-        $vereniging_id = $request->input('vereniging_id') ?? '%';
-        $naam = '%' . $request->input('naam') . '%';
-        $verenigingen = verenigings::orderby('naam')
-            ->get((['id','naam']));
-
-        $tijdsregistraties = Tijdsregistratie::orderBy('checkIn', 'desc')
-            ->with ('verenigingTijd','gebruikerstijd','evenement', 'gebruikerstijd.lid')
-
-            ->where('verenigings_id', 'like', $vereniging_id)
-            ->get();
-
-        $result = compact('tijdsregistraties', 'verenigingen');
-        Json::dump($result);
-
-        return view('admin.tijdsregistratie.index', $result);
+        return view('admin.tijdsregistratie.index');
     }
 
     /**
@@ -86,10 +72,7 @@ class TijdsregistratieController extends Controller
      */
     public function edit(Tijdsregistratie $tijdsregiestratie)
     {
-
-       $result = compact('tijdsregiestratie');
-        Json::dump($result);
-        return view('admin.tijdsregistratie.edit', $result);
+        //
     }
 
     /**
@@ -115,4 +98,10 @@ class TijdsregistratieController extends Controller
         //
     }
 
+    public function qryTijdsregistratie(){
+        $tijdsregistraties = Tijdsregistratie::orderBy('checkIn', 'desc')
+            ->with ('verenigingTijd','gebruikerstijd','evenement', 'gebruikerstijd.lid')
+            ->get();
+        return $tijdsregistraties;
+    }
 }
