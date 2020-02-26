@@ -238,9 +238,7 @@ class VerenigingController extends Controller
             'email' => 'required',
         ]);
 
-
         $gegenereerdWachtwoord = $this->randomWachtwoord();
-
 
         $gebruikers = new Gebruikers();
         Session::put('gebruikersnaam',$gebruikers->naam = $request->naam);

@@ -142,7 +142,7 @@
         <hr class="mb-4">
         <h4>Ziet u iets dat niet klopt? Ga dan terug naar de vorige pagina's.</h4>
         <a href="javascript:history.back()" class="btn btn-primary btn-lg btn-block">Ga Terug</a>
-        <a href="aanvraagBevestigen" id="voltooien"  class="btn btn-primary btn-lg btn-block disabled">Voltooien</a>
+        <a onclick="disableButton()" href="aanvraagBevestigen" id="voltooien"  class="btn btn-primary btn-lg btn-block disabled">Voltooien</a>
     </form>
 @endsection
 
@@ -161,6 +161,11 @@
             }
 
         };
+
+        function disableButton(){
+            document.getElementById("voltooien").style.display = 'none';
+           // knop.style.display = 'none';
+        }
 
 
 
