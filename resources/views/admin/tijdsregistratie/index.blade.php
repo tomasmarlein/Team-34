@@ -211,13 +211,25 @@
                             $('tbody').empty();
                             // Loop over each item in the array
                             $.each(data, function (key, value) {
-                                if(value.manCheckIn != null){
+                                if(value.checkIn != null && value.checkIn !== 0){
+                                    var checkIn = value.checkIn
+                                } else {
+                                    var checkIn = "<i class='far fa-times-circle'></i>";
+                                }
+
+                                if(value.checkUit != null && value.checkUit !== 0){
+                                    var checkUit = value.checkUit
+                                } else {
+                                    var checkuit = "<i class='far fa-times-circle'></i>";
+                                }
+
+                                if(value.manCheckIn != null && value.manCheckIn !== 0){
                                     var manCheckIn = value.manCheckIn;
                                 } else {
                                     var manCheckIn = "<i class='far fa-times-circle'></i>";
                                 }
 
-                                if(value.manCheckUit != null){
+                                if(value.manCheckUit != null && value.manCheckUit !== 0){
                                     var manCheckUit = value.manCheckUit;
                                 } else {
                                     var manCheckUit = "<i class='far fa-times-circle'></i>";
@@ -239,8 +251,8 @@
                                <td>${value.id}</td>
                                <td>${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}</td>
                                <td>${value.vereniging_tijd.naam}</td>
-                               <td>${value.checkIn}</td>
-                               <td>${value.checkUit}</td>
+                               <td>${checkIn}</td>
+                               <td>${checkUit}</td>
                                <td>${manCheckIn}</td>
                                <td>${manCheckUit}</td>
                                <td>${adminCheckIn}</td>
