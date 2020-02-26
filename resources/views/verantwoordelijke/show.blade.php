@@ -3,7 +3,15 @@
 @section('title', 'Leden')
 
 @section('main')
-    <h1 style="float:left">{{$vereniging->naam}}</h1>
+
+    <h1 style="float: left">{{$vereniging->naam}}</h1>
+    <div style="float:right">
+        <h4>Bewerken :  <i style="color: #38c172" class="fas fa-edit"></i></h4>
+        <h4>Verwijderen :  <i style="color: #e3342f" class="fas fa-trash"></i></h4>
+        <h4>Niet Ingevuld :  <i style="color: darkred" class="fas fa-question-circle"></i></h4>
+
+
+    </div>
     <div class="table-responsive">
         <table class="table">
             <a href="#!" id="btn-create" style="width: 100%" class="btn btn-outline-success" data-toggle="tooltip" title="lid toevoegen">
@@ -63,7 +71,7 @@
                         data-opmerking="{{$item->opmerking}}">
 
                         <div class="btn-group btn-group-sm">
-                            <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig {{$item->voornaam}} ">
+                            <a href="#!" class="btn btn-outline-success btn-edit">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <a href="#!" class="btn btn-outline-danger btn-delete" data-toggle="tooltip" title="Verwijder {{$item->voornaam}}">
@@ -71,7 +79,6 @@
                             </a>
                         </div>
                     </td>
-
                 </tr>
             @endforeach
             </tbody>
@@ -128,7 +135,7 @@
         let rijksregisternr = $(this).closest('td').data('rijksregisternr');
         let opmerking = $(this).closest('td').data('opmerking');
         // Update the modal
-        $('.modal-title').text(`Edit ${voornaam} ${naam}`);
+        $('.modal-title').text(`Wijzig ${voornaam} ${naam}`);
         $('form').attr('action', `/verantwoordelijke/verenigingen/${id}`);
 
         $('#naam').val(naam);
@@ -188,7 +195,7 @@
 
     $('#btn-create').click(function () {
         // Update the modal
-        $('.modal-title').text(`Nieuwe gebruiker`);
+        $('.modal-title').text(`Nieuw Lid Toevoegen`);
         $('form').attr('action', `/verantwoordelijke/verenigingen/`);
         $('#naam').val('');
         $('#voornaam').val('');

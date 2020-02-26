@@ -10,10 +10,6 @@
             <form action="" method="post">
                 @method('')
                 @csrf
-                <button type="submit" class="btn btn-success">Opslaan</button>
-                <button onclick="location.reload()" type="button" class="btn btn-danger" data-dismiss="modal">
-                    Sluit
-                </button>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -51,7 +47,6 @@
                         </div>
                     </div>
 
-
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="telefoon">Telefoon</label>
@@ -63,18 +58,22 @@
                             <input type="date" class="form-control" name="geboortedatum" id="geboortedatum"
                                    placeholder="" value="">
                         </div>
-
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 mb-6">
+                        <div class="col-md-12">
                             <label for="opmerking">Opmerking</label>
                             <input type="text" class="form-control" name="opmerking" id="opmerking" placeholder="Opmerking"
                                    value="">
                         </div>
                     </div>
                 </div>
-
+                <div style="float: right; padding: 1%">
+                    <button type="submit" class="btn btn-success">Opslaan</button>
+                    <button onclick="location.reload()" type="button" class="btn btn-danger" data-dismiss="modal">
+                        Sluit
+                    </button>
+                </div>
             </form>
         </div>
     </div>

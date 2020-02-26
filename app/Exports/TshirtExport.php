@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Tijdsregistratie;
+use App\Tshirt;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -14,7 +14,7 @@ use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class TijdsregistratieExport implements FromQuery, WithStrictNullComparison, WithHeadings, ShouldAutoSize, WithEvents, ShouldQueue, WithTitle
+class TshirtExport implements FromQuery, WithStrictNullComparison, WithHeadings, ShouldAutoSize, WithEvents, ShouldQueue, WithTitle
 {
     use Exportable;
     /**
@@ -30,12 +30,17 @@ class TijdsregistratieExport implements FromQuery, WithStrictNullComparison, Wit
 
     public function query()
     {
-        return Tijdsregistratie::query()
-            ->join('gebruikers', 'tijdsregistraties.gebruikers_id', '=', 'gebruikers.id')
-            ->join('verenigings', 'tijdsregistraties.verenigings_id', '=', 'verenigings.id')
-            ->where('verenigings.naam', $this->verenigingnaam)
-            ->select('verenigings.naam as vnaam', 'gebruikers.naam as gnaam', 'gebruikers.voornaam as gvnaam','gebruikers.roepnaam as grnaam' ,'checkIn', 'checkUit', 'manCheckIn', 'manCheckUit', 'adminCheckIn', 'adminCheckUit');
-
+        return Tshirt::query()
+            ->join('gebruikers', 'tshirts.gebruikers_id', '=', 'gebruikers.id')
+            ->join('gebruikers_verenigings', 'gebruikers.id', '=', 'gebruikers_verenigings.gebruikers_id')
+            ->join('verenigings', 'gebruikers_verenigings.verenigings_id', '=', 'verenigings.id')
+            ->where([
+                ['tshirts.maat', '!=', '0'],
+                ['tshirts.geslacht', '!=', '0'],
+                ['tshirts.aantal', '!=', '0'],
+                ['verenigings.naam', $this->verenigingnaam]
+            ])
+            ->select('verenigings.naam as vnaam', 'gebruikers.naam as gnaam', 'gebruikers.voornaam as gvnaam','gebruikers.roepnaam as grnaam', 'tshirts.maat', 'tshirts.geslacht', 'tshirts.aantal');
     }
 
     /**
@@ -48,12 +53,9 @@ class TijdsregistratieExport implements FromQuery, WithStrictNullComparison, Wit
             'Naam',
             'Voornaam',
             'Roepnaam',
-            'Check in',
-            'Check uit',
-            'Manuele check in',
-            'Manuele check uit',
-            'Admin check in',
-            'Admin check uit'
+            'Maat',
+            'Geslacht',
+            'Aantal'
         ];
     }
 

@@ -10,7 +10,6 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact-us">Contact</a>
                     @auth
                 </li>
                 <li class="nav-item">
@@ -37,7 +36,6 @@
                         @endif
                             @if(auth()->user()->rolId==3)
                             <li class="nav-item">
-                                <a class="nav-link" href="#!"><i class="fas fa-users"></i> vereniging</a>
                             </li>
                             @endif
                     <li class="nav-item dropdown">
@@ -46,7 +44,6 @@
                             {{ auth()->user()->voornaam }}  {{ auth()->user()->naam }} <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="/user/profile"><i class="fas fa-user-cog"></i> Wijzig gegevens</a>
                             <a class="dropdown-item" href="/user/password"><i class="fas fa-key"></i> Wijzig wachtwoord</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Log uit</a>

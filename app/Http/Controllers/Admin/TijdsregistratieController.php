@@ -28,11 +28,9 @@ class TijdsregistratieController extends Controller
     }
 
     public function index(Request $request )
-
     {
         $vereniging_id = $request->input('vereniging_id') ?? '%';
         $naam = '%' . $request->input('naam') . '%';
-
         $verenigingen = verenigings::orderby('naam')
             ->get((['id','naam']));
 
@@ -40,8 +38,8 @@ class TijdsregistratieController extends Controller
             ->with ('verenigingTijd','gebruikerstijd','evenement', 'gebruikerstijd.lid')
 
             ->where('verenigings_id', 'like', $vereniging_id)
-
             ->get();
+
         $result = compact('tijdsregistraties', 'verenigingen');
         Json::dump($result);
 
@@ -88,7 +86,8 @@ class TijdsregistratieController extends Controller
      */
     public function edit(Tijdsregistratie $tijdsregiestratie)
     {
-        $result = compact('tijdsregiestratie');
+
+       $result = compact('tijdsregiestratie');
         Json::dump($result);
         return view('admin.tijdsregistratie.edit', $result);
     }

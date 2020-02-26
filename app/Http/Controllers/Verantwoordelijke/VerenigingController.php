@@ -157,6 +157,25 @@ class VerenigingController extends Controller
         ]);
     }
 
+    public function updateVereniging($id,Request $request, Verenigings $verenigings)
+    {
+        $data = $request->all();
+        $verenigings = \App\Verenigings::find($id)->update([
+            'naam' => $data['naam'],
+            'rekeningnr' => $data['rekeningnr'],
+            'btwnr' => $data['btwnr'],
+            'straat' => $data['straat'],
+            'huisnummer' => $data['huisnummer'],
+            'postcode' => $data['postcode'],
+            'gemeente' => $data['gemeente'],
+        ]);
+
+        return response()->json([
+            'type' => 'success',
+            'text' => "De vereniging is geupdatet!"
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

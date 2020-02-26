@@ -157,7 +157,6 @@ class VerenigingController extends Controller
      */
     public function destroy($id, Verenigings $verenigings)
     {
-
         $vereniging = \App\Verenigings::find($id)->delete();
 
         return response()->json([
@@ -243,9 +242,7 @@ class VerenigingController extends Controller
             'email' => 'required',
         ]);
 
-
         $gegenereerdWachtwoord = $this->randomWachtwoord();
-
 
         $gebruikers = new Gebruikers();
         Session::put('gebruikersnaam',$gebruikers->naam = $request->naam);

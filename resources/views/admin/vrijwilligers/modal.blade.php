@@ -89,7 +89,7 @@
 
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="geboortedatum">Geboortedatum</label>
                                 <input type="date" name="geboortedatum" id="geboortedatum"
@@ -100,11 +100,21 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="dropdown-vereniging">Verenigingen</label>
                                 <select class="form-control" id="dropdown-vereniging" name="vereniging_id" style="width: 100%; padding: 10px 5px;">
                                     <option value="leeg">Selecteer een vereniging</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="dropdown-rol">Rol</label>
+                                <select class="form-control" id="dropdown-rol" name="rol_id">
+                                    <option value="leeg">Selecteer een rol</option>
+                                    <option value="3">Verantwoordelijke</option>
+                                    <option value="4">Vrijwilliger</option>
                                 </select>
                             </div>
                         </div>
