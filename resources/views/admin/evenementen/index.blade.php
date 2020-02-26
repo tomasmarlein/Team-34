@@ -27,7 +27,7 @@
                 <th>Acties</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="myTable">
 
             </tbody>
         </table>

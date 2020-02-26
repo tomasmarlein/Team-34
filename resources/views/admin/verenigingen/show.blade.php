@@ -73,7 +73,7 @@
        </table>
    </div>
 
-   @include('admin.verenigingen.modalvereniging')
+
 @endsection
 
 @section('script_after')

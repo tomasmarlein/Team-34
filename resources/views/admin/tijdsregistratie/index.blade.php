@@ -14,7 +14,7 @@
 @endsection
 @section('main')
     <div class="container">
-<h1>Tijdsregistratie</h1>
+        <h1>Tijdsregistratie</h1>
         <div class="download">
             <form style="text-align: right" action="{{url('admin/downloadTijd')}}" method="get" >
                 <button data-toggle="tooltip" title="Exporteer alle tijdsregistraties" style="height: 45px; width:55px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
@@ -25,217 +25,217 @@
 
 
 
-    <div class="table-responsive">
-        <table id="mytable" class="table table-hover">
-            <thead class="shadow">
-            <tr>
-                <th>#</th>
-                <th>Naam</th>
-                <th>Vereniging</th>
-                <th>CheckIn</th>
-                <th>CheckUit</th>
-                <th>Man-CheckIn</th>
-                <th>Man-CheckUit</th>
-                <th>AdminCheckin</th>
-                <th>AdminCheckuit</th>
-                <th>Finale CheckIn</th>
-                <th>Finale Checkuit</th>
-                <th>Acties</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="table-responsive">
+            <table id="mytable" class="table table-hover">
+                <thead class="shadow">
+                <tr>
+                    <th>#</th>
+                    <th>Naam</th>
+                    <th>Vereniging</th>
+                    <th>CheckIn</th>
+                    <th>CheckUit</th>
+                    <th>Man-CheckIn</th>
+                    <th>Man-CheckUit</th>
+                    <th>AdminCheckin</th>
+                    <th>AdminCheckuit</th>
+                    <th>Finale CheckIn</th>
+                    <th>Finale Checkuit</th>
+                    <th>Acties</th>
+                </tr>
+                </thead>
+                <tbody>
 
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
         @include('admin.tijdsregistratie.modal')
-@endsection
-@section('script_after')
-                <script>
-                    $(function () {
-                        loadTable();
+        @endsection
+        @section('script_after')
+            <script>
+                $(function () {
+                    loadTable();
 
-                        $('tbody').on('click', '.btn-delete', function () {
-                            // Get data attributes from td tag
-                            let id = $(this).closest('td').data('id');
-                            let naam = $(this).closest('td').data('naam');
-                            // Set some values for Noty
-                            let text = `<p>Verwijder het evenement <b>${naam}</b>?</p>`;
+                    $('tbody').on('click', '.btn-delete', function () {
+                        // Get data attributes from td tag
+                        let id = $(this).closest('td').data('id');
+                        let naam = $(this).closest('td').data('naam');
+                        // Set some values for Noty
+                        let text = `<p>Verwijder het evenement <b>${naam}</b>?</p>`;
 
-                            let  btnText = `Verwijder evenement`;
-                            let btnClass = 'btn-danger';
-                            let type = 'error';
-                            // Show Noty
-                            let modal = new Noty({
-                                timeout: false,
-                                layout: 'center',
-                                modal: true,
-                                type: type,
-                                text: text,
-                                buttons: [
-                                    Noty.button(btnText, `btn ${btnClass}`, function () {
-                                        // Delete genre and close modal
-                                        deleteEvenement(id);
-                                        modal.close();
-                                    }),
-                                    Noty.button('Annuleer', 'btn btn-secondary ml-2', function () {
-                                        modal.close();
-                                    })
-                                ]
-                            }).show();
-                        });
-
-                        $('tbody').on('click', '.btn-edit', function () {
-                            // Get data attributes from td tag
-                            let id = $(this).closest('td').data('id');
-                            let naam = $(this).closest('td').data('naam');
-                            let Checkin = $(this).closest('td').data('checkIn');
-                            let checkUit = $(this).closest('td').data('checkUit');
-                            let actief = $(this).closest('td').data('actief');
-                            // Update the modal
-                            $('.modal-title').text(`Edit ${naam}`);
-                            $('form').attr('action', `/admin/evenementen/${id}`);
-
-                            $('#naam').val(naam);
-                            $('#vereniging').val(vereniging);
-                            $('#Checkin').val(Checkin);
-                            $('#checkUit').val(checkUit);
-
-                            $('#modal-tijdsregistratie #actief').prop('checked', actief == '1');
-
-                            $('#actief').val(actief);
-                            $('input[name="_method"]').val('put');
-
-                            // Show the modal
-                            $('#modal-tijdsregistratie').modal('show');
-                        });
-
-                        $('#modal-tijdsregistratie form').submit(function (e) {
-                            // Don't submit the form
-                            e.preventDefault();
-                            // Get the action property (the URL to submit)
-                            let action = $(this).attr('action');
-                            // Serialize the form and send it as a parameter with the post
-                            let pars = $(this).serialize();
-                            console.log(pars);
-                            // Post the data to the URL
-                            $.post(action, pars, 'json')
-                                .done(function (data) {
-                                    console.log(data);
-                                    // Noty success message
-                                    new Noty({
-                                        type: data.type,
-                                        text: data.text
-                                    }).show();
-                                    // Hide the modal
-                                    $('#modal-tijdsregistratie').modal('hide');
-                                    // Rebuild the table
-                                    loadTable();
+                        let  btnText = `Verwijder evenement`;
+                        let btnClass = 'btn-danger';
+                        let type = 'error';
+                        // Show Noty
+                        let modal = new Noty({
+                            timeout: false,
+                            layout: 'center',
+                            modal: true,
+                            type: type,
+                            text: text,
+                            buttons: [
+                                Noty.button(btnText, `btn ${btnClass}`, function () {
+                                    // Delete genre and close modal
+                                    deleteEvenement(id);
+                                    modal.close();
+                                }),
+                                Noty.button('Annuleer', 'btn btn-secondary ml-2', function () {
+                                    modal.close();
                                 })
-                                .fail(function (e) {
-                                    console.log('error', e);
-                                    // e.responseJSON.errors contains an array of all the validation errors
-                                    console.log('error message', e.responseJSON.errors);
-                                    // Loop over the e.responseJSON.errors array and create an ul list with all the error messages
-                                    let msg = '<ul>';
-                                    $.each(e.responseJSON.errors, function (key, value) {
-                                        msg += `<li>${value}</li>`;
-                                    });
-                                    msg += '</ul>';
-                                    // Noty the errors
-                                    new Noty({
-                                        type: 'error',
-                                        text: msg
-                                    }).show();
-                                });
-                        });
-
-                        $('#btn-create').click(function () {
-                            // Update the modal
-                            $('.modal-title').text(`Nieuw Tijdsregiestratie`);
-
-                            $('form').attr('action', `/admin/Tijdsregiestratie`);
-
-                            $('#checkIn').val('');
-                            $('#checkUit').val('');
-                            $('#manCheckIn').val('');
-                            $('#manCheckUit').val('');
-                            $('#adminCheckIn').val('');
-                            $('#adminCheckIn').val('');
-                            $('input[name="_method"]').val('post');
-
-                            // Show the modal
-                            $('#modal-evenementen').modal('show');
-                        });
-
-
-
-
-
+                            ]
+                        }).show();
                     });
-                    //
-                    // Delete a
-                    function deleteEvenement(id) {
-                        // Delete from the database
-                        let pars = {
-                            '_token': '{{ csrf_token() }}',
-                            '_method': 'delete'
-                        };
-                        $.post(`/admin/Tijdsregiestratie/${id}`, pars, 'json')
+
+                    $('tbody').on('click', '.btn-edit', function () {
+                        // Get data attributes from td tag
+                        let id = $(this).closest('td').data('id');
+                        let naam = $(this).closest('td').data('naam');
+                        let Checkin = $(this).closest('td').data('checkIn');
+                        let checkUit = $(this).closest('td').data('checkUit');
+                        let actief = $(this).closest('td').data('actief');
+                        // Update the modal
+                        $('.modal-title').text(`Edit ${naam}`);
+                        $('form').attr('action', `/admin/evenementen/${id}`);
+
+                        $('#naam').val(naam);
+                        $('#vereniging').val(vereniging);
+                        $('#Checkin').val(Checkin);
+                        $('#checkUit').val(checkUit);
+
+                        $('#modal-tijdsregistratie #actief').prop('checked', actief == '1');
+
+                        $('#actief').val(actief);
+                        $('input[name="_method"]').val('put');
+
+                        // Show the modal
+                        $('#modal-tijdsregistratie').modal('show');
+                    });
+
+                    $('#modal-tijdsregistratie form').submit(function (e) {
+                        // Don't submit the form
+                        e.preventDefault();
+                        // Get the action property (the URL to submit)
+                        let action = $(this).attr('action');
+                        // Serialize the form and send it as a parameter with the post
+                        let pars = $(this).serialize();
+                        console.log(pars);
+                        // Post the data to the URL
+                        $.post(action, pars, 'json')
                             .done(function (data) {
-                                console.log('data', data);
-                                // Show toast
-                                console.log({id})
-                                console.log()
+                                console.log(data);
+                                // Noty success message
                                 new Noty({
                                     type: data.type,
                                     text: data.text
                                 }).show();
+                                // Hide the modal
+                                $('#modal-tijdsregistratie').modal('hide');
                                 // Rebuild the table
                                 loadTable();
                             })
                             .fail(function (e) {
                                 console.log('error', e);
+                                // e.responseJSON.errors contains an array of all the validation errors
+                                console.log('error message', e.responseJSON.errors);
+                                // Loop over the e.responseJSON.errors array and create an ul list with all the error messages
+                                let msg = '<ul>';
+                                $.each(e.responseJSON.errors, function (key, value) {
+                                    msg += `<li>${value}</li>`;
+                                });
+                                msg += '</ul>';
+                                // Noty the errors
+                                new Noty({
+                                    type: 'error',
+                                    text: msg
+                                }).show();
                             });
-                    }
+                    });
 
-                    // Load genres with AJAX
-                    function loadTable() {
+                    $('#btn-create').click(function () {
+                        // Update the modal
+                        $('.modal-title').text(`Nieuw Tijdsregiestratie`);
+
+                        $('form').attr('action', `/admin/Tijdsregiestratie`);
+
+                        $('#checkIn').val('');
+                        $('#checkUit').val('');
+                        $('#manCheckIn').val('');
+                        $('#manCheckUit').val('');
+                        $('#adminCheckIn').val('');
+                        $('#adminCheckIn').val('');
+                        $('input[name="_method"]').val('post');
+
+                        // Show the modal
+                        $('#modal-evenementen').modal('show');
+                    });
 
 
-                        $.getJSON('qryTijdsregistratie')
-                            .done(function (data) {
-                                // Clear tbody tag
 
-                                console.log(data);
-                                $('tbody').empty();
-                                // Loop over each item in the array
-                                $.each(data, function (key, value) {
-                                    if(value.manCheckIn != null){
-                                        var manCheckIn = value.manCheckIn;
-                                    } else {
-                                        var manCheckIn = "<i class='far fa-times-circle'></i>";
-                                    }
 
-                                    if(value.manCheckUit != null){
-                                        var manCheckUit = value.manCheckUit;
-                                    } else {
-                                        var manCheckUit = "<i class='far fa-times-circle'></i>";
-                                    }
 
-                                    if(value.adminCheckIn != null){
-                                        var adminCheckIn = value.adminCheckIn;
-                                    } else {
-                                        var adminCheckIn = "<i class='far fa-times-circle'></i>";
-                                    }
+                });
+                //
+                // Delete a
+                function deleteEvenement(id) {
+                    // Delete from the database
+                    let pars = {
+                        '_token': '{{ csrf_token() }}',
+                        '_method': 'delete'
+                    };
+                    $.post(`/admin/Tijdsregiestratie/${id}`, pars, 'json')
+                        .done(function (data) {
+                            console.log('data', data);
+                            // Show toast
+                            console.log({id})
+                            console.log()
+                            new Noty({
+                                type: data.type,
+                                text: data.text
+                            }).show();
+                            // Rebuild the table
+                            loadTable();
+                        })
+                        .fail(function (e) {
+                            console.log('error', e);
+                        });
+                }
 
-                                    if(value.adminCheckUit != null){
-                                        var adminCheckUit = value.adminCheckUit;
-                                    } else {
-                                        var adminCheckUit = "<i class='far fa-times-circle'></i>";
-                                    }
+                // Load genres with AJAX
+                function loadTable() {
 
-                                    let tr = `<tr>
+
+                    $.getJSON('qryTijdsregistratie')
+                        .done(function (data) {
+                            // Clear tbody tag
+
+                            console.log(data);
+                            $('tbody').empty();
+                            // Loop over each item in the array
+                            $.each(data, function (key, value) {
+                                if(value.manCheckIn != null){
+                                    var manCheckIn = value.manCheckIn;
+                                } else {
+                                    var manCheckIn = "<i class='far fa-times-circle'></i>";
+                                }
+
+                                if(value.manCheckUit != null){
+                                    var manCheckUit = value.manCheckUit;
+                                } else {
+                                    var manCheckUit = "<i class='far fa-times-circle'></i>";
+                                }
+
+                                if(value.adminCheckIn != null){
+                                    var adminCheckIn = value.adminCheckIn;
+                                } else {
+                                    var adminCheckIn = "<i class='far fa-times-circle'></i>";
+                                }
+
+                                if(value.adminCheckUit != null){
+                                    var adminCheckUit = value.adminCheckUit;
+                                } else {
+                                    var adminCheckUit = "<i class='far fa-times-circle'></i>";
+                                }
+
+                                let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}</td>
                                <td>${value.vereniging_tijd.naam}</td>
@@ -269,16 +269,16 @@
                                     </div>
                                </td>
                            </tr>`;
-                                    // Append row to tbody
-                                    $('tbody').append(tr);
+                                // Append row to tbody
+                                $('tbody').append(tr);
 
-                                });
-                            })
-                            .fail(function (e) {
-                                console.log('error', e);
-                            })
-                    }
-                </script>
+                            });
+                        })
+                        .fail(function (e) {
+                            console.log('error', e);
+                        })
+                }
+            </script>
 
 @stop
 
