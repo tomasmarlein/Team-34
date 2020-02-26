@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Gebruikers;
 use App\GebruikersVerenigings;
 use App\Helpers\Json;
+use App\Tshirt;
 use App\Verenigings;
 use foo\bar;
 use Illuminate\Http\Request;
@@ -311,6 +312,13 @@ class VerenigingController extends Controller
             ->where('rijksregisternr', Session::get('rijksregisternr'))
             ->select('id')
             ->first();
+
+        $tshirt = new Tshirt();
+        $tshirt->maat = 0;
+        $tshirt->geslacht = 0;
+        $tshirt->aantal = 0;
+        $tshirt->gebruikers_id = $gebruiker_id->id;
+        $tshirt->save();
 
         $verenigings->naam = Session::get('verenigingssnaam');
         $verenigings->rekeningnr = Session::get('verenigingsrekeningnr');

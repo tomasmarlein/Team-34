@@ -70,6 +70,13 @@ class VrijwilligersImport implements ToCollection, WithHeadingRow, WithChunkRead
                             fwrite($fp, $teller . ' mist een geslacht voor het tshirt' . "\n");
                         }
                     } else {
+                        Tshirt::create([
+                            'maat' => 0,
+                            'geslacht' => 0,
+                            'aantal' => 0,
+                            'gebruikers_id' => $gebruiker_id->id
+                        ]);
+
                         fwrite($fp, 'Als de gebruiker "');
                         fwrite($fp, $row['naam'] . ' ' . $row['voornaam']);
                         fwrite($fp, '" op rij ');

@@ -2,8 +2,9 @@
 
 namespace App\Exports;
 
-use App\Gebruikers;
+use App\Tshirt;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -13,19 +14,33 @@ use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class VrijwilligerTshirtExport implements FromQuery, WithStrictNullComparison, WithHeadings, ShouldAutoSize, WithEvents, WithTitle
+class TshirtExport implements FromQuery, WithStrictNullComparison, WithHeadings, ShouldAutoSize, WithEvents, ShouldQueue, WithTitle
 {
+    use Exportable;
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
+
+    private $verenigingnaam;
+
+    public function __construct(string $verenigingnaam)
+    {
+        $this->verenigingnaam = $verenigingnaam;
+    }
+
     public function query()
     {
-        return Gebruikers::query()
+        return Tshirt::query()
+            ->join('gebruikers', 'tshirts.gebruikers_id', '=', 'gebruikers.id')
             ->join('gebruikers_verenigings', 'gebruikers.id', '=', 'gebruikers_verenigings.gebruikers_id')
             ->join('verenigings', 'gebruikers_verenigings.verenigings_id', '=', 'verenigings.id')
-            ->join('tshirts', 'gebruikers.id', '=', 'tshirts.gebruikers_id')
-            ->leftJoin('tshirt_types', 'tshirts.types_id', '=', 'tshirt_types.id')
-            ->select( 'verenigings.naam as vnaam', 'gebruikers.naam', 'gebruikers.voornaam', 'gebruikers.roepnaam', 'tshirts.maat', 'tshirts.geslacht', 'tshirts.aantal', 'tshirt_types.type');
+            ->where([
+                ['tshirts.maat', '!=', '0'],
+                ['tshirts.geslacht', '!=', '0'],
+                ['tshirts.aantal', '!=', '0'],
+                ['verenigings.naam', $this->verenigingnaam]
+            ])
+            ->select('verenigings.naam as vnaam', 'gebruikers.naam as gnaam', 'gebruikers.voornaam as gvnaam','gebruikers.roepnaam as grnaam', 'tshirts.maat', 'tshirts.geslacht', 'tshirts.aantal');
     }
 
     /**
@@ -40,8 +55,7 @@ class VrijwilligerTshirtExport implements FromQuery, WithStrictNullComparison, W
             'Roepnaam',
             'Maat',
             'Geslacht',
-            'Aantal',
-            'Type'
+            'Aantal'
         ];
     }
 
@@ -61,6 +75,6 @@ class VrijwilligerTshirtExport implements FromQuery, WithStrictNullComparison, W
 
     public function title(): string
     {
-        return 'Tshirts';
+        return $this->verenigingnaam;
     }
 }

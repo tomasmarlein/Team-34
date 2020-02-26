@@ -100,6 +100,14 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="dropdown-vereniging">Verenigingen</label>
+                                <select class="form-control" id="dropdown-vereniging" name="vereniging_id">
+                                    <option value="leeg">Selecteer een vereniging</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

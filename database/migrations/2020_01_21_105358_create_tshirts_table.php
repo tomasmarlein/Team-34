@@ -19,10 +19,9 @@ class CreateTshirtsTable extends Migration
             $table->string('geslacht');
             $table->integer('aantal');
             $table->unsignedBigInteger('gebruikers_id')->nullable();
-            $table->unsignedBigInteger('types_id')->nullable();
+            $table->unsignedBigInteger('tshirt_types_id')->nullable();
 
             $table->foreign('gebruikers_id')->references('id')->on('gebruikers')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('types_id')->references('id')->on('tshirt_types')->onDelete('cascade')->onUpdate('cascade');
         });
         // Insert roles
         DB::table('tshirts')->insert(
@@ -33,7 +32,7 @@ class CreateTshirtsTable extends Migration
                     'geslacht' => 'V',
                     'aantal'=> 1,
                     'gebruikers_id'=> 34,
-                    'types_id'=> 1
+                    'tshirt_types_id'=> 1
                 ]
             ]
         );
@@ -46,7 +45,7 @@ class CreateTshirtsTable extends Migration
                     'geslacht' => 'V',
                     'aantal'=> 2,
                     'gebruikers_id'=> 34,
-                    'types_id'=> 2
+                    'tshirt_types_id'=> 2
                 ]
             ]
         );

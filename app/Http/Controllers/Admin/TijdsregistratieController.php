@@ -2,21 +2,50 @@
 
 namespace App\Http\Controllers\Admin;
 
-
+use App\Exports\HeadTijdsregistratieExport;
+use App\Verenigings;
 use App\Tijdsregistratie;
+use Facades\App\Helpers\Json;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TijdsregistratieController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+
+    public function export()
     {
-        return view('admin.tijdsregistratie.index');
+        return Excel::download(new HeadTijdsregistratieExport(), 'Tijdsregistraties.xlsx');
+    }
+
+    public function index(Request $request )
+
+    {
+        $vereniging_id = $request->input('vereniging_id') ?? '%';
+        $naam = '%' . $request->input('naam') . '%';
+
+        $verenigingen = verenigings::orderby('naam')
+            ->get((['id','naam']));
+
+        $tijdsregistraties = Tijdsregistratie::orderBy('checkIn', 'desc')
+            ->with ('verenigingTijd','gebruikerstijd','evenement', 'gebruikerstijd.lid')
+
+            ->where('verenigings_id', 'like', $vereniging_id)
+
+            ->get();
+        $result = compact('tijdsregistraties', 'verenigingen');
+        Json::dump($result);
+
+        return view('admin.tijdsregistratie.index', $result);
     }
 
     /**
@@ -46,7 +75,7 @@ class TijdsregistratieController extends Controller
      * @param  \App\Tijdsregiestratie  $tijdsregiestratie
      * @return \Illuminate\Http\Response
      */
-    public function show(Tijdsregiestratie $tijdsregiestratie)
+    public function show(Tijdsregistratie $tijdsregiestratie)
     {
         //
     }
@@ -57,9 +86,11 @@ class TijdsregistratieController extends Controller
      * @param  \App\Tijdsregiestratie  $tijdsregiestratie
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tijdsregiestratie $tijdsregiestratie)
+    public function edit(Tijdsregistratie $tijdsregiestratie)
     {
-        //
+        $result = compact('tijdsregiestratie');
+        Json::dump($result);
+        return view('admin.tijdsregistratie.edit', $result);
     }
 
     /**
@@ -85,12 +116,4 @@ class TijdsregistratieController extends Controller
         //
     }
 
-
-    public function qryTijdsregistratie()
-    {
-        $tijdsregistratie = Tijdsregistratie::orderBy('checkIn', 'desc')
-            ->with ('verenigingTijd','gebruikerstijd','evenement', 'gebruikerstijd.lid')
-            ->get();
-        return $tijdsregistratie;
-    }
 }

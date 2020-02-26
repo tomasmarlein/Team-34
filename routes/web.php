@@ -72,15 +72,17 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('qryTshirtTypes','Admin\TshirtController@qryTshirtTypes');
     Route::resource('tshirt', 'Admin\TshirtController');
     Route::get('tshirt', 'Admin\TshirtController@index');
+    Route::get('downloadTshirt','Admin\TshirtController@export');
+
 
     //route Lunchpakket
     Route::resource('Lunchpakket', 'Admin\LunchpakketController');
     Route::get('Lunchpakket', 'Admin\LunchpakketController@index');
 
     //route Tijdsregistratie
-    Route::get('qryTijdsregistratie','Admin\TijdsregistratieController@qryTijdsregistratie');
     Route::resource('tijdsregistratie', 'Admin\TijdsregistratieController');
     Route::get('Tijdsregistratie', 'Admin\TijdsregistratieController@index');
+    Route::get('downloadTijd','Admin\TijdsregistratieController@export');
 
 
 //   route verantwoordelijke
@@ -92,6 +94,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     //vrijwilligers CRUD
     Route::get('qryVrijwilligers', 'Admin\VrijwilligerController@qryVrijwilligers');
     Route::resource('vrijwilligers', 'Admin\VrijwilligerController');
+    Route::get('qryGetAllVerenigingen', 'Admin\VrijwilligerController@qryGetAllVerenigingen');
 
     //kernleden CRUD
     Route::get('qryKernleden', 'Admin\KernledenController@qryKernleden');

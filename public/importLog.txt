@@ -1,1 +1,1 @@
-Het rijksregisternummer "" op rij 2 bestaat al in de database of het is leeg in de excel.
+Als de gebruiker "Bert Verachtert" op rij 2 een tshirt wilt, moet je deze nog handmatig een maat toewijzen

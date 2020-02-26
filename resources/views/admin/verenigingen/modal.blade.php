@@ -50,9 +50,9 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="hoofdv">Hoofdverantwoordelijke</label>
-                            <select class="form-control" name="hoofdverant" id="hoofdv">
-                                <option selected value="" id="aangeduidehoofd"></option>
+                            <label for="hoofdv">Hoofdverantwoordelijke</label><br>
+                            <select class="form-control" name="hoofdverant" id="hoofdv" style="width: 100%; padding: 10px 5px;">
+
                             </select>
                             <div class="invalid-feedback"></div>
                         </div>

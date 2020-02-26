@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.templatesnoshade')
 @section('title', 'Tijdsregistratie')
 @section('css_after')
     <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
@@ -6,29 +6,38 @@
         th{
             min-width: 120px;
         }
+
+        .download{
+            float:right;
+        }
     </style>
 @endsection
 @section('main')
-
+    <div class="container">
+<h1>Tijdsregistratie</h1>
+        <div class="download">
+            <form style="text-align: right" action="{{url('admin/downloadTijd')}}" method="get" >
+                <button data-toggle="tooltip" title="Exporteer alle tijdsregistraties" style="height: 45px; width:55px ;color: #0C225D; background-color: #FFCF5D; border-color: #FFCF5D" type="submit" class="btn btn-primary btn-lg btn-block">
+                    <i class="fas fa-download"></i>
+                </button>
+            </form>
+        </div>
 
     <form method="get" action="#" id="searchForm">
         <div class="row">
-
-            <div class="col-sm-3 mb-2">
-                <label for="email">Filter op e-mail adres: </label>
-                <input type="email" class="form-control" name="email" id="email"
-                       value="{{ request()->email }}" placeholder="E-mail adres">
-            </div>
-            <div class="col-sm-6 mb-2">
-                <label for="sort">Sorteer op: </label>
-                <select class="form-control" name="sort" id="sort">
-                    <option value="%" selected>Naam (A => Z)</option>
-                    <option value="%">Naam (Z => A)</option>
-                    <option value="%">E-mail (A => Z)</option>
-                    <option value="%">E-mail (Z => A)</option>
-                    <option value="%">Niet actief</option>
-                    <option value="%">Admin</option>
+            <div class="col-sm-4 mb-2">
+                <label for="sort">Verenigingen: </label>
+                <select class="form-control" name="sort" id="vereniging_id">
+                    <option value="%" selected>Alle Verenigingen</option>
+                    @foreach ($verenigingen as $vereniging)
+                        <option value="{{$vereniging->id}}">{{ucfirst($vereniging->naam)}}</option>
+                    @endforeach
                 </select>
+            </div>
+            <div class="col-sm-3 mb-2">
+                <label for="email">Filter naam:</label>
+                <input type="email" class="form-control" name="email" id="naam"
+                       value="{{ request()->email }}" placeholder="Naam of voornaam">
             </div>
         </div>
     </form>
@@ -53,187 +62,93 @@
             </tr>
             </thead>
             <tbody>
+            @foreach($tijdsregistraties as $registratie)
+                <tr>
+                <td>{{$registratie->id}}</td>
+                <td>{{$volledigenaam = $registratie->gebruikerstijd->naam . " " . $registratie->gebruikerstijd->voornaam}}</td>
+                <td>{{$registratie->verenigingtijd->naam}}</td>
+                    @if ($registratie->checkIn != null)
+                        <td>{{$registratie->checkIn}}</td>
+                        @else
+                        <td><i class="far fa-times-circle"></i></td>
+                    @endif
+
+                    @if ($registratie->checkUit != null)
+                        <td>{{$registratie->checkUit}}</td>
+                    @else
+                        <td><i class="far fa-times-circle"></i></td>
+                    @endif
+
+                    @if ($registratie->manCheckIn != null)
+                        <td>{{$registratie->manCheckIn}}</td>
+                    @else
+                        <td align="center"><i class="far fa-times-circle"></i></td>
+                    @endif
+
+                    @if ($registratie->manCheckUit != null)
+                        <td>{{$registratie->manCheckUit}}</td>
+                    @else
+                        <td align="center"><i class="far fa-times-circle"></i></td>
+                    @endif
+
+                    @if ($registratie->adminCheckIn != null)
+                        <td>{{$registratie->adminCheckIn}}</td>
+                    @else
+                        <td align="center"><i class="far fa-times-circle"></i></td>
+                    @endif
+
+                    @if ($registratie->adminCheckUit != null)
+                        <td>{{$registratie->adminCheckIn}}</td>
+                    @else
+                        <td align="center"><i class="far fa-times-circle"></i></td>
+                    @endif
+
+
+                    @if($registratie->adminCheckIn != null)
+                        <td>{{$registratie->adminCheckIn}}</td>
+                    @elseif($registratie->manCheckIn != null)
+                        <td>{{$registratie->manCheckIn}}</td>
+                    @else
+                        <td>{{$registratie->checkIn}}</td>
+                    @endif
+
+                    @if($registratie->adminCheckUit != null)
+                        <td>{{$registratie->adminCheckUit}}</td>
+                    @elseif($registratie->manCheckUit != null)
+                        <td>{{$registratie->manCheckUit}}</td>
+                    @else
+                        <td>{{$registratie->checkUit}}</td>
+                    @endif
+
+                <td>
+                    <form action="tijdsregistratie/{{$registratie->id}}" method="post">
+                        @method('delete')
+                        @csrf
+                        <div class="btn-group btn-group-sm">
+                            <a href="tijdsregistratie/{{ $registratie->id }}/edit" class="btn btn-outline-success"
+                               data-toggle="tooltip"
+                               title="Edit tijdsregistratie voor {{$volledigenaam}}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <button type="submit" class="btn btn-outline-danger"
+                                    data-toggle="tooltip"
+                                    title="Delete {{ $volledigenaam }}">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </form>
+                </td>
+                </tr>
+                @endforeach
 
             </tbody>
         </table>
     </div>
-    @include('admin.tijdsregistratie.modal')
+
+    </div>
+
 @endsection
-@section('script_after')
-    <script>
-        $(function () {
-            loadTable();
 
-
-            $('tbody').on('click', '.btn-edit', function () {
-                // Get data attributes from td tag
-                let id = $(this).closest('td').data('id');
-                let naam = $(this).closest('td').data('naam');
-                let voornaam = $(this).closest('td').data('voornaam');
-
-                let volledigenaam = naam +  " " + voornaam;
-
-                let vereniging = $(this).closest('td').data('vereniging');
-                let checkIn = $(this).closest('td').data('checkIn');
-                let checkUit = $(this).closest('td').data('checkUit');
-                let manCheckIn = $(this).closest('td').data('manCheckIn');
-                let manCheckUit = $(this).closest('td').data('manCheckUit');
-                let adminCheckIn = $(this).closest('td').data('admCheckIn');
-                let adminCheckUit = $(this).closest('td').data('admCheckUit');
-
-
-
-
-                // Update the modal
-
-                $('.modal-title').text(`Edit tijdsregistratie voor ${voornaam} ${naam}`);
-                $('form').attr('action', `/admin/tijdsregistratie/${id}`);
-
-                $('#naam').val(naam);
-                $('#voornaam').val(voornaam);
-                $('#volledigenaam').val(volledigenaam);
-                $('#vereniging').val(vereniging);
-                $('#checkIn').val(checkIn);
-                $('#checkUit').val(checkUit);
-                $('#manCheckIn').val(manCheckIn);
-                $('#manCheckUit').val(manCheckUit);
-                $('#adminCheckIn').val(adminCheckIn);
-                $('#adminCheckUit').val(adminCheckUit);
-
-                $('input[name="_method"]').val('put');
-                // Show the modal
-                $('#modal-tijdsregistratie').modal('show');
-            });
-
-            $('#modal-tijdsregistratie form').submit(function (e) {
-                // Don't submit the form
-                e.preventDefault();
-                // Get the action property (the URL to submit)
-                let action = $(this).attr('action');
-                // Serialize the form and send it as a parameter with the post
-                let pars = $(this).serialize();
-                console.log(pars);
-                // Post the data to the URL
-                $.post(action, pars, 'json')
-                    .done(function (data) {
-                        console.log(data);
-                        // Noty success message
-                        new Noty({
-                            icon: data.icon,
-                            type: data.type,
-                            text: data.text
-                        }).show();
-                        // Hide the modal
-                        $('#modal-tijdsregistratie').modal('hide');
-                        // Rebuild the table
-                        loadTable();
-                    })
-                    .fail(function (e) {
-                        console.log('error', e);
-                        // e.responseJSON.errors contains an array of all the validation errors
-                        console.log('error message', e.responseJSON.errors);
-                        // Loop over the e.responseJSON.errors array and create an ul list with all the error messages
-                        let msg = '<ul>';
-                        $.each(e.responseJSON.errors, function (key, value) {
-                            msg += `<li>${value}</li>`;
-                        });
-                        msg += '</ul>';
-                        // Noty the errors
-                        new Noty({
-                            type: 'error',
-                            text: msg
-                        }).show();
-                    });
-            });
-
-
-
-
-        });
-
-
-
-
-
-        // Load genres with AJAX
-        function loadTable() {
-            $.getJSON('/admin/qryTijdsregistratie')
-                .done(function (data) {
-                    console.log('data', data);
-                    // Clear tbody tag
-                    $('tbody').empty();
-                    // Loop over each item in the array
-                    $.each(data, function (key, value) {
-
-
-                        if(value.manCheckIn != null){
-                            var manueelIN = value.manCheckIn;
-                        }else{
-                            var manueelIN = "<i class=\"fas fa-times-circle\"></i>";
-                        }
-                        if(value.manCheckUit != null){
-                            var manueelUit = value.manCheckUit;
-                        }else{
-                            var manueelUit = "<i class=\"fas fa-times-circle\"></i>";
-                        }
-                        if(value.adminCheckIn != null){
-                            var adminIn = value.adminCheckIn;
-                        }else{
-                            var adminIn = "<i class=\"fas fa-times-circle\"></i>";
-                        }
-                        if(value.adminCheckUit != null){
-                            var adminUit = value.adminCheckUit;
-                        }else{
-                            var adminUit = "<i class=\"fas fa-times-circle\"></i>";
-                        }
-
-
-
-
-                        var d1 = moment(value.checkIn,"MM-DD-YYYY HH:mm");
-                        console.log(d1._i + "test");
-                        console.log(value.checkIn);
-
-                        let tr = `<tr>
-                               <td>${value.id}</td>
-                               <td>${value.gebruikerstijd.naam + " " + value.gebruikerstijd.voornaam} </td>
-                               <td>${value.vereniging_tijd.naam}</td>
-                               <td align="center">${value.checkIn} </td>
-                               <td align="center">${value.checkUit} </td>
-                               <td align="center">${manueelIN}</td>
-                               <td align="center">${manueelUit}</td>
-                               <td align="center">${adminIn}</td>
-                               <td align="center">${adminUit}</td>
-                               <td align="center">${adminUit}</td>
-                               <td align="center">${adminUit}</td>
-                               <td data-id="${value.id}"
-                                   data-naam="${value.gebruikerstijd.naam}"
-                                   data-voornaam="${value.gebruikerstijd.voornaam}"
-                                   data-vereniging="${value.vereniging_tijd.naam}"
-                                   data-checkIn ="${value.checkIn}"
-                                   data-checkUit="${value.checkUit} "
-                                   data-manCheckIn="${value.manCheckIn}"
-                                   data-manCheckUit="${value.manCheckUit}"
-                                   data-admCheckIn="${value.adminCheckIn}"
-                                   data-admCheckUit="${value.adminCheckUit}"
-                                    <div class="btn-group btn-group-sm">
-                                        <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig tijdsregistratie ${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                    </div>
-                               </td>
-                           </tr>`;
-                        // Append row to tbody
-                        $('tbody').append(tr);
-                    });
-                })
-                .fail(function (e) {
-                    console.log('error', e);
-                })
-        }
-
-    </script>
-@endsection
 
 
 
