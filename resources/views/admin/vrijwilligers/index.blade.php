@@ -305,14 +305,29 @@
                                 var verenigingnaam = value.lid[i].naam;
 
                                 if (value.telefoon == null) {
-                                    var telefoon = '/'
+                                    var telefoon = "<i data-toggle=\"tooltip\" title=\"Nog niet ingevuld\" style='color: darkred' class=\"fas fa-question-circle\"></i>\n";
                                 } else {
                                     var telefoon = value.telefoon
                                 }
 
-                                if (value.geboortedatum == null) {
-                                    var geboortedatum = '/'
-                                } else {
+
+                                if (value.email == null) {
+                                    var email = "<i data-toggle=\"tooltip\" title=\"Nog niet ingevuld\" style='color: darkred' class=\"fas fa-question-circle\"></i>\n";
+                                }
+                                else if(value.email == "n/a"){
+                                    var email = "<i  data-toggle=\"tooltip\" title=\"Nog niet ingevuld\" style='color: darkred' class=\"fas fa-question-circle\"></i>\n";
+                                }
+                                else {
+                                    var email = value.telefoon
+                                }
+
+                                if (value.geboortedatum == "0001-01-01 00:00:00:") {
+                                    var geboortedatum = "<i data-toggle=\"tooltip\" title=\"Nog niet ingevuld\" style='color: darkred' class=\"fas fa-question-circle\"></i>\n";
+                                }
+                                else if(value.geboortedatum == null){
+                                    var geboortedatum = "<i  data-toggle=\"tooltip\" title=\"Nog niet ingevuld\" style='color: darkred' class=\"fas fa-question-circle\"></i>\n";
+                                }
+                                else {
                                     var geboortedatum = value.geboortedatum
                                 }
 
@@ -320,7 +335,7 @@
                                <td>${value.id}</td>
                                <td>${value.naam} ${value.voornaam}</td>
                                <td>${verenigingnaam}</td>
-                               <td>${value.email}</td>
+                               <td>${email}</td>
                                <td>${telefoon}</td>
                                <td>${geboortedatum}</td>
 
@@ -357,17 +372,33 @@
                                     var telefoon = value.telefoon
                                 }
 
-                                if (value.geboortedatum == null) {
-                                    var geboortedatum = '/'
-                                } else {
-                                    var geboortedatum = value.geboortedatum
-                                }
+
+                            if (value.email == null) {
+                                var email = "<i data-toggle=\"tooltip\" title=\"Nog niet ingevuld\" style='color: darkred' class=\"fas fa-question-circle\"></i>\n";
+                            }
+                            else if(value.email == "n/a"){
+                                var email = "<i  data-toggle=\"tooltip\" title=\"Nog niet ingevuld\" style='color: darkred' class=\"fas fa-question-circle\"></i>\n";
+                            }
+                            else {
+                                var email = value.telefoon
+                            }
+
+
+                            if (value.geboortedatum == "0001-01-01 00:00:00:") {
+                                var geboortedatum = "<i data-toggle=\"tooltip\" title=\"Nog niet ingevuld\" style='color: darkred' class=\"fas fa-question-circle\"></i>\n";
+                            }
+                            else if(value.geboortedatum == null){
+                                var geboortedatum = "<i  data-toggle=\"tooltip\" title=\"Nog niet ingevuld\" style='color: darkred' class=\"fas fa-question-circle\"></i>\n";
+                            }
+                            else {
+                                var geboortedatum = value.geboortedatum
+                            }
 
                                 let tr = `<tr>
                                <td>${value.id}</td>
                                <td>${value.naam} ${value.voornaam}</td>
                                <td>${verenigingnaam}</td>
-                               <td>${value.email}</td>
+                               <td>${email}</td>
                                <td>${telefoon}</td>
                                <td>${geboortedatum}</td>
 
