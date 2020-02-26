@@ -129,7 +129,6 @@ Route::middleware(['auth', 'verantwoordelijke'])->prefix('verantwoordelijke')->g
 
 
 
-
     Route::resource('verenigingen', 'Verantwoordelijke\VerenigingController');
     Route::get('verenigingen', 'Verantwoordelijke\VerenigingController@index');
 });
