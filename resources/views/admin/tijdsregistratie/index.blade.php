@@ -29,7 +29,6 @@
             <table id="mytable" class="table table-hover">
                 <thead class="shadow">
                 <tr>
-                    <th>#</th>
                     <th>Naam</th>
                     <th>Vereniging</th>
                     <th>CheckIn</th>
@@ -40,7 +39,7 @@
                     <th>AdminCheckuit</th>
                     <th>Finale CheckIn</th>
                     <th>Finale Checkuit</th>
-                    <th>Acties</th>
+                    <th align="center">Acties</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -253,17 +252,16 @@
                                 }
 
                                 let tr = `<tr>
-                               <td>${value.id}</td>
                                <td>${value.gebruikerstijd.naam} ${value.gebruikerstijd.voornaam}</td>
                                <td>${value.vereniging_tijd.naam}</td>
-                               <td>${checkIn}</td>
-                               <td>${checkUit}</td>
-                               <td>${manCheckIn}</td>
-                               <td>${manCheckUit}</td>
-                               <td>${adminCheckIn}</td>
-                               <td>${adminCheckUit}</td>
-                               <td>${value.checkIn}</td>
-                               <td>${value.checkUit}</td>
+                               <td align="center">${checkIn}</td>
+                               <td align="center">${checkUit}</td>
+                               <td align="center">${manCheckIn}</td>
+                               <td align="center">${manCheckUit}</td>
+                               <td align="center">${adminCheckIn}</td>
+                               <td align="center">${adminCheckUit}</td>
+                               <td align="center">${value.checkIn}</td>
+                               <td align="center">${value.checkUit}</td>
 
 
                                <td data-id="${value.id}".
@@ -275,7 +273,7 @@
                                    data-manCheckUit="${value.manCheckUit}"
                                    data-adminCheckIn="${value.adminCheckIn}"
                                    data-adminCheckUit="${value.adminCheckUit}"
-                                    >
+                                    align="center">
                                     <div class="btn-group btn-group-sm">
                                         <a href="#!" class="btn btn-outline-success btn-edit" data-toggle="tooltip" title="Wijzig ${value.vereniging_tijd.naam}">
                                             <i class="fas fa-edit"></i>
