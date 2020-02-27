@@ -5,17 +5,6 @@
 @section('main')
     <h1>{{$evenement->naam}}</h1>
 
-    <div style="float: right">
-        <a href="/tijdsregistratie">
-            <div class="card text-black bg-light mb-3" style="max-width: 18rem;">
-                <div class="card-header">Geschatte uren</div>
-                <div class="card-body">
-                    <h1 class="card-title" style="" id="uren">Uren hierzo</h1>
-
-                </div>
-            </div>
-        </a>
-    </div>
 
 
     <div class="table-responsive">
