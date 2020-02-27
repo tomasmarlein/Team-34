@@ -49,6 +49,7 @@ class AdminController extends Controller
         $gebruikers->password = Hash::make($request->wachtwoord);
         $gebruikers->telefoon = $request->telefoon;
         $gebruikers->geboortedatum = $request->geboortedatum;
+        $gebruikers->rijksregisternr = 1;
         $gebruikers->rolId = 1;
         $gebruikers->save();
 
