@@ -106,7 +106,8 @@ class CreateGebruikersTable extends Migration
                 'eersteAanmelding' => false,
                 'lunchpakket' => False,
                 'rolId' => 1,
-            ],
+            ]);
+        DB::table('gebruikers')->insert(
             [
                 'naam' => "Webers",
                 'voornaam' => "Ronny",
@@ -118,7 +119,8 @@ class CreateGebruikersTable extends Migration
                 'eersteAanmelding' => false,
                 'lunchpakket' => False,
                 'rolId' => 1,
-            ],
+            ]);
+        DB::table('gebruikers')->insert(
             [
                 'naam' => "admin",
                 'voornaam' => "admin",
@@ -130,7 +132,8 @@ class CreateGebruikersTable extends Migration
                 'eersteAanmelding' => false,
                 'lunchpakket' => False,
                 'rolId' => 1,
-            ],
+            ]);
+        DB::table('gebruikers')->insert(
             [
                 'naam' => "Admin_1",
                 'voornaam' => "Gladiolen",
@@ -170,7 +173,8 @@ class CreateGebruikersTable extends Migration
                 'eersteAanmelding' => false,
                 'lunchpakket' => False,
                 'rolId' => 2,
-            ],
+            ]);
+        DB::table('gebruikers')->insert(
             [
                 'naam' => "Dumont",
                 'voornaam' => "Lisa",
@@ -182,7 +186,8 @@ class CreateGebruikersTable extends Migration
                 'eersteAanmelding' => false,
                 'lunchpakket' => False,
                 'rolId' => 2,
-            ],
+            ]);
+        DB::table('gebruikers')->insert(
             [
                 'naam' => "De Groote",
                 'voornaam' => "Mathéo",
@@ -209,7 +214,8 @@ class CreateGebruikersTable extends Migration
                 'eersteAanmelding' => false,
                 'lunchpakket' => False,
                 'rolId' => 3,
-            ],
+            ]);
+        DB::table('gebruikers')->insert(
             [
                 'naam' => "Roland",
                 'voornaam' => "Jarne",
@@ -221,7 +227,8 @@ class CreateGebruikersTable extends Migration
                 'eersteAanmelding' => false,
                 'lunchpakket' => False,
                 'rolId' => 3,
-            ],
+            ]);
+        DB::table('gebruikers')->insert(
             [
                 'naam' => "Martens",
                 'voornaam' => "Lola",
