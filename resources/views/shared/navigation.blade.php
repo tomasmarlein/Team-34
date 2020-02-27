@@ -50,11 +50,14 @@
                             @if(auth()->user()->rolId==1)
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/admin/evenementen"><i class="fas fa-calendar-week"></i> Evenementen</a>
+                                <a class="dropdown-item" href="/inaanvraag"><i class="fas fa-pencil-alt"></i></i> Verenigingen in aanvraag</a>
                                 <a class="dropdown-item" href="/admin/verenigingen"><i class="fab fa-vuejs"></i> Verenigingen</a>
                                 <a class="dropdown-item" href="/admin/kernleden"><i class="fas fa-users"></i> Kernleden</a>
+                                <a class="dropdown-item" href="/admin/Admin"><i class="fas fa-user"></i> Administrators</a>
                                 <a class="dropdown-item" href="/admin/verantwoordelijke"><i class="far fa-user"></i> Verantwoordelijken</a>
                                 <a class="dropdown-item" href="/admin/vrijwilligers"><i class="fas fa-hands-helping"></i> Vrijwilligers</a>
                                 <a class="dropdown-item" href="/admin/tijdsregistratie"><i class="fas fa-user-clock"></i>Tijdsregistratie</a>
+                                <a class="dropdown-item" href="/admin/tshirt"><i class="fas fa-tshirt"></i></i>T-shirts</a>
                             @endif
                             @if(auth()->user()->rolId==2)
                             @endif
