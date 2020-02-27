@@ -12,9 +12,6 @@
                 <li class="nav-item">
                     @auth
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/documentatie">Documentatie</a>
-                </li>
                 @endauth
             </ul>
             {{--  Admin navigation  --}}
